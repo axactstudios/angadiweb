@@ -14,6 +14,8 @@ const Register = () => {
     textChange: 'Register'
   });
 
+  const db = firebase.firestore();
+
 
   const { name, email, password1, password2 } = formData;
   const handleChange = text => e => {
@@ -26,18 +28,22 @@ const Register = () => {
       if (password1 === password2) {
         setFormData({ ...formData, textChange: 'Submitting' });
         await firebase.auth().createUserWithEmailAndPassword(email, password1)
-          .then(res => {
-            setFormData({
-              ...formData,
-              name: '',
-              email: '',
-              password1: '',
-              password2: '',
-              textChange: 'Submitted'
-            });
+          .then(async res => {
             res.user.updateProfile({
-              displayName: name,
+              displayName: name
             })
+
+            //Save data in firestore
+            await db.collection('Users').doc(res.user.uid).set({
+              Name:name,
+              id: '',
+              mail: email,
+              pUrl: '',
+              role: 'user'
+            }).then(resp => {
+              console.log('done',resp)
+            })
+
             // URL of my website.
             const myURL = { url: 'http://localhost:3000/' }
 
@@ -52,7 +58,7 @@ const Register = () => {
 
             // Sign Out the user.
             firebase.auth().signOut();
-            console.log(res)
+            toast.success('Done')
           })
           .catch(err => {
             setFormData({

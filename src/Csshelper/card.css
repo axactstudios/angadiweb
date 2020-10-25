@@ -1,0 +1,11 @@
+.catcard{
+    width: 350px;
+    overflow: hidden;
+}
+.catcard img{
+    width: 100%;
+}
+.catcard h5{
+    text-align: center;
+    font-size: 22px;
+}
