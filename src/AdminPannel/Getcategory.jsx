@@ -10,8 +10,8 @@ const Getcategory = () => {
     useEffect(async () => {
         await db.collection('Categories').get()
             .then(res => {
-                res.forEach(doc => {
-                    setCat(cat => [...cat, doc.data()])
+                res.forEach((doc) => {
+                    setCat(cat => [...cat, {data : doc.data(), _id: doc.id}])
                 })
             })
     }, [])

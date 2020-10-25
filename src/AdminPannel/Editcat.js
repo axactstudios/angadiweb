@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import { Form, Button } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 
-const Addcat = () => {
+const Editcat = ({ match }) => {
 
     const [values, setValues] = useState({
         name: '',
@@ -11,8 +11,8 @@ const Addcat = () => {
         photo: ''
     })
 
-    const storage = firebase.storage()
-    const store = firebase.firestore()
+    const db = firebase.firestore()
+    const _id = match.params.catname
 
     const { name, image, top, photo } = values
 
@@ -28,29 +28,21 @@ const Addcat = () => {
         }
     };
 
-    const handleSubmit = async () => {
-        const uploadTask = storage.ref(`category/${image.name}`).put(image);
-        await uploadTask.on('state_changed', (snapshot) => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            console.log(progress)
-        },
-            (error) => {
-                console.log(error)
-            },
-            () => {
-                storage.ref('category').child(image.name).getDownloadURL().then(async url => {
-                    console.log(url)
-                    await store.collection('Categories').add({
-                        imageURL: url,
-                        catName: name,
-                        top: top
-                    }).then(() => {
-                        console.log('done')
-                    }).catch((err) => {
-                        console.log(err)
-                    })
-                })
+    useEffect(() => {
+        db.collection('Categories').doc(_id).get()
+            .then(res => {
+                const me = res.data()
+                setValues({...values, name:me.catName, photo:me.imageURL,
+                top: me.top})
             })
+    }, [])
+
+    const delCat = () => {
+        db.collection("Categories").doc(_id).delete().then(function () {
+            console.log("Document successfully deleted!");
+        }).catch(function (error) {
+            console.error("Error removing document: ", error);
+        });
     }
 
     return (
@@ -69,6 +61,7 @@ const Addcat = () => {
                 </div>
                 <Form.Group >
                     <Form.Label>Choose Top </Form.Label><br />
+                    {JSON.stringify(top)}
                     <select onChange={handleChange('top')} >
                         <option>Please Select</option>
                         <option value="false">No</option>
@@ -76,13 +69,14 @@ const Addcat = () => {
                     </select>
                 </Form.Group>
                 <div>
-                    <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
+                    <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger">
                         Create Category
-                </Button>
+            </Button>
                 </div>
             </Form>
+            <button onClick={delCat} >Delete</button>
         </div>
     );
 };
 
-export default Addcat;
+export default Editcat;
