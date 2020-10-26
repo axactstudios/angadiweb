@@ -5,16 +5,17 @@ import { Link, Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap'
 import * as firebase from 'firebase'
 
-const Login = ({ history }) => {
+const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password1: '',
     textChange: 'SignIn'
   });
   const { email, password1 } = formData;
+  const db = firebase.firestore()
+
   const handleChange = text => e => {
     setFormData({ ...formData, [text]: e.target.value });
-    console.log(formData)
   };
 
 
@@ -28,8 +29,23 @@ const Login = ({ history }) => {
           if (!result.user.emailVerified) {
             toast.error('Please verify your email before to continue')
             firebase.auth().signOut();
+          } else {
+            db.collection('Users').where("id", "==", `${result.user.uid}`).get()
+              .then(res => {
+                res.forEach((doc) => {
+                  authenticate(doc.data(), () => {
+                    setFormData({
+                      ...formData,
+                      email: '',
+                      password1: '',
+                      textChange: 'signin Successfully done'
+                    })
+                  })
+                  console.log(doc.data())
+                  toast.success(`Welcome back ${doc.data().Name}`)
+                })
+              })
           }
-          console.log(result)
         })
         .catch(err => {
           setFormData({
@@ -50,7 +66,7 @@ const Login = ({ history }) => {
   return (
     <Fragment>
       <ToastContainer />
-      {isAuth() ? <Redirect to='/' /> : null}
+      {isAuth() ? <Redirect to='/user/dashboard' /> : null}
       <div style={{ width: '50%', margin: 'auto' }}>
         <h2><span>Sign In</span> <span>| Sign Up</span></h2>
         <Form onSubmit={handleSubmit}>

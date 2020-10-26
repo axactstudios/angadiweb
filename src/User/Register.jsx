@@ -36,7 +36,7 @@ const Register = () => {
             //Save data in firestore
             await db.collection('Users').doc(res.user.uid).set({
               Name:name,
-              id: '',
+              id: res.user.uid,
               mail: email,
               pUrl: '',
               role: 'user'
