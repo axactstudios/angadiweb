@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/pgcard.css'
-import { addItem, updateItem} from '../helpers/CartHelper'
-import {Redirect} from 'react-router-dom'
+import { addItem, updateItem } from '../helpers/CartHelper'
+import { Redirect, Link } from 'react-router-dom'
 
 const Card = ({ product }) => {
     const [redirect, setRedirect] = useState(false)
@@ -28,9 +28,11 @@ const Card = ({ product }) => {
 
     return (
         <div className="csk">
-        {shouldRedirect(redirect)}
+            {shouldRedirect(redirect)}
             <div className="csk1">
-                <img src={product.data.url} alt={product.data.name} />
+                <Link to={`/dish/${product._id}`}>
+                    <img src={product.data.url} alt={product.data.name} />
+                </Link>
             </div>
             <div className="csk2">
                 <p>{product.data.name}</p>

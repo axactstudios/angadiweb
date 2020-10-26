@@ -24,10 +24,12 @@ import ErrorPage from './core/Error'
 import Login from './User/Login'
 import Register from './User/Register'
 import Cart from './core/Cart'
-
+import Product from './core/Product';
 import Menu from './core/Menu'
 import Footer from './core/Footer'
+
 import Userdashboard from './User/UserDashboard';
+
 
 const App = () => {
   return (
@@ -40,7 +42,7 @@ const App = () => {
             <Route path='/register' exact component={Register} />
             <Route path='/login' exact component={Login} />
             <Route path='/cart' exact component={Cart} />
-            
+            <Route path='/dish/:dishId' exact component={Product} />
 
             <AdminRoute path='/get/category' exact component={GetCat} />
             <AdminRoute path='/add/category' exact component={Addcat} />
