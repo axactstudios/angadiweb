@@ -1,5 +1,3 @@
-import { Redirect } from "react-router-dom"
-
 export const addItem = (item, next) => {
     let cart = []
     if (typeof window !== 'undefined') {

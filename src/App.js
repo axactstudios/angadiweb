@@ -23,6 +23,7 @@ import Home from './core/Home'
 import ErrorPage from './core/Error'
 import Login from './User/Login'
 import Register from './User/Register'
+import Cart from './core/Cart'
 
 import Menu from './core/Menu'
 import Footer from './core/Footer'
@@ -38,6 +39,9 @@ const App = () => {
             <Route path='/' exact component={Home} />
             <Route path='/register' exact component={Register} />
             <Route path='/login' exact component={Login} />
+            <Route path='/cart' exact component={Cart} />
+            
+
             <AdminRoute path='/get/category' exact component={GetCat} />
             <AdminRoute path='/add/category' exact component={Addcat} />
             <AdminRoute path='/get/dishes' exact component={GetDish} />
