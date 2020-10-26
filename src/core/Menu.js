@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import Log from '../User/Logout'
 
 const Menu = () => {
     return (
@@ -16,6 +17,7 @@ const Menu = () => {
             <Link className="men" to='/add/offer'>add offer</Link>
             <Link className="men" to='/register'>register</Link>
             <Link className="men" to='/login'>login</Link>
+            <Log />
             </div>
         </div>
     );

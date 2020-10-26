@@ -3,10 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './helpers/PrivateRoute';
 import AdminRoute from './helpers/AdminRoute';
-import Home from './core/Home'
-import ErrorPage from './core/Error'
-import Login from './User/Login'
-import Register from './User/Register'
+
 import GetCat from './AdminPannel/Getcategory'
 import Addcat from './AdminPannel/Addcat'
 import GetDish from './AdminPannel/Getdish'
@@ -15,7 +12,6 @@ import Editdish from './AdminPannel/Editdish';
 import Editcat from './AdminPannel/Editcat';
 import Getorder from './AdminPannel/Getorder';
 import Editorder from './AdminPannel/Editorder'
-import Menu from './core/Menu'
 import Getoffer from './AdminPannel/Getoffer';
 import Addoffer from './AdminPannel/Addoffer';
 import Editoffer from './AdminPannel/Editoffer'
@@ -23,6 +19,13 @@ import Getuser from './AdminPannel/Getuser';
 import Getorderfromuser from './AdminPannel/Getorderfromuser'
 import Adminpannel from './User/AdminDashboard';
 
+import Home from './core/Home'
+import ErrorPage from './core/Error'
+import Login from './User/Login'
+import Register from './User/Register'
+
+import Menu from './core/Menu'
+import Footer from './core/Footer'
 import Userdashboard from './User/UserDashboard';
 
 const App = () => {
@@ -53,6 +56,7 @@ const App = () => {
             <PrivateRoute path='/user/dashboard' exact component={Userdashboard} />
             <Route component={ErrorPage} />
           </Switch>
+          <Footer />
         </BrowserRouter>
       </div>
     </div>

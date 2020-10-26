@@ -1,0 +1,32 @@
+.cskk{
+    width: 88%;
+    margin: auto;
+}
+.csk{
+    width: 350px;
+}
+.csk1{
+    width: 265px;
+}
+.csk1 img{
+    width: 100%;
+    height: 29.5vh;
+}
+.csk2 p{
+    font-size: 16px;
+}
+.cskk4{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
+}
+.cskk5{
+    width: 80px;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+}
+.cskk5 img{
+    width: 55px;
+}

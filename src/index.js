@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as firebase from 'firebase'
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBNH6xfsJiMiaIdyPsDwqf1Qe2aQgHUYEU",

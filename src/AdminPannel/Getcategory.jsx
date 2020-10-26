@@ -4,7 +4,6 @@ import Card from '../Csshelper/Card'
 
 const Getcategory = () => {
     const [cat, setCat] = useState([])
-
     const db = firebase.firestore()
 
     useEffect(async () => {
