@@ -14,6 +14,11 @@ import Editcat from './AdminPannel/Editcat';
 import Getorder from './AdminPannel/Getorder';
 import Editorder from './AdminPannel/Editorder'
 import Menu from './core/Menu'
+import Getoffer from './AdminPannel/Getoffer';
+import Addoffer from './AdminPannel/Addoffer';
+import Editoffer from './AdminPannel/Editoffer'
+import Getuser from './AdminPannel/Getuser';
+import Getorderfromuser from './AdminPannel/Getorderfromuser'
 
 const App = () => {
   return (
@@ -33,6 +38,11 @@ const App = () => {
             <Route path='/edit/category/:catname' exact component={Editcat} />
             <Route path='/get/orders' exact component={Getorder} />
             <Route path='/edit/order/:orderId' exact component={Editorder} />
+            <Route path='/add/offer' exact component={Addoffer} />
+            <Route path='/get/offers' exact component={Getoffer} />
+            <Route path='/edit/offer/:offerId' exact component={Editoffer} />
+            <Route path='/get/users' exact component={Getuser} />
+            <Route path='/orders/from/user/:userId' exact component={Getorderfromuser} />
             <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>

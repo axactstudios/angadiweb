@@ -12,6 +12,7 @@ const Ordercard = ({ product }) => {
                 <div>Status -{product.data.Status}</div>
                 <div>Type -{product.data.Type}</div>
                 <div>UserID -{product.data.UserID}</div>
+                <div>OrderId -{product._id}</div>
                 <div>Timestamp -{new Date(product.data.TimeStamp.seconds * 1000).toLocaleDateString("en-US")}</div>
                 <div>{product.data.DeliveryTime}</div>
                 <div style={{ display: 'flex', justifyContent: 'space-around' }}>
