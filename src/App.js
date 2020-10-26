@@ -11,6 +11,8 @@ import GetDish from './AdminPannel/Getdish'
 import Adddish from './AdminPannel/AddDish'
 import Editdish from './AdminPannel/Editdish';
 import Editcat from './AdminPannel/Editcat';
+import Getorder from './AdminPannel/Getorder';
+import Editorder from './AdminPannel/Editorder'
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
             <Route  path='/add/dish' exact component={Adddish} />
             <Route  path='/edit/dish/:dishname' exact component={Editdish} />
             <Route  path='/edit/category/:catname' exact component={Editcat} />
+            <Route  path='/get/orders' exact component={Getorder} />
+            <Route  path='/edit/order/:orderId' exact component={Editorder} />
             <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>

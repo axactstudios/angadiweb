@@ -16,8 +16,8 @@ const Dishcard = ({ product }) => {
                     <li>iPrice: {product.data.iPrice}</li>
                     <li>price: {product.data.price}</li>
                     <li>rating: {product.data.rating}</li>
-                    <li>special: {product.data.special}</li>
-                    <li>top: {product.data.top}</li>
+                    <li>special: {JSON.stringify(product.data.special)}</li>
+                    <li>top: {JSON.stringify(product.data.top)}</li>
                 </ul>
             </div>
         </div>

@@ -34,7 +34,7 @@ const Getcategory = () => {
             })
     }, [])
 
-    
+
     var catRef = db.collection('Dishes');
 
     const getspecific = () => {
@@ -101,10 +101,10 @@ const Getcategory = () => {
                     </div>
                     :
                     <div>
+                        <h4>{resu.length} result found</h4>
                         {
                             resu && resu.map((d, k) => (
                                 <div key={k}>
-                                    <h4>{resu.length} result found</h4>
                                     <div>
                                         <Card product={d} />
                                     </div>
