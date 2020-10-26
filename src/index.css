@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.men{
+  color: black;
+  font-size: 18px;
+  margin: 5px 15px;
+  text-decoration: none;
+}
+.men:hover{
+  color: black;
+  font-size: 18px;
+  margin: 5px 15px;
+  text-decoration: none;
+}
+.men1{
+  text-align: center;
+  margin: auto;
+}

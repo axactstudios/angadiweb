@@ -13,24 +13,26 @@ import Editdish from './AdminPannel/Editdish';
 import Editcat from './AdminPannel/Editcat';
 import Getorder from './AdminPannel/Getorder';
 import Editorder from './AdminPannel/Editorder'
+import Menu from './core/Menu'
 
 const App = () => {
   return (
     <div>
       <div>
         <BrowserRouter>
+          <Menu />
           <Switch>
-            <Route  path='/' exact component={Home} />
-            <Route  path='/register' exact component={Register} />
-            <Route  path='/login' exact component={Login} />
-            <Route  path='/get/category' exact component={GetCat} />
-            <Route  path='/add/category' exact component={Addcat} />
-            <Route  path='/get/dishes' exact component={GetDish} />
-            <Route  path='/add/dish' exact component={Adddish} />
-            <Route  path='/edit/dish/:dishname' exact component={Editdish} />
-            <Route  path='/edit/category/:catname' exact component={Editcat} />
-            <Route  path='/get/orders' exact component={Getorder} />
-            <Route  path='/edit/order/:orderId' exact component={Editorder} />
+            <Route path='/' exact component={Home} />
+            <Route path='/register' exact component={Register} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/get/category' exact component={GetCat} />
+            <Route path='/add/category' exact component={Addcat} />
+            <Route path='/get/dishes' exact component={GetDish} />
+            <Route path='/add/dish' exact component={Adddish} />
+            <Route path='/edit/dish/:dishname' exact component={Editdish} />
+            <Route path='/edit/category/:catname' exact component={Editcat} />
+            <Route path='/get/orders' exact component={Getorder} />
+            <Route path='/edit/order/:orderId' exact component={Editorder} />
             <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>
