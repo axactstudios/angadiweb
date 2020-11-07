@@ -1,0 +1,155 @@
+.men24{
+    width: 100%;
+    margin-top: 20px;
+}
+.men2{
+    display: flex;
+    justify-content: space-between;
+    width: 88%;
+    margin: auto;
+    height: 80px;
+    overflow: hidden;
+}
+.men21 h6{
+    line-height: 10vh;
+}
+.men22 img{
+    width: 160px;
+    height: auto;
+    margin-top: -26px;
+}
+.men23 h6{
+    line-height: 10vh;
+}
+@media screen and (max-width: 900px){
+    .men21{
+        visibility: hidden !important;
+    }
+    .men23{
+        visibility: hidden !important;
+    }
+}
+.men3{
+    width: 100%;
+    background-color: rgb(229, 226, 226);
+    height: 55px !important;
+}
+.men3 ul{
+    width: 48%;
+    margin: auto;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+}
+.men3 li{
+    font-size: 17.5px;
+    font-weight: 500;
+    line-height: 55px;
+}
+@media screen and (max-width: 1200px){
+    .men3 ul{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 1000px){
+    .men3 ul{
+        width: 80%;
+    }
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: #3A3A3A;
+    padding: 5px !important;
+    border: none;
+    outline: none;
+    font-size: 17.5px;
+    font-weight: 550;
+    line-height: 45px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: #3A3A3A;
+    padding: 10px 16px; 
+    text-decoration: none;
+    display: block;
+    text-align: left !important;
+  }
+  
+  .dropdown-content a:hover {background-color: #f0f0f0;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: white;}
+
+
+.nav{
+    width: 100%;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+.nav .navlink{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+@media screen and (max-width: 767px){
+    .men3{
+        height: 0px !important;
+    }
+    .nav{
+        height: 0vh;
+        padding: 0px 0px;
+    }
+    .navlink{
+        position: fixed;
+        top: 0;
+        width: 100% !important;
+        height: 100% !important;
+        background-color: rgb(253, 57, 61);
+        flex-direction: column !important;
+        justify-content: start !important;
+        align-items: center;
+        clip-path: circle(0px at 100% 0%);
+        -webkit-clip-path: circle(0px at 100% 0%);
+        transition: all 1s ease-out;
+        z-index: 99;
+        padding-top: 120px;
+    }
+    .navlink.open{
+        clip-path: circle(1000px at 100% 0%);
+        -webkit-clip-path: circle(1000px at 100% 0%);
+    }
+    .hamburger{
+        z-index: 100;
+        height: 40px;
+        width: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        top: -60px;
+        right: 6px !important;
+        cursor: pointer;
+        position: relative;
+    }
+    .hamburger div{
+        background-color: green;
+        margin: 6px 0 0 8px; 
+        width: 30px;
+        height: 4px;
+    }
+}
