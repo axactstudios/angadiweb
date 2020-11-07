@@ -90,7 +90,7 @@ const Menu = ({ history }) => {
                                 <div className="dropdown-content">
                                     {
                                         cat.map((l, k) => (
-                                            <Link onClick={changeScreen} style={isActive(history, `/category/${l._id}`)} to={`/category/${l._id}`}>{l.data.catName}</Link>
+                                            <Link onClick={changeScreen} style={isActive(history, `/category/${l._id}`)} to={`/category/${l.data.catName}`}>{l.data.catName}</Link>
                                         ))
                                     }
                                 </div>

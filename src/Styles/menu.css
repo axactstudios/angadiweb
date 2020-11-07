@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 .men21 h6{
-    line-height: 10vh;
+    line-height: 80px;
 }
 .men22 img{
     width: 160px;
@@ -19,7 +19,7 @@
     margin-top: -26px;
 }
 .men23 h6{
-    line-height: 10vh;
+    line-height: 80px;
 }
 @media screen and (max-width: 900px){
     .men21{
