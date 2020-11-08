@@ -1,6 +1,5 @@
 .men24{
     width: 100%;
-    margin-top: 20px;
 }
 .men2{
     display: flex;
@@ -14,9 +13,9 @@
     line-height: 80px;
 }
 .men22 img{
-    width: 160px;
+    width: 70px;
     height: auto;
-    margin-top: -26px;
+    margin-top: 6px;
 }
 .men23 h6{
     line-height: 80px;
@@ -31,7 +30,7 @@
 }
 .men3{
     width: 100%;
-    background-color: rgb(229, 226, 226);
+    background-color: #F7F6F2;
     height: 55px !important;
 }
 .men3 ul{

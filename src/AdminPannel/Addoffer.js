@@ -59,6 +59,7 @@ const Addoffer = () => {
 
     return (
         <div>
+            <ToastContainer />
             <h2>Add category</h2>
             <Form>
                 <Form.Group>

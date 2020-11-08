@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import Log from '../User/Logout'
 import '../Styles/menu.css'
-import Logo from '../images/logo.jpg'
+import Logo from '../images/logo.webp'
 import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 
@@ -43,23 +43,7 @@ const Menu = ({ history }) => {
     }
 
     return (
-        <div>
-            <div className="men1">
-                <Link className="men" to='/'>Home</Link>
-                <Link className="men" to='/get/orders'>orders</Link>
-                <Link className="men" to='/get/dishes'>dishes</Link>
-                <Link className="men" to='/get/category'>category</Link>
-                <Link className="men" to='/get/offers'>Offers</Link>
-                <Link className="men" to='/get/users'>Users</Link>
-                <Link className="men" to='/add/category'>add category</Link>
-                <Link className="men" to='/add/dish'>add dish</Link>
-                <Link className="men" to='/add/offer'>add offer</Link>
-                <Link className="men" to='/register'>register</Link>
-                <Link className="men" to='/login'>login</Link>
-                <Link className="men" to='/cart'>Cart </Link>
-                <Log />
-            </div>
-            
+        <div> 
             <div className="men24">
                 <div className="men2">
                     <div className="men21">

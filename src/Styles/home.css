@@ -1,0 +1,17 @@
+.cskk{
+    width: 88%;
+    margin: auto;
+    padding: 30px 0;
+}
+.cskk h6{
+    text-align: center;
+    color: #6b5236;
+    padding-bottom: 15px;
+    font-size: 22px;
+    font-family: 'Lora', Georgia, serif;
+    font-weight: bold;
+}
+.cskk span{
+    color: #c0933f !important;
+    font-weight: normal !important;
+}

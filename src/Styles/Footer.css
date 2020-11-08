@@ -1,32 +1,137 @@
 /**
 * Footer home15 to home21
 **/
-.home15{
-    background-color: rgb(163, 175, 91);
+
+.foopart1{
+    background-color: #F7F6F2;
+    position: relative;
+    top: 63.5px;
+    padding: 60px 0;
+}
+.foopart21{
+    padding: 20px 0;
+}
+.foopart22{
+    padding: 20px 0;
+}
+.foopart21 h3{
+    font-size: 22px;
+    line-height: 33px;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+.foopart21 p{
+    font-size: 15px;
+    line-height: 20px;
+    color: #808080;
+}
+.foopart22 input{
+    height: 52px;
+    width: 410px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+::placeholder {
+    color: #808080;
+    font-size: 15px;
+    font-weight: 300px;
+    padding-left: 12px;
+  }
+.foopart22 button{
+    height: 52px;
+    width: 92px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 12.5px;
+    letter-spacing: 0.5px;
+    background-color: #82AE46;
+    color: white;
+    position: relative;
+    top: -1.5px;
+}
+@media screen and (max-width:600px){
+    .foopart21{
+        padding: 5px 0;
+    }
+    .foopart22{
+        padding: 5px 0;
+    }   
+    .foopart22 input{
+        height: 52px;
+        max-width: 250px !important;
+    }
+    .foopart22 button{
+        height: 52px;
+        width: 92px;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        font-size: 12.5px;
+        letter-spacing: 0.5px;
+        background-color: #82AE46;
+        color: white;
+        position: relative;
+        top: -1.5px;
+    }
+}
+.foopart2{
+    margin: auto;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: #82AE46;
+    position: relative;
+    top: 30px;
+}
+.foopart2 i{
+    color: white;
+    font-size: 19px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-weight: -10px;
+    animation-name: foopart;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    top: 28px;
+    animation-direction: alternate;
+}
+@keyframes foopart{
+    0% {top: 10px;}
+    50% {top: 20px;}
+    100% {top: 28px;}
 }
 .home16{
-    padding-top: 50px;
+    padding-top: 70px;
     width: 90%;
     margin: auto;
+    padding-bottom: 10px;
 }
 .home16 h3{
     margin: auto;
-    padding-bottom: 2px;
-    color: white;
-    font-size: 21px;
+    padding-bottom: 4px;
+    color: black;
+    font-size: 20px;
+    font-weight: 550px;
 }
 .home16 ul{
     padding-top: 8px;
     list-style-type: none;
     margin-left: -38px;
 }
+.home16 ul li{
+    margin: 8px 0;
+}
 .home16 ul li a{
-    color: white;
+    color: rgb(68, 67, 67);
     font-weight: 400;
     font-size: 15px;
 }
 .home16 ul li a:hover{
-    color: white;
+    color: rgb(68, 67, 67);
     text-decoration: none;
 }
 .home17{
@@ -63,7 +168,7 @@
 }
 @media screen and (max-width: 576px){
     .home16{
-        padding-top: 30px;
+        padding-top: 60px;
         width: 100%;
     }
     .home17{
@@ -90,12 +195,12 @@
 
 .home21{
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .home21 p{
     padding-top: 10px;
     text-align: center;
-    color: white;
+    color: rgb(68, 67, 67);
     font-size: 15px;
 }
 

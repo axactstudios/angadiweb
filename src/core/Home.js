@@ -5,6 +5,7 @@ import { Col, Container, Row, Carousel } from 'react-bootstrap'
 import Ing from '../images/poster3.jpg'
 import Ing2 from '../images/poster.jpg'
 import Ing4 from '../images/poster1.jpg'
+import '../Styles/home.css'
 
 const Home = () => {
     const [cat, setCat] = useState([])
@@ -86,6 +87,7 @@ const Home = () => {
                 </Carousel>
             </div>
             <div className="cskk">
+            <h6>Homemade Tasty <spna>Products</spna></h6>
                 <div className="cskk3">
                     <ul className="cskk4">
                         {
