@@ -1,0 +1,13 @@
+.shopi{
+    width: 50%;
+    margin: auto;
+}
+.shopi input{
+    width: 100%;
+    height: 40px !important;
+}
+.shopi button{
+    width: 100px;
+    height: 40px;
+    margin-left: -30px;
+}

@@ -107,17 +107,19 @@ const Home = () => {
                 </div>
             </div>
 
-            <Container>
-                <Row>
-                    {
-                        resu && resu.map((d, k) => (
-                            <Col lg={3} md={4} key={k} sm={6} xs={12}>
-                                <Card product={d} />
-                            </Col>
-                        ))
-                    }
-                </Row>
-            </Container>
+            <div className="homey">
+                <Container fluid>
+                    <Row>
+                        {
+                            resu && resu.map((d, k) => (
+                                <Col lg={4} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                    <Card product={d} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
+            </div>
         </div>
     );
 };

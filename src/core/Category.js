@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row } from 'react-bootstrap'
+import '../Styles/home.css'
 
 const Category = ({ match }) => {
 
@@ -36,17 +37,23 @@ const Category = ({ match }) => {
 
     return (
         <div>
-            <Container fluid>
-                <Row>
-                    {
-                        resu && resu.map((d, k) => (
-                            <Col lg={3} md={4} key={k} sm={6} xs={12}>
-                                <Card product={d} />
-                            </Col>
-                        ))
-                    }
-                </Row>
-            </Container>
+            <div class="mu-title">
+                <span class="mu-subtitle">Discover</span>
+                <h2>{cs} {cd && cd} Products</h2>
+            </div>
+            <div className="homey2">
+                <Container fluid>
+                    <Row>
+                        {
+                            resu && resu.map((d, k) => (
+                                <Col lg={4} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                    <Card product={d} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
+            </div>
         </div>
     );
 };

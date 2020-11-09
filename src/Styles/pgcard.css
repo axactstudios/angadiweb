@@ -9,15 +9,18 @@
     }
 }
 .csk{
-    max-width: 265px;
+    width: 270px;
+    margin: auto;
+    height: 360px;
+    overflow: hidden;
 }
 .csk1{
-    max-width: 265px;
+    max-width: 270px;
     overflow: hidden;
 }
 .csk1 img{
     width: 100%;
-    max-height: 255px;
+    max-height: 258px;
 }
 .csk1:hover img{
     transform: scale(1.1);
@@ -40,12 +43,32 @@
     text-align: center;
 }
 .csk2:hover{
-    height: auto;
-    bottom: 25px;
+    bottom: 50px;
 }
 @media screen and (max-width: 450px){
     .csk2:hover{
         height: auto;
         bottom: 0px;
     }   
+    .csk{
+        width: 285px;
+        height: auto !important;
+    }
+    .csk1{
+        max-width: 285px;
+    }
+    .csk1 img{
+        width: 100%;
+        height: auto !important;
+    }
+    .csk1:hover img{
+        transform: scale(1.1);
+        transition: all 0.4s;
+    }
+}
+@media screen and (max-width: 300px){   
+    .csk{
+        max-width: 285px !important;
+        height: auto !important;
+    }
 }

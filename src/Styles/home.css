@@ -67,18 +67,29 @@
         flex-wrap: wrap;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.homey{
+    width: 85%;
+    margin: auto;
+}
+.homey1{
+    margin: 25px 0 !important;
+}
+.homey2{
+    width: 85%;
+    margin: auto !important;
+    margin-top: 20px !important;
+    margin-bottom: -40px !important;
+}
+@media screen and (max-width: 1250px){
+    .homey{
+        width: 93%;
+    }
+}
+@media screen and (max-width: 650px){
+    .homey{
+        width: 98%;
+    }
+    .homey1{
+        margin: 15px 0 !important;
+    }
+}
