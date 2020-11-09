@@ -9,30 +9,43 @@
     }
 }
 .csk{
-    width: 350px;
+    max-width: 265px;
 }
 .csk1{
-    width: 265px;
+    max-width: 265px;
+    overflow: hidden;
 }
 .csk1 img{
     width: 100%;
-    height: 29.5vh;
+    max-height: 255px;
+}
+.csk1:hover img{
+    transform: scale(1.1);
+    transition: all 0.4s;
+}
+.csk2{
+    position: relative;
+    left: 0;
+    bottom: 0px;
+    padding: 10px 5px;
+    transition: all 0.5s;
+    background: linear-gradient(
+        45deg,
+        #82AE46 0%,
+        rgba(144,192,229,0.4) 100%
+    );
 }
 .csk2 p{
     font-size: 16px;
-}
-.cskk4{
-    display: flex;
-    flex-direction: row;
-    list-style-type: none;
-    justify-content: space-around;
-}
-.cskk5{
-    width: 80px;
-    margin: auto;
     text-align: center;
-    cursor: pointer;
 }
-.cskk5 img{
-    width: 55px;
+.csk2:hover{
+    height: auto;
+    bottom: 25px;
+}
+@media screen and (max-width: 450px){
+    .csk2:hover{
+        height: auto;
+        bottom: 0px;
+    }   
 }

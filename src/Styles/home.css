@@ -1,17 +1,84 @@
+.ckk{
+    width: 100%;
+    overflow: hidden;
+}
 .cskk{
     width: 88%;
-    margin: auto;
-    padding: 30px 0;
-}
-.cskk h6{
-    text-align: center;
-    color: #6b5236;
+    margin: auto !important;
+    overflow: hidden;
+    position: relative;
+    left: -19px;
     padding-bottom: 15px;
-    font-size: 22px;
-    font-family: 'Lora', Georgia, serif;
-    font-weight: bold;
 }
-.cskk span{
+
+.mu-title {
+    display: inline;
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 30px;
+  }
+  
+  .mu-title .mu-subtitle {
+    font-size: 50px;
+    font-family: "Tangerine", cursive;
+    line-height: 30px;
+    color: #6b5236;
+  }
+  
+  .mu-title h2 {
     color: #c0933f !important;
-    font-weight: normal !important;
+    font-size: 35px;
+    margin-bottom: 5px;
+    font-family: "Open Sans", sans-serif;
+  }  
+
+.cskk4{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    justify-content: space-around;
 }
+.cskk5{
+    width: 120px;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+    background-color: turquoise;
+}
+.cskk5 img{
+    width: 55px;
+}
+.cskk5 p{
+    text-align: center;
+    background-color: tomato;
+}
+@media screen and (max-width: 1020px) {
+    .cskk{
+        width: 99%;
+        padding: 30px 0;
+    }   
+}
+@media screen and (max-width: 950px) {
+    .cskk4{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

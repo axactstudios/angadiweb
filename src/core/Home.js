@@ -48,7 +48,7 @@ const Home = () => {
     }, [cs])
 
     return (
-        <div>
+        <div className="ckk">
             <div className="cskkk">
                 <Carousel>
                     <Carousel.Item interval={2500}>
@@ -86,8 +86,11 @@ const Home = () => {
                     </Carousel.Item>
                 </Carousel>
             </div>
+            <div class="mu-title">
+                <span class="mu-subtitle">Discover</span>
+                <h2>Our Products</h2>
+            </div>
             <div className="cskk">
-            <h6>Homemade Tasty <spna>Products</spna></h6>
                 <div className="cskk3">
                     <ul className="cskk4">
                         {
@@ -102,30 +105,21 @@ const Home = () => {
                         }
                     </ul>
                 </div>
-                <Container fluid>
-                    <Row>
-                        {
-                            resu && resu.map((d, k) => (
-                                <Col lg={3} md={4} key={k} sm={6} xs={12}>
-                                    <Card product={d} />
-                                </Col>
-                            ))
-                        }
-                    </Row>
-                </Container>
             </div>
+
+            <Container>
+                <Row>
+                    {
+                        resu && resu.map((d, k) => (
+                            <Col lg={3} md={4} key={k} sm={6} xs={12}>
+                                <Card product={d} />
+                            </Col>
+                        ))
+                    }
+                </Row>
+            </Container>
         </div>
     );
 };
 
 export default Home;
-
-// useEffect(() => {
-//     firebase.auth().onAuthStateChanged(user => {
-//         if (user) {
-//             console.log(user)
-//         } else {
-//             console.log('No user found')
-//         }
-//     })
-// }, [])
