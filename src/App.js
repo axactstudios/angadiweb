@@ -29,7 +29,9 @@ import Menu from './core/Menu'
 import Footer from './core/Footer'
 import Category from './core/Category'
 import Shop from './core/Shop'
+import Contact from './core/Contact'
 
+import Myads from './User/Myadds'
 import Userdashboard from './User/UserDashboard';
 
 
@@ -48,6 +50,7 @@ const App = () => {
             <Route path='/cart' exact component={Cart} />
             <Route path='/shop' exact component={Shop} />
             <Route path='/dish/:dishId' exact component={Product} />
+            <Route path='/contact/us' exact component={Contact} />
 
             <AdminRoute path='/get/category' exact component={GetCat} />
             <AdminRoute path='/add/category' exact component={Addcat} />
@@ -65,6 +68,7 @@ const App = () => {
             <AdminRoute path='/admin/pannel' exact component={Adminpannel} />
 
             <PrivateRoute path='/user/dashboard' exact component={Userdashboard} />
+            <PrivateRoute path='/my/ads' exact component={Myads} />
             <Route component={ErrorPage} />
           </Switch>
           <Footer />

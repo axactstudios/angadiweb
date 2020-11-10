@@ -119,7 +119,7 @@
         top: 0;
         width: 100% !important;
         height: 100% !important;
-        background-color: rgb(253, 57, 61);
+        background-color: white;
         flex-direction: column !important;
         justify-content: start !important;
         align-items: center;
@@ -129,6 +129,12 @@
         z-index: 99;
         padding-top: 120px;
     }
+    .navlink li{
+        margin-left: -30px !important;
+    }
+    .dropbtn {
+        margin-left: -24px !important;
+      }
     .navlink.open{
         clip-path: circle(1000px at 100% 0%);
         -webkit-clip-path: circle(1000px at 100% 0%);
@@ -146,7 +152,7 @@
         position: relative;
     }
     .hamburger div{
-        background-color: green;
+        background-color: #82AE46;
         margin: 6px 0 0 8px; 
         width: 30px;
         height: 4px;

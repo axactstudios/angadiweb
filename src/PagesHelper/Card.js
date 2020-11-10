@@ -1,24 +1,26 @@
 import React, { useState } from 'react';
 import '../Styles/pgcard.css'
-import { addItem } from '../helpers/CartHelper'
+import { addItem, updateItem } from '../helpers/CartHelper'
 import { Redirect, Link } from 'react-router-dom'
 
 const Card = ({ product }) => {
     const [redirect, setRedirect] = useState(false)
-    // const [count, setCount] = useState(1);
+    const [count, setCount] = useState(0);
 
-    const addToCart = () => {
-        addItem(product, () => {
-            setRedirect(true);
-        })
+
+    const handleChange = () => e => {
+        setCount(e.target.value < 1 ? 1 : e.target.value)
     }
 
-    // const handleChange = productId => e => {
-    //     setCount(e.target.value < 1 ? 1 : e.target.value)
-    //     if (e.target.value >= 1) {
-    //         updateItem(productId, e.target.value)
-    //     }
-    // }
+    const addToCart = async (e) => {
+        await addItem(product, () => {
+            setRedirect(true);
+        })
+
+        if (count > 0) {
+            updateItem(product._id, count)
+        }
+    }
 
     const shouldRedirect = redirect => {
         if (redirect) {
@@ -38,7 +40,7 @@ const Card = ({ product }) => {
                 <p>{product.data.name}</p>
                 <li>iPrice: {product.data.iPrice}</li>
                 <li>price: {product.data.price}</li>
-                <li>rating: {product.data.rating}</li>
+                <input type='number' onChange={handleChange()} value={count} className='form-control' />
                 <button onClick={addToCart}>Add</button>
             </div>
         </div>
@@ -47,7 +49,4 @@ const Card = ({ product }) => {
 
 export default Card;
 
-// <div className='input-group-prepend'>
-// <input type='number' onChange={handleChange(product._id)} value={count} className='form-control' />
-// <p className='input-group-text'>Adjust Quantity</p>
-// </div>
+// <li>rating: {product.data.rating}</li>
