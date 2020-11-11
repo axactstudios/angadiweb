@@ -1,0 +1,108 @@
+.proccard1{
+
+}
+.proccard2{
+    
+}
+.cardPic{
+    display: flex;
+    margin: 4rem auto;
+}
+.cardPic1{
+    padding: 30px 0px;    
+    z-index: 99;
+}
+.cardPic1 img{
+    width: 98%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 15px 15px 15px #acabab;
+}
+.cardPic2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.cardPic3{
+    margin: 20px;
+}
+.cardPic3 img{
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px grey;
+    transition: .3s ease-in;
+}
+.cardPic3 img:hover{
+    transform: translateX(-2px);
+}
+@media screen and (max-width: 1200px){
+    .cardPic{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .cardPic1{
+        padding: 30px 0px;
+    }
+    .cardPic1 img{
+        width: 50rem;
+        height: 30rem;
+        border-radius: 30px;
+        box-shadow: 15px 15px 15px #acabab;
+    }   
+    .cardPic2{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .cardPic3{
+        margin: 5px 20px 20px 20px;
+    }
+}
+@media screen and (max-width: 767px){
+    .cardPic{
+        display: flex;
+        flex-direction: row;
+    }
+    .cardPic1{
+        padding: 30px 0px;
+    }
+    .cardPic1 img{
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        box-shadow: 15px 15px 15px #acabab;
+    }
+    .cardPic2{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .cardPic3{
+        margin: 20px;
+    }
+}
+@media screen and (max-width: 600px){
+    .cardPic{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .cardPic1{
+        padding: 30px 0px;
+    }
+    .cardPic1 img{
+        width: 100%;
+        height: auto;
+        border-radius: 6px ;
+        box-shadow: 15px 15px 15px #acabab;
+    }   
+    .cardPic2{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .cardPic3{
+        margin: 5px 20px 0px 20px;
+    }
+}

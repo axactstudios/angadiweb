@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../Styles/pgcard.css'
 import { addItem, updateItem } from '../helpers/CartHelper'
 import { Redirect, Link } from 'react-router-dom'
-import { Form } from 'react-bootstrap'
 
 const Card = ({ product }) => {
     const [redirect, setRedirect] = useState(false)
@@ -55,10 +54,10 @@ const Card = ({ product }) => {
                 </div>
                 <p>Rs {product.data.price}  <span>Rs {product.data.iPrice}</span> </p>
                 <div className="inputdiv">
-                <input type='number' onChange={handleChange()} value={count} className='cartinputt' />
+                    <input type='number' onChange={handleChange()} value={count} className='cartinputt' />
                 </div>
                 <div className="cardbuttondiv">
-                <button className='cardbutton' onClick={addToCart}>Add</button>
+                    <button className='cardbutton' onClick={addToCart}>Add</button>
                 </div>
             </div>
         </div>
