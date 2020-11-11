@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import Log from '../User/Logout'
 import '../Styles/menu.css'
-import Logo from '../images/logo.webp'
+import Logo from '../images/angadilogo.png'
 import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
-        return { color: '#3DB83A' }
+        return { color: 'rgb(255,176,0)' }
     }
     else {
         return { color: "#3A3A3A" };
@@ -74,7 +74,7 @@ const Menu = ({ history }) => {
                                 <div className="dropdown-content">
                                     {
                                         cat.map((l, k) => (
-                                            <Link onClick={changeScreen} style={isActive(history, `/category/${l._id}`)} to={`/category/${l.data.catName}`}>{l.data.catName}</Link>
+                                            <Link onClick={changeScreen} style={isActive(history, `/category/${l.data.catName}`)} to={`/category/${l.data.catName}`}>{l.data.catName}</Link>
                                         ))
                                     }
                                 </div>

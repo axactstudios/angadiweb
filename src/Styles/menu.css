@@ -13,9 +13,9 @@
     line-height: 80px;
 }
 .men22 img{
-    width: 70px;
+    width: 80px;
     height: auto;
-    margin-top: 6px;
+    margin-top: -2px;
 }
 .men23 h6{
     line-height: 80px;
@@ -152,7 +152,7 @@
         position: relative;
     }
     .hamburger div{
-        background-color: #82AE46;
+        background-color: rgb(255, 176, 0);
         margin: 6px 0 0 8px; 
         width: 30px;
         height: 4px;

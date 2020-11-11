@@ -3,8 +3,8 @@ import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row, Carousel } from 'react-bootstrap'
 import Ing from '../images/poster3.jpg'
-import Ing2 from '../images/poster.jpg'
-import Ing4 from '../images/poster1.jpg'
+
+
 import '../Styles/home.css'
 
 const Home = () => {
@@ -12,6 +12,7 @@ const Home = () => {
     const db = firebase.firestore()
     const [resu, setResh] = useState([])
     const [cs, setCs] = useState('')
+    const [imgurll, setImgurl] = useState([])
 
     useEffect(async () => {
         setCat([])
@@ -19,6 +20,16 @@ const Home = () => {
             .then(res => {
                 res.forEach((doc) => {
                     setCat(cat => [...cat, { data: doc.data(), _id: doc.id }])
+                })
+            })
+    }, [])
+
+    useEffect(() => {
+        setImgurl([])
+        db.collection('Background').get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setImgurl(imgurll => [...imgurll, { data: doc.data(), _id: doc.id }])
                 })
             })
     }, [])
@@ -62,28 +73,20 @@ const Home = () => {
                             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
-                    <Carousel.Item interval={500}>
-                        <img
-                            className="d-block w-100"
-                            src={Ing2}
-                            alt="Third slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img
-                            className="d-block w-100"
-                            src={Ing4}
-                            alt="Third slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
+                    {
+                        imgurll && imgurll.map((d, k) =>
+                            (
+                                <Carousel.Item>
+                                    <img src={d.data.url}
+                                        className="d-block w-100"
+                                        alt={k} />
+                                    <Carousel.Caption>
+                                        {d._id}
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+
+                            ))
+                    }
                 </Carousel>
             </div>
             <div class="mu-title">
