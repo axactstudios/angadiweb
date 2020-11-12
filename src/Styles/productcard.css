@@ -1,8 +1,89 @@
 .proccard1{
 
 }
-.proccard2{
-    
+.proccard2{     
+    overflow: hidden;
+    padding-left: 25px;
+    padding-top: 45px;
+}
+@media screen and (max-width: 768px){
+    .proccard2{     
+        padding-left: 20px;
+        padding-top: 0px;
+        position: relative;
+        top: -20px;
+    }
+}
+.proccard2 h5{    
+    color: #6b3600;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.proccard2 h6{    
+    color: white;
+    background: linear-gradient(
+        45deg,
+        rgb(191, 25, 212) 0%,
+        rgba(36, 173, 227, 0.8) 100%
+    );
+    width: fit-content;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+.proccard2 p{    
+    color: green;
+    font-size: 20px;
+}
+.proccard2 p span{    
+    color: red;
+    text-decoration: line-through;
+    font-size: 18px;
+}
+.proccard3{    
+    font-size: 15px !important;
+    color: #474747 !important;
+}
+.proccard2 h4{    
+    color:rgb(255, 176, 0);
+    font-size: 16px;
+}
+.proccard4{
+    width: 150px;
+    margin: 18px 0;
+}
+.proccard4 span{
+    font-size: 15px;
+}
+.proccard5{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    outline: none;
+}
+.proccard6{
+    width: 200px;
+}
+.proccard6 span{
+    font-size: 15px;
+}
+.proccard6 input{
+    width: 100%;
+    text-align: center;
+    outline: none;
+}
+.proccard7{
+    width: 150px;
+    margin: 20px 0;
+}
+.proccard7 button{
+    width: 120px;
+    height: 35px;
+    outline: none;
+    border: none;
+    background-color: rgb(255, 176, 0);
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
 }
 .cardPic{
     display: flex;
@@ -10,7 +91,7 @@
 }
 .cardPic1{
     padding: 30px 0px;    
-    z-index: 99;
+    z-index: 9;
 }
 .cardPic1 img{
     width: 98%;
@@ -60,7 +141,7 @@
         margin: 5px 20px 20px 20px;
     }
 }
-@media screen and (max-width: 767px){
+@media screen and (max-width: 768px){
     .cardPic{
         display: flex;
         flex-direction: row;
@@ -69,15 +150,10 @@
         padding: 30px 0px;
     }
     .cardPic1 img{
-        width: 100%;
-        height: auto;
         border-radius: 30px;
-        box-shadow: 15px 15px 15px #acabab;
     }
     .cardPic2{
-        display: flex;
         flex-direction: column;
-        justify-content: center;
     }
     .cardPic3{
         margin: 20px;
@@ -92,17 +168,25 @@
         padding: 30px 0px;
     }
     .cardPic1 img{
-        width: 100%;
-        height: auto;
         border-radius: 6px ;
-        box-shadow: 15px 15px 15px #acabab;
     }   
     .cardPic2{
-        display: flex;
         flex-direction: row;
-        justify-content: center;
     }
     .cardPic3{
         margin: 5px 20px 0px 20px;
     }
+}
+
+
+
+
+
+/**
+* Related Products
+**/
+
+.proccard8{
+    margin: -20px 0;
+    min-height: 40vh;
 }

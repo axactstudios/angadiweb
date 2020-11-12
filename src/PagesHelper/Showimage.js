@@ -7,7 +7,7 @@ const ShowImage = ({ item }) => {
 
     useEffect(() => {
         setUrl(`${item.url}`)
-    }, [])
+    }, [item])
 
     const change = (e) => {
         if (e.target.src) {
