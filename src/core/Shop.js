@@ -3,8 +3,6 @@ import { Container, Row, Col, Form } from 'react-bootstrap'
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import '../Styles/shop.css'
-import Radiobox from '../PagesHelper/Radiobox'
-import { prices } from '../PagesHelper/FixedPrices'
 
 const Shop = () => {
 
@@ -12,10 +10,11 @@ const Shop = () => {
     const [resu, setResh] = useState([])
     const [cat, setCat] = useState([])
     const [showw, setShoww] = useState(false)
-
     const [values, setValues] = useState({
         name: '',
-        category: ''
+        category: '',
+        price: '',
+        sCat: ''
     })
 
     useEffect(async () => {
@@ -52,48 +51,166 @@ const Shop = () => {
     }
 
     const handleChange = name => (e) => {
-        const l = e.target.value
+        setResh([])
+        setShoww(true)
         setValues({ ...values, [name]: e.target.value })
 
-        setResh([])
-        catRef.where("category", "==", `${l}`).get()
-            .then(res => {
-                res.forEach((doc) => {
-                    setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
-                    setShoww(true)
-                })
-            })
+        if (name == 'category') {
+            setResh([])
+            const q = e.target.value
+            if (values.sCat || values.price) {
+                setResh([])
+                if (values.sCat && !values.price) {
+                    setResh([])
+                    catRef.where("category", "==", `${q}`)
+                        .where('sCat', '==', `${values.sCat}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+                if (values.price && !values.sCat) {
+                    setResh([])
+                    catRef.where("category", "==", `${q}`)
+                        .where('price', '<', `${values.price}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+                else {
+                    setResh([])
+                    catRef.where("category", "==", `${q}`)
+                        .where('price', '<', `${values.price}`)
+                        .where('sCat', '==', `${values.sCat}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+            }
+            else {
+                setResh([])
+                catRef.where("category", "==", `${q}`).get()
+                    .then(res => {
+                        res.forEach((doc) => {
+                            setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                        })
+                    })
+            }
+        }
+        if (name == 'sCat') {
+            const w = e.target.value
+            setResh([])
+            if (values.price || values.category) {
+                setResh([])
+                if (values.category && !values.price) {
+                    setResh([])
+                    catRef.where("category", "==", `${values.category}`)
+                        .where('sCat', '==', `${w}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+                if (values.price && !values.category) {
+                    setResh([])
+                    catRef.where("price", "<", `${values.price}`)
+                        .where('sCat', '==', `${w}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+                else {
+                    setResh([])
+                    catRef.where("category", "==", `${values.category}`)
+                        .where('sCat', '==', `${w}`)
+                        .where("price", "<", `${values.price}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+            }
+            else {
+                setResh([])
+                catRef.where("sCat", "==", `${w}`).get()
+                    .then(res => {
+                        res.forEach((doc) => {
+                            setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                        })
+                    })
+            }
+        }
+        if (name == 'price') {
+            const r = e.target.value
+            setResh([])
+            if (values.category || values.sCat) {
+                setResh([])
+                if (values.category && !values.sCat) {
+                    setResh([])
+                    catRef.where("category", "==", `${values.category}`)
+                        .where('price', '<', `${r}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+                if (values.sCat && !values.category) {
+                    setResh([])
+                    catRef.where("sCat", "==", `${values.sCat}`)
+                        .where('price', '<', `${r}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+                else{
+                    setResh([])
+                    catRef.where("sCat", "==", `${values.sCat}`)
+                        .where('price', '<', `${r}`)
+                        .where('category', '==', `${values.category}`)
+                        .get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            })
+                        })
+                }
+            }
+            else {
+                setResh([])
+                catRef.where("price", "<", `${r}`).get()
+                    .then(res => {
+                        res.forEach((doc) => {
+                            setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                            setShoww(true)
+                        })
+                    })
+            }
+        }
     }
 
     const handechange = name => (e) => {
         setValues({ ...values, [name]: e.target.value })
         setShoww(true)
-    }
-
-    const handleFilters = (filters, filterBy) => {
-
-        let priceValues = handlePrice(filters);
-        setResh([])
-
-        catRef.where("price", "<", `${priceValues[1]}`).get()
-            .then(res => {
-                res.forEach((doc) => {
-                    setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
-                    setShoww(true)
-                })
-            })
-
-    }
-
-    const handlePrice = value => {
-        const data = prices
-        let array = []
-        for (let key in data) {
-            if (data[key]._id === parseInt(value)) {
-                array = data[key].array
-            }
-        }
-        return array;
     }
 
     return (
@@ -134,9 +251,24 @@ const Shop = () => {
                             </div>
                             <div>
                                 <p>Sort By Price</p>
-                                <Radiobox prices={prices}
-                                    handleFilters={filters => handleFilters(filters, 'price')}
-                                />
+                                <input type="radio" name="Price" value="400" onChange={handleChange('price')} />
+                                <label > Less than 400</label><br />
+                                <input type="radio" name="Price" value="500" onChange={handleChange('price')} />
+                                <label > Less than 500</label><br />
+                                <input type="radio" name="Price" value="600" onChange={handleChange('price')} />
+                                <label > Less than 600</label><br />
+                                <input type="radio" name="Price" value="800" onChange={handleChange('price')} />
+                                <label > Less than 800</label><br />
+                                <input type="radio" name="Price" value="900" onChange={handleChange('price')} />
+                                <label > Less than 900</label><br />
+                            </div>
+                            <br />
+                            <div>
+                                <p>Sort by Sub Category</p>
+                                <input type="radio" name="Food" value="Food" onChange={handleChange('sCat')} />
+                                <label > Food</label><br />
+                                <input type="radio" name="Food" value="Grocery" onChange={handleChange('sCat')} />
+                                <label > Grocery</label><br />
                             </div>
                         </Col>
                         <Col lg={9}>

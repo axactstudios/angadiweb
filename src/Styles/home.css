@@ -44,14 +44,12 @@
     margin: auto;
     text-align: center;
     cursor: pointer;
-    background-color: turquoise;
 }
 .cskk5 img{
     width: 55px;
 }
 .cskk5 p{
     text-align: center;
-    background-color: tomato;
 }
 @media screen and (max-width: 1020px) {
     .cskk{

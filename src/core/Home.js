@@ -61,28 +61,14 @@ const Home = () => {
     return (
         <div className="ckk">
             <div className="cskkk">
-                <Carousel>
-                    <Carousel.Item interval={2500}>
-                        <img
-                            className="d-block w-100"
-                            src={Ing}
-                            alt="First slide"
-                        />
-                        <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </Carousel.Caption>
-                    </Carousel.Item>
+                <Carousel interval={2500}>
                     {
                         imgurll && imgurll.map((d, k) =>
                             (
-                                <Carousel.Item>
+                                <Carousel.Item interval={2500}>
                                     <img src={d.data.url}
                                         className="d-block w-100"
                                         alt={k} />
-                                    <Carousel.Caption>
-                                        {d._id}
-                                    </Carousel.Caption>
                                 </Carousel.Item>
 
                             ))

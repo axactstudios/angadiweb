@@ -17,6 +17,13 @@
     height: auto;
     margin-top: -2px;
 }
+@media screen and (max-width: 450px){
+    .men22 img{
+        width: 70px;
+        height: auto;
+        margin-top: 3px;
+    }   
+}
 .men23 h6{
     line-height: 80px;
 }
