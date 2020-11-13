@@ -223,12 +223,12 @@ const Shop = () => {
                 <Container fluid>
                     <div className="shopi">
                         <Row>
-                            <Col lg={10}>
+                            <Col lg={10} sm={10} xs={9}>
                                 <Form.Group >
                                     <Form.Control type="text" placeholder="Enter Dish Name" onChange={handechange('name')} value={values.name} />
                                 </Form.Group>
                             </Col>
-                            <Col lg={2}>
+                            <Col lg={2} sm={2} xs={3}>
                                 <button onClick={getsearch}>Search</button>
                             </Col>
 
@@ -236,7 +236,8 @@ const Shop = () => {
                     </div>
                     <Row>
                         <Col lg={3}>
-                            <div>
+                        <div className="shopii1">
+                            <div className="shopi1">
                                 <p>Sort By Category</p>
                                 <Form.Group >
                                     <select onChange={handleChange('category')} >
@@ -249,7 +250,7 @@ const Shop = () => {
                                     </select>
                                 </Form.Group>
                             </div>
-                            <div>
+                            <div className="shopi2">
                                 <p>Sort By Price</p>
                                 <input type="radio" name="Price" value="400" onChange={handleChange('price')} />
                                 <label > Less than 400</label><br />
@@ -262,25 +263,25 @@ const Shop = () => {
                                 <input type="radio" name="Price" value="900" onChange={handleChange('price')} />
                                 <label > Less than 900</label><br />
                             </div>
-                            <br />
-                            <div>
+                            <div className="shopi3">
                                 <p>Sort by Sub Category</p>
                                 <input type="radio" name="Food" value="Food" onChange={handleChange('sCat')} />
                                 <label > Food</label><br />
                                 <input type="radio" name="Food" value="Grocery" onChange={handleChange('sCat')} />
                                 <label > Grocery</label><br />
                             </div>
-                        </Col>
+                        </div>
+                            </Col>
                         <Col lg={9}>
-                            <div>
+                            <div className="shopii2">
                                 {showw == false ?
                                     <div>
-                                        <h4>We found {dish.length} Dishes</h4>
-                                        <Container>
+                                        <h4 >We found {dish.length} Dishes</h4>
+                                        <Container fluid>
                                             <Row>
                                                 {
                                                     dish && dish.map((d, k) => (
-                                                        <Col lg={6} xl={4} key={k} sm={6} xs={12} className="homey1">
+                                                        <Col lg={6} xl={4} key={k} sm={6} xs={12} className="homey1 shopii3">
                                                             <Card product={d} />
                                                         </Col>
                                                     ))
@@ -295,7 +296,7 @@ const Shop = () => {
                                             <Row>
                                                 {
                                                     resu && resu.map((d, k) => (
-                                                        <Col lg={6} xl={4} key={k} sm={6} xs={12} className="homey1">
+                                                        <Col lg={6} xl={4} key={k} sm={6} xs={12} className="homey1 shopii3">
                                                             <Card product={d} />
                                                         </Col>
                                                     ))

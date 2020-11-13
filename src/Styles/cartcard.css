@@ -23,8 +23,16 @@
     color: rgb(255, 176, 0);
     font-size: 19px;
 }
-.cartt4{
-
+.cartt2 h6{
+    background-color: rgb(255, 176, 0);
+    width: fit-content;
+    padding: 3px 5px;
+    border-radius: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    font-size: 14px;
 }
 .cartt5{
     margin: -10px 0;
@@ -51,8 +59,11 @@
 }
 .carttAd1{
     width: 60%;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
-.carttAd1 p{
-    font-weight: bold;
-    margin: 10px 0px 5px 0px;
+@media screen and (max-width: 450px){
+    .cartt2 h6{
+        position: relative;
+    }
 }

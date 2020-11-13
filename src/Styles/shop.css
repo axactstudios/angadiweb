@@ -7,7 +7,89 @@
     height: 40px !important;
 }
 .shopi button{
-    width: 100px;
+    width: 85px;
     height: 40px;
     margin-left: -30px;
+    border: none;
+    color: white;
+    outline: none;
+    background-color: rgb(255, 176, 0);
+}
+@media screen and (max-width: 987px){
+    .shopi{
+        width: 70%;
+        margin: auto;
+    }
+}
+@media screen and (max-width: 600px){
+    .shopi{
+        width: 95%;
+        margin: auto;
+    }
+}
+.shopii1{
+    margin-top: 60px;
+    margin-bottom: 20px;
+}
+.shopii1 label{
+    margin-left: 4px;
+}
+.shopii1 p{
+    font-size: 16px;
+}
+.shopi1{
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.shopi1 select{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+}
+.shopi2{
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.shopi3{
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+}
+
+.shopii2 h4{
+    text-align: center;
+    font-weight: 550;
+    margin-bottom: -10px;
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 987px){
+    .shopii2 h4{
+        margin-bottom: 5px;
+    }   
+    .shopii1{
+        width: 300px;
+        margin: 30px auto;
+    }
+}
+@media screen and (max-width: 500px){
+    .shopii2 h4{
+        margin-bottom: 5px;
+    }   
+    .shopii1{
+        width: auto !important;
+    }
+}
+@media screen and (max-width: 400px){
+    .shopii3{
+        margin-left: -7% !important;
+    }
 }

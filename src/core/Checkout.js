@@ -34,7 +34,7 @@ const Checkout = ({ dm }) => {
 
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
-            return currentValue + nextValue.count * nextValue.data.price
+            return currentValue + nextValue.count * nextValue.price
         }, 0)
     }
 

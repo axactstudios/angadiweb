@@ -20,8 +20,8 @@
     color: white;
     background: linear-gradient(
         45deg,
-        rgb(191, 25, 212) 0%,
-        rgba(36, 173, 227, 0.8) 100%
+        rgb(255, 176, 0) 0%,
+        rgba(227, 214, 36, 0.8) 100%
     );
     width: fit-content;
     padding: 3px 6px;
@@ -62,6 +62,34 @@
 }
 .proccard6 span{
     font-size: 15px;
+}
+.proccard611{
+    display: flex;
+    margin-top: 8px;
+}
+.proccard611 button{
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    outline: none;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    margin-top: 6px;
+    box-shadow: none;
+}
+.proccard611 h1{
+    background-color: white;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid black;
+    font-size: 21px;
+    line-height: 35px;
+    text-align: center;
+    margin: 0 10px;
 }
 .proccard6 input{
     width: 100%;
