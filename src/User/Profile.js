@@ -91,7 +91,7 @@ const Profile = () => {
     return (
         <Fragment>
         <Helmet>
-        <title>Edit {isAuth().name}</title>
+        <title>Edit {isAuth().Name}</title>
         <meta name="description" content={isAuth().Address.street} />
         <meta name="author" content="Bunny Bash" />
         <meta name="robots" content="index, follow"></meta>

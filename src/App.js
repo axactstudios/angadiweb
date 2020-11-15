@@ -53,7 +53,7 @@ const App = () => {
             <Route path='/contact/us' exact component={Contact} />
 
             <AdminRoute path='/get/category' exact component={GetCat} />
-            <AdminRoute path='/add/category' exact component={Addcat} />
+            <AdminRoute path='/create/category' exact component={Addcat} />
             <AdminRoute path='/get/dishes' exact component={GetDish} />
             <AdminRoute path='/add/dish' exact component={Adddish} />
             <AdminRoute path='/edit/dish/:dishname' exact component={Editdish} />
@@ -65,7 +65,7 @@ const App = () => {
             <AdminRoute path='/edit/offer/:offerId' exact component={Editoffer} />
             <AdminRoute path='/get/users' exact component={Getuser} />
             <AdminRoute path='/orders/from/user/:userId' exact component={Getorderfromuser} />
-            <AdminRoute path='/admin/pannel' exact component={Adminpannel} />
+            <AdminRoute path='/admin/dashboard' exact component={Adminpannel} />
 
             <PrivateRoute path='/user/dashboard' exact component={Userdashboard} />
             <PrivateRoute path='/my/ads' exact component={Myads} />

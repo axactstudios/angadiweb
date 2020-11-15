@@ -16,7 +16,7 @@
     margin: 0 10px;
 }
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 950px){
     .maincart1{
         width: 100%;
         display: flex;

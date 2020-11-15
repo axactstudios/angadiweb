@@ -1,0 +1,51 @@
+.userdash{
+    width: 37%;
+    margin: auto;
+    background-color: #f0f0f0;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: -10px;
+}
+@media screen and (max-width: 1000px){
+    .userdash{
+        width: 60%;
+    }   
+}
+@media screen and (max-width: 600px){
+    .userdash{
+        width: 75%;
+    }   
+}
+@media screen and (max-width: 400px){
+    .userdash{
+        margin-top: 40px;
+        width: 85%;
+    }   
+}
+.userdash1{
+    width: 125px;
+    margin: auto;
+    padding-top: 50px;
+}
+.userdash1 img{
+    width: 125px;
+    border-radius: 50%;
+}
+.userdash2{
+    text-align: center;
+    margin-top: 20px;
+}
+.userdash2 h5{
+    font-size: 24px;
+    margin: 10px 0;
+}
+.userdash2 p{
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    padding-bottom: 5px;
+}
+.userdash2 h4{
+    font-size: 17px;
+    margin: 10px 0;
+}

@@ -1,15 +1,24 @@
 import React from 'react';
-import {isAuth} from '../helpers/auth'
+import { isAuth } from '../helpers/auth'
+import '../Styles/userdash.css'
 
 const UserDashboard = () => {
 
-    const {Name, mail, pUrl} = isAuth()
+    const { Name, mail, pUrl } = isAuth()
 
     return (
-        <div>
-            <img src={pUrl} alt="user profile pic"/>
-            <h5>{Name}</h5>
-            <h5>{mail}</h5>
+        <div className='userdash'>
+            <div className='userdash1'>
+                <img src={pUrl} alt="user profile pic" />
+            </div>
+            <div className='userdash2'>
+                <h5>{Name}</h5>
+                <p>"We don't want to push our ideas on to
+                customers, we simply want to make what
+                they want."</p>
+                <span>:- By Angadi</span>
+                <h4>{mail}</h4>
+            </div>
         </div>
     );
 };

@@ -11,7 +11,7 @@ const Adminheader = () => {
                 <Link className="men" to='/get/category'>category</Link>
                 <Link className="men" to='/get/offers'>Offers</Link>
                 <Link className="men" to='/get/users'>Users</Link>
-                <Link className="men" to='/add/category'>add category</Link>
+                <Link className="men" to='/create/category'>add category</Link>
                 <Link className="men" to='/add/dish'>add dish</Link>
                 <Link className="men" to='/add/offer'>add offer</Link>
                 <Link className="men" to='/register'>register</Link>
