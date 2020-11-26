@@ -1,0 +1,57 @@
+.myor {
+    overflow: hidden;
+}
+.myor h2{
+    text-align: center;
+    margin-top: 15px;
+}
+.myor1{
+    width: 50%;
+    background-color: #f0f0f0;
+    margin: 20px auto;
+    padding: 15px 10px 10px 15px;
+    border-radius: 15px;
+}
+.myor1 h5{
+    border-bottom: 1px solid gray;
+    padding-bottom: 5px;
+    font-size: 19px;
+    font-weight: 550px;
+}
+.myor1 h6:nth-child(4){
+    border-top: 1px solid gray;
+    padding-top: 5px;
+}
+.myor2 h6{
+    text-align: center;
+    font-weight: bold;
+}
+.myor2 p{
+    text-align: center;
+}
+.myor3{
+    font-weight: bold;
+}
+@media screen and (max-width: 950px) {
+    .myor1{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .myor1{
+        width: 90%;
+    }
+    .myor1 h5{
+        font-size: 16px;
+    }
+    .myor2 p{
+        text-align: start;
+        font-size: 14.8px;
+    }
+    .myor2 h6{
+        text-align: start;
+    }
+    .myor2 i{
+        margin-right: 0.7px;
+    }
+}

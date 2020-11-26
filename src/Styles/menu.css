@@ -165,3 +165,9 @@
         height: 4px;
     }
 }
+.logll{
+    border: none;
+    background-color: transparent;
+    width: 150px;
+    text-align: start;
+}

@@ -1,3 +1,21 @@
+.mmain1{
+    text-align: center;
+    line-height: 80px;
+}
+.mmain{
+    text-align: center;
+    color: #ffbf00;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+}
+.mmain:hover{
+    text-align: center;
+    color: #ffbf00;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 10px 15px;
+}
 .maincart{
     width: 85%;
     margin: auto;

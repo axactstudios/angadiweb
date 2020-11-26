@@ -15,7 +15,7 @@ const Logout = () => {
     return (
         <div>
             <ToastContainer />
-            <button type="button" onClick={handleClick}>Log Out</button>
+            <button type="button" className="logll" onClick={handleClick}>Log Out</button>
         </div>
     );
 };

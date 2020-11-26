@@ -24,7 +24,7 @@ const Cart = () => {
 
     const noItemsMessage = () => {
         return (
-            <Link className="maincart1" to='/'>Continue Shopping</Link>
+            <h6 className="mmain1"><Link className="mmain" to='/'>Continue Shopping</Link></h6>
         )
     }
 
