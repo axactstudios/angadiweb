@@ -32,7 +32,7 @@ const Getuser = () => {
         <div>
             <div class="mobile_nav">
                 <div class="nav_bar">
-                    <img src={`https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg`} class="mobile_profile_image" alt="" />
+                    <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
@@ -50,7 +50,7 @@ const Getuser = () => {
 
             <div class="sidebar">
                 <div class="profile_info">
-                    <img src={`https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg`} class="profile_image" alt="" />
+                    <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="profile_image" alt="" />
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
@@ -65,7 +65,7 @@ const Getuser = () => {
             </div>
 
             <div className='content1'>
-                <h3>All Users</h3>
+                <h2 style={{textAlign:'center'}}>All Users</h2>
                 {
                     dish && dish.map((d, i) => (
                         <div key={i}>

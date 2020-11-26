@@ -8,6 +8,9 @@ body {
 code {
   font-family: 'Poppins', sans-serif;
 }
+*:focus {
+  outline: 0 !important;
+}
 .men{
   color: black;
   font-size: 18px;

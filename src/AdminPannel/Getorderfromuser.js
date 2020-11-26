@@ -44,7 +44,7 @@ const Getorderfromuser = ({ match }) => {
 
             <div class="mobile_nav">
                 <div class="nav_bar">
-                    <img src={`https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg`} class="mobile_profile_image" alt="" />
+                    <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
@@ -62,7 +62,7 @@ const Getorderfromuser = ({ match }) => {
 
             <div class="sidebar">
                 <div class="profile_info">
-                    <img src={`https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg`} class="profile_image" alt="" />
+                    <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="profile_image" alt="" />
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
@@ -77,11 +77,16 @@ const Getorderfromuser = ({ match }) => {
             </div>
 
             <div className='content1'>
-                <div>
-                    <img src={user.pUrl} alt={user.Name} style={{ width: "300px" }} />
-                    <h3>{user.Name}</h3>
-                    <p>{user.mail}</p>
-                    <button onClick={getPro}> Get Product</button>
+
+                <div className='userdash'>
+                    <div className='userdash1'>
+                        <img src={user.pUrl} alt="user profile pic" />
+                    </div>
+                    <div className='userdash2'>
+                        <h5>{user.Name}</h5>
+                        <h4>{user.mail}</h4>
+                        <button onClick={getPro}> Get Orders</button>
+                    </div>
                 </div>
 
                 <div>
