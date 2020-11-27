@@ -65,14 +65,16 @@ const Getoffer = () => {
             </div>
 
             <div className='content1'>
-                <h3>All Offers</h3>
-                {
-                    dish && dish.map((d, i) => (
-                        <div key={i}>
-                            <Card product={d} />
-                        </div>
-                    ))
-                }
+                <h2 style={{ textAlign: 'center' }}>All Offers</h2>
+                <div className='cateegee'>
+                    {
+                        dish && dish.map((d, i) => (
+                            <div key={i}>
+                                <Card product={d} />
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     );

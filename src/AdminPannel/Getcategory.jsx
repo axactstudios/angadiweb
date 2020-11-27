@@ -9,6 +9,7 @@ const Getcategory = () => {
     const db = firebase.firestore()
 
     useEffect(async () => {
+        setCat([])
         await db.collection('Categories').get()
             .then(res => {
                 res.forEach((doc) => {
@@ -64,13 +65,16 @@ const Getcategory = () => {
             </div>
 
             <div className='content1'>
-                {
-                    cat.map((d, k) => (
-                        <div key={k}>
-                            <Card product={d} />
-                        </div>
-                    ))
-                }
+            <h2 style={{textAlign:'center'}}>All Categories</h2>
+                <div className='cateegee'>
+                    {
+                        cat.map((d, k) => (
+                            <div key={k} >
+                                <Card product={d} />
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     );

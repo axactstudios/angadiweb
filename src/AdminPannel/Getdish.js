@@ -4,6 +4,7 @@ import Card from '../Csshelper/Dishcard'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { Form } from 'react-bootstrap'
+import { Col, Container, Row, Carousel } from 'react-bootstrap'
 
 const Getcategory = () => {
     const [dish, setDish] = useState([])
@@ -116,45 +117,52 @@ const Getcategory = () => {
             </div>
 
             <div className='content1'>
-                <Form.Group >
-                    <Form.Label>Search By Name</Form.Label><br />
-                    <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={values.name} />
-                </Form.Group>
-                <Form.Group >
-                    <Form.Label>Choose category</Form.Label><br />
-                    <select onChange={handleChange('category')} >
-                        <option>Please Select</option>
-                        {cat.map((c, i) =>
-                            (<option key={i} value={c.data.catName}>
-                                {c.data.catName}
-                            </option>)
-                        )}
-                    </select>
-                </Form.Group>
-                <button onClick={getspecific}>click</button>
+                <div className="adpor">
+                    <Form.Group className="adpor2">
+                        <select onChange={handleChange('category')} >
+                            <option>Choose Category</option>1
+                            {cat.map((c, i) =>
+                                (<option key={i} value={c.data.catName}>
+                                    {c.data.catName}
+                                </option>)
+                            )}
+                        </select>
+                    </Form.Group>
+                    <Form.Group className="adpor1">
+                        <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
+                    </Form.Group>
+                    <div className="adpor3">
+                        <button onClick={getspecific}>Search</button>
+                    </div>
+                </div>
                 <div>
                     {resu.length == 0 ?
-                        <div>
-                            {
-                                dish && dish.map((d, k) => (
-                                    <div key={k}>
-                                        <Card product={d} />
-                                    </div>
-                                ))
-                            }
-                        </div>
+                        <Container fluid>
+                            <h2 style={{ textAlign: 'center' }}>Total {dish.length} Products</h2>
+                            <Row>
+                                {
+                                    dish && dish.map((d, k) => (
+                                        <Col lg={6} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                            <Card product={d} />
+                                        </Col>
+                                    ))
+                                }
+                            </Row>
+                        </Container>
                         :
                         <div>
                             <h4>{resu.length} result found</h4>
-                            {
-                                resu && resu.map((d, k) => (
-                                    <div key={k}>
-                                        <div>
-                                            <Card product={d} />
-                                        </div>
-                                    </div>
-                                ))
-                            }
+                            <Container fluid>
+                                <Row>
+                                    {
+                                        resu && resu.map((d, k) => (
+                                            <Col lg={4} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                                <Card product={d} />
+                                            </Col>
+                                        ))
+                                    }
+                                </Row>
+                            </Container>
                         </div>
                     }
                     <div>
@@ -164,5 +172,6 @@ const Getcategory = () => {
         </div>
     );
 };
+
 
 export default Getcategory;

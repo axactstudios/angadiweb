@@ -5,23 +5,25 @@ import { Link } from 'react-router-dom'
 const Dishcard = ({ product }) => {
 
     return (
-        <div>
-            <div className="catcard">
+        <div className="csk">
+            <div className="csk1">
                 <Link to={`/edit/dish/${product._id}`}>
                     <img src={product.data.url} alt={product.data.name} />
                 </Link>
+            </div>
+            <div className="csk2">
                 <h5>{product.data.name}</h5>
                 <ul>
-                    <li>description : {product.data.description}</li>
-                    <li>iPrice: {product.data.iPrice}</li>
-                    <li>price: {product.data.price}</li>
-                    <li>rating: {product.data.rating}</li>
-                    <li>special: {JSON.stringify(product.data.special)}</li>
-                    <li>top: {JSON.stringify(product.data.top)}</li>
+                    <li>Actual Price: {product.data.iPrice}</li>
+                    <li>Selling Price: {product.data.price}</li>
+                    <li>Rating: {product.data.rating}</li>
+                    <li>Is Special: {JSON.stringify(product.data.special)}</li>
+                    <li>Is Top: {JSON.stringify(product.data.top)}</li>
                 </ul>
             </div>
-        </div>
+        </div >
     );
 };
+
 
 export default Dishcard;

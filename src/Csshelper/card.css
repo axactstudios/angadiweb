@@ -1,11 +1,94 @@
 .catcard{
-    width: 350px;
+    width: 160px;
     overflow: hidden;
+    margin: 30px 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 0px 5px;
 }
 .catcard img{
-    width: 100%;
+    width: 90%;
+    margin-left: 5%;
 }
 .catcard h5{
     text-align: center;
-    font-size: 22px;
+    font-size: 19px;
+    margin-top: 5px;
+}
+.cateegee{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.adpor{
+    display: flex;
+    flex-direction: row;
+    max-width: 490px;
+    margin: auto;
+}
+.adpor1 input{
+    height: 40px;
+    margin: 0px 10px;
+}
+.adpor2 select{
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid rgb(212, 209, 209);
+}
+.adpor3{
+    margin-left: 10px !important;
+}
+.adpor3 button{
+    height: 38px;
+    margin-left: 10px;
+    background-color: rgb(255, 176, 0);
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+@media screen and (max-width: 450px){
+    .adpor{
+        display: flex;
+        flex-direction: row;
+        max-width: 490px;
+        margin: auto;
+        flex-wrap: wrap;
+    }
+    .adpor1 input{
+        height: 40px;
+        margin: 0px 0px;
+    }
+}
+.ofeecard{
+    max-width: 250px;
+    background-color: white;
+    margin: 20px 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.ofeecard img{
+    width: 100%;
+}
+.ofeecard1{
+    width: 90%;
+    margin: auto;
+}
+.ofeecard1 h5{
+    font-size: 15px;   
+}
+.ofeecard1 h6{
+    font-size: 15px;  
+    padding-top: 10px; 
+}
+.ofeecard1 p{
+    font-size: 15px;   
+}
+@media screen and (max-width: 450px){
+    .ofeecard{
+        max-width: 150px;
+        background-color: white;
+        margin: 20px 5px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
 }
