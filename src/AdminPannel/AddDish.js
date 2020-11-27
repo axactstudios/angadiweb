@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Row, Col, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
@@ -30,6 +30,7 @@ const AddDish = () => {
     const store = firebase.firestore()
 
     useEffect(async () => {
+        setCat([])
         await store.collection('Categories').get()
             .then(res => {
                 res.forEach((doc) => {
@@ -171,71 +172,102 @@ const AddDish = () => {
                 <h2>Add Dishes</h2>
                 <Form>
                     <Form.Group>
-                        <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={name} />
+                        <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={name} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control type="text" placeholder="sCat Name" onChange={handleChange('sCat')} value={sCat} />
+                        <Form.Control type="text" placeholder="Enter sCat Name" onChange={handleChange('sCat')} value={sCat} />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Label >Choose Images</Form.Label>
-                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label >Choose Images</Form.Label>
-                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image1')} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label >Choose Images</Form.Label>
-                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image2')} />
-                    </Form.Group>
-                    <div>
-                        <img src={photo} style={{ width: '110px' }} />
-                    </div>
-                    <div>
-                        <img src={photo1} style={{ width: '110px' }} />
-                    </div>
-                    <div>
-                        <img src={photo2} style={{ width: '110px' }} />
-                    </div>
-                    <Form.Group >
-                        <Form.Label>Choose category</Form.Label><br />
-                        <select onChange={handleChange('category')} >
-                            <option>Please Select</option>
-                            {cat && cat.map((c, i) =>
-                                (<option key={i} value={c.catName}>
-                                    {c.catName}
-                                </option>)
-                            )}
-                        </select>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Choose Top </Form.Label><br />
-                        <select onChange={handleChange('top')} >
-                            <option>Please Select</option>
-                            <option value={false}>No</option>
-                            <option value={true}>Yes</option>
-                        </select>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Choose special </Form.Label><br />
-                        <select onChange={handleChange('special')} >
-                            <option>Please Select</option>
-                            <option value={false}>No</option>
-                            <option value={true}>Yes</option>
-                        </select>
-                    </Form.Group>
+                    <Container fluid>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label >Choose First Images</Form.Label>
+                                    <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
+                                </Form.Group>
+                                <div>
+                                    <img src={photo} style={{ width: '110px' }} />
+                                </div>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label >Choose Second Images</Form.Label>
+                                    <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image1')} />
+                                </Form.Group>
+                                <div>
+                                    <img src={photo1} style={{ width: '110px' }} />
+                                </div>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label >Choose Third Images</Form.Label>
+                                    <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image2')} />
+                                </Form.Group>
+                                <div>
+                                    <img src={photo2} style={{ width: '110px' }} />
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Container fluid>
+                        <Row>
+                            <Col>
+                                <Form.Group >
+                                    <Form.Label>Choose category</Form.Label><br />
+                                    <select onChange={handleChange('category')} >
+                                        <option>Please Select</option>
+                                        {cat && cat.map((c, i) =>
+                                            (<option key={i} value={c.catName}>
+                                                {c.catName}
+                                            </option>)
+                                        )}
+                                    </select>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group >
+                                    <Form.Label>Choose Top</Form.Label><br />
+                                    <select onChange={handleChange('top')} >
+                                        <option>Please Select</option>
+                                        <option value={false}>No</option>
+                                        <option value={true}>Yes</option>
+                                    </select>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group >
+                                    <Form.Label>Choose special</Form.Label><br />
+                                    <select onChange={handleChange('special')} >
+                                        <option>Please Select</option>
+                                        <option value={false}>No</option>
+                                        <option value={true}>Yes</option>
+                                    </select>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                    </Container>
+                    <Container fluid>
+                        <Row>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Control type="text" placeholder="Price" onChange={handleChange('price')} value={price} />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group>
+                                    <Form.Control type="text" placeholder="iPrice" onChange={handleChange('iPrice')} value={iPrice} />
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                            </Col>
+                        </Row>
+                    </Container>
+
                     <Form.Group>
                         <Form.Control type="text" placeholder="Description" onChange={handleChange('description')} value={description} />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="Price" onChange={handleChange('price')} value={price} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="iPrice" onChange={handleChange('iPrice')} value={iPrice} />
-                    </Form.Group>
                     <div>
                         <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
-                            Create Category
+                            Create Dish
                     </Button>
                     </div>
                 </Form>
