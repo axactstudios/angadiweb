@@ -10,13 +10,14 @@ const Addcat = () => {
         name: '',
         image: null,
         top: false,
-        photo: ''
+        photo: '',
+        sCat: ''
     })
 
     const storage = firebase.storage()
     const store = firebase.firestore()
 
-    const { name, image, top, photo } = values
+    const { name, image, top, photo, sCat } = values
 
     const handleChange = name => (e) => {
         switch (name) {
@@ -45,7 +46,8 @@ const Addcat = () => {
                     await store.collection('Categories').add({
                         imageURL: url,
                         catName: name,
-                        top: top
+                        top: top,
+                        sCat: sCat
                     }).then(() => {
                         console.log('done')
                     }).catch((err) => {
@@ -108,6 +110,9 @@ const Addcat = () => {
                         <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={name} />
                     </Form.Group>
                     <Form.Group>
+                        <Form.Control type="text" placeholder="SCat" onChange={handleChange('sCat')} value={sCat} />
+                    </Form.Group>
+                    <Form.Group>
                         <Form.Label >Choose Images</Form.Label>
                         <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
                     </Form.Group>
@@ -125,7 +130,7 @@ const Addcat = () => {
                     <div>
                         <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
                             Create Category
-                </Button>
+                        </Button>
                     </div>
                 </Form>
             </div>

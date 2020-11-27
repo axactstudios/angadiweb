@@ -163,8 +163,8 @@ const Editdish = ({ match }) => {
                     </Form.Group>
                     <div>
                         <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" >
-                            Create Category
-                </Button>
+                            Edit Dish
+                        </Button>
                     </div>
                 </Form>
                 <button onClick={delCat} >Delete</button>

@@ -107,7 +107,7 @@ const Addoffer = () => {
             </div>
 
             <div className='content1'>
-                <h2>Add category</h2>
+                <h2>Add Offer</h2>
                 <Form>
                     <Form.Group>
                         <Form.Label>Add Title </Form.Label><br />
@@ -130,7 +130,7 @@ const Addoffer = () => {
                     </Form.Group>
                     <div>
                         <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
-                            Create Category
+                            Create Offer
                     </Button>
                     </div>
                 </Form>

@@ -1,8 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import * as firebase from 'firebase'
+import { Form, Button } from 'react-bootstrap'
 
 const Editoffer = ({ match }) => {
+
+    const [values, setValues] = useState({
+        title: '',
+        image: null,
+        photo: '',
+        subtitle: '',
+        percent: ''
+    })
+
+    const storage = firebase.storage()
+    const store = firebase.firestore()
+    const _id = match.params.offerId
+    const { title, image, subtitle, photo, percent } = values
 
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -13,8 +28,71 @@ const Editoffer = ({ match }) => {
         })
     })
 
+    useEffect(() => {
+        store.collection('Offers').doc(_id).get()
+            .then(res => {
+                const me = res.data()
+                setValues({
+                    ...values, title: me.Title, photo: me.ImageURL,
+                    subtitle: me.Subtitle, percent: me.discountPercentage
+                })
+            })
+    }, [])
+
+    const handleChange = name => (e) => {
+        switch (name) {
+            case 'image':
+                const phooto = e.target.files[0];
+                setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
+                break;
+            default:
+                setValues({ ...values, [name]: e.target.value })
+                break;
+        }
+    };
+
+    const handlesubmit = () => {
+        if (image === null) {
+            store.collection('Offers').doc(_id).update({
+                Title: title,
+                Subtitle: subtitle,
+                discountPercentage: percent
+            }).then(() => {
+                console.log('done')
+            }).catch((err) => {
+                console.log(err)
+            })
+        } else {
+            const uploadTask = storage.ref(`Offer/${image.name}`).put(image);
+            uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
+            },
+                (error) => {
+                    console.log(error)
+                },
+                () => {
+                    storage.ref('Offer').child(image.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        store.collection('Offers').doc(_id).update({
+                            ImageURL: url,
+                            Title: title,
+                            Subtitle: subtitle,
+                            discountPercentage: percent
+                        }).then(() => {
+                            console.log('Offer added successfully!!!')
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    })
+                })
+        }
+    }
+
     return (
+
         <div>
+
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
@@ -50,7 +128,33 @@ const Editoffer = ({ match }) => {
             </div>
 
             <div className='content1'>
-                {match.params.offerId}
+                <h2>Edit Offer</h2>
+                <Form>
+                    <Form.Group>
+                        <Form.Label>Add Title </Form.Label><br />
+                        <Form.Control type="text" placeholder="Title" onChange={handleChange('title')} value={title} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label >Choose Images</Form.Label>
+                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
+                    </Form.Group>
+                    <div>
+                        <img src={photo} style={{ width: '110px' }} />
+                    </div>
+                    <Form.Group >
+                        <Form.Label>Add subtitle </Form.Label><br />
+                        <Form.Control type="text" placeholder="SubTitle" onChange={handleChange('subtitle')} value={subtitle} />
+                    </Form.Group>
+                    <Form.Group >
+                        <Form.Label>Add Percent off </Form.Label><br />
+                        <Form.Control type="text" placeholder="Percent Off" onChange={handleChange('percent')} value={percent} />
+                    </Form.Group>
+                    <div>
+                        <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handlesubmit}>
+                            Edit Offer
+                    </Button>
+                    </div>
+                </Form>
             </div>
         </div>
     );

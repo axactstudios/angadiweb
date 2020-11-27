@@ -10,6 +10,7 @@ const Card = ({ product }) => {
                 <img src={product.data.imageURL} alt={product.data.catName} />
             </Link>
             <h5>{product.data.catName}</h5>
+            <p style={{textAlign:'center'}}>Scat:- {product.data.sCat}</p>
         </div>
     );
 };

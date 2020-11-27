@@ -10,7 +10,8 @@ const Editcat = ({ match }) => {
         name: '',
         image: null,
         top: false,
-        photo: ''
+        photo: '',
+        sCat: ''
     })
 
     useEffect(() => {
@@ -24,8 +25,9 @@ const Editcat = ({ match }) => {
 
     const db = firebase.firestore()
     const _id = match.params.catname
+    const storage = firebase.storage()
 
-    const { name, image, top, photo } = values
+    const { name, image, top, photo, sCat } = values
 
     const handleChange = name => (e) => {
         switch (name) {
@@ -45,7 +47,7 @@ const Editcat = ({ match }) => {
                 const me = res.data()
                 setValues({
                     ...values, name: me.catName, photo: me.imageURL,
-                    top: me.top
+                    top: me.top, sCat: me.sCat
                 })
             })
     }, [])
@@ -56,6 +58,44 @@ const Editcat = ({ match }) => {
         }).catch(function (error) {
             console.error("Error removing document: ", error);
         });
+    }
+
+    const handleSubmit = () => {
+        if (image === null) {
+            db.collection('Categories').doc(_id).update({
+                catName: name,
+                top: top,
+                sCat: sCat
+            }).then(() => {
+                console.log('done')
+            }).catch((err) => {
+                console.log(err)
+            })
+        } else {
+            const uploadTask = storage.ref(`category/${image.name}`).put(image);
+            uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
+            },
+                (error) => {
+                    console.log(error)
+                },
+                () => {
+                    storage.ref('category').child(image.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        db.collection('Categories').doc(_id).update({
+                            imageURL: url,
+                            catName: name,
+                            top: top,
+                            sCat: sCat
+                        }).then(() => {
+                            console.log('fuck offf')
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    })
+                })
+        }
     }
 
     return (
@@ -95,10 +135,13 @@ const Editcat = ({ match }) => {
             </div>
 
             <div className='content1'>
-                <h2>Add category</h2>
+                <h2>Edit category</h2>
                 <Form>
                     <Form.Group>
                         <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={name} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="SCat" onChange={handleChange('sCat')} value={sCat} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label >Choose Images</Form.Label>
@@ -117,9 +160,9 @@ const Editcat = ({ match }) => {
                         </select>
                     </Form.Group>
                     <div>
-                        <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger">
-                            Create Category
-            </Button>
+                        <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
+                            Edit Category
+                        </Button>
                     </div>
                 </Form>
                 <button onClick={delCat} >Delete</button>

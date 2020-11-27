@@ -1,7 +1,7 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { isAuth } from '../helpers/auth';
-import { Redirect } from 'react-router-dom';
+// import { isAuth } from '../helpers/auth';
+// import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap'
 import * as firebase from 'firebase'
 
@@ -78,6 +78,7 @@ const Register = () => {
 
   return (
     <div className="reg2">
+    <ToastContainer />
       <div className="reg21">
         <h2><span>Sign Up</span></h2>
         <Form onSubmit={handleSubmit}>

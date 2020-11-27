@@ -16,7 +16,8 @@ const AddDish = () => {
         special: false,
         description: '',
         rating: '0',
-        category: ''
+        category: '',
+        sCat: ''
     })
     const [cat, setCat] = useState([])
 
@@ -33,7 +34,7 @@ const AddDish = () => {
     }, [])
 
     const { name, image, top, photo, iPrice, price
-        , special, description, rating, category } = values
+        , special, description, rating, category, sCat } = values
 
     const handleChange = name => (e) => {
         switch (name) {
@@ -68,7 +69,8 @@ const AddDish = () => {
                         iPrice: price,
                         description: description,
                         price: price,
-                        category: category
+                        category: category,
+                        sCat: sCat
                     }).then(() => {
                         console.log('done')
                     }).catch((err) => {
@@ -129,6 +131,9 @@ const AddDish = () => {
                 <Form>
                     <Form.Group>
                         <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={name} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="sCat Name" onChange={handleChange('sCat')} value={sCat} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label >Choose Images</Form.Label>
