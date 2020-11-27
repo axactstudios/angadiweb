@@ -10,6 +10,7 @@ const Getorderfromuser = ({ match }) => {
     const db = firebase.firestore()
     const _id = match.params.userId
     const [user, serUser] = useState([])
+    const [meko, setMeko] = useState(false)
 
     useEffect(() => {
         db.collection('Users').where("id", "==", `${_id}`).get()
@@ -37,6 +38,7 @@ const Getorderfromuser = ({ match }) => {
                     setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
                 })
             })
+        setMeko(true)
     }
 
     return (
@@ -88,14 +90,25 @@ const Getorderfromuser = ({ match }) => {
                         <button onClick={getPro}> Get Orders</button>
                     </div>
                 </div>
-
                 <div>
                     {
-                        dish && dish.map((d, i) => (
-                            <div key={i}>
-                                <Card product={d} />
+                        dish.length === 0
+                            ?
+                            <div>{
+                                meko
+                                    ?
+                                    <h2 style={{ textAlign: 'center' }}>No Order!!!</h2>
+                                    :
+                                    <h5 style={{ textAlign: 'center' }}>Plese Check the order</h5>
+                            }
+
                             </div>
-                        ))
+                            :
+                            dish && dish.map((d, i) => (
+                                <div key={i}>
+                                    <Card product={d} />
+                                </div>
+                            ))
                     }
                 </div>
             </div>

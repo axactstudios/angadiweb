@@ -1,17 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 
 const Editorder = ({ match }) => {
-
+    const [values, setValues] = useState({})
     const db = firebase.firestore()
     const _id = match.params.orderId
+    const [status, setStatus] = useState('');
 
     useEffect(() => {
         db.collection('Orders').doc(_id).get()
             .then(res => {
-                console.log(res.data())
+                setValues(res.data())
+                setStatus(res.data().Status)
             })
     }, [])
 
@@ -23,6 +25,16 @@ const Editorder = ({ match }) => {
             navlinksss.classList.toggle("active");
         })
     })
+
+    const handleSubmit = () => {
+        db.collection('Orders').doc(_id).update({
+            Status: status
+        }).then(() => {
+            console.log('done')
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
 
     return (
         <div>
@@ -61,10 +73,44 @@ const Editorder = ({ match }) => {
             </div>
 
             <div className='content1'>
-                {match.params.orderId}
+                {
+                    values &&
+                    <div>
+                        <input value={values.Status} />
+                        <select onChange={(e) => { setStatus(e.target.value) }}>
+                            <option>Please Select</option>
+                            <option value={'Processing'}>Processing</option>
+                            <option value={'On Way'}>On The Way</option>
+                            <option value={'Order Delivered'}>Order Delivered</option>
+                            <option value={'Cancelled'}>Cancelled</option>
+                        </select>
+                        <div>Address - {values.Address}</div>
+                        <div>GrandTotal -{values.GrandTotal}</div>
+                        <div>Status -{values.Status}</div>
+                        <div>Type -{values.Type}</div>
+                        <div>UserID -{values.UserID}</div>
+                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                            <div>Dishes : {values.Items && values.Items.map((d) => (
+                                <p>{d}</p>
+                            ))}</div>
+                            <div>Quantity : {values.Qty && values.Qty.map((d) => (
+                                <p>{d}</p>
+                            ))}</div>
+                            <div>Price : {values.Price && values.Price.map((d) => (
+                                <p>{d}</p>
+                            ))}</div>
+                        </div>
+                        <div>OrderId -{_id}</div>
+                        <div>{values.DeliveryTime}</div>
+                        <button onClick={handleSubmit}>Change Status</button>
+                    </div>
+                }
             </div>
         </div>
     );
 };
 
 export default Editorder;
+
+// <div>{values.TimeStamp.seconds && <p>Timestamp -{new Date(values.TimeStamp.seconds * 1000).toLocaleDateString("en-US")}</p>}</div>
+

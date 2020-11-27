@@ -9,14 +9,19 @@ const Editdish = ({ match }) => {
     const [values, setValues] = useState({
         name: '',
         image: null,
+        image1: null,
+        image2: null,
         top: false,
         photo: '',
+        photo1: '',
+        photo2: '',
         iPrice: '',
         price: '',
         special: false,
         description: '',
         rating: '0',
-        category: ''
+        category: '',
+        sCat: ''
     })
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -27,23 +32,24 @@ const Editdish = ({ match }) => {
         })
     })
     const [cat, setCat] = useState([])
-    const db = firebase.firestore()
+    const storage = firebase.storage()
+    const store = firebase.firestore()
     const _id = match.params.dishname
 
-    const { name, image, top, photo, iPrice, price
-        , special, description, rating, category } = values
+    const { name, image, image1, image2, top, photo, iPrice, price
+        , special, sCat, description, category, photo2, photo1 } = values
 
     useEffect(() => {
-        db.collection('Dishes').doc(_id).get()
+        store.collection('Dishes').doc(_id).get()
             .then(res => {
                 setValues({
-                    ...values, name: res.data().name, price: res.data().price, iPrice: res.data().iPrice,
+                    ...values, name: res.data().name, price: res.data().price, iPrice: res.data().iPrice, sCat: res.data().sCat,
                     description: res.data().description, photo: res.data().url, category: res.data().category,
-                    special: res.data().special, top: res.data().top
+                    special: res.data().special, top: res.data().top, photo1: res.data().url2, photo2: res.data().url3
                 })
             })
 
-        db.collection('Categories').get()
+        store.collection('Categories').get()
             .then(res => {
                 setCat([])
                 res.forEach((doc) => {
@@ -53,7 +59,7 @@ const Editdish = ({ match }) => {
     }, [])
 
     const delCat = () => {
-        db.collection("Dishes").doc(_id).delete().then(function () {
+        store.collection("Dishes").doc(_id).delete().then(function () {
             console.log("Document successfully deleted!");
         }).catch(function (error) {
             console.error("Error removing document: ", error);
@@ -66,11 +72,128 @@ const Editdish = ({ match }) => {
                 const phooto = e.target.files[0];
                 setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
                 break;
+            case 'image1':
+                setValues({ ...values, photo1: URL.createObjectURL(e.target.files[0]), image1: e.target.files[0] })
+                break;
+            case 'image2':
+                setValues({ ...values, photo2: URL.createObjectURL(e.target.files[0]), image2: e.target.files[0] })
+                break;
             default:
                 setValues({ ...values, [name]: e.target.value })
                 break;
         }
     };
+
+    const handleSubmit = () => {
+
+        if (image !== null) {
+            const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).put(image);
+            uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
+            },
+                (error) => {
+                    console.log(error)
+                },
+                () => {
+                    storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        await store.collection('Dishes').doc(_id).update({
+                            url: url,
+                            name: name,
+                            top: top,
+                            special: special,
+                            iPrice: price,
+                            description: description,
+                            price: price,
+                            category: category,
+                            sCat: sCat
+                        }).then(() => {
+                            console.log('fuck offf')
+                        }).catch((err) => {
+                            console.log(err)
+                        })
+                    })
+                })
+        } else {
+            if (image1 !== null) {
+                const uploadTask1 = storage.ref(`Dishes/${name}`).child(image1.name).put(image1);
+                uploadTask1.on('state_changed', (snapshot) => {
+                    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    console.log(progress)
+                },
+                    (error) => {
+                        console.log(error)
+                    },
+                    () => {
+                        storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url => {
+                            console.log(url)
+                            await store.collection('Dishes').doc(_id).update({
+                                url2: url,
+                                name: name,
+                                top: top,
+                                special: special,
+                                iPrice: price,
+                                description: description,
+                                price: price,
+                                category: category,
+                                sCat: sCat
+                            }).then(() => {
+                                console.log('fuck offf')
+                            }).catch((err) => {
+                                console.log(err)
+                            })
+                        })
+                    })
+            } else {
+                if (image2 !== null) {
+                    const uploadTask2 = storage.ref(`Dishes/${name}`).child(image2.name).put(image2);
+                    uploadTask2.on('state_changed', (snapshot) => {
+                        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                        console.log(progress)
+                    },
+                        (error) => {
+                            console.log(error)
+                        },
+                        () => {
+                            storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url => {
+                                console.log(url)
+                                await store.collection('Dishes').doc(_id).update({
+                                    url3: url,
+                                    name: name,
+                                    top: top,
+                                    special: special,
+                                    iPrice: price,
+                                    description: description,
+                                    price: price,
+                                    category: category,
+                                    sCat: sCat
+                                }).then(() => {
+                                    console.log('fuck offf')
+                                }).catch((err) => {
+                                    console.log(err)
+                                })
+                            })
+                        })
+                } else {
+                    store.collection('Dishes').doc(_id).update({
+                        name: name,
+                        top: top,
+                        special: special,
+                        iPrice: price,
+                        description: description,
+                        price: price,
+                        category: category,
+                        sCat: sCat
+                    }).then(() => {
+                        console.log('fuck offf')
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                }
+            }
+        }
+    }
 
     return (
         <div>
@@ -110,17 +233,34 @@ const Editdish = ({ match }) => {
             </div>
 
             <div className='content1'>
-                <h2>Add Dishes</h2>
+                <h2>Edit Dishes</h2>
                 <Form>
                     <Form.Group>
                         <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={name} />
                     </Form.Group>
                     <Form.Group>
+                        <Form.Control type="text" placeholder="sCat Name" onChange={handleChange('sCat')} value={sCat} />
+                    </Form.Group>
+                    <Form.Group>
                         <Form.Label >Choose Images</Form.Label>
                         <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
                     </Form.Group>
+                    <Form.Group>
+                        <Form.Label >Choose Images</Form.Label>
+                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image1')} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label >Choose Images</Form.Label>
+                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image2')} />
+                    </Form.Group>
                     <div>
                         <img src={photo} style={{ height: '110px', width: '110px' }} />
+                    </div>
+                    <div>
+                        <img src={photo1} style={{ height: '110px', width: '110px' }} />
+                    </div>
+                    <div>
+                        <img src={photo2} style={{ height: '110px', width: '110px' }} />
                     </div>
                     <Form.Group >
                         <Form.Label>Choose category</Form.Label><br />
@@ -162,7 +302,7 @@ const Editdish = ({ match }) => {
                         <Form.Control type="text" placeholder="iPrice" onChange={handleChange('iPrice')} value={iPrice} />
                     </Form.Group>
                     <div>
-                        <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" >
+                        <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
                             Edit Dish
                         </Button>
                     </div>

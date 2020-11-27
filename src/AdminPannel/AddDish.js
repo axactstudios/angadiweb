@@ -11,13 +11,17 @@ const AddDish = () => {
         image: null,
         top: false,
         photo: '',
+        photo1: '',
+        photo2: '',
         iPrice: '',
         price: '',
         special: false,
         description: '',
         rating: '0',
         category: '',
-        sCat: ''
+        sCat: '',
+        image1: '',
+        image2: ''
     })
     const [cat, setCat] = useState([])
 
@@ -33,14 +37,20 @@ const AddDish = () => {
             })
     }, [])
 
-    const { name, image, top, photo, iPrice, price
-        , special, description, rating, category, sCat } = values
+    const { name, image, top, photo, iPrice, price, photo1, photo2
+        , special, description, rating, category, sCat, image1, image2 } = values
 
     const handleChange = name => (e) => {
         switch (name) {
             case 'image':
                 const phooto = e.target.files[0];
                 setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
+                break;
+            case 'image1':
+                setValues({ ...values, photo1: URL.createObjectURL(e.target.files[0]), image1: e.target.files[0] })
+                break;
+            case 'image2':
+                setValues({ ...values, photo2: URL.createObjectURL(e.target.files[0]), image2: e.target.files[0] })
                 break;
             default:
                 setValues({ ...values, [name]: e.target.value })
@@ -50,6 +60,9 @@ const AddDish = () => {
 
     const handleSubmit = async () => {
         const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).put(image);
+        const uploadTask1 = storage.ref(`Dishes/${name}`).child(image1.name).put(image1);
+        const uploadTask2 = storage.ref(`Dishes/${name}`).child(image2.name).put(image2);
+
         await uploadTask.on('state_changed', (snapshot) => {
             const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
             console.log(progress)
@@ -58,27 +71,54 @@ const AddDish = () => {
                 console.log(error)
             },
             () => {
-                storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url => {
-                    console.log(url)
-                    await store.collection('Dishes').add({
-                        url: url,
-                        name: name,
-                        top: top,
-                        special: special,
-                        rating: rating,
-                        iPrice: price,
-                        description: description,
-                        price: price,
-                        category: category,
-                        sCat: sCat
-                    }).then(() => {
-                        console.log('done')
-                    }).catch((err) => {
-                        console.log(err)
-                    })
+                storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url1 => {
+                    console.log(url1)
+                    await uploadTask1.on('state_changed', (snapshot) => {
+                        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                        console.log(progress)
+                    },
+                        (error) => {
+                            console.log(error)
+                        },
+                        () => {
+                            storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url2 => {
+                                console.log(url2)
+                                await uploadTask2.on('state_changed', (snapshot) => {
+                                    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                                    console.log(progress)
+                                },
+                                    (error) => {
+                                        console.log(error)
+                                    },
+                                    () => {
+                                        storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url3 => {
+                                            await store.collection('Dishes').add({
+                                                url: url1,
+                                                url2: url2,
+                                                url3: url3,
+                                                name: name,
+                                                top: top,
+                                                special: special,
+                                                rating: rating,
+                                                iPrice: price,
+                                                description: description,
+                                                price: price,
+                                                category: category,
+                                                sCat: sCat
+                                            }).then(() => {
+                                                console.log('done')
+                                            }).catch((err) => {
+                                                console.log(err)
+                                            })
+                                        })
+                                    })
+                            })
+                        })
                 })
             })
     }
+
+
 
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -139,8 +179,22 @@ const AddDish = () => {
                         <Form.Label >Choose Images</Form.Label>
                         <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
                     </Form.Group>
+                    <Form.Group>
+                        <Form.Label >Choose Images</Form.Label>
+                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image1')} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label >Choose Images</Form.Label>
+                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image2')} />
+                    </Form.Group>
                     <div>
-                        <img src={photo} style={{ height: '110px', width: '110px' }} />
+                        <img src={photo} style={{ width: '110px' }} />
+                    </div>
+                    <div>
+                        <img src={photo1} style={{ width: '110px' }} />
+                    </div>
+                    <div>
+                        <img src={photo2} style={{ width: '110px' }} />
                     </div>
                     <Form.Group >
                         <Form.Label>Choose category</Form.Label><br />
@@ -190,3 +244,36 @@ const AddDish = () => {
 };
 
 export default AddDish;
+
+
+// const handleSubmit = async () => {
+//     const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).put(image);
+//     await uploadTask.on('state_changed', (snapshot) => {
+//         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+//         console.log(progress)
+//     },
+//         (error) => {
+//             console.log(error)
+//         },
+//         () => {
+//             storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url => {
+//                 console.log(url)
+//                 await store.collection('Dishes').add({
+//                     url: url,
+//                     name: name,
+//                     top: top,
+//                     special: special,
+//                     rating: rating,
+//                     iPrice: price,
+//                     description: description,
+//                     price: price,
+//                     category: category,
+//                     sCat: sCat
+//                 }).then(() => {
+//                     console.log('done')
+//                 }).catch((err) => {
+//                     console.log(err)
+//                 })
+//             })
+//         })
+// }
