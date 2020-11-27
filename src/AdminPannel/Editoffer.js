@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 import { Form, Button } from 'react-bootstrap'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Editoffer = ({ match }) => {
 
@@ -59,8 +60,10 @@ const Editoffer = ({ match }) => {
                 discountPercentage: percent
             }).then(() => {
                 console.log('done')
+                toast.success('Offer Card Edit Successfully !!!')
             }).catch((err) => {
                 console.log(err)
+                toast.error('Something went wrong !!!')
             })
         } else {
             const uploadTask = storage.ref(`Offer/${image.name}`).put(image);
@@ -70,6 +73,7 @@ const Editoffer = ({ match }) => {
             },
                 (error) => {
                     console.log(error)
+                    toast.error('Something went wrong in uploading image !!')
                 },
                 () => {
                     storage.ref('Offer').child(image.name).getDownloadURL().then(async url => {
@@ -80,9 +84,10 @@ const Editoffer = ({ match }) => {
                             Subtitle: subtitle,
                             discountPercentage: percent
                         }).then(() => {
-                            console.log('Offer added successfully!!!')
+                            toast.success('Offer Card Edit Successfully !!!')
                         }).catch((err) => {
                             console.log(err)
+                            toast.error('Something went wrong !!!')
                         })
                     })
                 })

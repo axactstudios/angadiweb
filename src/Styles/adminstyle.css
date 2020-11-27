@@ -10,7 +10,7 @@
     padding-top: 30px;
     left: 0;
     width: 250px;
-    height: calc(100% - 9%);
+    height: calc(110% - 9%);
     transition: 0.5s;
     transition-property: left;
     overflow-y: auto;
@@ -61,9 +61,9 @@
     width: (100% - 250px);
     padding: 20px;
     margin-left: 250px;
-    min-height: 85.2vh !important;
+    min-height: 96.5vh !important;
     transition: 0.5s;
-    margin-top: -723.5px !important;
+    margin-top: -728px !important;
     position: relative;
     background-color: #f0f0f0;
   }

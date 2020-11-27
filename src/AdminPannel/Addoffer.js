@@ -39,6 +39,7 @@ const Addoffer = () => {
             console.log(progress)
         },
             (error) => {
+                toast.error('Something went wrong in uploading image !!')
                 console.log(error)
             },
             () => {

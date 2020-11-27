@@ -3,6 +3,7 @@ import * as firebase from 'firebase'
 import { Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Editdish = ({ match }) => {
 
@@ -94,6 +95,7 @@ const Editdish = ({ match }) => {
             },
                 (error) => {
                     console.log(error)
+                    toast.error('Something went wrong in uploading image !!')
                 },
                 () => {
                     storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url => {
@@ -110,8 +112,10 @@ const Editdish = ({ match }) => {
                             sCat: sCat
                         }).then(() => {
                             console.log('fuck offf')
+                            toast.success('Dish edit successfully !!!')
                         }).catch((err) => {
                             console.log(err)
+                            toast.error('Something went wrong !!!')
                         })
                     })
                 })
@@ -124,6 +128,7 @@ const Editdish = ({ match }) => {
                 },
                     (error) => {
                         console.log(error)
+                        toast.error('Something went wrong in uploading image !!')
                     },
                     () => {
                         storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url => {
@@ -140,8 +145,10 @@ const Editdish = ({ match }) => {
                                 sCat: sCat
                             }).then(() => {
                                 console.log('fuck offf')
+                                toast.success('Dish edit successfully !!!')
                             }).catch((err) => {
                                 console.log(err)
+                                toast.error('Something went wrong !!!')
                             })
                         })
                     })
@@ -154,6 +161,7 @@ const Editdish = ({ match }) => {
                     },
                         (error) => {
                             console.log(error)
+                            toast.error('Something went wrong in uploading image !!')
                         },
                         () => {
                             storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url => {
@@ -170,8 +178,10 @@ const Editdish = ({ match }) => {
                                     sCat: sCat
                                 }).then(() => {
                                     console.log('fuck offf')
+                                    toast.success('Dish edit successfully !!!')
                                 }).catch((err) => {
                                     console.log(err)
+                                    toast.error('Something went wrong !!!')
                                 })
                             })
                         })
@@ -197,7 +207,7 @@ const Editdish = ({ match }) => {
 
     return (
         <div>
-
+            <ToastContainer />
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />

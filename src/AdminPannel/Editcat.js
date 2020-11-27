@@ -3,6 +3,7 @@ import * as firebase from 'firebase'
 import { Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Editcat = ({ match }) => {
 
@@ -67,9 +68,10 @@ const Editcat = ({ match }) => {
                 top: top,
                 sCat: sCat
             }).then(() => {
-                console.log('done')
+                toast.success('Category Edit successfully !!!')
             }).catch((err) => {
                 console.log(err)
+                toast.error('Something went wrong !!!')
             })
         } else {
             const uploadTask = storage.ref(`category/${image.name}`).put(image);
@@ -79,6 +81,7 @@ const Editcat = ({ match }) => {
             },
                 (error) => {
                     console.log(error)
+                    toast.error('Something went wrong in uploading image !!')
                 },
                 () => {
                     storage.ref('category').child(image.name).getDownloadURL().then(async url => {
@@ -89,9 +92,10 @@ const Editcat = ({ match }) => {
                             top: top,
                             sCat: sCat
                         }).then(() => {
-                            console.log('fuck offf')
+                            toast.success('Category Edit successfully !!!')
                         }).catch((err) => {
                             console.log(err)
+                            toast.error('Something went wrong !!!')
                         })
                     })
                 })
@@ -100,6 +104,7 @@ const Editcat = ({ match }) => {
 
     return (
         <div>
+            <ToastContainer />
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />

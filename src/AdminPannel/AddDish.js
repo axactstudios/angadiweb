@@ -3,6 +3,7 @@ import * as firebase from 'firebase'
 import { Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import { toast, ToastContainer } from 'react-toastify'
 
 const AddDish = () => {
 
@@ -68,7 +69,7 @@ const AddDish = () => {
             console.log(progress)
         },
             (error) => {
-                console.log(error)
+                toast.error('Something went wrong in uploading image !!')
             },
             () => {
                 storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url1 => {
@@ -78,7 +79,7 @@ const AddDish = () => {
                         console.log(progress)
                     },
                         (error) => {
-                            console.log(error)
+                            toast.error('Something went wrong in uploading image !!')
                         },
                         () => {
                             storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url2 => {
@@ -88,7 +89,7 @@ const AddDish = () => {
                                     console.log(progress)
                                 },
                                     (error) => {
-                                        console.log(error)
+                                        toast.error('Something went wrong in uploading image !!')
                                     },
                                     () => {
                                         storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url3 => {
@@ -106,9 +107,11 @@ const AddDish = () => {
                                                 category: category,
                                                 sCat: sCat
                                             }).then(() => {
+                                                toast.success('Dish Added !!!')
                                                 console.log('done')
                                             }).catch((err) => {
                                                 console.log(err)
+                                                toast.error('Something went wrong !!!')
                                             })
                                         })
                                     })
@@ -117,8 +120,6 @@ const AddDish = () => {
                 })
             })
     }
-
-
 
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -131,7 +132,7 @@ const AddDish = () => {
 
     return (
         <div>
-
+            <ToastContainer />
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />

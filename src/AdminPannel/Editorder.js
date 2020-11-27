@@ -2,12 +2,21 @@ import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Editorder = ({ match }) => {
     const [values, setValues] = useState({})
     const db = firebase.firestore()
     const _id = match.params.orderId
     const [status, setStatus] = useState('');
+
+    const getsome = () => {
+        db.collection('Orders').doc(_id).get()
+            .then(res => {
+                setValues(res.data())
+                setStatus(res.data().Status)
+            })
+    }
 
     useEffect(() => {
         db.collection('Orders').doc(_id).get()
@@ -31,13 +40,18 @@ const Editorder = ({ match }) => {
             Status: status
         }).then(() => {
             console.log('done')
+            toast.success('Status Changed Successfully !!!')
+            getsome()
         }).catch((err) => {
             console.log(err)
+            toast.error('Something Went wrong !!!')
         })
     }
 
     return (
         <div>
+            <ToastContainer />
+
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
