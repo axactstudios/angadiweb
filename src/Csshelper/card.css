@@ -80,7 +80,6 @@
     width: 250px !important;
     margin: 0 10px !important;
 }
-
 @media screen and (max-width: 630px){
     .fegg1{
         width: 150px !important;
@@ -108,6 +107,38 @@
         font-size: 10px !important;
     }
 }
+
+.ordme{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.ordme1{
+    background-color: white;
+    max-width: 330px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.ordme2{
+    border-bottom: 1px solid black;
+}
+.ordme3{
+    color: white;
+    background-color: rgb(255, 176, 0);
+    padding: 8px 5px;
+    font-weight: bold;
+    margin-left: 105px;
+}
+.ordme4{
+    margin: 5px 0;
+}
+
 
 .adpor{
     display: flex;

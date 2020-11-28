@@ -119,7 +119,7 @@ const Addoffer = () => {
                         <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
                     </Form.Group>
                     <div>
-                        <img src={photo} style={{ height: '110px', width: '110px' }} />
+                        <img src={photo} style={{ width: '110px' }} />
                     </div>
                     <Form.Group >
                         <Form.Label>Add subtitle </Form.Label><br />

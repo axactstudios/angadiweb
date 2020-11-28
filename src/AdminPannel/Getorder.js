@@ -102,6 +102,7 @@ const Getorder = () => {
                 <button onClick={CheckDeliveryType}>Order Type</button>
                 <button onClick={ActiveOrder}>Awaiting Confirmation</button>
                 <h3>All Order Ordered by New Arrivals</h3>
+                <div className='ordme'>
                 {
                     dish && dish.map((d, i) => (
                         <div key={i}>
@@ -109,6 +110,7 @@ const Getorder = () => {
                         </div>
                     ))
                 }
+                </div>
             </div>
         </div>
     );
