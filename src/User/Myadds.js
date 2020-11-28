@@ -20,7 +20,7 @@ const Myadds = () => {
     }, [])
 
     return (
-        <div className="myor"> 
+        <div className="myor hwami"> 
             {
                 resu.length === 0 ?
                     <h2>No Order Now!!!</h2>

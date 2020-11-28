@@ -214,7 +214,7 @@ const Shop = () => {
     }
 
     return (
-        <div>
+        <div className='hwami'>
             <div class="mu-title">
                 <span class="mu-subtitle">Discover</span>
                 <h2>Our Products</h2>

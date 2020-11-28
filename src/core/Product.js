@@ -98,6 +98,7 @@ const Product = ({ match }) => {
     };
 
     return (
+        <div className='hwami'>
         <div className="proccard">
             {shouldRedirect(redirect)}
             {
@@ -163,6 +164,7 @@ const Product = ({ match }) => {
                     </Container>
                 </div>
             </div>
+        </div>
         </div>
     );
 };

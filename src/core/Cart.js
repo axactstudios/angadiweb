@@ -30,7 +30,7 @@ const Cart = () => {
 
 
     return (
-        <div className="maincart">
+        <div className="maincart hwami">
             <div class="mu-title">
                 <span class="mu-subtitle">{itemTotal()} Items In cart</span>
             </div>

@@ -10,6 +10,17 @@
     left: -19px;
     padding-bottom: 15px;
 }
+.snitch{
+    text-align: center;
+    padding: 25px;
+    margin-top: 15px;
+    color: #6b5236;
+    font-weight: bold;
+}
+.snitch span{
+    color: #c0933f !important;
+    font-weight: normal !important;
+}
 .mu-title {
     display: inline;
     float: left;
@@ -46,10 +57,12 @@
     cursor: pointer;
 }
 .cskk5 img{
-    width: 40px;
+    width: 38px;
 }
 .cskk5 p{
+    padding-top: 6px;
     text-align: center;
+    font-size: 15px;
 }
 @media screen and (max-width: 1020px) {
     .cskk{

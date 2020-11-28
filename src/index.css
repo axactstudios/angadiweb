@@ -3,10 +3,14 @@ body {
   font-family: 'Poppins', arial ,sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
-
+.hwami{
+  margin-top: 0px;
+}
 code {
   font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
 }
 *:focus {
   outline: 0 !important;
@@ -26,4 +30,10 @@ code {
 .men1{
   text-align: center;
   margin: auto;
+}
+
+@media screen and (max-width: 767px){
+  .hwami{
+    margin-top: 50px !important;
+  }
 }

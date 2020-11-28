@@ -59,7 +59,7 @@ const Home = () => {
     }, [cs])
 
     return (
-        <div className="ckk">
+        <div className="ckk hwami">
             <div className="cskkk">
                 <Carousel interval={2500}>
                     {
@@ -75,10 +75,8 @@ const Home = () => {
                     }
                 </Carousel>
             </div>
-            <div class="mu-title">
-                <span class="mu-subtitle">Discover</span>
-                <h2>Our Products</h2>
-            </div>
+
+            <h5 className="snitch">Homemade Tasty <span>Products</span></h5>
             <div className="cskk">
                 <div className="cskk3">
                     <ul className="cskk4">
