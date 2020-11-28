@@ -20,6 +20,95 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+@media screen and (max-width: 500px){
+    .catcard{
+        width: 140px;
+        margin: 30px 10px;
+    }
+    .catcard h5{
+        text-align: center;
+        font-size: 16px;
+        margin-top: 5px;
+    }
+}
+.ofeecard{
+    max-width: 250px;
+    background-color: white;
+    margin: 20px 15px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.ofeecard img{
+    width: 100%;
+}
+.ofeecard1{
+    width: 90%;
+    margin: auto;
+}
+.ofeecard1 h5{
+    font-size: 15px;   
+}
+.ofeecard1 h6{
+    font-size: 15px;  
+    padding-top: 10px; 
+}
+.ofeecard1 p{
+    font-size: 15px;   
+}
+@media screen and (max-width: 450px){
+    .ofeecard{
+        max-width: 150px;
+        background-color: white;
+        margin: 20px 5px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+}
+
+.fegg{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+.fegg1{
+    width: 250px !important;
+    margin: 0 10px !important;
+}
+
+@media screen and (max-width: 630px){
+    .fegg1{
+        width: 150px !important;
+        height: 200px;
+        margin: 0 5px !important;
+        border-radius: 8px !important;
+    }   
+    .fegg2{
+        position: relative !important;
+        top: -25px;
+        left: 35px;
+    }
+    .fegg2 img{
+        width: 60px !important;
+        height: 60px !important;
+    }
+    .fegg3{
+        position: relative;
+        top: -20px;
+    }
+    .fegg3 h3{
+        font-size: 16px !important;
+    }
+    .fegg3 p{
+        font-size: 10px !important;
+    }
+}
+
 .adpor{
     display: flex;
     flex-direction: row;
@@ -57,38 +146,5 @@
     .adpor1 input{
         height: 40px;
         margin: 0px 0px;
-    }
-}
-.ofeecard{
-    max-width: 250px;
-    background-color: white;
-    margin: 20px 15px;
-    border-radius: 8px;
-    overflow: hidden;
-}
-.ofeecard img{
-    width: 100%;
-}
-.ofeecard1{
-    width: 90%;
-    margin: auto;
-}
-.ofeecard1 h5{
-    font-size: 15px;   
-}
-.ofeecard1 h6{
-    font-size: 15px;  
-    padding-top: 10px; 
-}
-.ofeecard1 p{
-    font-size: 15px;   
-}
-@media screen and (max-width: 450px){
-    .ofeecard{
-        max-width: 150px;
-        background-color: white;
-        margin: 20px 5px;
-        border-radius: 8px;
-        overflow: hidden;
     }
 }

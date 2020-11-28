@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 
 const Offercard = ({ product }) => {
 
-    console.log(product)
-
     return (
         <div>
             <div className="ofeecard">

@@ -66,6 +66,7 @@ const Getuser = () => {
 
             <div className='content1'>
                 <h2 style={{ textAlign: 'center' }}>All Users</h2>
+                <div className='fegg'>
                 {
                     dish && dish.map((d, i) => (
                         <div key={i}>
@@ -73,6 +74,7 @@ const Getuser = () => {
                         </div>
                     ))
                 }
+                </div>
             </div>
         </div>
     );
