@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Poppins', arial ,sans-serif !important;
+  font-family: 'Roboto' !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -9,7 +9,7 @@ body {
   margin-top: 0px;
 }
 code {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto';
   scroll-behavior: smooth;
 }
 *:focus {

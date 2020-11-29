@@ -11,7 +11,7 @@ const Dishcard = ({ product }) => {
                     <img src={product.data.url} alt={product.data.name} />
                 </Link>
             </div>
-            <div className="csk2">
+            <div className="mikaal">
                 <h5>{product.data.name}</h5>
                 <ul>
                     <li>Actual Price: {product.data.iPrice}</li>

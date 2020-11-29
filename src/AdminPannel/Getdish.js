@@ -142,7 +142,7 @@ const Getcategory = () => {
                             <Row>
                                 {
                                     dish && dish.map((d, k) => (
-                                        <Col lg={6} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                        <Col lg={6} xl={3} key={k} sm={6} xs={6} className="homey1">
                                             <Card product={d} />
                                         </Col>
                                     ))
@@ -156,7 +156,7 @@ const Getcategory = () => {
                                 <Row>
                                     {
                                         resu && resu.map((d, k) => (
-                                            <Col lg={4} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                            <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
                                                 <Card product={d} />
                                             </Col>
                                         ))

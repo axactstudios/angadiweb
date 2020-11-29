@@ -70,7 +70,9 @@
     margin-bottom: -10px;
     margin-top: 15px;
 }
-
+.shopii2{
+    width: 100%;
+}
 @media screen and (max-width: 987px){
     .shopii2 h4{
         margin-bottom: 5px;
@@ -90,6 +92,10 @@
 }
 @media screen and (max-width: 400px){
     .shopii3{
-        margin-left: -7% !important;
+        margin-left: -0% !important;
+        margin-right: 0% !important;
+    }
+    .cde{
+        width: 100% !important;
     }
 }

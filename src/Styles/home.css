@@ -16,6 +16,8 @@
     margin-top: 15px;
     color: #6b5236;
     font-weight: bold;
+    font-family: 'Roboto Slab';
+    font-size: 23px;
 }
 .snitch span{
     color: #c0933f !important;
@@ -75,6 +77,24 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 450px) {
+    .cskk4{
+        overflow: scroll;
+        flex-wrap: unset !important;
+    }
+    .cskk{
+        overflow: scroll !important;
+        padding-bottom: 0px;
+        margin: -12px 0  -25px 0 !important;
+    }
+    .snitch{
+        text-align: center;
+        padding: 0px;
+        margin-top: 15px;
+        color: #6b5236;
+        font-weight: bold;
     }
 }
 .homey{

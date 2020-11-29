@@ -15,7 +15,7 @@
     }
 }
 .csk{
-    width: 280px;
+    max-width: 280px;
     margin: auto;
     height: auto;
     overflow: hidden;
@@ -110,13 +110,13 @@
 /* .csk2:hover{
     bottom: 120px;
 } */
-@media screen and (max-width: 450px){
+@media screen and (max-width: 600px){
     .csk2:hover{
         height: auto;
         bottom: 0px;
     }   
     .csk{
-        width: 285px;
+        min-width: 150px;
         height: auto !important;
     }
     .csk1{
@@ -129,6 +129,26 @@
     .csk1:hover img{
         transform: scale(1.1);
         transition: all 0.4s;
+    }
+    .csk2 h6{
+        font-size: 15px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .csk2 p:nth-child(2){
+        font-size: 14px;
+        text-align: center
+    }
+    .csk2 p:nth-child(4){
+        font-size: 14.5px;
+        text-align: center;
+    }
+    .csk2 p:nth-child(4) span{
+        font-size: 14px;
+        text-decoration: line-through;
+    }
+    .cardbutton{
+        width: 130px;
     }
 }
 @media screen and (max-width: 300px){   

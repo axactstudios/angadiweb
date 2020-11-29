@@ -80,19 +80,19 @@
     height: 45px !important;
 }
 .men3 ul{
-    width: 69%;
+    width: 71%;
     margin: auto;
     display: flex;
     list-style-type: none;
     justify-content: space-around;
 }
 .men3 li{
-    font-size: 16.5px;
+    font-size: 17px;
     font-weight: 500;
     line-height: 45px;
     color: white;
     border-right: 0.5px solid white;
-    padding: 0px 15px;
+    padding: 0px 25px;
 }
 .men3 li:hover{
     color: #c0933f;
@@ -116,11 +116,11 @@
     padding: 5px !important;
     border: none;
     outline: none;
-    font-size: 16.5px;
+    font-size: 17px;
     font-weight: 550;
     line-height: 35px;
     border-right: 0.5px solid white;
-    padding: 5px 15px !important;
+    padding: 5px 20px !important;
   }
   
   .dropdown {

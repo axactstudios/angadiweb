@@ -197,8 +197,10 @@ const Editdish = ({ match }) => {
                         sCat: sCat
                     }).then(() => {
                         console.log('fuck offf')
+                        toast.success('Dish Update successfully')
                     }).catch((err) => {
                         console.log(err)
+                        toast.error('Something went wrong !!!')
                     })
                 }
             }

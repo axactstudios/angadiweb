@@ -45,6 +45,7 @@ const Shop = ({ match }) => {
     }
 
     useEffect(() => {
+        setValues({ name: '', category: '', price: '', sCat: '' })
         if (cd) {
             setDish([])
             db.collection("Dishes").where("category", "==", `${md}`).get()
@@ -64,7 +65,7 @@ const Shop = ({ match }) => {
                 })
         } else {
             setDish([])
-            db.collection('Dishes').get()
+            db.collection('Dishes').where("top", "==", true).get()
                 .then(res => {
                     res.forEach((doc) => {
                         setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
@@ -239,11 +240,7 @@ const Shop = ({ match }) => {
 
     return (
         <div className='hwami'>
-            <div class="mu-title">
-                <span class="mu-subtitle">Discover</span>
-                <h2>Our Products</h2>
-            </div>
-            <div className="homey2">
+            <div className="homey2 cde">
                 <Container fluid>
                     <div className="shopi">
                         <Row>
@@ -296,16 +293,16 @@ const Shop = ({ match }) => {
                                 </div>
                             </div>
                         </Col>
-                        <Col lg={9}>
+                        <Col lg={9} sm={12} xs={12}>
                             <div className="shopii2">
                                 {showw == false ?
-                                    <div>
-                                        <h4 >We found {dish.length} Dishes</h4>
+                                    <div style={{ width: '100%' }}>
+                                        <h4> Showing all {dish.length} results</h4>
                                         <Container fluid>
                                             <Row>
                                                 {
                                                     dish && dish.map((d, k) => (
-                                                        <Col lg={6} xl={4} key={k} sm={6} xs={12} className="homey1 shopii3">
+                                                        <Col lg={6} xl={4} key={k} sm={6} xs={6} className="homey1 shopii3">
                                                             <Card product={d} />
                                                         </Col>
                                                     ))
@@ -316,11 +313,11 @@ const Shop = ({ match }) => {
                                     :
                                     <div>
                                         <h4>{resu.length} result found</h4>
-                                        <Container>
+                                        <Container fluid>
                                             <Row>
                                                 {
                                                     resu && resu.map((d, k) => (
-                                                        <Col lg={6} xl={4} key={k} sm={6} xs={12} className="homey1 shopii3">
+                                                        <Col lg={6} xl={4} key={k} sm={6} xs={6} className="homey1 shopii3">
                                                             <Card product={d} />
                                                         </Col>
                                                     ))

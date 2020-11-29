@@ -8,10 +8,10 @@ import ShowImage from '../PagesHelper/Showimage'
 import Card from '../PagesHelper/Card'
 import $ from 'jquery'
 
-const Product = ({ match }) => {
+const Product = (props) => {
 
     const db = firebase.firestore()
-    const _id = match.params.dishId
+    const _id = props.match.params.dishId
     const [pro, setPro] = useState()
     const [redirect, setRedirect] = useState(false)
     const [count, setCount] = useState(1);
@@ -38,6 +38,7 @@ const Product = ({ match }) => {
         $(document).ready(function () {
             $(this).scrollTop(0);
         });
+        console.log(props)
     }, [_id])
 
     useEffect(async () => {
@@ -99,72 +100,72 @@ const Product = ({ match }) => {
 
     return (
         <div className='hwami'>
-        <div className="proccard">
-            {shouldRedirect(redirect)}
-            {
-                pro && pro.name && pro.url
-                    ?
-                    <div className="proccard1">
-                        <Container>
-                            <Row>
-                                <Col md={6} xl={6}>
-                                    <ShowImage item={pro} url="product" />
-                                </Col>
-                                <Col md={6} xl={6}>
-                                    <div className="proccard2">
-                                        <h5>{pro.name}</h5>
-                                        <h6>{pro.category}</h6>
-                                        <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
-                                        <p className="proccard3">{pro.description.substring(0, 250)}</p>
-                                        <h4>Rating :- {pro.rating}</h4>
-                                        <div className="proccard4">
-                                            <span>Adjust Quantity</span>
-                                            <select onChange={handleChanged()} className="proccard5">
-                                                <option value='500'>500 ML</option>
-                                                <option value='1000'>1000 ML</option>
-                                                <option value='1500'>1500 ML</option>
-                                                <option value='2000'>2000 ML</option>
-                                            </select>
-                                        </div>
-                                        <div className="proccard6">
-                                            <span>No of Items</span>
-                                            <div className="proccard611">
-                                                <button className='inc' onClick={handleChangepostive()}>+</button>
-                                                <h1>{count}</h1>
-                                                <button className='dec' onClick={handleChangeneagative()}>-</button>
+            <div className="proccard">
+                {shouldRedirect(redirect)}
+                {
+                    pro && pro.name && pro.url
+                        ?
+                        <div className="proccard1">
+                            <Container>
+                                <Row>
+                                    <Col md={6} xl={6}>
+                                        <ShowImage item={pro} url="product" />
+                                    </Col>
+                                    <Col md={6} xl={6}>
+                                        <div className="proccard2">
+                                            <h5>{pro.name}</h5>
+                                            <h6>{pro.category}</h6>
+                                            <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
+                                            <p className="proccard3">{pro.description.substring(0, 250)}</p>
+                                            <h4>Rating :- {pro.rating}</h4>
+                                            <div className="proccard4">
+                                                <span>Adjust Quantity</span>
+                                                <select onChange={handleChanged()} className="proccard5">
+                                                    <option value='500'>500 ML</option>
+                                                    <option value='1000'>1000 ML</option>
+                                                    <option value='1500'>1500 ML</option>
+                                                    <option value='2000'>2000 ML</option>
+                                                </select>
+                                            </div>
+                                            <div className="proccard6">
+                                                <span>No of Items</span>
+                                                <div className="proccard611">
+                                                    <button className='inc' onClick={handleChangepostive()}>+</button>
+                                                    <h1>{count}</h1>
+                                                    <button className='dec' onClick={handleChangeneagative()}>-</button>
+                                                </div>
+                                            </div>
+                                            <div className="proccard7">
+                                                <button onClick={addToCart}>Add To Cart</button>
                                             </div>
                                         </div>
-                                        <div className="proccard7">
-                                            <button onClick={addToCart}>Add To Cart</button>
-                                        </div>
-                                    </div>
-                                </Col>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </div>
+                        :
+                        null
+                }
+                <div className="proccard8">
+                    <div class="mu-title">
+                        <span class="mu-subtitle">Related</span>
+                        <h2>Products</h2>
+                    </div>
+                    <div className="homey">
+                        <Container fluid>
+                            <Row>
+                                {
+                                    resh && resh.map((d, k) => (
+                                        <Col lg={4} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                            <Card product={d} />
+                                        </Col>
+                                    ))
+                                }
                             </Row>
                         </Container>
                     </div>
-                    :
-                    null
-            }
-            <div className="proccard8">
-                <div class="mu-title">
-                    <span class="mu-subtitle">Related</span>
-                    <h2>Products</h2>
-                </div>
-                <div className="homey">
-                    <Container fluid>
-                        <Row>
-                            {
-                                resh && resh.map((d, k) => (
-                                    <Col lg={4} xl={3} key={k} sm={6} xs={12} className="homey1">
-                                        <Card product={d} />
-                                    </Col>
-                                ))
-                            }
-                        </Row>
-                    </Container>
                 </div>
             </div>
-        </div>
         </div>
     );
 };
