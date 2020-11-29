@@ -15,27 +15,6 @@ const Footer = () => {
 
     return (
         <>
-            <div className="foopart1">
-                <Container>
-                    <Row>
-                        <Col md={6}>
-                            <div className="foopart21">
-                                <h3>Subscribe to our Newsletter</h3>
-                                <p>Get e-mail update about our latest dish and special offers</p>
-                            </div>
-                        </Col>
-                        <Col md={6}>
-                            <div className="foopart22">
-                                <input placeholder="Enter Email Address" />
-                                <button>Subscribe</button>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-            <div onClick={upwardmove} className="foopart2">
-                <i className="fa fa-chevron-up" aria-hidden="true"></i>
-            </div>
             <div className="home15">
                 <div className="home16">
                     <Container>
@@ -102,15 +81,12 @@ const Footer = () => {
                                         </Col>
                                     </Row>
                                 </div>
-
                             </Col>
                         </Row>
-                        <Row>
-                            <div className="home21">
-                                <p>@2020, Angadi. All Rights Reserved</p>
-                            </div>
-                        </Row>
                     </Container>
+                </div>
+                <div className="home21">
+                    <p>@2020, Angadi. All Rights Reserved</p>
                 </div>
             </div>
         </>
@@ -118,3 +94,25 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// <div className="foopart1">
+// <Container>
+//     <Row>
+//         <Col md={6}>
+//             <div className="foopart21">
+//                 <h3>Subscribe to our Newsletter</h3>
+//                 <p>Get e-mail update about our latest dish and special offers</p>
+//             </div>
+//         </Col>
+//         <Col md={6}>
+//             <div className="foopart22">
+//                 <input placeholder="Enter Email Address" />
+//                 <button>Subscribe</button>
+//             </div>
+//         </Col>
+//     </Row>
+// </Container>
+// </div>
+// <div onClick={upwardmove} className="foopart2">
+// <i className="fa fa-chevron-up" aria-hidden="true"></i>
+// </div>

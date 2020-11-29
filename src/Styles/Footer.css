@@ -2,7 +2,8 @@
 * Footer home15 to home21
 **/
 
-.foopart1{
+
+/* .foopart1{
     background-color: #F7F6F2;
     position: relative;
     top: 63.5px;
@@ -20,7 +21,7 @@
     font-family: 'Poppins', Arial, sans-serif;
 }
 .foopart21 p{
-    font-size: 15px;
+    font-4ize: 15px;
     line-height: 20px;
     color: #808080;
 }
@@ -33,7 +34,7 @@
 }
 ::placeholder {
     color: #808080;
-    font-size: 15px;
+    font-size: 45px;
     font-weight: 300px;
     padding-left: 12px;
   }
@@ -103,18 +104,23 @@
     0% {top: 10px;}
     50% {top: 20px;}
     100% {top: 28px;}
+} */
+.home15{
+    border-top: 2px solid rgb(255, 176, 0);
+    margin-top: 50px;
 }
 .home16{
-    padding-top: 70px;
+    padding-top: 50px;
     width: 90%;
     margin: auto;
     padding-bottom: 10px;
+    background-color: #ffffff;
 }
 .home16 h3{
     margin: auto;
     padding-bottom: 4px;
     color: black;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 550px;
 }
 .home16 ul{
@@ -128,7 +134,7 @@
 .home16 ul li a{
     color: rgb(68, 67, 67);
     font-weight: 400;
-    font-size: 15px;
+    font-size: 14px;
 }
 .home16 ul li a:hover{
     color: rgb(68, 67, 67);
@@ -196,12 +202,15 @@
 .home21{
     width: 100%;
     margin-top: 30px;
+    border-top: 2px solid rgb(255, 176, 0);
+    background-color: #653602;
+    height: 42px;
 }
 .home21 p{
     padding-top: 10px;
     text-align: center;
-    color: rgb(68, 67, 67);
-    font-size: 15px;
+    color: white;
+    font-size: 14px;
 }
 
 

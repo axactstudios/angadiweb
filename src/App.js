@@ -27,7 +27,6 @@ import Cart from './core/Cart'
 import Product from './core/Product';
 import Menu from './core/Menu'
 import Footer from './core/Footer'
-import Category from './core/Category'
 import Shop from './core/Shop'
 import Contact from './core/Contact'
 
@@ -45,10 +44,10 @@ const App = () => {
             <Route path='/' exact component={Home} />
             <Route path='/register' exact component={Register} />
             <Route path='/login' exact component={Login} />
-            <Route path='/category/:categoryId' exact component={Category} />
-            <Route path='/category/:categoryId/:categoryName' exact component={Category} />
             <Route path='/cart' exact component={Cart} />
             <Route path='/shop' exact component={Shop} />
+            <Route path='/shop/:categoryId' exact component={Shop} />
+            <Route path='/shop/:categoryId/:categoryName' exact component={Shop} />
             <Route path='/dish/:dishId' exact component={Product} />
             <Route path='/contact/us' exact component={Contact} />
 
