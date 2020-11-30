@@ -32,7 +32,7 @@ import Contact from './core/Contact'
 
 import Myads from './User/Myadds'
 import Userdashboard from './User/UserDashboard';
-
+import ForgetPassword from './User/ForgetPassword';
 
 const App = () => {
   return (
@@ -50,6 +50,7 @@ const App = () => {
             <Route path='/shop/:categoryId/:categoryName' exact component={Shop} />
             <Route path='/dish/:dishId' exact component={Product} />
             <Route path='/contact/us' exact component={Contact} />
+            <Route path='/users/password/forget' exact component={ForgetPassword} />
 
             <AdminRoute path='/get/category' exact component={GetCat} />
             <AdminRoute path='/create/category' exact component={Addcat} />

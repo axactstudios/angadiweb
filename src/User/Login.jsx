@@ -55,7 +55,7 @@ const Login = () => {
             textChange: 'Sign In'
           });
           console.log(err);
-          toast.error('Something went wrong');
+          toast.error(err.message);
         });
     } else {
       toast.error('Please fill all fields');
