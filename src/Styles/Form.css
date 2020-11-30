@@ -1,0 +1,136 @@
+/*rgb(255, 176, 0)
+#653602
+*/
+
+.form {
+  margin: 5em auto;
+}
+
+.form-main {
+  margin: 2em auto;
+  padding: 2em;
+  display: flex;
+  width: 40vw;
+  height: auto;
+  color: white;
+  background-color:#653602;
+  border-radius: 4px;
+}
+
+.form-fields {
+  padding: 2em 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.form-fields {
+  background-color: none;
+}
+
+.form-fields h1 {
+  font-weight: 700;
+}
+
+.form-input {
+  width: 100%;
+  color: white;
+  font-family: inherit;
+  border: none;
+  border-bottom: 2px solid  rgb(255, 176, 0);
+  background-color: inherit;
+  margin: 1em 0;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: white;
+}
+
+.form-button {
+  margin: 1em 0;
+  padding: 0.5em;
+  color: white;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.25em;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  background-color:  rgb(255, 176, 0);
+  border-radius: 2px;
+}
+
+.form-button:hover {
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) all;
+  background-color: rgb(68, 67, 67);
+  color: rgb(255, 176, 0);
+}
+
+.util-link,
+.util-link:active,
+.util-link:hover {
+  color:  rgb(255, 176, 0);
+  text-decoration: none;
+}
+
+.util {
+  margin: 1.5em auto auto auto;
+}
+
+.util .util-link:hover {
+  background-color: var(--accentColor);
+  color: white;
+  transition: 0.2s all ease-out;
+}
+
+.external-login {
+  display: flex;
+
+  justify-content: space-around;
+}
+
+.fb-login-link,
+.fb-login-link:visited,
+.fb-login-link:active {
+  margin: 1em auto;
+  padding: 0.5em 0.75em;
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--mainWhite);
+  background-color: var(--accentColor);
+  border-radius: 2px;
+  text-align: center;
+}
+
+.fb-login-link:first-child:hover {
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) all;
+  background-color: #3b5998;
+}
+
+.fb-login-link:last-child:hover {
+  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) all;
+  background-color: #EA4335;
+}
+
+@media only screen and (max-width: 600px) {
+  .form {
+    margin: 3em auto;
+  }
+
+  .form-main {
+    flex-direction: column-reverse;
+    width: 100vw;
+    height: auto;
+  }
+
+  .form-img,
+  .form-fields {
+    width: auto;
+    padding: 1em 2em;
+  } 
+}

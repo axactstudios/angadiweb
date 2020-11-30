@@ -37,18 +37,25 @@ const ForgetPassword = () => {
 
 
   return (
-    <Fragment>
-      <ToastContainer />
-      <div className='hwami'>
-        <h2>Forgot Password</h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Control type="email" placeholder="Enter email" onChange={handleChange('email')} value={email} />
-          </Form.Group>
-          <Button type="submit"> Submit </Button>
-        </Form>
+    <div className = "form">
+    <ToastContainer />
+    <div className = "form-main">
+      <div className = "form-fields">
+        <h1>Forget Password ?</h1>
+        <form
+          onSubmit = {handleSubmit}
+        >
+          <input type = "email" 
+            className = "form-input" 
+            placeholder = "Email" 
+            onChange={handleChange('email')}
+            value={email}
+          />
+          <button type = "submit" className = "form-button">Submit</button>
+        </form>
       </div>
-    </Fragment>
+    </div>
+  </div>
   );
 };
 
