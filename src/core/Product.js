@@ -3,13 +3,14 @@ import * as firebase from 'firebase'
 import { Row, Col, Container } from 'react-bootstrap'
 import '../Styles/productcard.css'
 import { addItem, updateItem } from '../helpers/CartHelper'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import ShowImage from '../PagesHelper/Showimage'
 import Card from '../PagesHelper/Card'
 import $ from 'jquery'
 
 const Product = (props) => {
 
+    const [special, setSpecial] = useState([])
     const db = firebase.firestore()
     const _id = props.match.params.dishId
     const [pro, setPro] = useState()
@@ -35,10 +36,17 @@ const Product = (props) => {
     })
 
     useEffect(() => {
+        setSpecial([])
         $(document).ready(function () {
             $(this).scrollTop(0);
         });
-        console.log(props)
+        db.collection('Dishes').where("special", "==", true).get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setSpecial(dish => [...dish, { data: doc.data(), _id: doc.id }])
+                })
+            })
+
     }, [_id])
 
     useEffect(async () => {
@@ -62,9 +70,6 @@ const Product = (props) => {
             })
     }, [_id])
 
-    // const handleChange = () => e => {
-    //     setCount(e.target.value < 1 ? 1 : e.target.value)
-    // }
     const handleChangepostive = () => e => {
         const q = count + 1
         setCount(q < 1 ? 1 : q)
@@ -106,7 +111,7 @@ const Product = (props) => {
                     pro && pro.name && pro.url
                         ?
                         <div className="proccard1">
-                            <Container>
+                            <Container fluid>
                                 <Row>
                                     <Col md={6} xl={6}>
                                         <ShowImage item={pro} url="product" />
@@ -116,7 +121,6 @@ const Product = (props) => {
                                             <h5>{pro.name}</h5>
                                             <h6>{pro.category}</h6>
                                             <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
-                                            <p className="proccard3">{pro.description.substring(0, 250)}</p>
                                             <h4>Rating :- {pro.rating}</h4>
                                             <div className="proccard4">
                                                 <span>Adjust Quantity</span>
@@ -147,22 +151,42 @@ const Product = (props) => {
                         null
                 }
                 <div className="proccard8">
-                    <div class="mu-title">
-                        <span class="mu-subtitle">Related</span>
-                        <h2>Products</h2>
-                    </div>
-                    <div className="homey">
+                    <div className="ffdfd">
                         <Container fluid>
                             <Row>
+                                <div className='ffdfd1'>
+                                    <h4>Buy {pro && pro.name} Online</h4>
+                                    <p>{pro && pro.description}</p>
+                                </div>
+                                <h5 className='ffdfd2'>Related Products</h5>
                                 {
                                     resh && resh.map((d, k) => (
-                                        <Col lg={4} xl={3} key={k} sm={6} xs={12} className="homey1">
+                                        <Col lg={4} xl={4} key={k} sm={6} xs={6} className='ffdfd3'>
                                             <Card product={d} />
                                         </Col>
                                     ))
                                 }
                             </Row>
                         </Container>
+                        <div className='cnpp ffdfd5'>
+                            <h5>Special Products</h5>
+                            {
+                                special.map((x, c) => (
+                                    <Link to={`/dish/${x._id}`}>
+                                        <div className='cnpp1'>
+                                            <div className='cnpp2'>
+                                                <img src={x.data.url} alt="special product" />
+                                            </div>
+                                            <div className='cnpp3'>
+                                                <h6>{x.data.name}</h6>
+                                                <p>Rs {x.data.price}</p>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                ))
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>

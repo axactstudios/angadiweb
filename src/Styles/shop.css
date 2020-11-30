@@ -35,11 +35,11 @@
     margin-left: 4px;
 }
 .shopii1 p{
-    font-size: 16px;
+    font-size: 18px;
+    color: #6b5236;
+    font-weight: 700;
 }
 .shopi1{
-    background-color: #f0f0f0;
-    text-align: center;
     padding: 10px 0;
     border-radius: 10px;
     margin: 10px 0;
@@ -51,15 +51,11 @@
     border-bottom: 1px solid black;
 }
 .shopi2{
-    background-color: #f0f0f0;
-    text-align: center;
     padding: 10px 0;
     border-radius: 10px;
     margin: 10px 0;
 }
 .shopi3{
-    background-color: #f0f0f0;
-    text-align: center;
     padding: 10px 0;
     border-radius: 10px;
 }
@@ -98,4 +94,32 @@
     .cde{
         width: 100% !important;
     }
+}
+
+
+
+.cnpp h5{
+    color: #6b5236;
+    margin-bottom: 18px;
+    font-weight: bold;
+}
+.cnpp1{
+    display: flex;
+    margin-bottom: 23px;
+}
+.cnpp2 img{
+    width: 80px;
+}
+.cnpp3{
+    margin-left: 10px;
+}
+.cnpp3 h6{
+    font-size: 14px;
+    color: black;
+    margin-top: 12px;
+}
+.cnpp3 p{
+    font-size: 15px;
+    color: #6b5236;
+    margin-top: -5px;
 }

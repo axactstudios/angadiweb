@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row, Carousel } from 'react-bootstrap'
-import Ing from '../images/poster3.jpg'
 
 
 import '../Styles/home.css'

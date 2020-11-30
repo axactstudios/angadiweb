@@ -3,9 +3,11 @@ import { Container, Row, Col, Form } from 'react-bootstrap'
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import '../Styles/shop.css'
+import $ from 'jquery'
+import { Link } from 'react-router-dom'
 
 const Shop = ({ match }) => {
-
+    const [special, setSpecial] = useState([])
     const [dish, setDish] = useState([])
     const [resu, setResh] = useState([])
     const [cat, setCat] = useState([])
@@ -23,6 +25,13 @@ const Shop = ({ match }) => {
 
     useEffect(() => {
         setCat([])
+        setSpecial([])
+        db.collection('Dishes').where("special", "==", true).get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setSpecial(dish => [...dish, { data: doc.data(), _id: doc.id }])
+                })
+            })
         db.collection('Categories').get()
             .then(res => {
                 res.forEach((doc) => {
@@ -45,6 +54,7 @@ const Shop = ({ match }) => {
     }
 
     useEffect(() => {
+        setShoww(false)
         setValues({ name: '', category: '', price: '', sCat: '' })
         if (cd) {
             setDish([])
@@ -63,7 +73,8 @@ const Shop = ({ match }) => {
                         setDish(resu => [...resu, { data: doc.data(), _id: doc.id }])
                     })
                 })
-        } else {
+        }
+        else {
             setDish([])
             db.collection('Dishes').where("top", "==", true).get()
                 .then(res => {
@@ -72,6 +83,9 @@ const Shop = ({ match }) => {
                     })
                 })
         }
+        $(document).ready(function () {
+            $(this).scrollTop(0);
+        });
     }, [cs])
 
 
@@ -231,6 +245,9 @@ const Shop = ({ match }) => {
                     })
             }
         }
+        $(document).ready(function () {
+            $(this).scrollTop(0);
+        });
     }
 
     const handechange = name => (e) => {
@@ -256,7 +273,7 @@ const Shop = ({ match }) => {
                         </Row>
                     </div>
                     <Row>
-                        <Col lg={3}>
+                        <Col lg={{ span: 3, order: 1 }} sm={{ span: 12, order: 2 }} xs={{ span: 12, order: 2 }}>
                             <div className="shopii1">
                                 <div className="shopi1">
                                     <p>Sort By Category</p>
@@ -274,15 +291,15 @@ const Shop = ({ match }) => {
                                 <div className="shopi2">
                                     <p>Sort By Price</p>
                                     <input type="radio" name="Price" value="400" onChange={handleChange('price')} />
-                                    <label > Less than 400</label><br />
+                                    <label > Less than Rs 400</label><br />
                                     <input type="radio" name="Price" value="500" onChange={handleChange('price')} />
-                                    <label > Less than 500</label><br />
+                                    <label > Less than Rs 500</label><br />
                                     <input type="radio" name="Price" value="600" onChange={handleChange('price')} />
-                                    <label > Less than 600</label><br />
+                                    <label > Less than Rs 600</label><br />
                                     <input type="radio" name="Price" value="800" onChange={handleChange('price')} />
-                                    <label > Less than 800</label><br />
+                                    <label > Less than Rs 800</label><br />
                                     <input type="radio" name="Price" value="900" onChange={handleChange('price')} />
-                                    <label > Less than 900</label><br />
+                                    <label > Less than Rs 900</label><br />
                                 </div>
                                 <div className="shopi3">
                                     <p>Sort by Sub Category</p>
@@ -292,8 +309,27 @@ const Shop = ({ match }) => {
                                     <label > Grocery</label><br />
                                 </div>
                             </div>
+
+                            <div className='cnpp'>
+                                <h5>Special Products</h5>
+                                {
+                                    special.map((x, c) => (
+                                        <Link to={`/dish/${x._id}`}>
+                                            <div className='cnpp1'>
+                                                <div className='cnpp2'>
+                                                    <img src={x.data.url} alt="special product" />
+                                                </div>
+                                                <div className='cnpp3'>
+                                                    <h6>{x.data.name}</h6>
+                                                    <p>Rs {x.data.price}</p>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    ))
+                                }
+                            </div>
                         </Col>
-                        <Col lg={9} sm={12} xs={12}>
+                        <Col lg={{ span: 9, order: 2 }} sm={{ span: 12, order: 1 }} xs={{ span: 12, order: 1 }}>
                             <div className="shopii2">
                                 {showw == false ?
                                     <div style={{ width: '100%' }}>

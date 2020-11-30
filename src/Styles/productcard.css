@@ -1,7 +1,10 @@
+.proccard{
+    width: 85%;
+    margin: auto;
+}
 .proccard2{     
     overflow: hidden;
-    padding-left: 25px;
-    padding-top: 45px;
+    padding-top: 50px;
 }
 @media screen and (max-width: 768px){
     .proccard2{     
@@ -11,6 +14,7 @@
         top: -20px;
     }
 }
+
 .proccard2 h5{    
     color: #6b3600;
     text-transform: uppercase;
@@ -27,10 +31,12 @@
     width: fit-content;
     padding: 3px 6px;
     border-radius: 5px;
+    margin: 10px 0;
 }
 .proccard2 p{    
     color: green;
     font-size: 20px;
+    border-bottom: 1px solid #6b3600;
 }
 .proccard2 p span{    
     color: red;
@@ -44,17 +50,20 @@
 .proccard2 h4{    
     color:rgb(255, 176, 0);
     font-size: 16px;
+    border-bottom: 1px solid #6b3600;
+    padding-bottom: 13px;
 }
 .proccard4{
     width: 150px;
-    margin: 18px 0;
+    margin: 15px 0;
+    border-bottom: 1px solid #6b3600;
 }
 .proccard4 span{
     font-size: 15px;
+    margin-bottom: 7px;
 }
 .proccard5{
     border: none;
-    border-bottom: 1px solid black;
     width: 100%;
     outline: none;
 }
@@ -98,8 +107,10 @@
     outline: none;
 }
 .proccard7{
-    width: 150px;
-    margin: 20px 0;
+    width: 100%;
+    padding: 10px 0;
+    margin: 15px 0;
+    border-top: 1px solid #6b3600;
 }
 .proccard7 button{
     width: 120px;
@@ -114,16 +125,17 @@
 .cardPic{
     display: flex;
     margin: 4rem auto;
+    width: 95%;
+    margin-left: auto !important;
 }
 .cardPic1{
     padding: 30px 0px;    
     z-index: 9;
 }
 .cardPic1 img{
-    width: 98%;
     height: auto;
-    border-radius: 30px;
-    box-shadow: 15px 15px 15px #acabab;
+    box-shadow: 5px 5px 10px #acabab;
+    border-radius: 8px;
 }
 .cardPic2{
     display: flex;
@@ -211,8 +223,58 @@
 /**
 * Related Products
 **/
-
+.ffdfd{
+    display: flex;
+    flex-direction: row;
+}
+@media screen and (max-width: 750px){
+    .ffdfd{
+        display: flex;
+        flex-direction: column;
+    }   
+}
+.ffdfd1{
+    padding-bottom: 8px;
+    border-bottom: 1px solid #acabab;
+    min-width: 100%;
+}
+.ffdfd1 h4{
+    color: #6b3600;
+    font-weight: 700;
+}
+.ffdfd1 p{
+    color: #777777;
+}
+.ffdfd2{
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: #6b3600;
+}
+.ffdfd3{
+    margin: 30px 0;
+}
+.ffdfd5{
+    margin-left: 30px;
+}
 .proccard8{
-    margin: -20px 0;
     min-height: 40vh;
+    width: 90%;
+    margin: -10px auto;
+}
+@media screen and (max-width: 500px){
+    .proccard{
+        width: 98%;
+        margin: auto;
+    }
+    .proccard2{     
+        margin-left: -16px !important;
+    }
+    .proccard8{
+        width: 93%;
+        margin: auto;
+    }   
+    .ffdfd5{
+        margin-left: 0px;
+    }
 }
