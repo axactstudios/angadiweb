@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import * as firebase from 'firebase'
 import { Row, Col, Container } from 'react-bootstrap'
 import '../Styles/productcard.css'
@@ -160,10 +160,23 @@ const Product = (props) => {
                                 </div>
                                 <h5 className='ffdfd2'>Related Products</h5>
                                 {
+                                    resh && resh.length <= 1 ?
+                                        <h5>No Product Found !!</h5>
+                                        :
+                                        null
+                                }
+                                {
                                     resh && resh.map((d, k) => (
-                                        <Col lg={4} xl={4} key={k} sm={6} xs={6} className='ffdfd3'>
-                                            <Card product={d} />
-                                        </Col>
+                                        <Fragment>
+                                            {
+                                                d.data.name !== pro.name ?
+                                                    <Col lg={4} xl={4} key={k} sm={6} xs={6} className='ffdfd3'>
+                                                        <Card product={d} />
+                                                    </Col>
+                                                    :
+                                                    null
+                                            }
+                                        </Fragment>
                                     ))
                                 }
                             </Row>

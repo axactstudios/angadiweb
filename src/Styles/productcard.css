@@ -223,6 +223,9 @@
 /**
 * Related Products
 **/
+.ffdf{
+    width: 0px !important;
+}
 .ffdfd{
     display: flex;
     flex-direction: row;
@@ -253,6 +256,7 @@
 }
 .ffdfd3{
     margin: 30px 0;
+    width: 100%;
 }
 .ffdfd5{
     margin-left: 30px;
