@@ -35,13 +35,13 @@ const Register = () => {
 
             //Save data in firestore
             await db.collection('Users').doc(res.user.uid).set({
-              Name:name,
+              Name: name,
               id: res.user.uid,
               mail: email,
               pUrl: '',
               role: 'user'
             }).then(resp => {
-              console.log('done',resp)
+              console.log('done', resp)
             })
 
             // URL of my website.
@@ -77,8 +77,8 @@ const Register = () => {
   };
 
   return (
-    <div className="reg2">
-    <ToastContainer />
+    <div className="reg2 hwami">
+      <ToastContainer />
       <div className="reg21">
         <h2><span>Sign Up</span></h2>
         <Form onSubmit={handleSubmit}>

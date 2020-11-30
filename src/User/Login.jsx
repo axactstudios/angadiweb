@@ -64,7 +64,7 @@ const Login = () => {
 
 
   return (
-    <Fragment>
+    <div className='hwami'>
       <ToastContainer />
       {isAuth() ? <Redirect to='/user/dashboard' /> : null}
       <div style={{ width: '50%', margin: 'auto' }}>
@@ -91,7 +91,7 @@ const Login = () => {
           <Button type="submit"> Log In</Button>
         </Form>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
