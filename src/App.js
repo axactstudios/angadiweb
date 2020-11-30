@@ -33,6 +33,8 @@ import Contact from './core/Contact'
 import Myads from './User/Myadds'
 import Userdashboard from './User/UserDashboard';
 import ForgetPassword from './User/ForgetPassword';
+import Resetpass from './User/ResetPassword'
+import Profile from './User/Profile'
 
 const App = () => {
   return (
@@ -69,6 +71,8 @@ const App = () => {
 
             <PrivateRoute path='/user/dashboard' exact component={Userdashboard} />
             <PrivateRoute path='/my/ads' exact component={Myads} />
+            <PrivateRoute path='/users/update/password' exact component={Resetpass} />
+            <PrivateRoute path='/update/profile' exact component={Profile} />
             <Route component={ErrorPage} />
           </Switch>
           <Footer />

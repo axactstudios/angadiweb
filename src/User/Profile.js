@@ -1,137 +1,118 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import axios from "axios";
-import { isAuth, getCookie, updateUser } from '../helpers/auth';
+import React, { useState, Fragment, useEffect } from 'react';
+import { isAuth } from '../helpers/auth';
 import { Form, Button } from 'react-bootstrap'
-import Love from '../images_icons/login.svg'
-import Menu from '../core/Menu'
+import * as firebase from 'firebase'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Profile = () => {
 
     const [values, setValues] = useState({
         name: '',
-        password: '',
         error: '',
         email: '',
-        street: '',
-        state: "",
-        city: '',
-        phone: '',
-        success: false
+        purl: null,
+        success: false,
+        photo: ''
     })
+    const [_id, setId] = useState('')
 
-    const { name, password, email, city, street, state, phone } = values
+    const { name, email, purl, photo } = values
 
-    const userId = isAuth()._id;
-    const token = getCookie('token');
-
-    const readProfile = () => {
-        axios
-            .get(`${process.env.REACT_APP_API_URL}/user/${userId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            )
-            .then(res => {
-                setValues({
-                    ...values, name: res.data.name, email: res.data.email,
-                    city: res.data.Address.city, street: res.data.Address.street,
-                    state: res.data.Address.state, phone: res.data.phone
-                })
-            })
-            .catch(err => {
-                console.error(err);
-                setValues({ ...values, error: true })
-            });
-    }
-
-    const updateProfile = (userId, token, email, password, name, street, city, state, phone) => {
-        const user = { email, password, name, Address: { street, city, state }, phone }
-        axios
-            .put(`${process.env.REACT_APP_API_URL}/user/${userId}`,
-                {
-                    user
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-type': 'application/json'
-                    }
-                }
-            ).then((res) => {
-                updateUser(res.data, () => {
-                    setValues({
-                        ...values,
-                        name: res.data.name,
-                        email: res.data.email,
-                        success: true
-                    })
-                    alert('update done')
-                })
-            }).catch((err) => {
-                console.log(err);
-            })
-    }
+    const userId = isAuth().id;
+    const db = firebase.firestore()
+    const storage = firebase.storage()
 
     useEffect(() => {
-        readProfile();
+        db.collection('Users').where("id", "==", `${userId}`).get()
+            .then(res => {
+                res.forEach((doc) => {
+                    const me = doc.data()
+                    setId(doc.id)
+                    setValues({
+                        ...values, name: me.Name, photo: me.pUrl,
+                        email: me.mail
+                    })
+                })
+            })
     }, [])
 
-    const handleChange = name => e => {
-        setValues({ ...values, error: false, [name]: e.target.value })
-    }
+    const handleChange = name => (e) => {
+        switch (name) {
+            case 'purl':
+                const phooto = e.target.files[0];
+                setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), purl: phooto })
+                break;
+            default:
+                setValues({ ...values, [name]: e.target.value })
+                break;
+        }
+    };
 
     const clickSubmit = (e) => {
         e.preventDefault();
-        updateProfile(userId, token, email, password, name, street, city, state, phone);
+        if (purl === null) {
+            db.collection('Users').doc(_id).update({
+                Name: name
+            }).then(() => {
+                toast.success('User Edit successfully !!!')
+            }).catch((err) => {
+                console.log(err)
+                toast.error('Something went wrong !!!')
+            })
+        } else {
+            const uploadTask = storage.ref(`Users/${purl.name}`).put(purl);
+            uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
+            },
+                (error) => {
+                    console.log(error)
+                    toast.error('Something went wrong in uploading image !!')
+                },
+                () => {
+                    storage.ref('Users').child(purl.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        db.collection('Users').doc(_id).update({
+                            pUrl: url,
+                            Name: name,
+                        }).then(() => {
+                            toast.success('Category Edit successfully !!!')
+                        }).catch((err) => {
+                            console.log(err)
+                            toast.error('Something went wrong !!!')
+                        })
+                    })
+                })
+        }
     }
 
     return (
         <Fragment>
-            <Menu />
+            <ToastContainer />
             <div className="login">
-                <div className="login1">
-                    <div className="login11">
-                        <h2>Update Profile.</h2>
-                        <h2>Your Special Dates will turn those into</h2>
-                        <h2 className="login113">Memories</h2>
-                    </div>
-                    <div className="login12">
-                        <img src={Love} alt="love img" />
-                    </div>
-                </div>
-                <div className="login2">
-                    <div className="login22">
-                        <Form onSubmit={clickSubmit}>
-                            <Form.Group controlId="formBasicName">
-                                <Form.Label>Name</Form.Label>
-                                <Form.Control type="text" onChange={handleChange('name')} value={name} placeholder="Enter email" />
-                            </Form.Group>
-                            <Form.Group >
-                                <Form.Label>Street</Form.Label>
-                                <Form.Control type="text" onChange={handleChange('street')} value={street} placeholder="Enter house number and street" />
-                            </Form.Group>
-                            <Form.Group >
-                                <Form.Label>Pincode/City</Form.Label>
-                                <Form.Control type="text" onChange={handleChange('city')} value={city} placeholder="Enter city and pincode" />
-                            </Form.Group>
-                            <Form.Group >
-                                <Form.Label>State</Form.Label>
-                                <Form.Control type="text" onChange={handleChange('state')} value={state} placeholder="Enter State" />
-                            </Form.Group>
-                            <Form.Group >
-                                <Form.Label>Phone</Form.Label>
-                                <Form.Control type="number" onChange={handleChange('phone')} value={phone} placeholder="Enter Phone number" />
-                            </Form.Group>
-                            <Button className="login25" type="submit">
-                                Submit
-                            </Button>
-                        </Form>
-                    </div>
-                </div>
+                <h2>Update Profile.</h2>
             </div>
-        </Fragment>
+            <Form onSubmit={clickSubmit}>
+                <Form.Group controlId="formBasicName">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control type="text" onChange={handleChange('name')} value={name} placeholder="Enter Name" />
+                </Form.Group>
+                <Form.Group controlId="formBasicName">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="text" value={email} placeholder="Ener Email" />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label >Choose Images</Form.Label>
+                    <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('purl')} />
+                </Form.Group>
+                <div>
+                    <img src={photo} style={{ height: '110px', width: '110px' }} />
+                </div>
+                <Button className="login25" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </Fragment >
     );
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { isAuth } from '../helpers/auth'
 import '../Styles/userdash.css'
+import {Link} from 'react-router-dom'
 
 const UserDashboard = () => {
 
@@ -19,6 +20,8 @@ const UserDashboard = () => {
                 they want."</p>
                     <span>:- By Angadi</span>
                     <h4>{mail}</h4>
+                    <Link to='/users/update/password'>Reset Password</Link>
+                    <Link to='/update/profile'>Update profile</Link>
                 </div>
             </div>
         </div>

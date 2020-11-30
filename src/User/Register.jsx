@@ -38,7 +38,7 @@ const Register = () => {
               Name: name,
               id: res.user.uid,
               mail: email,
-              pUrl: '',
+              pUrl: 'https://www.pavilionweb.com/wp-content/uploads/2017/03/man-300x300.png',
               role: 'user'
             }).then(resp => {
               console.log('done', resp)
