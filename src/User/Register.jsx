@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 // import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap'
 import * as firebase from 'firebase'
+import '../Styles/Form.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -77,32 +78,49 @@ const Register = () => {
   };
 
   return (
-    <div className="reg2 hwami">
+    <div className="form">
       <ToastContainer />
-      <div className="reg21">
-        <h2><span>Sign Up</span></h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group >
-            <Form.Control type="text" placeholder="name" onChange={handleChange('name')} value={name} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control type="email" placeholder="Enter email" onChange={handleChange('email')} value={email} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control type="password" placeholder="Password" onChange={handleChange('password1')} value={password1} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control type="password" placeholder="confirm Password" onChange={handleChange('password2')} value={password2} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Text className="text-muted" className="reg23">
-              <h6>Already have an account ?  <a href='/login' target='_self'><span>Sign In</span></a></h6>
-            </Form.Text>
-          </Form.Group>
-          <Button className="reg22" type="submit">
-            {formData.textChange}
-          </Button>
-        </Form>
+      <div className="form-main">
+        <div className="form-fields">
+          <h1>Sign Up</h1>
+          <form
+            onSubmit={handleSubmit}
+          >
+            <input type="text"
+              className="form-input"
+              placeholder="Name"
+              onChange={handleChange('name')}
+              value={name}
+            />
+            <input type="email"
+              className="form-input"
+              placeholder="Email"
+              onChange={handleChange('email')}
+              value={email}
+            />
+            <input type="password"
+              className="form-input"
+              placeholder="Password"
+              onChange={handleChange('password1')}
+              value={password1}
+            />
+            <input type="password"
+              className="form-input"
+              placeholder="Confirm Password"
+              onChange={handleChange('password2')}
+              value={password2}
+            />
+            <button className="form-button">{formData.textChange}</button>
+          </form>
+          <div className="util">
+            Already have an account ?
+            <a
+              className="util-link"
+              href="/login"
+              target="_self"
+            > Login </a>
+          </div>
+        </div>
       </div>
     </div>
   );

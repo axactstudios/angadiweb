@@ -4,6 +4,7 @@ import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap'
 import * as firebase from 'firebase'
+import '../Styles/Form.css'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -64,32 +65,44 @@ const Login = () => {
 
 
   return (
-    <div className='hwami'>
-      <ToastContainer />
+    <div className="form">
       {isAuth() ? <Redirect to='/user/dashboard' /> : null}
-      <div style={{ width: '50%', margin: 'auto' }}>
-        <h2><span>Sign In</span> <span>| Sign Up</span></h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group >
-            <Form.Control type="email" placeholder="Enter email" onChange={handleChange('email')} value={email} />
-          </Form.Group>
-          <Form.Group >
-            <Form.Control type="password" placeholder="Password" onChange={handleChange('password1')} value={password1} />
-          </Form.Group>
-          <Form.Group >
-            <Link to='/users/password/forget'>Forget password?</Link>
-          </Form.Group>
-          <Form.Group >
-            <Form.Text>
-              <h6>Don't have an account ?
-                 <a href='/register' target='_self'>
-                  <span >Sign Up</span>
-                </a>
-              </h6>
-            </Form.Text>
-          </Form.Group>
-          <Button type="submit"> Log In</Button>
-        </Form>
+      <ToastContainer />
+      <div className="form-main">
+        <div className="form-fields">
+          <h1>Login</h1>
+          <form
+            onSubmit={handleSubmit}
+          >
+            <input type="email"
+              className="form-input"
+              placeholder="Email"
+              onChange={handleChange('email')}
+              value={email}
+            />
+            <input type="password"
+              className="form-input"
+              placeholder="Password"
+              onChange={handleChange('password1')}
+              value={password1}
+            />
+            <button className="form-button">Login</button>
+            <Link
+              to="/users/password/forget"
+              className="util-link"
+            >
+              Forget password?
+            </Link>
+          </form>
+          <div className="util">
+            Don't have an account ?
+            <a
+              className="util-link"
+              href="/register"
+              target="_self"
+            > Sign Up </a>
+          </div>
+        </div>
       </div>
     </div>
   );
