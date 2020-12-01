@@ -1,6 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { Form, Button } from 'react-bootstrap'
 import * as firebase from 'firebase'
 
 const ForgetPassword = () => {

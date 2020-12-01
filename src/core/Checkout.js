@@ -3,8 +3,11 @@ import { Link, Redirect } from 'react-router-dom'
 import { isAuth, getCookie } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
 import { emptyCart, getCart } from '../helpers/CartHelper';
+import * as firebase from 'firebase';
+import {Form} from 'react-bootstrap'
 
 const Checkout = ({ dm }) => {
+
     const [data, setData] = useState({
         address: '',
         date: '',
@@ -13,24 +16,14 @@ const Checkout = ({ dm }) => {
         phone: ''
     })
     const [products, setProducts] = useState([])
+    const [priiice, setpriiice] = useState(0)
+    const db = firebase.firestore()
+    const [availCoup, setavailCoup] = useState([])
+    const [coupon, setCoupon] = useState('');
 
-
-    // const processPayment = (userId, token, paymentData, amount) => {
-    //     const createOrderData = {
-    //         products: products,
-    //         transaction_id: paymentData.razorpay_payment_id,
-    //         amount: (amount / 100),
-    //         address: data.address,
-    //         phone: data.phone
-    //     }
-
-    //     createOrder(userId, token, createOrderData)
-
-    //     toast.success('Order created successfully');
-    //     emptyCart(() => {
-    //         console.log('purchased done');
-    //     })
-    // }
+    const dis = []
+    const qty = []
+    const pri = []
 
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
@@ -38,57 +31,29 @@ const Checkout = ({ dm }) => {
         }, 0)
     }
 
+    const checkCoup = () => {
+        db.collection('Offers').where('Title', '==', `${coupon}`).get()
+            .then(res => {
+                setpriiice(0)
+                res.forEach((doc) => {
+                    setavailCoup(doc.data())
+                    if (doc.data() && doc.data().Title === coupon) {
+                        setpriiice(doc.data().discountPercentage)
+                    }
+                })
+            })
+            .catch(err => console.error(err));
+    }
+
+
     useEffect(() => {
         setProducts(getCart());
         getTotal()
     }, [dm])
 
-    // const loadScript = (src) => {
-    //     return new Promise((resolve) => {
-    //         const script = document.createElement('script')
-    //         script.src = src
-    //         script.onload = () => {
-    //             resolve(true)
-    //         }
-    //         script.onerror = () => {
-    //             resolve(false)
-    //         }
-    //         document.body.appendChild(script)
-    //     })
-    // }
-
-    // const paymentHandler = async () => {
-
-    //     const res = loadScript('https://checkout.razorpay.com/v1/checkout.js')
-    //     if (!res) {
-    //         alert('Razorpay SDK failed to load. Are you online?')
-    //         return
-    //     }
-
-    //     const getToken = (userId, token, getTotal) => {
-    //         generateTokenRazor(userId, token, getTotal)
-    //             .then(data => {
-    //                 const options = {
-    //                     key: "rzp_live_uWRIY5ByKxBfPZ",
-    //                     name: "Bunny Bash",
-    //                     description: "Thank You for shopping with us.",
-    //                     currency: "INR",
-    //                     order_id: data.id,
-    //                     handler: async (response) => {
-    //                         console.log('payment done')
-    //                         processPayment(userId, token, response, data.amount);
-    //                     },
-    //                     theme: {
-    //                         color: "#f1bc19",
-    //                     }
-    //                 };
-    //                 const rzp1 = new window.Razorpay(options);
-    //                 rzp1.open();
-    //             })
-    //     }
-
-    //     await getToken(userId, token, getTotal())
-    // }
+    useEffect(() => {
+        checkCoup()
+    }, [coupon])
 
     const showCheckout = () => {
         return isAuth() ? (
@@ -104,12 +69,11 @@ const Checkout = ({ dm }) => {
     }
 
     const showDropIn = () => {
-
         return (
-            <div className="maincart10">
+            <div>
                 {products.length > 0 ? (
                     <div>
-                        <div className="maincart12">
+                        <div>
                             <button>Pay Now</button>
                         </div>
                     </div>
@@ -123,9 +87,30 @@ const Checkout = ({ dm }) => {
         <div>
             <ToastContainer />
 
-            <h2 className="maincart7">Total Amount: <i class="fa fa-inr"></i>{getTotal()}</h2>
-
-            <div className="maincart8">
+            <h3 className="maincart7">Subtotal ({products.length} item):
+            <p><i class="fa fa-inr"> </i><b>{getTotal() - (getTotal() * (priiice / 100))}</b></p>
+            </h3>
+            <div className="card4">
+            <Form.Control type="text" placeholder="Promo Code" value={coupon} onChange={(e) => setCoupon(e.target.value)} />
+                <div className="coup">
+                    <p>Promo Code</p>
+                    <p className="coup1">{
+                        availCoup && availCoup.Title === coupon
+                            ?
+                            <p style={{ color: 'green' }}>{availCoup && availCoup.code} Applied !!!</p>
+                            :
+                            <p>{coupon && <p style={{ color: 'red' }}>NOT Applied!!!</p>}</p>
+                    }</p>
+                </div>
+            </div>
+            {
+                products && products.map((k,l) => {
+                    dis.push(k.name)
+                    qty.push(k.count)
+                    pri.push(k.price)
+                })
+            }
+            <div>
                 {
                     showCheckout()
                 }
