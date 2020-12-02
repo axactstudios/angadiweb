@@ -2,6 +2,7 @@ import React from 'react';
 import * as firebase from 'firebase'
 import { signout } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
+import '../Styles/userdash.css'
 
 const Logout = () => {
 
@@ -15,7 +16,7 @@ const Logout = () => {
     return (
         <div>
             <ToastContainer />
-            <button type="button" className="logll" onClick={handleClick}>Log Out</button>
+            <button type="button" className="dashboard-nav-link" onClick={handleClick}>Log Out</button>
         </div>
     );
 };

@@ -97,15 +97,7 @@ const Menu = ({ history }) => {
                     <ul className="navlink">
                         {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login'><li>Sign In</li></Link>}
                         {
-                            isAuth() &&
-                            <div class="dropdown">
-                                <button className="dropbtn">{isAuth().Name} <span><i class="fa fa-caret-down" aria-hidden="true"></i></span></button>
-                                <div className="dropdown-content">
-                                    <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}>Profile</Link>
-                                    <Link onClick={changeScreen} style={isActive(history, '/my/ads')} to='/my/ads'>My Orders</Link>
-                                    <Link onClick={changeScreen} to=""><Log /></Link>
-                                </div>
-                            </div>
+                          isAuth() && <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}><li>Dashboard</li></Link>
                         }
                         <Link onClick={changeScreen} style={isActive(history, '/shop')} to='/shop'><li>Do It Yourself</li></Link>
 
