@@ -29,6 +29,18 @@
     max-width: 280px;
     overflow: hidden;
 }
+.chiiki{
+    width: 100%;
+    margin-top: -30px;
+}
+.chiiki button{
+    position: relative;
+    bottom: -30px !important;
+    color: white;
+    border: none;
+    background-color: transparent;
+    z-index: 9;
+}
 .csk1 img{
     width: 100%;
     max-height: 258px;
@@ -155,5 +167,53 @@
     .csk{
         max-width: 285px !important;
         height: auto !important;
+    }
+}
+
+.lexi{
+    width: 90%;
+    margin: auto;
+}
+.lexi img{
+    width: 100%;
+    height: auto;
+}
+.lexi1 h6{
+    color: white;
+    background: linear-gradient(
+        45deg,
+        rgb(255, 176, 0) 0%,
+        rgba(227, 214, 36, 0.8) 100%
+    );
+    width: fit-content;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+.lexi1 p:nth-child(3){
+    font-size: 16px;
+    text-align: start;
+}
+.lexi1 p:nth-child(4){
+    font-size: 17px;
+    text-align: start;
+}
+.lexi1 p:nth-child(4) span{
+    font-size: 16px;
+    text-decoration: line-through;
+}
+.lexi1 p:nth-child(5){
+    font-size: 15px;
+}
+.lexi1 button{
+    border: none;
+    color: white;
+    background-color: rgb(255, 176, 0);
+    padding: 5px 10px;
+    letter-spacing: 0.3px;
+    border-radius: 4px;
+}
+@media screen and (max-width: 1000px){
+    .lexi1{
+        margin-top: 20px;
     }
 }

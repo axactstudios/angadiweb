@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../Styles/pgcard.css'
 import { addItem, updateItem } from '../helpers/CartHelper'
 import { Redirect, Link } from 'react-router-dom'
+import { Modal, OverlayTrigger, Tooltip, Button, Container, Row, Col, Carousel } from 'react-bootstrap'
 
 const Card = ({ product }) => {
     const [redirect, setRedirect] = useState(false)
@@ -23,6 +24,8 @@ const Card = ({ product }) => {
         description: '',
         quantity: ''
     })
+    const [modalShow, setModalShow] = useState(false)
+
 
     useEffect(() => {
         if (product) {
@@ -71,14 +74,84 @@ const Card = ({ product }) => {
         setpiroo({ ...pirro, price: k * priccce, quantity: e.target.value, iPrice: k * fakeprice })
     };
 
+    function MyVerticallyCenteredModal(props) {
+
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        {props.products.data.name}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Container>
+                        <Row>
+                            <Col md={12} lg={6}>
+                                <div className='lexi'>
+                                    <Link to={`/dish/${product._id}`}>
+                                        <Carousel interval={2500}>
+                                            <Carousel.Item interval={2500}>
+                                                <img src={product.data.url}
+                                                    className="d-block w-100"
+                                                    alt='product image' />
+                                            </Carousel.Item>
+                                            <Carousel.Item interval={2500}>
+                                                <img src={product.data.url2}
+                                                    className="d-block w-100"
+                                                    alt='product image' />
+                                            </Carousel.Item>
+                                            <Carousel.Item interval={2500}>
+                                                <img src={product.data.url3}
+                                                    className="d-block w-100"
+                                                    alt='product image' />
+                                            </Carousel.Item>
+                                        </Carousel>
+                                    </Link>
+                                </div>
+                            </Col>
+                            <Col md={12} lg={6}>
+                                <div className='lexi1'>
+                                    <h5>{product.data.name}</h5>
+                                    <h6>{props.products.data.category}</h6>
+                                    <p>{product.data.rating}</p>
+                                    <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
+                                    <p>{product.data.description.substring(0, 250)}</p>
+                                    <button onClick={addToCart}>Add To Cart</button>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={props.onHide}>Close</Button>
+                </Modal.Footer>
+            </Modal >
+        );
+    }
+
     return (
         <div className="csk">
             {shouldRedirect(redirect)}
             <div className="csk1">
-                <Link to={`/dish/${product._id}`}>
-                    <img src={product.data.url} alt={product.data.name} />
-                </Link>
+                <div className='chiiki'>
+                    <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Quick View !</Tooltip>}>
+                        <button onClick={() => setModalShow(true)}><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    </OverlayTrigger>
+                    <Link to={`/dish/${product._id}`}>
+                        <img src={product.data.url} alt={product.data.name} />
+                    </Link>
+                </div>
             </div>
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                products={product}
+            />
             <div className="csk2">
                 <h6>{product.data.name}</h6>
                 <p>{product.data.category}</p>
