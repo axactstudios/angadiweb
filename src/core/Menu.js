@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import Log from '../User/Logout'
 import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
+import {itemTotal} from '../helpers/CartHelper'
 import * as firebase from 'firebase'
 import { Form } from 'react-bootstrap';
 
@@ -95,11 +96,11 @@ const Menu = ({ history }) => {
                 </div>
                 <div className="men3">
                     <ul className="navlink">
-                        {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login'><li>Sign In</li></Link>}
+                        {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><li>Sign In</li></Link>}
                         {
-                          isAuth() && <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}><li>Dashboard</li></Link>
+                          isAuth() && <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`} className='bhaagi2'><li>Dashboard</li></Link>
                         }
-                        <Link onClick={changeScreen} style={isActive(history, '/shop')} to='/shop'><li>Do It Yourself</li></Link>
+                        <Link onClick={changeScreen} style={isActive(history, '/shop')} to='/shop' className='bhaagi2'><li>Do It Yourself</li></Link>
 
                         {
                             cat &&
@@ -109,7 +110,7 @@ const Menu = ({ history }) => {
                                         <Fragment>
                                             {
                                                 l.data.catName === 'Pickles/Podi' &&
-                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`}><li>{l.data.catName}</li></Link>
+                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`} className='bhaagi2'><li>{l.data.catName}</li></Link>
                                             }
                                         </Fragment>
                                     ))
@@ -124,7 +125,7 @@ const Menu = ({ history }) => {
                                 <div className="dropdown-content">
                                     {
                                         cat.map((l, k) => (
-                                            <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`}>{l.data.catName}</Link>
+                                            <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`} className='bhaagi2'>{l.data.catName}</Link>
                                         ))
                                     }
                                 </div>
@@ -139,7 +140,7 @@ const Menu = ({ history }) => {
                                         <Fragment>
                                             {
                                                 l.data.catName === 'Curries/Koottu' &&
-                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`}><li>{l.data.catName}</li></Link>
+                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`} className='bhaagi2'><li>{l.data.catName}</li></Link>
                                             }
                                         </Fragment>
                                     ))
@@ -155,7 +156,7 @@ const Menu = ({ history }) => {
                                         <Fragment>
                                             {
                                                 l.data.catName === 'Rice' &&
-                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`}><li>{l.data.catName}</li></Link>
+                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`} className='bhaagi2'><li>{l.data.catName}</li></Link>
                                             }
                                         </Fragment>
                                     ))
@@ -171,7 +172,7 @@ const Menu = ({ history }) => {
                                         <Fragment>
                                             {
                                                 l.data.catName === 'Tiffin' &&
-                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`}><li>{l.data.catName}</li></Link>
+                                                <Link onClick={changeScreen} style={isActive(history, `/shop/${l.data.catName}`)} to={`/shop/${l.data.catName}`} className='bhaagi2'><li>{l.data.catName}</li></Link>
                                             }
                                         </Fragment>
                                     ))
@@ -179,7 +180,7 @@ const Menu = ({ history }) => {
                             </Fragment>
                         }
 
-                        <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart'><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li></Link>
+                        <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<sup>{itemTotal()}</sup></li></Link>
                     </ul>
                 </div>
             </div>
