@@ -1,31 +1,37 @@
-import React from 'react';
-import { isAuth } from '../helpers/auth'
-import '../Styles/userdash.css'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { isAuth } from '../helpers/auth';
+import { Link } from 'react-router-dom';
+import Logout from './Logout';
+import '../Styles/userdash.css';
 
-const UserDashboard = () => {
+const UserDashboard = WrappedComponent => {
 
-    const { Name, mail, pUrl } = isAuth()
-
+  const newComponent = () => {
+    const {Name, email, pUrl} = isAuth();
+  
     return (
-        <div className='hwami'>
-            <div className='userdash'>
-                <div className='userdash1'>
-                    <img src={pUrl} alt="user profile pic" />
-                </div>
-                <div className='userdash2'>
-                    <h5>{Name}</h5>
-                    <p>"We don't want to push our ideas on to
-                    customers, we simply want to make what
-                they want."</p>
-                    <span>:- By Angadi</span>
-                    <h4>{mail}</h4>
-                    <Link to='/users/update/password'>Reset Password</Link>
-                    <Link to='/update/profile'>Update profile</Link>
-                </div>
-            </div>
+      <div className="dashboard">
+        <div className="dashboard-head">
+          Welcome {Name}
         </div>
-    );
+        <div className='dashboard-main'>
+          <div className="dashboard-nav">
+            <Link to='/user/dashboard' className='dashboard-nav-link'> Dashboard </Link>
+            <Link to='/user/dashboard/updateprofile' className='dashboard-nav-link'> Update Profile </Link>
+            <Link to='/user/dashboard/myorders' className='dashboard-nav-link'> My Orders </Link>
+            <Link to='/user/dashboard/mycart' className='dashboard-nav-link'> My Cart </Link>
+            <Link to='/user/dashboard/resetpassword' className='dashboard-nav-link'> Reset Password </Link>
+            <Link to='/'> <Logout /> </Link>
+          </div>
+          <div className="dashboard-content">
+            { WrappedComponent ? <WrappedComponent /> : <div>hello</div> }
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return newComponent;
 };
 
 export default UserDashboard;

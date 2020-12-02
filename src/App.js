@@ -34,7 +34,7 @@ import Myads from './User/Myadds'
 import Userdashboard from './User/UserDashboard';
 import ForgetPassword from './User/ForgetPassword';
 import Resetpass from './User/ResetPassword'
-import Profile from './User/Profile'
+import UpdateProfile from './User/Profile'
 
 const App = () => {
   return (
@@ -69,10 +69,11 @@ const App = () => {
             <AdminRoute path='/orders/from/user/:userId' exact component={Getorderfromuser} />
             <AdminRoute path='/admin/dashboard' exact component={Adminpannel} />
 
-            <PrivateRoute path='/user/dashboard' exact component={Userdashboard} />
-            <PrivateRoute path='/my/ads' exact component={Myads} />
-            <PrivateRoute path='/users/update/password' exact component={Resetpass} />
-            <PrivateRoute path='/update/profile' exact component={Profile} />
+            <PrivateRoute exact path='/user/dashboard' component={Userdashboard()} />
+            <PrivateRoute exact path='/user/dashboard/mycart' component={Userdashboard(Cart)} />
+            <PrivateRoute exact path='/user/dashboard/myorders' component={Userdashboard(Myads)} />
+            <PrivateRoute exact path='/user/dashboard/updateprofile' component={Userdashboard(UpdateProfile)} />
+            <PrivateRoute exact path='/user/dashboard/resetpassword' component={Userdashboard(Resetpass)} />
             <Route component={ErrorPage} />
           </Switch>
           <Footer />
