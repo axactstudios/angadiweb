@@ -14,6 +14,7 @@ const Ordercard = ({ product }) => {
                 <div>UserID:- {product.data.UserID}</div>
                 <div>Timestamp:- {new Date(product.data.TimeStamp.seconds * 1000).toLocaleDateString("en-US")}</div>
                 <div>{product.data.DeliveryTime}</div>
+                <div>Phone:- {product.data.Phone && product.data.Phone}</div>
                 <div className='ordme4' style={{ display: 'flex', justifyContent: 'space-around' }}>
                     <div>Dishes: {product.data.Items.map((d) => (
                         <p>{d}</p>

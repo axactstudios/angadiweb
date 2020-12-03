@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom'
-import { isAuth, getCookie } from '../helpers/auth'
+import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
 import { emptyCart, getCart } from '../helpers/CartHelper';
 import * as firebase from 'firebase';
-import {Form} from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 
 const Checkout = ({ dm }) => {
 
     const [data, setData] = useState({
         address: '',
-        date: '',
-        time: '',
         customMessage: '',
         phone: ''
     })
+
     const [products, setProducts] = useState([])
     const [priiice, setpriiice] = useState(0)
     const db = firebase.firestore()
@@ -24,6 +23,8 @@ const Checkout = ({ dm }) => {
     const dis = []
     const qty = []
     const pri = []
+
+    // snapshot.updateTime,
 
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
@@ -68,13 +69,34 @@ const Checkout = ({ dm }) => {
             )
     }
 
+    const placedorder = () => {
+        db.collection('Orders').add({
+            Items: dis,
+            Qty: qty,
+            Price: pri,
+            TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+            GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
+            Status: 'Order Placed',
+            Type: 'Delivery',
+            UserID: isAuth().id,
+            Notes: data.customMessage,
+            Address: data.address,
+            Phone: data.phone
+        }).then(() => {
+            toast.success('Order done added successfully!!!')
+        }).catch((err) => {
+            toast.error('Something went wrong')
+            console.log(err)
+        })
+    }
+
     const showDropIn = () => {
         return (
             <div>
                 {products.length > 0 ? (
                     <div>
                         <div>
-                            <button>Pay Now</button>
+                            <button onClick={placedorder}>Pay Now</button>
                         </div>
                     </div>
                 ) :
@@ -82,6 +104,7 @@ const Checkout = ({ dm }) => {
                 }
             </div>)
     }
+
 
     return (
         <div>
@@ -91,7 +114,7 @@ const Checkout = ({ dm }) => {
             <p><i class="fa fa-inr"> </i><b>{getTotal() - (getTotal() * (priiice / 100))}</b></p>
             </h3>
             <div className="card4">
-            <Form.Control type="text" placeholder="Promo Code" value={coupon} onChange={(e) => setCoupon(e.target.value)} />
+                <Form.Control type="text" placeholder="Promo Code" value={coupon} onChange={(e) => setCoupon(e.target.value)} />
                 <div className="coup">
                     <p>Promo Code</p>
                     <p className="coup1">{
@@ -104,7 +127,7 @@ const Checkout = ({ dm }) => {
                 </div>
             </div>
             {
-                products && products.map((k,l) => {
+                products && products.map((k, l) => {
                     dis.push(k.name)
                     qty.push(k.count)
                     pri.push(k.price)

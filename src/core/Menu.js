@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import Log from '../User/Logout'
 import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
-import {itemTotal} from '../helpers/CartHelper'
+import { itemTotal } from '../helpers/CartHelper'
 import * as firebase from 'firebase'
 import { Form } from 'react-bootstrap';
 
@@ -98,7 +98,7 @@ const Menu = ({ history }) => {
                     <ul className="navlink">
                         {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><li>Sign In</li></Link>}
                         {
-                          isAuth() && <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`} className='bhaagi2'><li>Dashboard</li></Link>
+                            isAuth() && <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`} className='bhaagi2'><li>Dashboard</li></Link>
                         }
                         <Link onClick={changeScreen} style={isActive(history, '/shop')} to='/shop' className='bhaagi2'><li>Do It Yourself</li></Link>
 
