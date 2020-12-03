@@ -3,6 +3,7 @@ import { isAuth } from '../helpers/auth';
 import { Form, Button } from 'react-bootstrap'
 import * as firebase from 'firebase'
 import { toast, ToastContainer } from 'react-toastify'
+import '../Styles/updateform.css'
 
 const Profile = () => {
 
@@ -87,32 +88,38 @@ const Profile = () => {
     }
 
     return (
-        <Fragment>
-            <ToastContainer />
-            <div className="login">
-                <h2>Update Profile.</h2>
-            </div>
-            <Form onSubmit={clickSubmit}>
-                <Form.Group controlId="formBasicName">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" onChange={handleChange('name')} value={name} placeholder="Enter Name" />
-                </Form.Group>
-                <Form.Group controlId="formBasicName">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" value={email} placeholder="Ener Email" />
-                </Form.Group>
-                <Form.Group>
-                    <Form.Label >Choose Images</Form.Label>
-                    <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('purl')} />
-                </Form.Group>
-                <div>
-                    <img src={photo} style={{ height: '110px', width: '110px' }} />
-                </div>
-                <Button className="login25" type="submit">
-                    Submit
-                </Button>
-            </Form>
-        </Fragment >
+      <div className="update-form">
+        <ToastContainer />
+        <div className="update-form-main">
+          <div className="update-form-fields">
+            <form
+              onSubmit={clickSubmit}
+            >
+              <input type="text"
+                className="update-form-input"
+                placeholder="Name"
+                onChange={handleChange('name')}
+                value={name}
+              />
+              <input type="email"
+                className="update-form-input"
+                placeholder="Email"
+                onChange={handleChange('email')}
+                value={email}
+              />
+              <div>
+                <input type="file"
+                  accept='image/*'
+                  className="update-form-img"
+                  onChange={handleChange('purl')}
+                />
+                <img src={photo} style={{ height: '110px', width: '110px' }} />
+              </div>
+              <button type="submit" className="update-form-button">Update Profile</button>
+            </form>
+          </div>
+        </div>
+      </div>
     );
 }
 
