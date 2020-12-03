@@ -152,7 +152,7 @@ const Card = ({ product }) => {
                 products={product}
             />
             <div className="csk2">
-                <h6>{product.data.name}</h6>
+                <h6>{product.data.name && product.data.name.substring(0,19)}</h6>
                 <p>{product.data.category}</p>
                 <div className='selectcard2'>
                     <select onChange={handleChanged()} className="slectcard">

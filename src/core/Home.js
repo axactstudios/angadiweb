@@ -12,6 +12,7 @@ const Home = () => {
     const [resu, setResh] = useState([])
     const [cs, setCs] = useState('')
     const [imgurll, setImgurl] = useState([])
+    const [specia, setSpecial] = useState([])
 
     useEffect(async () => {
         setCat([])
@@ -35,10 +36,17 @@ const Home = () => {
 
     useEffect(() => {
         setResh([])
+        setSpecial([])
         db.collection("Dishes").where("top", "==", true).get()
             .then(res => {
                 res.forEach((doc) => {
                     setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                })
+            })
+        db.collection("Dishes").where("special", "==", true).get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setSpecial(resu => [...resu, { data: doc.data(), _id: doc.id }])
                 })
             })
     }, [])
@@ -93,11 +101,47 @@ const Home = () => {
                 </div>
             </div>
 
+            {/*            <div className="halkkaa">
+                {
+                    imgurll[0] &&
+                    <img
+                        src={imgurll[0].data.url}
+                        className="d-block w-100"
+                        alt='banner' />
+                }
+            </div> */}
+
+            <h5 className="snitch">Top on <span>Angadi</span></h5>
             <div className="homey">
                 <Container fluid>
                     <Row>
                         {
                             resu && resu.map((d, k) => (
+                                <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
+                                    <Card product={d} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
+            </div>
+
+            <div className="halkka">
+                {
+                    imgurll[1] &&
+                    <img
+                        src={imgurll[1].data.url}
+                        className="d-block w-100"
+                        alt='banner' />
+                }
+            </div>
+
+            <h5 className="snitch">Special on <span>Angadi</span></h5>
+            <div className="homey">
+                <Container fluid>
+                    <Row>
+                        {
+                            specia && specia.map((d, k) => (
                                 <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
                                     <Card product={d} />
                                 </Col>
