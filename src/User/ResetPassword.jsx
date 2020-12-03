@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Form, Button } from 'react-bootstrap';
 import * as firebase from 'firebase'
+import '../Styles/updateform.css'
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({
@@ -39,26 +40,50 @@ const ResetPassword = () => {
 
 
   return (
-    <Fragment>
+    // <Fragment>
+    //   <ToastContainer />
+    //   <div className='hwami'>
+    //     <h2>Reset Password</h2>
+    //   </div>
+    //   <div className="reg2">
+    //     <div className="reg21">
+    //       <h2>Enter Your Passwords</h2>
+    //       <Form onSubmit={handleSubmit} >
+    //         <Form.Group>
+    //           <Form.Control type="password" placeholder="Password" onChange={handleChange('password1')} value={password1} />
+    //         </Form.Group>
+    //         <Form.Group>
+    //           <Form.Control type="password" placeholder="Confirm Password" onChange={handleChange('password2')} value={password2} />
+    //         </Form.Group>
+    //         <Button className="reg22" type="submit">Submit</Button>
+    //       </Form>
+    //     </div>
+    //   </div>
+    // </Fragment>
+    <div className="update-form">
       <ToastContainer />
-      <div className='hwami'>
-        <h2>Reset Password</h2>
-      </div>
-      <div className="reg2">
-        <div className="reg21">
-          <h2>Enter Your Passwords</h2>
-          <Form onSubmit={handleSubmit} >
-            <Form.Group>
-              <Form.Control type="password" placeholder="Password" onChange={handleChange('password1')} value={password1} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control type="password" placeholder="Confirm Password" onChange={handleChange('password2')} value={password2} />
-            </Form.Group>
-            <Button className="reg22" type="submit">Submit</Button>
-          </Form>
+      <div className="update-form-main">
+        <div className="update-form-fields">
+          <form
+            onSubmit={handleSubmit}
+          >
+            <input type="password"
+              className="update-form-input"
+              placeholder="New Password"
+              onChange={handleChange('password1')}
+              value={password1}
+            />
+            <input type="password"
+              className="update-form-input"
+              placeholder="Confirm Password"
+              onChange={handleChange('password2')}
+              value={password2}
+            />
+            <button type="submit" className="update-form-button">Change Password</button>
+          </form>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

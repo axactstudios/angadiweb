@@ -70,10 +70,10 @@ const App = () => {
             <AdminRoute path='/admin/dashboard' exact component={Adminpannel} />
 
             <PrivateRoute exact path='/user/dashboard' component={Userdashboard()} />
-            <PrivateRoute exact path='/user/dashboard/mycart' component={Userdashboard(Cart)} />
-            <PrivateRoute exact path='/user/dashboard/myorders' component={Userdashboard(Myads)} />
-            <PrivateRoute exact path='/user/dashboard/updateprofile' component={Userdashboard(UpdateProfile)} />
-            <PrivateRoute exact path='/user/dashboard/resetpassword' component={Userdashboard(Resetpass)} />
+            <PrivateRoute exact path='/user/dashboard/mycart' component={Userdashboard(Cart,"My Cart")} />
+            <PrivateRoute exact path='/user/dashboard/myorders' component={Myads} />
+            <PrivateRoute exact path='/user/dashboard/updateprofile' component={Userdashboard(UpdateProfile,"Update Profile")} />
+            <PrivateRoute exact path='/user/dashboard/resetpassword' component={Userdashboard(Resetpass,"Reset Password")} />
             <Route component={ErrorPage} />
           </Switch>
           <Footer />

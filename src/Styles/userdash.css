@@ -8,14 +8,21 @@
 }
 
 .dashboard-head {
-  padding: 1em 2em;
-  font-size: 2em;
-  font-weight: 700;
+  padding: 1.5em 2.5em;
   color: #653602;
+  margin-bottom: 1em;
+  background-color: rgb(255, 176, 0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Crect x='0' y='0' width='46' height='46' fill-opacity='0.6' fill='%23ffa61d'/%3E%3C/svg%3E");
+}
+
+.dashboard-head h1 {
+  font-size: 2.5em;
+  font-weight: 700;
 }
 
 .dashboard-main {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .dashboard-nav {
@@ -45,49 +52,91 @@
 
 .dashboard-content {
   width: 80%;
-  padding: 1em;
 }
 
-@media screen and (max-width: 1000px){
-    .userdash{
-        width: 60%;
-    }   
+.user-profile {
+  color: #653602;
+  padding: 0 4em;
 }
-@media screen and (max-width: 600px){
-    .userdash{
-        width: 75%;
-    }   
+
+.user-profile-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 2em;
+  font-weight: 600;
+  background-color: #8c5b25;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23653602' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  color: rgb(255, 176, 0);
 }
-@media screen and (max-width: 400px){
-    .userdash{
-        margin-top: 40px;
-        width: 85%;
-    }   
+
+.mail {
+  font-size: 0.5em;
+  font-weight: 300;
 }
-.userdash1{
-    width: 125px;
-    margin: auto;
-    padding-top: 50px;
+
+.user-profile-info img {
+  margin: 0 1em 0 0;
+  width: 200px;
+  height: 200px;
 }
-.userdash1 img{
-    width: 125px;
-    border-radius: 50%;
+
+.user-profile-quote {
+  background-color: rgb(255, 176, 0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 100 100'%3E%3Crect x='0' y='0' width='46' height='46' fill-opacity='0.6' fill='%23ffa61d'/%3E%3C/svg%3E");
+  text-align: center;
+  padding: 2em;
+  font-weight: 600;
 }
-.userdash2{
+
+.user-profile-quote span {
+  color: red;
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard {
+    margin-top: 4em;
+    width: 100vw;
+  }
+
+  .dashboard-head {
     text-align: center;
-    margin-top: 20px;
-}
-.userdash2 h5{
-    font-size: 24px;
-    margin: 10px 0;
-}
-.userdash2 p{
-    max-width: 400px;
+    padding: 1em 1em 0.5em 1em;
+
+  }
+  
+  .dashboard-head h1 {
+    font-size: 1.5em;
+  }
+
+  .dashboard-nav,
+  .dashboard-content {
+    width: 100%;
+    margin: 1em 0;
+  }
+
+  .user-profile {
+    padding: 0 1em;
+  }
+  
+  .user-profile-info {
+    justify-content: center;
     text-align: center;
-    margin: auto;
-    padding-bottom: 5px;
+  }
+  
+  .user-profile-info img {
+    margin: 0.5em 0;
+  }
+
+  .mail {
+    margin-bottom: 1em;
+  }
 }
-.userdash2 h4{
-    font-size: 17px;
-    margin: 10px 0;
+
+@media only screen and (max-width: 1200px ) and (min-width: 600px) {
+  .dashboard {
+    margin-top: 4em;
+    width: 100vw;
+  }
 }
+
