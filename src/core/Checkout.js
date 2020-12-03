@@ -19,6 +19,7 @@ const Checkout = ({ dm }) => {
     const db = firebase.firestore()
     const [availCoup, setavailCoup] = useState([])
     const [coupon, setCoupon] = useState('');
+    const [puush, setpussh] = useState(false)
 
     const dis = []
     const qty = []
@@ -69,6 +70,10 @@ const Checkout = ({ dm }) => {
             )
     }
 
+    const handleChangee = name => e => {
+        setData({ ...data, [name]: e.target.value })
+    }
+
     const placedorder = () => {
         db.collection('Orders').add({
             Items: dis,
@@ -84,10 +89,15 @@ const Checkout = ({ dm }) => {
             Phone: data.phone
         }).then(() => {
             toast.success('Order done added successfully!!!')
+            emptyCart(() => {
+                <Redirect to='/myorder' />
+            })
+            setpussh(true)
         }).catch((err) => {
             toast.error('Something went wrong')
             console.log(err)
         })
+
     }
 
     const showDropIn = () => {
@@ -96,6 +106,11 @@ const Checkout = ({ dm }) => {
                 {products.length > 0 ? (
                     <div>
                         <div>
+                            <div>
+                                <Form.Control type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
+                                <Form.Control type="text" placeholder="Contact Number" value={data.phone} onChange={handleChangee('phone')} />
+                                <Form.Control type="text" placeholder="Special Instruction" value={data.customMessage} onChange={handleChangee('customMessage')} />
+                            </div>
                             <button onClick={placedorder}>Pay Now</button>
                         </div>
                     </div>
@@ -104,7 +119,6 @@ const Checkout = ({ dm }) => {
                 }
             </div>)
     }
-
 
     return (
         <div>
@@ -133,12 +147,16 @@ const Checkout = ({ dm }) => {
                     pri.push(k.price)
                 })
             }
+            {
+                puush ? <Redirect to='/user/dashboard/myorders' />
+                    :
+                    null
+            }
             <div>
                 {
                     showCheckout()
                 }
             </div>
-
         </div>
     );
 }
