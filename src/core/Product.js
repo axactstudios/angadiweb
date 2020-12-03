@@ -81,12 +81,11 @@ const Product = (props) => {
 
     const addToCart = async (e) => {
         await addItem(pirro, () => {
+            if (count > 0) {
+                updateItem(_id, count)
+            }
             setRedirect(true);
         })
-
-        if (count > 0) {
-            updateItem(_id, count)
-        }
     }
 
     const shouldRedirect = redirect => {

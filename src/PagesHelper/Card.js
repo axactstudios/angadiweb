@@ -50,14 +50,13 @@ const Card = ({ product }) => {
         setCount(count < 1 ? 1 : count - 1)
     }
 
-    const addToCart = async (e) => {
-        await addItem(pirro, () => {
+    const addToCart = async () => {
+        addItem(pirro, () => {
+            if (count > 0) {
+                updateItem(product._id, count)
+            }
             setRedirect(true);
         })
-
-        if (count > 0) {
-            updateItem(product._id, count)
-        }
     }
 
     const shouldRedirect = redirect => {
