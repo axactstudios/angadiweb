@@ -4,6 +4,7 @@
 
 .form {
   margin: 5em auto;
+  display: flex;
 }
 
 .form-main {
@@ -90,7 +91,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
   transition: 0.2s all ease-out;
 }
 
-.external-login {
+/* .external-login {
   display: flex;
 
   justify-content: space-around;
@@ -117,22 +118,30 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .fb-login-link:last-child:hover {
   transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) all;
   background-color: #EA4335;
-}
+} */
 
 @media only screen and (max-width: 600px) {
   .form {
-    margin: 3em auto;
+    height: auto;
+    align-items: center;
   }
 
   .form-main {
+    align-items: center;
+    justify-content: center;
+    padding: none;
     flex-direction: column-reverse;
-    width: 100vw;
+    width: 80vw;
     height: auto;
   }
 
-  .form-img,
   .form-fields {
     width: auto;
-    padding: 1em 2em;
+    padding: 0.5em;
+    font-size: 0.9em;
   } 
+  
+  .form-fields h1 {
+    text-align: center;
+  }
 }

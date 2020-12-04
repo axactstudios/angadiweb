@@ -30,8 +30,15 @@
 }
 .maincart3{
     width: 30%;
-    background-color: #f0f0f0;
+    background-color: white;
     margin: 0 10px;
+    text-align: center;
+}
+
+.maincart3 h2{
+  font-weight: 600;
+  color: tomato;
+  margin-bottom: 1em;
 }
 
 @media screen and (max-width: 950px){
@@ -45,7 +52,6 @@
     }
     .maincart3{
         width: 100%;
-        background-color: #f0f0f0;
         margin: 0 0px;
     }
 }
