@@ -2,27 +2,17 @@ import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row, Carousel } from 'react-bootstrap'
-
-
 import '../Styles/home.css'
 
 const Home = () => {
     const [cat, setCat] = useState([])
     const db = firebase.firestore()
     const [resu, setResh] = useState([])
+    const [catres, setCatres] = useState([])
     const [cs, setCs] = useState('')
     const [imgurll, setImgurl] = useState([])
     const [specia, setSpecial] = useState([])
 
-    useEffect(async () => {
-        setCat([])
-        await db.collection('Categories').get()
-            .then(res => {
-                res.forEach((doc) => {
-                    setCat(cat => [...cat, { data: doc.data(), _id: doc.id }])
-                })
-            })
-    }, [])
 
     useEffect(() => {
         setImgurl([])
@@ -30,6 +20,16 @@ const Home = () => {
             .then(res => {
                 res.forEach((doc) => {
                     setImgurl(imgurll => [...imgurll, { data: doc.data(), _id: doc.id }])
+                })
+            })
+    }, [])
+
+    useEffect(async () => {
+        setCat([])
+        await db.collection('Categories').get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setCat(cat => [...cat, { data: doc.data(), _id: doc.id }])
                 })
             })
     }, [])
@@ -53,13 +53,19 @@ const Home = () => {
 
     useEffect(() => {
         if (cs == '') {
-            setCs('')
+            setCatres([])
+            db.collection("Dishes").where("category", "==", 'Snacks').get()
+                .then(res => {
+                    res.forEach((doc) => {
+                        setCatres(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                    })
+                })
         } else {
-            setResh([])
+            setCatres([])
             db.collection("Dishes").where("category", "==", `${cs}`).get()
                 .then(res => {
                     res.forEach((doc) => {
-                        setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                        setCatres(resu => [...resu, { data: doc.data(), _id: doc.id }])
                     })
                 })
         }
@@ -101,7 +107,21 @@ const Home = () => {
                 </div>
             </div>
 
-            {/*            <div className="halkkaa">
+            <div className="homey">
+                <Container fluid>
+                    <Row>
+                        {
+                            catres && catres.map((d, k) => (
+                                <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
+                                    <Card product={d} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
+            </div>
+
+            <div className="halkkaa">
                 {
                     imgurll[0] &&
                     <img
@@ -109,7 +129,7 @@ const Home = () => {
                         className="d-block w-100"
                         alt='banner' />
                 }
-            </div> */}
+            </div>
 
             <h5 className="snitch">Top on <span>Angadi</span></h5>
             <div className="homey">

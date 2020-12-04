@@ -59,6 +59,9 @@
         overflow-x: scroll;
         overflow: scroll;
     }
+    /* .cskk4::-webkit-scrollbar{
+        width: 0px !important;
+      } */
 }
 .cskk5{
     width: 120px;

@@ -12,6 +12,10 @@ code {
   font-family: 'Roboto';
   scroll-behavior: smooth;
 }
+/* *::-webkit-scrollbar{
+  width: 25px !important;
+  color: black !important;
+} */
 *:focus {
   outline: 0 !important;
 }

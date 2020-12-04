@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
-import Log from '../User/Logout'
 import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
 import { itemTotal } from '../helpers/CartHelper'

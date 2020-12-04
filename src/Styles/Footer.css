@@ -219,14 +219,15 @@
     position: fixed;
     bottom: 0px;
     border-top: 1px solid rgb(177, 174, 174);
+    height: 60px;
+    padding-top: 6px;
 }
 .bhaagi1{
     text-align: center;
-    padding-top: 10px;
 }
 .bhaagi1 i{
     font-size: 20px;
-    color: rgb(165, 165, 165);
+    /* color: rgb(165, 165, 165); */
 }
 .bhaagi1 p{
     font-size: 14px;
@@ -248,8 +249,8 @@
         margin-top: 20px;
         visibility: visible;
         position: fixed;
-        bottom: -10px;
-        background-color: white;
+        bottom: -8px;
+        background-color: rgb(255, 176, 0);
         width: 100%;
     }
 }

@@ -100,7 +100,7 @@
 
 .dropbtn {
     background-color: transparent;
-    color: white;
+    color: white !important;
     padding: 5px !important;
     border: none;
     outline: none;
