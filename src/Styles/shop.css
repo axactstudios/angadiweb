@@ -62,10 +62,10 @@
     border-radius: 10px;
 }
 
-.shopii2 h4{
+.shopii2 h5{
     text-align: center;
     font-weight: 550;
-    margin-bottom: -10px;
+    margin-bottom: -4px;
     margin-top: 15px;
 }
 .shopii2{
@@ -143,7 +143,7 @@
     top: 45px;
     display: none;
     visibility: collapse;
-    left: 10%;
+    left: 5%;
 }
 
 @media screen and (max-width: 992px){
@@ -154,6 +154,12 @@
     .slidddeee{
         display: block;
         visibility: visible;
+    }
+    .shopii2 h5{
+        text-align: center;
+        font-weight: 550;
+        margin-bottom: 0px;
+        margin-top: 15px;
     }
 }
 

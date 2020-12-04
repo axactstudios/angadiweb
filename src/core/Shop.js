@@ -343,7 +343,7 @@ const Shop = ({ match }) => {
                                 <button className='slidddeee'><i class="fa fa-bars" aria-hidden="true"></i></button>
                                 {showw == false ?
                                     <div style={{ width: '100%' }}>
-                                        <h4> Showing all {dish.length} results</h4>
+                                        <h5> Showing all {dish.length} results</h5>
                                         <Container fluid>
                                             <Row>
                                                 {
@@ -358,7 +358,7 @@ const Shop = ({ match }) => {
                                     </div>
                                     :
                                     <div>
-                                        <h4>{resu.length} result found</h4>
+                                        <h5>{resu.length} result found</h5>
                                         <Container fluid>
                                             <Row>
                                                 {
