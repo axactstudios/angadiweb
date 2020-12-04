@@ -29,77 +29,50 @@ const Footer = ({history}) => {
         <>
             <div className="home15">
                 <div className='bheegi'>
-                    <div className="home16">
-                        <Container>
-                            <Row>
-                                <Col xs={12} sm={6} md={4} lg={3}>
-                                    <div className="home17">
-                                        <h3>Trending Dishes</h3>
-                                        <ul>
-                                            <li><a href="jdfakkl">XYZ</a></li>
-                                            <li><a href="jdfakkl">XYZ</a></li>
-                                            <li><a href="jdfakkl">Delhi</a></li>
-                                            <li><a href="jdfakkl">Kolkata</a></li>
-                                        </ul>
-                                    </div>
-                                </Col>
-                                <Col xs={12} sm={6} md={4} lg={3}>
-                                    <div className="home18">
-                                        <h3>About Us</h3>
-                                        <ul>
-                                            <li><a href="jdfakkl">About Angadi</a></li>
-                                            <li><a href="jdfakkl">Careers</a></li>
-                                            <li><a href="jdfakkl">Terms and Conditions</a></li>
-                                            <li><a href="jdfakkl">Privacy Policy</a></li>
-                                        </ul>
-                                    </div>
-                                </Col>
-                                <Col xs={12} sm={6} md={4} lg={3}>
-                                    <div className="home19">
-                                        <h3>Help & Support</h3>
-                                        <ul>
-                                            <li><a href="jdfakkl">Help</a></li>
-                                            <li><a href="jdfakkl">Contact Support</a></li>
-                                            <li><a href="jdfakkl">Contact Us</a></li>
-                                            <li><a href="jdfakkl">FAQ</a></li>
-                                        </ul>
-                                    </div>
-                                </Col>
-                                <Col xs={12} sm={6} md={4} lg={3}>
-                                    <div className="home20">
-                                        <Row className="text-center">
-                                            <Col sm={12} className="">
-                                                <h3>Follow Us</h3>
-                                            </Col>
-
-                                            <Col sm={4} xs={4} className="">
-                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg"><i className="fa fa-facebook"></i></a>
-
-                                            </Col>
-                                            <Col sm={4} xs={4} className="">
-                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-twitter"></i></a>
-                                            </Col>
-                                            <Col sm={4} xs={4} className="">
-                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-linkedin"></i></a>
-                                            </Col>
-                                            <Col sm={12} xs={5} className="text-center m-1">
-                                                <a href="#" className="btn m-0">
-                                                    <img src={IOS} style={{ widht: '100%' }} />
-                                                </a>
-                                            </Col>
-                                            <Col sm={12} xs={5} className="text-center m-1">
-                                                <a href="#" className="btn m-0">
-                                                    <img src={PLAY} style={{ widht: '100%' }} />
-                                                </a>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Container>
+                    <div className='logo'>
+                      <img src={'https://www.angadi.ae/wp-content/uploads/2020/06/Angadi-3.jpg'} alt="angadi logo" />
+                    </div>
+                        
+                    <div className="footer-list">
+                        <h3>Information</h3>
+                        <a href="jdfakkl">About us</a>
+                        <a href="jdfakkl">Contact us</a>
+                        <a href="jdfakkl">Refund & Delivery policy</a>
+                        <a href="jdfakkl">Privacy policy</a>
+                        <a href="jdfakkl">Terms & conditions</a>
+                    </div>
+                
+                    <div className="footer-list">
+                        <h3>Quick Links</h3>
+                        <a href="jdfakkl">My account</a>
+                        <a href="jdfakkl">order tracking</a>
+                        <a href="jdfakkl">wishlist</a>
+                        <a href="jdfakkl">checkout</a>
+                        <a href="jdfakkl">cart</a>
+                    </div>
+                
+                    <div className="footer-list">
+                        <h3>Contact Info</h3>
+                        <p>Phone number</p>
+                        <p>email</p>
+                        <p>address</p>
+                        <div className="social-media-icons">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                          <i class="fa fa-instagram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    
+                    <div className="download">
+                        <a href="#" className="btn m-0">
+                            <img src={IOS} style={{ widht: '100%' }} />
+                        </a>
+                        <a href="#" className="btn m-0">
+                            <img src={PLAY} style={{ widht: '100%' }} />
+                        </a>
                     </div>
                     <div className="home21">
-                        <p>@2020, Angadi. All Rights Reserved</p>
+                        <p>Copyright &copy; 2020 Angadi. All Rights Reserved</p>
                     </div>
                 </div>
                 <div className='bhaagi'>
@@ -164,3 +137,34 @@ export default withRouter(Footer);
 // <div onClick={upwardmove} className="foopart2">
 // <i className="fa fa-chevron-up" aria-hidden="true"></i>
 // </div>
+
+{/* <Col xs={12} sm={6} md={4} lg={3}>
+                                    <div className="home20">
+                                        <Row className="text-center">
+                                            <Col sm={12} className="">
+                                                <h3>Follow Us</h3>
+                                            </Col>
+
+                                            <Col sm={4} xs={4} className="">
+                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg"><i className="fa fa-facebook"></i></a>
+
+                                            </Col>
+                                            <Col sm={4} xs={4} className="">
+                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-twitter"></i></a>
+                                            </Col>
+                                            <Col sm={4} xs={4} className="">
+                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-linkedin"></i></a>
+                                            </Col>
+                                            <Col sm={12} xs={5} className="text-center m-1">
+                                                <a href="#" className="btn m-0">
+                                                    <img src={IOS} style={{ widht: '100%' }} />
+                                                </a>
+                                            </Col>
+                                            <Col sm={12} xs={5} className="text-center m-1">
+                                                <a href="#" className="btn m-0">
+                                                    <img src={PLAY} style={{ widht: '100%' }} />
+                                                </a>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </Col> */}
