@@ -51,12 +51,17 @@
     flex-direction: row;
     list-style-type: none;
     justify-content: space-around;
+
 }
 @media screen and (max-width: 1150px) {
     .cskk4{
         justify-content: flex-start;
         overflow-x: scroll;
+        overflow: scroll;
     }
+    /* .cskk4::-webkit-scrollbar{
+        width: 0px !important;
+      } */
 }
 .cskk5{
     width: 120px;

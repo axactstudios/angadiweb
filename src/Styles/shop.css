@@ -1,6 +1,7 @@
 .shopi{
     width: 50%;
     margin: auto;
+    padding-top: 10px;
 }
 .shopi input{
     width: 100%;
@@ -18,18 +19,19 @@
 @media screen and (max-width: 987px){
     .shopi{
         width: 70%;
-        margin: auto;
+        padding-top: 30px;
     }
 }
 @media screen and (max-width: 600px){
     .shopi{
         width: 95%;
-        margin: auto;
+        padding-top: 30px;
     }
 }
 .shopii1{
     margin-top: 60px;
     margin-bottom: 20px;
+    width: fit-content;
 }
 .shopii1 label{
     margin-left: 4px;
@@ -60,10 +62,10 @@
     border-radius: 10px;
 }
 
-.shopii2 h4{
+.shopii2 h5{
     text-align: center;
     font-weight: 550;
-    margin-bottom: -10px;
+    margin-bottom: -4px;
     margin-top: 15px;
 }
 .shopii2{
@@ -73,10 +75,10 @@
     .shopii2 h4{
         margin-bottom: 5px;
     }   
-    .shopii1{
+    /* .shopii1{
         width: 300px;
         margin: 30px auto;
-    }
+    } */
 }
 @media screen and (max-width: 500px){
     .shopii2 h4{
@@ -122,4 +124,61 @@
     font-size: 15px;
     color: #6b5236;
     margin-top: -5px;
+}
+
+
+
+/* .slidddee{
+    visibility: collapse;
+    height: 0;
+    display: none;
+} */
+
+.slidddeee{
+    border: none;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 3px;
+    position: relative;
+    top: 45px;
+    display: none;
+    visibility: collapse;
+    left: 5%;
+}
+
+@media screen and (max-width: 992px){
+    .sliddde{
+        display: none;
+        visibility: collapse;
+    }
+    .slidddeee{
+        display: block;
+        visibility: visible;
+    }
+    .shopii2 h5{
+        text-align: center;
+        font-weight: 550;
+        margin-bottom: 0px;
+        margin-top: 15px;
+    }
+}
+
+
+
+.slidddee.open{
+    clip-path: circle(1000px at 100% 0%);
+    -webkit-clip-path: circle(2000px at 100% 0%);
+}
+.slidddee{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 0px 0px 0px 30px;
+    width: 250px !important;
+    height: 100% !important;
+    background-color: rgb(255, 255, 255);
+    clip-path: circle(0px at 100% 0%);
+    -webkit-clip-path: circle(0px at 100% 0%);
+    transition: all 0s ease-out;
+    z-index: 98;
 }

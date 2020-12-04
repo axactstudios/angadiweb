@@ -96,12 +96,12 @@ const Cartcard = ({ product,
                 {shouldGo(shop)}
                 <Container fluid>
                     <Row>
-                        <Col xs={4} sm={4} md={3}>
+                        <Col xs={5} sm={4} md={3}>
                             <div className="carttPic1">
                                 <img src={product.url} alt={product.name} />
                             </div>
                         </Col>
-                        <Col xs={8} sm={8} md={9}>
+                        <Col xs={7} sm={8} md={9}>
                             <div className="cartt2">
                                 <h2>{product.name} </h2>
                                 <h3><i className="fa fa-inr"></i>{product.price} <span style={{ color: 'rgb(252, 32, 32)', textDecoration: 'line-through' }}><i className="fa fa-inr"></i>{product.iPrice}</span></h3>

@@ -15,7 +15,7 @@ const AdminDashboard = () => {
     })
 
     return (
-        <div>
+        <div className='hwami'>
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />

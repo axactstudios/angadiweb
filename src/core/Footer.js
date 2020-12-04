@@ -4,16 +4,26 @@ import '../Styles/Footer.css'
 import IOS from '../Assests/IOS.svg'
 import PLAY from '../Assests/play.svg'
 import $ from 'jquery'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { itemTotal } from '../helpers/CartHelper'
 
-const Footer = () => {
+const Footer = ({history}) => {
 
     const upwardmove = () => {
         $(document).ready(function () {
             $(this).scrollTop(0);
         });
     }
+
+    const isActive = (history, path) => {
+        if (history.location.pathname === path) {
+            return { color: '#653602' }
+        }
+        else {
+            return { color: "white" };
+        }
+    }
+    
 
     return (
         <>
@@ -68,28 +78,28 @@ const Footer = () => {
                 <div className='bhaagi'>
                     <Container>
                         <Row>
-                            <Col><Link to='/' className='bhaagi2'>
+                            <Col><Link to='/' className='bhaagi2' style={isActive(history, `/`)}>
                                 <div className='bhaagi1'>
                                     <i class="fa fa-home" aria-hidden="true"></i>
                                     <p>Home</p>
                                 </div>
                             </Link>
                             </Col>
-                            <Col><Link to='/cart' className='bhaagi2'>
+                            <Col><Link to='/cart' className='bhaagi2' style={isActive(history, `/cart`)}>
                                 <div className='bhaagi1'>
                                     <i class="fa fa-shopping-cart" aria-hidden="true"> <sup>{itemTotal()}</sup></i>
                                     <p>Cart</p>
                                 </div>
                             </Link>
                             </Col>
-                            <Col><Link to='/shop' className='bhaagi2'>
+                            <Col><Link to='/shop' className='bhaagi2' style={isActive(history, `/shop`)}>
                                 <div className='bhaagi1'>
                                     <i class="fa fa-search" aria-hidden="true"></i>
                                     <p>Search</p>
                                 </div>
                             </Link>
                             </Col>
-                            <Col><Link to='/user/dashboard' className='bhaagi2'>
+                            <Col><Link to='/user/dashboard' className='bhaagi2' style={isActive(history, `/user/dashboard`)}>
                                 <div className='bhaagi1'>
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     <p>Dashboard</p>
@@ -104,7 +114,7 @@ const Footer = () => {
     );
 };
 
-export default Footer;
+export default withRouter(Footer);
 
 // <div className="foopart1">
 // <Container>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom'
-import { isAuth, getCookie } from '../helpers/auth'
+import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
 import { emptyCart, getCart } from '../helpers/CartHelper';
 import * as firebase from 'firebase';
@@ -11,20 +11,22 @@ const Checkout = ({ dm }) => {
 
     const [data, setData] = useState({
         address: '',
-        date: '',
-        time: '',
         customMessage: '',
         phone: ''
     })
+
     const [products, setProducts] = useState([])
     const [priiice, setpriiice] = useState(0)
     const db = firebase.firestore()
     const [availCoup, setavailCoup] = useState([])
     const [coupon, setCoupon] = useState('');
+    const [puush, setpussh] = useState(false)
 
     const dis = []
     const qty = []
     const pri = []
+
+    // snapshot.updateTime,
 
     const getTotal = () => {
         return products.reduce((currentValue, nextValue) => {
@@ -69,13 +71,48 @@ const Checkout = ({ dm }) => {
             )
     }
 
+    const handleChangee = name => e => {
+        setData({ ...data, [name]: e.target.value })
+    }
+
+    const placedorder = () => {
+        db.collection('Orders').add({
+            Items: dis,
+            Qty: qty,
+            Price: pri,
+            TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+            GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
+            Status: 'Order Placed',
+            Type: 'Delivery',
+            UserID: isAuth().id,
+            Notes: data.customMessage,
+            Address: data.address,
+            Phone: data.phone
+        }).then(() => {
+            toast.success('Order done added successfully!!!')
+            emptyCart(() => {
+                <Redirect to='/myorder' />
+            })
+            setpussh(true)
+        }).catch((err) => {
+            toast.error('Something went wrong')
+            console.log(err)
+        })
+
+    }
+
     const showDropIn = () => {
         return (
             <div>
                 {products.length > 0 ? (
                     <div>
                         <div>
-                            <button className="checkout-butt">Pay Now</button>
+                            <div>
+                                <Form.Control type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
+                                <Form.Control type="text" placeholder="Contact Number" value={data.phone} onChange={handleChangee('phone')} />
+                                <Form.Control type="text" placeholder="Special Instruction" value={data.customMessage} onChange={handleChangee('customMessage')} />
+                            </div>
+                            <button className="checkout-butt" onClick={placedorder}>Pay Now</button>
                         </div>
                     </div>
                 ) :
@@ -85,12 +122,6 @@ const Checkout = ({ dm }) => {
     }
 
     return (
-        // <div>
-        //     <ToastContainer />
-
-        
-
-        // </div>
       <div>
         <ToastContainer />
         <div className="checkout-card">
@@ -144,6 +175,11 @@ const Checkout = ({ dm }) => {
               pri.push(k.price)
             })
           }
+           {
+                puush ? <Redirect to='/user/dashboard/myorders' />
+                    :
+                    null
+            }
           <div>
             {
               showCheckout()

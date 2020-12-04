@@ -2,16 +2,27 @@ import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row, Carousel } from 'react-bootstrap'
-
-
 import '../Styles/home.css'
 
 const Home = () => {
     const [cat, setCat] = useState([])
     const db = firebase.firestore()
     const [resu, setResh] = useState([])
+    const [catres, setCatres] = useState([])
     const [cs, setCs] = useState('')
     const [imgurll, setImgurl] = useState([])
+    const [specia, setSpecial] = useState([])
+
+
+    useEffect(() => {
+        setImgurl([])
+        db.collection('Background').get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setImgurl(imgurll => [...imgurll, { data: doc.data(), _id: doc.id }])
+                })
+            })
+    }, [])
 
     useEffect(async () => {
         setCat([])
@@ -24,34 +35,37 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
-        setImgurl([])
-        db.collection('Background').get()
-            .then(res => {
-                res.forEach((doc) => {
-                    setImgurl(imgurll => [...imgurll, { data: doc.data(), _id: doc.id }])
-                })
-            })
-    }, [])
-
-    useEffect(() => {
         setResh([])
+        setSpecial([])
         db.collection("Dishes").where("top", "==", true).get()
             .then(res => {
                 res.forEach((doc) => {
                     setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
                 })
             })
+        db.collection("Dishes").where("special", "==", true).get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setSpecial(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                })
+            })
     }, [])
 
     useEffect(() => {
         if (cs == '') {
-            setCs('')
+            setCatres([])
+            db.collection("Dishes").where("category", "==", 'Snacks').get()
+                .then(res => {
+                    res.forEach((doc) => {
+                        setCatres(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                    })
+                })
         } else {
-            setResh([])
+            setCatres([])
             db.collection("Dishes").where("category", "==", `${cs}`).get()
                 .then(res => {
                     res.forEach((doc) => {
-                        setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                        setCatres(resu => [...resu, { data: doc.data(), _id: doc.id }])
                     })
                 })
         }
@@ -97,7 +111,57 @@ const Home = () => {
                 <Container fluid>
                     <Row>
                         {
+                            catres && catres.map((d, k) => (
+                                <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
+                                    <Card product={d} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
+            </div>
+
+            <div className="halkkaa">
+                {
+                    imgurll[0] &&
+                    <img
+                        src={imgurll[0].data.url}
+                        className="d-block w-100"
+                        alt='banner' />
+                }
+            </div>
+
+            <h5 className="snitch">Top on <span>Angadi</span></h5>
+            <div className="homey">
+                <Container fluid>
+                    <Row>
+                        {
                             resu && resu.map((d, k) => (
+                                <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
+                                    <Card product={d} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
+            </div>
+
+            <div className="halkka">
+                {
+                    imgurll[1] &&
+                    <img
+                        src={imgurll[1].data.url}
+                        className="d-block w-100"
+                        alt='banner' />
+                }
+            </div>
+
+            <h5 className="snitch">Special on <span>Angadi</span></h5>
+            <div className="homey">
+                <Container fluid>
+                    <Row>
+                        {
+                            specia && specia.map((d, k) => (
                                 <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
                                     <Card product={d} />
                                 </Col>

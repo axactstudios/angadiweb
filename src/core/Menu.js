@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
-import Log from '../User/Logout'
 import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
-import {itemTotal} from '../helpers/CartHelper'
+import { itemTotal } from '../helpers/CartHelper'
 import * as firebase from 'firebase'
 import { Form } from 'react-bootstrap';
 
@@ -104,7 +103,6 @@ const Menu = ({ history }) => {
                                 <div className="dropdown-content">
                                     <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}>Dashboard</Link>
                                     <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/myorders')} to='/user/dashboard/myorders'>My Orders</Link>
-                                    <Link onClick={changeScreen} to=""><Log /></Link>
                                 </div>
                             </div>
                         }
