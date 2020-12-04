@@ -38,6 +38,13 @@ const Shop = ({ match }) => {
                     setCat(cat => [...cat, { data: doc.data(), _id: doc.id }])
                 })
             })
+
+        const hamburgers = document.querySelector('.slidddeee');
+        const navlinkss = document.querySelector('.slidddee')
+
+        hamburgers.addEventListener("click", () => {
+            navlinkss.classList.toggle("open");
+        })
     }, [])
 
     const db = firebase.firestore()
@@ -93,6 +100,9 @@ const Shop = ({ match }) => {
         setResh([])
         setShoww(true)
         setValues({ ...values, [name]: e.target.value })
+
+        const navlinks = document.querySelector('.slidddee')
+        navlinks.classList.toggle("open");
 
         if (name == 'category') {
             setResh([])
@@ -269,7 +279,6 @@ const Shop = ({ match }) => {
                             <Col lg={2} sm={2} xs={3}>
                                 <button onClick={getsearch}>Search</button>
                             </Col>
-
                         </Row>
                     </div>
                     <Row>
@@ -369,6 +378,49 @@ const Shop = ({ match }) => {
                     </Row>
                 </Container>
             </div>
+
+            <button className='slidddeee'>open</button>
+
+
+            <div className='slidddee'>
+                <div className="shopii1">
+                    <div className="shopi1">
+                        <p>Sort By Category</p>
+                        <Form.Group >
+                            <select onChange={handleChange('category')} >
+                                <option>Please Select</option>
+                                {cat.map((c, i) =>
+                                    (<option key={i} value={c.data.catName}>
+                                        {c.data.catName}
+                                    </option>)
+                                )}
+                            </select>
+                        </Form.Group>
+                    </div>
+                    <div className="shopi2">
+                        <p>Sort By Price</p>
+                        <input type="radio" name="Price" value="400" onChange={handleChange('price')} />
+                        <label > Less than Rs 400</label><br />
+                        <input type="radio" name="Price" value="500" onChange={handleChange('price')} />
+                        <label > Less than Rs 500</label><br />
+                        <input type="radio" name="Price" value="600" onChange={handleChange('price')} />
+                        <label > Less than Rs 600</label><br />
+                        <input type="radio" name="Price" value="800" onChange={handleChange('price')} />
+                        <label > Less than Rs 800</label><br />
+                        <input type="radio" name="Price" value="900" onChange={handleChange('price')} />
+                        <label > Less than Rs 900</label><br />
+                    </div>
+                    <div className="shopi3">
+                        <p>Sort by Sub Category</p>
+                        <input type="radio" name="Food" value="Food" onChange={handleChange('sCat')} />
+                        <label > Food</label><br />
+                        <input type="radio" name="Food" value="Grocery" onChange={handleChange('sCat')} />
+                        <label > Grocery</label><br />
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     );
 };

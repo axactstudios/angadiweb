@@ -3,6 +3,7 @@ import '../Styles/pgcard.css'
 import { addItem, updateItem } from '../helpers/CartHelper'
 import { Redirect, Link } from 'react-router-dom'
 import { Modal, OverlayTrigger, Tooltip, Button, Container, Row, Col, Carousel } from 'react-bootstrap'
+import StarRatings from 'react-star-ratings';
 
 const Card = ({ product }) => {
     const [redirect, setRedirect] = useState(false)
@@ -73,6 +74,8 @@ const Card = ({ product }) => {
         setpiroo({ ...pirro, price: k * priccce, quantity: e.target.value, iPrice: k * fakeprice })
     };
 
+    const rrate = product.data.rating && product.data.rating && Math.round(product.data.rating)
+
     function MyVerticallyCenteredModal(props) {
 
         return (
@@ -117,7 +120,13 @@ const Card = ({ product }) => {
                                 <div className='lexi1'>
                                     <h5>{product.data.name}</h5>
                                     <h6>{props.products.data.category}</h6>
-                                    <p>{product.data.rating}</p>
+                                    <p>
+                                    <StarRatings
+                                        rating={rrate}
+                                        starDimension="15px"
+                                        starSpacing="5px"
+                                        starRatedColor="rgb(255,176,0)"
+                                    /></p>
                                     <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
                                     <p>{product.data.description.substring(0, 250)}</p>
                                     <button onClick={addToCart}>Add To Cart</button>
@@ -152,7 +161,7 @@ const Card = ({ product }) => {
                 products={product}
             />
             <div className="csk2">
-                <h6>{product.data.name && product.data.name.substring(0,19)}</h6>
+                <h6>{product.data.name && product.data.name.substring(0, 19)}</h6>
                 <p>{product.data.category}</p>
                 <div className='selectcard2'>
                     <select onChange={handleChanged()} className="slectcard">

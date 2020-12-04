@@ -31,6 +31,7 @@
 .shopii1{
     margin-top: 60px;
     margin-bottom: 20px;
+    width: fit-content;
 }
 .shopii1 label{
     margin-left: 4px;
@@ -74,10 +75,10 @@
     .shopii2 h4{
         margin-bottom: 5px;
     }   
-    .shopii1{
+    /* .shopii1{
         width: 300px;
         margin: 30px auto;
-    }
+    } */
 }
 @media screen and (max-width: 500px){
     .shopii2 h4{
@@ -123,4 +124,34 @@
     font-size: 15px;
     color: #6b5236;
     margin-top: -5px;
+}
+
+
+
+/* .slidddee{
+    visibility: collapse;
+    height: 0;
+    display: none;
+} */
+.slidddeee{
+    z-index: 999999 !important;
+}
+.slidddee.open{
+    clip-path: circle(1000px at 100% 0%);
+    -webkit-clip-path: circle(10000px at 100% 0%);
+}
+.slidddee{
+    position: fixed;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgb(138, 132, 132);
+    flex-direction: column !important;
+    justify-content: start !important;
+    align-items: center;
+    clip-path: circle(0px at 100% 0%);
+    -webkit-clip-path: circle(0px at 100% 0%);
+    transition: all 1s ease-out;
+    z-index: 99;
+    padding-top: 120px;
 }

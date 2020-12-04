@@ -6,6 +6,7 @@ import { addItem, updateItem } from '../helpers/CartHelper'
 import { Redirect, Link } from 'react-router-dom'
 import ShowImage from '../PagesHelper/Showimage'
 import Card from '../PagesHelper/Card'
+import StarRatings from 'react-star-ratings';
 import $ from 'jquery'
 
 const Product = (props) => {
@@ -102,6 +103,8 @@ const Product = (props) => {
         setpiroo({ ...pirro, price: k * priccce, quantity: e.target.value, iPrice: k * pro.iPrice })
     };
 
+    const rrate = pro && pro.rating && Math.round(pro.rating)
+
     return (
         <div className='hwami'>
             <div className="proccard">
@@ -120,7 +123,13 @@ const Product = (props) => {
                                             <h5>{pro.name}</h5>
                                             <h6>{pro.category}</h6>
                                             <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
-                                            <h4>Rating :- {pro.rating}</h4>
+                                            <h4>
+                                                <StarRatings
+                                                    rating={rrate}
+                                                    starDimension="15px"
+                                                    starSpacing="5px"
+                                                    starRatedColor="rgb(255,176,0)"
+                                                /></h4>
                                             <div className="proccard4">
                                                 <span>Adjust Quantity</span>
                                                 <select onChange={handleChanged()} className="proccard5">
