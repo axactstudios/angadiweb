@@ -282,7 +282,7 @@ const Shop = ({ match }) => {
                         </Row>
                     </div>
                     <Row>
-                        <Col lg={{ span: 3, order: 1 }} sm={{ span: 12, order: 2 }} xs={{ span: 12, order: 2 }}>
+                        <Col lg={{ span: 3, order: 1 }} sm={{ span: 12, order: 2 }} xs={{ span: 12, order: 2 }} className='sliddde'>
                             <div className="shopii1">
                                 <div className="shopi1">
                                     <p>Sort By Category</p>
@@ -340,6 +340,7 @@ const Shop = ({ match }) => {
                         </Col>
                         <Col lg={{ span: 9, order: 2 }} sm={{ span: 12, order: 1 }} xs={{ span: 12, order: 1 }}>
                             <div className="shopii2">
+                                <button className='slidddeee'><i class="fa fa-bars" aria-hidden="true"></i></button>
                                 {showw == false ?
                                     <div style={{ width: '100%' }}>
                                         <h4> Showing all {dish.length} results</h4>
@@ -378,8 +379,6 @@ const Shop = ({ match }) => {
                     </Row>
                 </Container>
             </div>
-
-            <button className='slidddeee'>open</button>
 
 
             <div className='slidddee'>
