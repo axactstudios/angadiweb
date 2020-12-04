@@ -1,6 +1,7 @@
 .shopi{
     width: 50%;
     margin: auto;
+    padding-top: 10px;
 }
 .shopi input{
     width: 100%;
@@ -18,13 +19,13 @@
 @media screen and (max-width: 987px){
     .shopi{
         width: 70%;
-        margin: auto;
+        padding-top: 30px;
     }
 }
 @media screen and (max-width: 600px){
     .shopi{
         width: 95%;
-        margin: auto;
+        padding-top: 30px;
     }
 }
 .shopii1{
