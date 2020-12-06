@@ -4,8 +4,8 @@ import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
 import { emptyCart, getCart } from '../helpers/CartHelper';
 import * as firebase from 'firebase';
-import { Form } from 'react-bootstrap';
 import '../Styles/Checkout.css';
+import { Modal, Button } from 'react-bootstrap'
 
 const Checkout = ({ dm }) => {
 
@@ -21,6 +21,8 @@ const Checkout = ({ dm }) => {
   const [availCoup, setavailCoup] = useState([])
   const [coupon, setCoupon] = useState('');
   const [puush, setpussh] = useState(false)
+  const [modalShow, setModalShow] = React.useState(false);
+  const [coup, setcoup] = useState([])
 
   const dis = []
   const qty = []
@@ -48,6 +50,15 @@ const Checkout = ({ dm }) => {
       .catch(err => console.error(err));
   }
 
+  useEffect(() => {
+    setcoup([])
+    db.collection('Offers').get()
+      .then(res => {
+        res.forEach((doc) => {
+          setcoup(dish => [...dish, { data: doc.data(), _id: doc.id }])
+        })
+      })
+  }, [])
 
   useEffect(() => {
     setProducts(getCart());
@@ -132,7 +143,7 @@ const Checkout = ({ dm }) => {
             </table>
 
             <input className="checkout-input" type="text" placeholder="Promo Code" value={coupon} onChange={(e) => setCoupon(e.target.value)} />
-
+            <p className='sharabbi' onClick={() => setModalShow(true)}>Promo Code</p>
             <p>{
               availCoup && availCoup.Title === coupon
                 ?
@@ -159,6 +170,49 @@ const Checkout = ({ dm }) => {
       </div>)
   }
 
+  const dkd = (ll) => (e) => {
+    e.preventDefault()
+    setCoupon(ll)
+    setModalShow(false)
+  }
+
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Promo Codes
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h2 style={{ textAlign: 'center' }}>All Offers</h2>
+          <div className='cateegee'>
+            {
+              coup && coup.map((d, i) => (
+                <div key={i}>
+                  <div className="ofeecard" onClick={dkd(`${d.data.Title}`)}>
+                    <img src={d.data.ImageURL} alt={d.data.Title} />
+                    <div className='ofeecard1'>
+                      <h6>{d.data.Title}</h6>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
   return (
     <div className='checky'>
       <ToastContainer />
@@ -180,6 +234,10 @@ const Checkout = ({ dm }) => {
           showCheckout()
         }
       </div>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }

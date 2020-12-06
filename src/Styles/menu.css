@@ -213,6 +213,7 @@
         z-index: 99;
         padding-top: 95px;
         overflow: hidden;
+        border-right: 1.5px solid rgb(222, 223, 223);
     }
     .navlink li{
         margin-left: -30px !important;
@@ -266,9 +267,9 @@
         display: unset;
         visibility: visible;
         position: absolute;
-        top: 51px;
+        top: 50.5px;
         font-size: 23px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid rgb(61, 61, 61);
         left: 0;
         background-color: rgb(255, 176, 0);
         width: 100%;
