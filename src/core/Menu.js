@@ -4,7 +4,7 @@ import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
 import { itemTotal } from '../helpers/CartHelper'
 import * as firebase from 'firebase'
-import { Form } from 'react-bootstrap';
+import { Container, Form, Col, Row } from 'react-bootstrap';
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -95,10 +95,13 @@ const Menu = ({ history }) => {
                 </div>
                 <div className="men3">
                     <ul className="navlink">
+
+                    <h4 className='titeel1'>Menu</h4>
+
                         {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><li>Sign In</li></Link>}
                         {
-                          isAuth() && 
-                          <div class="dropdown">
+                            isAuth() &&
+                            <div class="dropdown">
                                 <button className="dropbtn">{isAuth().Name} <span><i class="fa fa-caret-down" aria-hidden="true"></i></span></button>
                                 <div className="dropdown-content">
                                     <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}>Dashboard</Link>
@@ -187,6 +190,23 @@ const Menu = ({ history }) => {
                         }
 
                         <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<sup>{itemTotal()}</sup></li></Link>
+
+                        <Container fluid className='titeel'>
+                            <Row>
+                                <Col>
+                                    <a href='#'><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                </Col>
+                                <Col>
+                                    <a href='#'><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                </Col>
+                                <Col>
+                                    <a href='#'><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </Col>
+                                <Col>
+                                    <a href='#'><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                </Col>
+                            </Row>
+                        </Container>
                     </ul>
                 </div>
             </div>

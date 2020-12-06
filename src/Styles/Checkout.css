@@ -1,19 +1,6 @@
-.checkout-card {
-  background-color: white;
-  margin: 0.5em auto;
-  padding: 0.5em 1em;
-  text-align: left;
-}
-
-.checkout-heads {
-  color: darkblue;
-  font-weight: 700;
-  font-size: 1.25em;
-}
-
 .checkout-input {
   border: 0.5px solid grey;
-  padding: 1em;
+  padding: 0.6em;
   color: #653602;
   border-radius: 6px;
   margin: 0.5em auto;
@@ -26,18 +13,30 @@
   color: white;
   border-radius: 6px;
   width: 100%;
-  padding: 1em;
+  padding: 0.7em;
   margin: 0.5em auto;
-}
-
-.changetime, .changetime:hover, .changetime:visited, .changetime:active {
-  text-decoration: none;
-  color: #0e86d4;
-  margin: 0.5em auto;
-  font-weight: 600;
 }
 
 .bill {
   color: #653602;
-  width: 100%;
+  width: fit-content;
+  margin: auto;
+}
+
+.checky{
+  width: 95%;
+  margin-left: auto;
+}
+@media screen and (max-width: 800px){
+  .checky{
+    width: 100%;
+    margin: auto;
+  } 
+}
+.checky1{
+  font-size: 25px;
+  font-weight: 550;
+}
+.checky2{
+  text-align: center;
 }

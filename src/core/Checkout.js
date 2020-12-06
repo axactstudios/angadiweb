@@ -105,14 +105,52 @@ const Checkout = ({ dm }) => {
     return (
       <div>
         {products.length > 0 ? (
-          <div>
+          <div className='checky2'>
+            <h5>Bill</h5>
+            {/* <h3 className="maincart7">Subtotal ({products.length} item):
+                <p><i class="fa fa-inr"></i> <b>{getTotal() - (getTotal() * (priiice / 100))}</b></p>
+                </h3> */}
+
+            <table className="bill">
+              <tr>
+                <th>Sub Total - </th>
+                <td><i class="fa fa-inr" /> {getTotal()} </td>
+              </tr>
+              <tr>
+                <th>Discount - </th>
+                <td><i class="fa fa-inr" /> {(getTotal() * (priiice / 100))}</td>
+              </tr>
+              <tr>
+                <th>Tax @ 5% - </th>
+                <td><i class="fa fa-inr" /> {getTotal() * 0.05}</td>
+              </tr>
+              <hr />
+              <tr>
+                <th>Grand Total - </th>
+                <th> <i class="fa fa-inr" />{getTotal() * (1.05 - (priiice / 100))}</th>
+              </tr>
+            </table>
+
+            <input className="checkout-input" type="text" placeholder="Promo Code" value={coupon} onChange={(e) => setCoupon(e.target.value)} />
+
+            <p>{
+              availCoup && availCoup.Title === coupon
+                ?
+                <p style={{ color: 'green' }}>{availCoup && availCoup.code} Applied !!!</p>
+                :
+                <p>{coupon && <p style={{ color: 'red' }}>NOT Applied!!!</p>}</p>
+            }</p>
+
+
+            <div className="checkout-card">
+              <input className="checkout-input" type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
+              <input className="checkout-input" type="text" placeholder="Contact Number" value={data.phone} onChange={handleChangee('phone')} />
+            </div>
+            <button className='checkout-butt' onClick={placedorder}>Pay Now</button>
+
             <div>
-              <div>
-                <Form.Control type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
-                <Form.Control type="text" placeholder="Contact Number" value={data.phone} onChange={handleChangee('phone')} />
-                <Form.Control type="text" placeholder="Special Instruction" value={data.customMessage} onChange={handleChangee('customMessage')} />
-              </div>
-              <button className="checkout-butt" onClick={placedorder}>Pay Now</button>
+              <h5>Special Notes</h5>
+              <textarea placeholder="Add delivery note (optional)" className="checkout-input" value={data.customMessage} onChange={handleChangee('customMessage')} />
             </div>
           </div>
         ) :
@@ -122,83 +160,26 @@ const Checkout = ({ dm }) => {
   }
 
   return (
-    <div>
+    <div className='checky'>
       <ToastContainer />
-      <div className="checkout-card">
-        <h5 className="checkout-heads">Address</h5>
-        <input type="text" placeholder="Enter house no." className="checkout-input" />
-        <input type="text" placeholder="Enter street name" className="checkout-input" />
-        <button className="checkout-butt">Saved Addresses</button>
-      </div>
-      <div className="checkout-card">
-        <h5 className="checkout-heads">Bill</h5>
-        {/* <h3 className="maincart7">Subtotal ({products.length} item):
-            <p><i class="fa fa-inr"></i> <b>{getTotal() - (getTotal() * (priiice / 100))}</b></p>
-            </h3> */}
-
-        <table className="bill">
-          <tr>
-            <th>Sub Total</th>
-            <td><i class="fa fa-inr" /> {getTotal()} </td>
-          </tr>
-          <tr>
-            <th>Discount</th>
-            <td><i class="fa fa-inr" /> {(getTotal() * (priiice / 100))}</td>
-          </tr>
-          <tr>
-            <th>Tax @ 5%</th>
-            <td><i class="fa fa-inr" /> {getTotal() * 0.05}</td>
-          </tr>
-          <hr />
-          <tr>
-            <th>Grand Total</th>
-            <th><i class="fa fa-inr" /> {getTotal() * (1.05 - (priiice / 100))}</th>
-          </tr>
-        </table>
-
-
-        <input type="text" placeholder="Promo Code" className="checkout-input" value={coupon} onChange={(e) => setCoupon(e.target.value)} />
-
-        <p>{
-          availCoup && availCoup.Title === coupon
-            ?
-            <p style={{ color: 'green' }}>{availCoup && availCoup.code} Applied !!!</p>
-            :
-            <p>{coupon && <p style={{ color: 'red' }}>NOT Applied!!!</p>}</p>
-        }</p>
-
-
+      <h4 className='checky1'>Your cart summary</h4>
+      {
+        products && products.map((k, l) => {
+          dis.push(k.name)
+          qty.push(k.count)
+          pri.push(k.price)
+        })
+      }
+      {
+        puush ? <Redirect to='/user/dashboard/myorders' />
+          :
+          null
+      }
+      <div>
         {
-          products && products.map((k, l) => {
-            dis.push(k.name)
-            qty.push(k.count)
-            pri.push(k.price)
-          })
+          showCheckout()
         }
-        {
-          puush ? <Redirect to='/user/dashboard/myorders' />
-            :
-            null
-        }
-        <div>
-          {
-            showCheckout()
-          }
-        </div>
       </div>
-      <div className="checkout-card">
-        <h5 className="checkout-heads">Notes</h5>
-        <textarea placeholder="Add delivery note (optional)" className="checkout-input" />
-      </div>
-      { /*       <div className="checkout-card">
-          <h5 className="checkout-heads">Delivery Time</h5>
-          <a href="changetimelinkgoeshere" className="changetime">Your delivery time is 1:31 PM. Your order will reach to you on time. Click to edit time.</a>
-        </div>
-        <div className="checkout-card">
-          <h5 className="checkout-heads">Choose Payment Method</h5>
-          <button className="checkout-butt">Cash on Delivery</button>
-          <button className="checkout-butt">Proceed to pay online</button>
-          </div> */}
     </div>
   );
 }
