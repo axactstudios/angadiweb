@@ -6,6 +6,7 @@ import { emptyCart, getCart } from '../helpers/CartHelper';
 import * as firebase from 'firebase';
 import '../Styles/Checkout.css';
 import { Modal, Button } from 'react-bootstrap'
+import axios from 'axios'
 
 const Checkout = ({ dm }) => {
 
@@ -170,6 +171,23 @@ const Checkout = ({ dm }) => {
       </div>)
   }
 
+  const orderrrr = () => {
+    // https://paytab.herokuapp.com/pay
+    axios
+      .post("https://paytab.herokuapp.com/pay", {
+        price: 250
+      })
+      .then(res =>{
+        console.log(res.data)
+        window.open(res.data.payment_url)
+      }
+        // if(res.data.payment_url){
+        // open(res.data.payment_url)
+        // }
+      )
+      .catch(err => console.error(err));
+  }
+
   const dkd = (ll) => (e) => {
     e.preventDefault()
     setCoupon(ll)
@@ -238,6 +256,7 @@ const Checkout = ({ dm }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
+      <button onClick={orderrrr}>dd</button>
     </div>
   );
 }

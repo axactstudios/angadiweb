@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
-import { Col, Container, Row, Carousel } from 'react-bootstrap'
+import { Col, Container, Row, Carousel, Form } from 'react-bootstrap'
 import '../Styles/home.css'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     const [cat, setCat] = useState([])
@@ -12,7 +13,10 @@ const Home = () => {
     const [cs, setCs] = useState('')
     const [imgurll, setImgurl] = useState([])
     const [specia, setSpecial] = useState([])
-
+    const [values, setValues] = useState({
+        name: '',
+        category: ''
+    })
 
     useEffect(() => {
         setImgurl([])
@@ -71,8 +75,37 @@ const Home = () => {
         }
     }, [cs])
 
+    const handleChange = name => (e) => {
+        switch (name) {
+            case 'image':
+                const phooto = e.target.files[0];
+                setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
+                break;
+            default:
+                setValues({ ...values, [name]: e.target.value })
+                break;
+        }
+    };
+
     return (
         <div className="ckk hwami">
+            <div className='ohdoljag'>
+                <div className='ohdoljag1'>
+                    <div className="ohdoljag11">
+                        <input type='text' placeholder='Find Products' />
+                    </div>
+                </div>
+                <div className='ohdoljag2'>
+                    <div className='ohdoljag21'>
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> fucking bitcj
+                    </div>
+                </div>
+                <div className='ohdoljag3'>
+                    <div className='ohdoljag31'>
+                        <i class="fa fa-motorcycle" aria-hidden="true"></i> fucking bitcj <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
             <div className="cskkk">
                 <Carousel interval={2500}>
                     {
