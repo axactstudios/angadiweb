@@ -33,6 +33,20 @@
         height: auto;
     }
 }
+@media screen and (max-width: 400px) {
+    .cskkk{
+        width: 95% !important;
+        margin: auto;
+    }
+    .halkka{
+        width: 95%;
+        margin: auto;
+    }
+    .halkkaa{
+        width: 95%;
+        margin: auto;
+    }
+}
 .csk{
     max-width: 280px;
     margin: auto;

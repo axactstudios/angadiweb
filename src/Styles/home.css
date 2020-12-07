@@ -148,14 +148,33 @@
     width: 100%;
 }
 .ohdoljag11 input{
-    width: 100%;
+    width: 75.4%;
+    height: 40px;
+    border-radius: 4px 0 0 4px ;
+    border: 2px solid #e0e0e0;
+    outline: none;
+}
+.ohdoljag11 button{
+    height: 40px;
+    border-radius: 0px 4px 4px 0px ;
+    border: 2px solid #6b5236;
+    outline: none;
+    background-color: #6b5236;
+    color: white;
+    position: relative;
 }
 .ohdoljag21{
     background-color: rgb(255,176,0);
     border: 2px solid rgb(255,176,0);
+    text-align: center;
+    color: white;
+    line-height: 30px;
+    font-size: 20.5px;
 }
 .ohdoljag31{
     border: 2px solid rgb(255,176,0);
+    text-align: center;
+    color: rgb(255,176,0);
 }
 @media screen and ( max-width: 560px ){
     .ohdoljag{

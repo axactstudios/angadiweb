@@ -51,6 +51,7 @@ const Shop = ({ match }) => {
     var catRef = db.collection('Dishes');
 
     const getsearch = () => {
+        setShoww(true)
         setResh([])
         catRef.where("nameSearch", "array-contains", `${values.name}`).get()
             .then(res => {
@@ -262,7 +263,7 @@ const Shop = ({ match }) => {
 
     const handechange = name => (e) => {
         setValues({ ...values, [name]: e.target.value })
-        setShoww(true)
+        setShoww(false)
     }
 
     return (
