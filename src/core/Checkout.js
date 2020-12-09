@@ -88,29 +88,33 @@ const Checkout = ({ dm }) => {
   }
 
   const placedorder = () => {
-    db.collection('Orders').add({
-      Items: dis,
-      Qty: qty,
-      Price: pri,
-      TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
-      GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
-      Status: 'Order Placed',
-      Type: 'Delivery',
-      UserID: isAuth().id,
-      Notes: data.customMessage,
-      Address: data.address,
-      Phone: data.phone
-    }).then(() => {
-      toast.success('Order done added successfully!!!')
-      emptyCart(() => {
-        <Redirect to='/myorder' />
-      })
-      setpussh(true)
-    }).catch((err) => {
-      toast.error('Something went wrong')
-      console.log(err)
-    })
 
+    if (data.address && data.phone) {
+      db.collection('Orders').add({
+        Items: dis,
+        Qty: qty,
+        Price: pri,
+        TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+        GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
+        Status: 'Order Placed',
+        Type: 'Delivery',
+        UserID: isAuth().id,
+        Notes: data.customMessage,
+        Address: data.address,
+        Phone: data.phone
+      }).then(() => {
+        toast.success('Order done added successfully!!!')
+        emptyCart(() => {
+          <Redirect to='/myorder' />
+        })
+        setpussh(true)
+      }).catch((err) => {
+        toast.error('Something went wrong')
+        console.log(err)
+      })
+    } else {
+      toast.error('Please Enter Phone and Address !!!')
+    }
   }
 
   const showDropIn = () => {
@@ -177,7 +181,7 @@ const Checkout = ({ dm }) => {
       .post("https://paytab.herokuapp.com/pay", {
         price: 250
       })
-      .then(res =>{
+      .then(res => {
         console.log(res.data)
         window.open(res.data.payment_url)
       }
@@ -256,7 +260,7 @@ const Checkout = ({ dm }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <button onClick={orderrrr}>dd</button>
+      {/* <button onClick={orderrrr}>dd</button> */}
     </div>
   );
 }
