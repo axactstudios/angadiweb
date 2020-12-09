@@ -82,7 +82,10 @@ const Menu = ({ history }) => {
                         </div>
                     </div>
                     <div className="men23">
-                        { /* <div className="men2321"><span><i class="fa fa-shopping-cart"></i></span> My Shopping Cart <i class="fa fa-chevron-down" aria-hidden="true"></i> <p></p></div> */}
+                        <div className="men2321">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,7 +99,7 @@ const Menu = ({ history }) => {
                 <div className="men3">
                     <ul className="navlink">
 
-                    <h4 className='titeel1'>Menu</h4>
+                        <h4 className='titeel1'>Menu</h4>
 
                         {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><li>Sign In</li></Link>}
                         {

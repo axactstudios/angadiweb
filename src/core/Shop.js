@@ -6,7 +6,7 @@ import '../Styles/shop.css'
 import $ from 'jquery'
 import { Link } from 'react-router-dom'
 
-const Shop = ({ match }) => {
+const Shop = (props) => {
     const [special, setSpecial] = useState([])
     const [dish, setDish] = useState([])
     const [resu, setResh] = useState([])
@@ -19,9 +19,10 @@ const Shop = ({ match }) => {
         sCat: ''
     })
 
-    const cs = match.params.categoryId
-    const cd = match.params.categoryName
+    const cs = props.match.params.categoryId
+    const cd = props.match.params.categoryName
     const md = cd && `${cs}/${cd}`
+    const mss = props.location.state && props.location.state.search
 
     useEffect(() => {
         setCat([])
@@ -63,7 +64,7 @@ const Shop = ({ match }) => {
 
     useEffect(() => {
         setShoww(false)
-        setValues({ name: '', category: '', price: '', sCat: '' })
+        setValues({ ...values, name: mss })
         if (cd) {
             setDish([])
             db.collection("Dishes").where("category", "==", `${md}`).get()
@@ -101,9 +102,6 @@ const Shop = ({ match }) => {
         setResh([])
         setShoww(true)
         setValues({ ...values, [name]: e.target.value })
-
-        const navlinks = document.querySelector('.slidddee')
-        navlinks.classList.toggle("open");
 
         if (name == 'category') {
             setResh([])

@@ -46,18 +46,12 @@
 }
 .men23{
     margin-left: 20%;
+    visibility: hidden;
+    display: none;
 }
-.men2321{
-    margin-top: 30px;
-}
-.men2321 span i{
-    font-size: 32px;
-}
+
 @media screen and (max-width: 860px){
     .men21{
-        visibility: hidden !important;
-    }
-    .men23{
         visibility: hidden !important;
     }
     .men22{
@@ -71,7 +65,24 @@
         margin-top: 6px;
     }   
 }
-
+@media screen and (max-width: 450px){
+    .men23{
+        visibility: visible !important;
+        display: unset !important;
+        position: absolute;
+        right: 4%;
+        z-index: 101;
+    }
+    .men2321 i{
+        line-height: 55px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #653602;
+    }
+    .men2321 span{
+        margin-left: 9px;
+    }
+}
 
 .men3{
     width: 100%;
