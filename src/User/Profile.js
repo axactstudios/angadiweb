@@ -104,7 +104,6 @@ const Profile = () => {
               <input type="email"
                 className="update-form-input"
                 placeholder="Email"
-                onChange={handleChange('email')}
                 value={email}
               />
               <div>

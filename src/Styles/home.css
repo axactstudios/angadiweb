@@ -169,12 +169,13 @@
     text-align: center;
     color: white;
     line-height: 30px;
-    font-size: 20.5px;
+    font-size: 19px;
 }
 .ohdoljag31{
     border: 2px solid rgb(255,176,0);
     text-align: center;
     color: rgb(255,176,0);
+    font-size: 15px;
 }
 @media screen and ( max-width: 560px ){
     .ohdoljag{
