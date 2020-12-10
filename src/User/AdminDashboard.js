@@ -51,8 +51,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className='content1'>
-                afdsklfasdl;kflk
-                fasdhfkdasj
+                Hello Admin
             </div>
         </div>
     );
