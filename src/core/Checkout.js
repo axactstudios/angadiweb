@@ -179,7 +179,17 @@ const Checkout = ({ dm }) => {
     // https://paytab.herokuapp.com/pay
     axios
       .post("https://paytab.herokuapp.com/pay", {
-        price: 250
+        Items: dis,
+        Qty: qty,
+        Price: pri,
+        TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+        GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
+        Status: 'Order Placed',
+        Type: 'Delivery',
+        UserID: isAuth().id,
+        Notes: data.customMessage,
+        Address: data.address,
+        Phone: data.phone
       })
       .then(res => {
         console.log(res.data)
@@ -260,7 +270,7 @@ const Checkout = ({ dm }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      {/* <button onClick={orderrrr}>dd</button> */}
+      <button onClick={orderrrr}>dd</button>
     </div>
   );
 }

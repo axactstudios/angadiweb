@@ -3,7 +3,6 @@ import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row, Carousel, Form } from 'react-bootstrap'
 import '../Styles/home.css'
-import { Link } from 'react-router-dom'
 
 const Home = () => {
     const [cat, setCat] = useState([])
