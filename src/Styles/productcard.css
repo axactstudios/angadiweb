@@ -137,7 +137,6 @@
 }
 .cardPic1 img{
     height: auto;
-    box-shadow: 5px 5px 10px #acabab;
     border-radius: 8px;
 }
 .cardPic2{
@@ -153,7 +152,7 @@
     height: 60px;
     border-radius: 5px;
     cursor: pointer;
-    box-shadow: 2px 2px 10px grey;
+    box-shadow: 1px 1px 4px rgb(202, 201, 201);
     transition: .3s ease-in;
 }
 .cardPic3 img:hover{
@@ -171,7 +170,6 @@
         width: 50rem;
         height: 30rem;
         border-radius: 30px;
-        box-shadow: 15px 15px 15px #acabab;
     }   
     .cardPic2{
         display: flex;

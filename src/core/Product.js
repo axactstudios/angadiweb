@@ -3,11 +3,12 @@ import * as firebase from 'firebase'
 import { Row, Col, Container } from 'react-bootstrap'
 import '../Styles/productcard.css'
 import { addItem, updateItem } from '../helpers/CartHelper'
-import { Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ShowImage from '../PagesHelper/Showimage'
 import Card from '../PagesHelper/Card'
 import StarRatings from 'react-star-ratings';
 import $ from 'jquery'
+import { toast, ToastContainer } from 'react-toastify';
 
 const Product = (props) => {
 
@@ -15,7 +16,6 @@ const Product = (props) => {
     const db = firebase.firestore()
     const _id = props.match.params.dishId
     const [pro, setPro] = useState()
-    const [redirect, setRedirect] = useState(false)
     const [count, setCount] = useState(1);
     const [quan, setquan] = useState(500)
     const [resh, setResh] = useState([])
@@ -85,14 +85,9 @@ const Product = (props) => {
             if (count > 0) {
                 updateItem(_id, count)
             }
-            setRedirect(true);
+            toast.success('Item added sucessfully !!!')
+            // window.location.reload(false)
         })
-    }
-
-    const shouldRedirect = redirect => {
-        if (redirect) {
-            return <Redirect to='/cart' />
-        }
     }
 
     const handleChanged = () => (e) => {
@@ -105,10 +100,11 @@ const Product = (props) => {
 
     const rrate = pro && pro.rating && Math.round(pro.rating)
 
+
     return (
         <div className='hwami'>
+            <ToastContainer />
             <div className="proccard">
-                {shouldRedirect(redirect)}
                 {
                     pro && pro.name && pro.url
                         ?
@@ -138,6 +134,15 @@ const Product = (props) => {
                                                     <option value='1500'>1500 ML</option>
                                                     <option value='2000'>2000 ML</option>
                                                 </select>
+                                            </div>
+                                            <div>
+                                                <span>{pro.productId}</span>
+                                                {
+                                                    pro.stock ?
+                                                        <p style={{fontSize:'17px'}}><i class="fa fa-check-circle" aria-hidden="true"></i> In Stock </p>
+                                                        :
+                                                        <p style={{color:'red', fontSize:'17px'}}><i class="fa fa-times-circle" aria-hidden="true"></i> Out Of Stock</p>
+                                                }
                                             </div>
                                             <div className="proccard6">
                                                 <span>No of Items</span>

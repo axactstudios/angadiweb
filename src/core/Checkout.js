@@ -178,7 +178,7 @@ const Checkout = ({ dm }) => {
   const orderrrr = () => {
     // https://paytab.herokuapp.com/pay
     axios
-      .post("https://paytab.herokuapp.com/pay", {
+      .post("http://localhost:5000/pay", {
         Items: dis,
         Qty: qty,
         Price: pri,
@@ -186,10 +186,12 @@ const Checkout = ({ dm }) => {
         GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
         Status: 'Order Placed',
         Type: 'Delivery',
+        DeliveryDate: '45',
+        DeliveryTime: '55',
         UserID: isAuth().id,
         Notes: data.customMessage,
         Address: data.address,
-        Phone: data.phone
+        orderid: 'AIIFJKKR',
       })
       .then(res => {
         console.log(res.data)

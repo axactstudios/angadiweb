@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
-import { itemTotal } from '../helpers/CartHelper'
 import * as firebase from 'firebase'
 import { Container, Form, Col, Row } from 'react-bootstrap';
 
@@ -192,7 +191,7 @@ const Menu = ({ history }) => {
                             </Fragment>
                         }
 
-                        <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart<sup>{itemTotal()}</sup></li></Link>
+                        <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li></Link>
 
                         <Container fluid className='titeel'>
                             <Row>

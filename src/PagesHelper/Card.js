@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/pgcard.css'
 import { addItem, updateItem } from '../helpers/CartHelper'
-import { Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Modal, OverlayTrigger, Tooltip, Button, Container, Row, Col, Carousel } from 'react-bootstrap'
 import StarRatings from 'react-star-ratings';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Card = ({ product }) => {
-    const [redirect, setRedirect] = useState(false)
     const [count, setCount] = useState(0);
     const [quan, setquan] = useState(500);
     const [priccce, setpriccce] = useState(0)
@@ -52,18 +52,13 @@ const Card = ({ product }) => {
     }
 
     const addToCart = async () => {
-        addItem(pirro, () => {
+        await addItem(pirro, () => {
             if (count > 0) {
                 updateItem(product._id, count)
+                toast.success('Item added sucessfully !!!')
             }
-            setRedirect(true);
         })
-    }
-
-    const shouldRedirect = redirect => {
-        if (redirect) {
-            return <Redirect to='/cart' />
-        }
+        // window.location.reload(false)
     }
 
     const handleChanged = () => (e) => {
@@ -121,12 +116,12 @@ const Card = ({ product }) => {
                                     <h5>{product.data.name}</h5>
                                     <h6>{props.products.data.category}</h6>
                                     <p>
-                                    <StarRatings
-                                        rating={rrate}
-                                        starDimension="15px"
-                                        starSpacing="5px"
-                                        starRatedColor="rgb(255,176,0)"
-                                    /></p>
+                                        <StarRatings
+                                            rating={rrate}
+                                            starDimension="15px"
+                                            starSpacing="5px"
+                                            starRatedColor="rgb(255,176,0)"
+                                        /></p>
                                     <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
                                     <p>{product.data.description.substring(0, 250)}</p>
                                     <button onClick={addToCart}>Add To Cart</button>
@@ -144,7 +139,7 @@ const Card = ({ product }) => {
 
     return (
         <div className="csk">
-            {shouldRedirect(redirect)}
+            <ToastContainer />
             <div className="csk1">
                 <div className='chiiki'>
                     <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Quick View !</Tooltip>}>
@@ -188,5 +183,3 @@ const Card = ({ product }) => {
 };
 
 export default Card;
-
-// <li>rating: {product.data.rating}</li>
