@@ -3,19 +3,27 @@ import * as firebase from 'firebase'
 import Card from '../Csshelper/Ordercard'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import { Form } from 'react-bootstrap'
+import { toast, ToastContainer } from 'react-toastify';
 
 const Getorder = () => {
     const [dish, setDish] = useState([])
     const db = firebase.firestore()
-
-    useEffect(async () => {
+    const [values, setValues] = useState({
+        name: ''
+    })
+    const newOrderr = () => {
         setDish([])
-        await db.collection('Orders').orderBy("TimeStamp", "desc").get()
+        db.collection('Orders').orderBy("TimeStamp", "desc").get()
             .then(res => {
                 res.forEach((doc) => {
                     setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
                 })
             })
+    }
+
+    useEffect(() => {
+        newOrderr()
     }, [])
 
     useEffect(() => {
@@ -60,9 +68,26 @@ const Getorder = () => {
             })
     }
 
+    const handleChange = name => (e) => {
+        setValues({ ...values, [name]: e.target.value })
+    };
+
+    const getspecific = () => {
+        setDish([])
+        db.collection('Orders').doc(`${values.name}`).get()
+            .then(res => {
+                if (res.data()) {
+                    setDish(dish => [...dish, { data: res.data(), _id: res.id }])
+                } else {
+                    newOrderr()
+                    toast.error('No Order Found !!!')
+                }
+            })
+    }
 
     return (
         <div>
+            <ToastContainer />
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
@@ -98,18 +123,26 @@ const Getorder = () => {
             </div>
 
             <div className='content1'>
+                <button onClick={newOrderr}>New Order</button>
                 <button onClick={checkDeliverd}>Order Delivered</button>
                 <button onClick={CheckDeliveryType}>In Route</button>
                 <button onClick={ActiveOrder}>Awaiting Confirmation</button>
-                <h3>All Order Ordered by New Arrivals</h3>
+                <Form.Group>
+                    <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
+                </Form.Group>
+                <div className="adpor3">
+                    <button onClick={getspecific}>Search</button>
+                </div>
+
+                <h3>All Orders</h3>
                 <div className='ordme'>
-                {
-                    dish && dish.map((d, i) => (
-                        <div key={i}>
-                            <Card product={d} />
-                        </div>
-                    ))
-                }
+                    {
+                        dish && dish.map((d, i) => (
+                            <div key={i}>
+                                <Card product={d} />
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>
