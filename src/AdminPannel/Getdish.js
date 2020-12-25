@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import Card from '../Csshelper/Dishcard'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { Form } from 'react-bootstrap'
-<<<<<<< HEAD
-import { Col, Container, Row } from 'react-bootstrap'
-=======
-import { Col, Container, Row, Carousel } from 'react-bootstrap'
 import OrderTable from './OrderTable';
 import Switch from '@material-ui/core/Switch'
 
 const columns = [
-  { id: 'name', label: 'Name' },
-  { id: 'url', label: "", format: (value) => <img src={value} width="50px" heigh="50px" />},
-  { id: 'category', label: 'Category' },
-  { id: 'iPrice', label: 'Price' },
-  { id: 'special', label: 'Special', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
-  { id: 'stock', label: 'Available', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
-  { id: 'top', label: 'Top', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
-  { id: 'rating', label: 'Rating' },
+    { id: 'name', label: 'Name' },
+    { id: 'url', label: "", format: (value) => <img src={value} width="50px" heigh="50px" /> },
+    { id: 'category', label: 'Category' },
+    { id: 'iPrice', label: 'Price' },
+    { id: 'special', label: 'Special', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+    { id: 'stock', label: 'Available', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+    { id: 'top', label: 'Top', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+    { id: 'rating', label: 'Rating' },
 ];
->>>>>>> a9f57e7611e66b7cdb751d640f6b3fd580e0d6a3
 
 const Getcategory = () => {
     const [dish, setDish] = useState([])
@@ -86,23 +80,15 @@ const Getcategory = () => {
     }
 
     const handleChange = name => (e) => {
-        switch (name) {
-            case 'image':
-                const phooto = e.target.files[0];
-                setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
-                break;
-            default:
-                setValues({ ...values, [name]: e.target.value })
-                break;
-        }
+        setValues({ ...values, [name]: e.target.value })
     };
 
     return (
         <div>
-          <div className="admin-panel-header">
-              <h5>Angadi.ae</h5>
-              <h2>Admin Panel</h2>
-              <button><i class="fa fa-power-off"/>  Logout</button>
+            <div className="admin-panel-header">
+                <h5>Angadi.ae</h5>
+                <h2>Admin Panel</h2>
+                <button><i class="fa fa-power-off" />  Logout</button>
             </div>
             <div class="mobile_nav">
                 <div class="nav_bar">
@@ -110,7 +96,7 @@ const Getcategory = () => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
                     <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
                     <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
                     <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
@@ -128,14 +114,14 @@ const Getcategory = () => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
+                <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
@@ -157,13 +143,13 @@ const Getcategory = () => {
                         <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
                     </div>
                 </div>
-                
+
                 {
-                  resu.length == 0 ?
+                    resu.length == 0 ?
 
-                  <OrderTable details={dish} columns={columns} /> :
+                        <OrderTable details={dish} columns={columns} /> :
 
-                  <OrderTable details={resu} columns={columns} />
+                        <OrderTable details={resu} columns={columns} />
                 }
 
             </div>
