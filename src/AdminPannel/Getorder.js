@@ -22,9 +22,22 @@ const Getorder = () => {
             })
     }
 
-    useEffect(() => {
-        newOrderr()
+    useEffect(async () => {
+        await newOrderr()
+        db.collection('Orders')
+            .onSnapshot(res => {
+                let x = 0
+                res.forEach((doc) => {
+                    x += 1
+                })
+                if (x > dish.length) {
+                    toast.success('new order!!!')
+                } if (x == dish.length) {
+                    toast.success('order status changed')
+                }
+            })
     }, [])
+
 
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -73,16 +86,20 @@ const Getorder = () => {
     };
 
     const getspecific = () => {
-        setDish([])
-        db.collection('Orders').doc(`${values.name}`).get()
-            .then(res => {
-                if (res.data()) {
-                    setDish(dish => [...dish, { data: res.data(), _id: res.id }])
-                } else {
-                    newOrderr()
-                    toast.error('No Order Found !!!')
-                }
-            })
+        if(values.name){
+            setDish([])
+            db.collection('Orders').doc(`${values.name}`).get()
+                .then(res => {
+                    if (res.data()) {
+                        setDish(dish => [...dish, { data: res.data(), _id: res.id }])
+                    } else {
+                        newOrderr()
+                        toast.error('No Order Found !!!')
+                    }
+                })
+        }else{
+            toast.error('Please Enter Name !!!')
+        }
     }
 
     return (
