@@ -29,6 +29,11 @@ const Getcategory = () => {
 
     return (
         <div>
+          <div className="admin-panel-header">
+              <h5>Angadi.ae</h5>
+              <h2>Admin Panel</h2>
+              <button><i class="fa fa-power-off"/>  Logout</button>
+            </div>
 
             <div class="mobile_nav">
                 <div class="nav_bar">

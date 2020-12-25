@@ -2,10 +2,27 @@
 *    Admin styling
 *    
 **/
+.admin-panel-header {
+  background-color: rgb(255, 176, 0);
+  color: #653602;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5em 2em 1em;
+  align-items: center;
+  font-weight: 900;
+}
+
+.admin-panel-header button {
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  font-size: 1.25em;
+}
+
 .sidebar{
     z-index: 1;
     top: -69.4px;
-    background: #2f323a;
+    background: #222;
     margin-top: 0px;
     padding-top: 30px;
     left: 0;
@@ -15,6 +32,7 @@
     transition-property: left;
     overflow-y: auto;
     position: sticky;
+    text-transform: capitalize;
   }
   
   .profile_info{
@@ -48,9 +66,15 @@
     transition: 0.5s;
     transition-property: background;
   }
+
+  .sidebar .admin1 i {
+    width: 50px;
+  }
   
   .sidebar .admin1:hover{
-    background: #19B3D3;
+    background-color: rgb(255, 176, 0);
+    color: #653602;
+    font-weight: bolder;
   }
   
   .sidebar i{

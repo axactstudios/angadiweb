@@ -3,6 +3,7 @@ import * as firebase from 'firebase'
 import Card from '../Csshelper/Ordercard'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import OrderTable from './OrderTable';
 import { Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -104,7 +105,16 @@ const Getorder = () => {
 
     return (
         <div>
-            <ToastContainer />
+          <ToastContainer />
+      
+          <div className="admin-panel-header">
+              <h5>Angadi.ae</h5>
+              <h2>Admin Panel</h2>
+              <button><i class="fa fa-power-off"/>  Logout</button>
+            </div>
+
+            
+
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
@@ -140,6 +150,9 @@ const Getorder = () => {
             </div>
 
             <div className='content1'>
+         
+                
+
                 <button onClick={newOrderr}>New Order</button>
                 <button onClick={checkDeliverd}>Order Delivered</button>
                 <button onClick={CheckDeliveryType}>In Route</button>
@@ -153,13 +166,7 @@ const Getorder = () => {
 
                 <h3>All Orders</h3>
                 <div className='ordme'>
-                    {
-                        dish && dish.map((d, i) => (
-                            <div key={i}>
-                                <Card product={d} />
-                            </div>
-                        ))
-                    }
+                    <OrderTable orderDetails={dish} />
                 </div>
             </div>
         </div>

@@ -43,7 +43,11 @@ const Getorderfromuser = ({ match }) => {
 
     return (
         <div>
-
+          <div className="admin-panel-header">
+              <h5>Angadi.ae</h5>
+              <h2>Admin Panel</h2>
+              <button><i class="fa fa-power-off"/>  Logout</button>
+            </div>
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
