@@ -1,0 +1,56 @@
+.admin-order-utility {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.admin-order-utility-button {
+  background-color: rgb(255, 176, 0);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  margin: 0 2em 1em 0.5em;
+  height: 40px;
+}
+
+.admin-order-utility-button:hover {
+  background-color: #653602;
+  transition: 0.2s all ease;
+}
+
+.edit-order-table, .edit-order-table th, .edit-order-table td {
+  border: 1px black solid;
+}
+
+.edit-order-table {
+  margin: 2.5em 0;
+}
+
+.edit-order-table th, .edit-order-table td {
+  padding: 1em;
+  width: 33%;
+}
+
+.edit-order-table th {
+  background-color: grey;
+}
+
+.edit-order-data {
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px grey solid;
+  background-color: #fafafa;
+}
+
+.edit-order-data h6 {
+  font-weight: bolder;
+  margin: 1em 0;
+}
+
+.dashboard-cards {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
