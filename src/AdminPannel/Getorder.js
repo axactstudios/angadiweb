@@ -6,6 +6,17 @@ import { isAuth } from '../helpers/auth'
 import OrderTable from './OrderTable';
 import { Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
+import '../Styles/adminPanel.css';
+
+const columns = [
+  { id: '_id', label: 'ID' },
+  { id: 'Status', label: 'Status' },
+  { id: 'UserID', label: 'userID' },
+  { id: 'Type', label: 'Type' },
+  { id: 'Address', label: 'Address' },
+  { id: 'GrandTotal', label: 'Total' },
+  { id: 'TimeStamp', label: 'Timestamp', format: (value) => { return new Date(value["seconds"]*1000).toString()} },
+];
 
 const Getorder = () => {
     const [dish, setDish] = useState([])
@@ -121,15 +132,15 @@ const Getorder = () => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -139,34 +150,36 @@ const Getorder = () => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
          
-                
-
-                <button onClick={newOrderr}>New Order</button>
-                <button onClick={checkDeliverd}>Order Delivered</button>
-                <button onClick={CheckDeliveryType}>In Route</button>
-                <button onClick={ActiveOrder}>Awaiting Confirmation</button>
-                <Form.Group>
-                    <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
-                </Form.Group>
-                <div className="adpor3">
-                    <button onClick={getspecific}>Search</button>
+                <div className="admin-order-utility">
+                  <div>
+                    <button className="admin-order-utility-button" onClick={newOrderr}>New Order</button>
+                    <button className="admin-order-utility-button" onClick={checkDeliverd}>Order Delivered</button>
+                    <button className="admin-order-utility-button" onClick={CheckDeliveryType}>In Route</button>
+                    <button className="admin-order-utility-button" onClick={ActiveOrder}>Awaiting Confirmation</button>
+                  </div>
+                  <div style={{display:"inline-flex"}}>
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
+                    </Form.Group>
+                    <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
+                  </div>
                 </div>
 
-                <h3>All Orders</h3>
+                <h3 style={{fontWeight: "bolder", margin: "1em 0"}}>All Orders</h3>
                 <div className='ordme'>
-                    <OrderTable orderDetails={dish} />
+                    <OrderTable details={dish} columns={columns} />
                 </div>
             </div>
         </div>

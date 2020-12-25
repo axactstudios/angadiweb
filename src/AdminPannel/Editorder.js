@@ -3,6 +3,8 @@ import * as firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
+import '../Styles/adminPanel.css';
+import {Form} from 'react-bootstrap'
 
 const Editorder = ({ match }) => {
     const [values, setValues] = useState({})
@@ -64,15 +66,15 @@ const Editorder = ({ match }) => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -82,47 +84,72 @@ const Editorder = ({ match }) => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
                 {
                     values &&
                     <div>
-                        <input value={values.Status} />
-                        <select onChange={(e) => { setStatus(e.target.value) }}>
+                      <div style={{display: "flex", justifyContent: "center", margin: "1em 0"}}>
+                        <Form.Control type="text" value={values.Status} style={{width: "400px"}}/>
+                        <select className="admin-order-utility-button" onChange={(e) => { setStatus(e.target.value) }}>
                             <option>Please Select</option>
                             <option value={'Awaiting Confirmation'}>Processing</option>
                             <option value={'In Route'}>On The Way</option>
                             <option value={'Order Delivered'}>Order Delivered</option>
                             <option value={'Cancelled'}>Cancelled</option>
                         </select>
-                        <div>Address - {values.Address}</div>
-                        <div>GrandTotal -{values.GrandTotal}</div>
-                        <div>Status -{values.Status}</div>
-                        <div>Type -{values.Type}</div>
-                        <div>UserID -{values.UserID}</div>
-                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                            <div>Dishes : {values.Items && values.Items.map((d) => (
+                        <button className="admin-order-utility-button" onClick={handleSubmit}>Change Status</button>
+                      </div>
+                        <table style={{width: "100%"}} className="edit-order-table">
+                          <tr>
+                            <th><i class="fa fa-tag" /> Order Id</th>
+                            <th><i class="fa fa-spinner" /> Status</th>
+                            <th><i class="fa fa-clock-o" /> Delivery Time</th>
+                          </tr>
+                          <tr>
+                            <td>{_id}</td>
+                            <td>{values.Status}</td>
+                            <td>{values.DeliveryTime}</td>
+                          </tr>
+                          <tr>
+                            <th><i class="fa fa-map-marker" /> Deliver to</th>
+                            <th><i class="fa fa-taxi" /> Type</th>
+                            <th><i class="fa fa-file-o" /> Grand Total</th>
+                          </tr>
+                          <tr>
+                            <td>{values.Address}</td>
+                            <td>{values.Type}</td>
+                            <td>{values.GrandTotal}</td>
+                          </tr>
+                        </table>
+                        <div style={{fontWeight: "bolder", margin: "1em 0"}}>UserID -{values.UserID}</div>
+                        <div className="edit-order-data">
+                            <div><h6>Dishes</h6> {values.Items && values.Items.map((d) => (
                                 <p>{d}</p>
-                            ))}</div>
-                            <div>Quantity : {values.Qty && values.Qty.map((d) => (
+                            ))}
+                            <p>Tax</p>
+                            </div>
+                            <div><h6>Quantity</h6> {values.Qty && values.Qty.map((d) => (
                                 <p>{d}</p>
-                            ))}</div>
-                            <div>Price : {values.Price && values.Price.map((d) => (
+                            ))}
+                            <p>@ 5%</p>
+                            </div>
+                            <div><h6>Price</h6> {values.Price && values.Price.map((d) => (
                                 <p>{d}</p>
-                            ))}</div>
+                            ))}
+                            <p>{(values.GrandTotal * 0.05).toFixed(2)}</p>
+                            </div> 
                         </div>
-                        <div>OrderId -{_id}</div>
-                        <div>{values.DeliveryTime}</div>
-                        <button onClick={handleSubmit}>Change Status</button>
+                        
                     </div>
                 }
             </div>

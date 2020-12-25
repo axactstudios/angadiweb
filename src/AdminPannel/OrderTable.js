@@ -9,16 +9,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
-const columns = [
-  { id: '_id', label: 'ID', minWidth: 100 },
-  { id: 'Status', label: 'Status', minWidth: 100 },
-  { id: 'UserID', label: 'userID', minWidth: 100 },
-  { id: 'Type', label: 'Type', minWidth: 100 },
-  { id: 'Address', label: 'Address', minWidth: 100 },
-  { id: 'GrandTotal', label: 'Total', minWidth: 100 },
-  { id: 'TimeStamp', label: 'Timestamp', minWidth: 100, format: (value) => { return new Date(value*1000).toString()} },
-];
-
 const useStyles = makeStyles({
   root: {
     width: '100%',
@@ -32,12 +22,12 @@ const useStyles = makeStyles({
 });
 
 const OrderTable = (props) => {
-  console.log(props.orderDetails);
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const orders = props.orderDetails;
+  const orders = props.details;
+  const columns = props.columns
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -78,7 +68,7 @@ const OrderTable = (props) => {
                     }
                     return (
                       <TableCell key={column.id} align={column.align}>
-                        {column.format ? column.format(value["seconds"]) : value}
+                        {column.format ? column.format(value) : value}
                       </TableCell>
                     );
                   })}
@@ -89,7 +79,7 @@ const OrderTable = (props) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 15, 20]}
+        rowsPerPageOptions={[10, 20]}
         component="div"
         count={orders.length}
         rowsPerPage={rowsPerPage}

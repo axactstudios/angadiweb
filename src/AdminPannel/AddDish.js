@@ -145,15 +145,15 @@ const AddDish = () => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -163,14 +163,14 @@ const AddDish = () => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
