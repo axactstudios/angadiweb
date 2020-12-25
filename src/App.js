@@ -18,6 +18,7 @@ import Editoffer from './AdminPannel/Editoffer'
 import Getuser from './AdminPannel/Getuser';
 import Getorderfromuser from './AdminPannel/Getorderfromuser'
 import Adminpannel from './User/AdminDashboard';
+import EditInventary from './AdminPannel/EditInventary'
 
 import Home from './core/Home'
 import ErrorPage from './core/Error'
@@ -68,6 +69,7 @@ const App = () => {
             <AdminRoute path='/get/users' exact component={Getuser} />
             <AdminRoute path='/orders/from/user/:userId' exact component={Getorderfromuser} />
             <AdminRoute path='/admin/dashboard' exact component={Adminpannel} />
+            <AdminRoute path='/edit/inventary' exact component={EditInventary} />
 
             <PrivateRoute exact path='/user/dashboard' component={Userdashboard()} />
             <PrivateRoute exact path='/user/dashboard/mycart' component={Userdashboard(Cart, "My Cart")} />

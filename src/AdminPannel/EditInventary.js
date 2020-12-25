@@ -6,7 +6,8 @@ import { isAuth } from '../helpers/auth'
 import { Form } from 'react-bootstrap'
 import { Col, Container, Row } from 'react-bootstrap'
 
-const Getcategory = () => {
+const EditInventary = () => {
+
     const [dish, setDish] = useState([])
     const [resu, setResh] = useState([])
     const [cat, setCat] = useState([])
@@ -80,19 +81,38 @@ const Getcategory = () => {
         }
     };
 
+
     return (
         <div>
-          <div className="admin-panel-header">
-              <h5>Angadi.ae</h5>
-              <h2>Admin Panel</h2>
-              <button><i class="fa fa-power-off"/>  Logout</button>
-            </div>
-            <div class="mobile_nav">
-                <div class="nav_bar">
-                    <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
-                    <i class="fa fa-bars nav_btn"></i>
+            <div>
+                <div className="admin-panel-header">
+                    <h5>Angadi.ae</h5>
+                    <h2>Admin Panel</h2>
+                    <button><i class="fa fa-power-off" />  Logout</button>
                 </div>
-                <div class="mobile_nav_items">
+                <div class="mobile_nav">
+                    <div class="nav_bar">
+                        <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
+                        <i class="fa fa-bars nav_btn"></i>
+                    </div>
+                    <div class="mobile_nav_items">
+                        <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                        <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
+                        <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
+                        <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
+                        <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
+                        <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
+                        <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
+                        <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
+                        <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="profile_info">
+                        <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="profile_image" alt="" />
+                        <h4>{isAuth().Name}</h4>
+                    </div>
                     <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
                     <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
                     <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
@@ -103,81 +123,58 @@ const Getcategory = () => {
                     <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
                     <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
                 </div>
-            </div>
 
-            <div class="sidebar">
-                <div class="profile_info">
-                    <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="profile_image" alt="" />
-                    <h4>{isAuth().Name}</h4>
-                </div>
-                <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
-            </div>
-
-            <div className='content1'>
-                <div className="adpor">
-                    <Form.Group className="adpor2">
-                        <select onChange={handleChange('category')} >
-                            <option>Choose Category</option>1
-                            {cat.map((c, i) =>
-                                (<option key={i} value={c.data.catName}>
-                                    {c.data.catName}
-                                </option>)
-                            )}
-                        </select>
-                    </Form.Group>
-                    <Form.Group className="adpor1">
-                        <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
-                    </Form.Group>
-                    <div className="adpor3">
-                        <button onClick={getspecific}>Search</button>
+                <div className='content1'>
+                    <div className="adpor">
+                        <Form.Group className="adpor2">
+                            <select onChange={handleChange('category')} >
+                                <option>Choose Category</option>1
+                          {cat.map((c, i) =>
+                                    (<option key={i} value={c.data.catName}>
+                                        {c.data.catName}
+                                    </option>)
+                                )}
+                            </select>
+                        </Form.Group>
+                        <Form.Group className="adpor1">
+                            <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
+                        </Form.Group>
+                        <div className="adpor3">
+                            <button onClick={getspecific}>Search</button>
+                        </div>
                     </div>
-                    <Link to='/edit/inventary'>Edit Inventary</Link>
-                </div>
-                <div>
-                    {resu.length == 0 ?
-                        <Container fluid>
-                            <h2 style={{ textAlign: 'center' }}>Total {dish.length} Products</h2>
-                            <Row>
+                    <div>
+                        {resu.length == 0 ?
+                            <Container fluid>
+                                <h2 style={{ textAlign: 'center' }}>Total {dish.length} Products</h2>
                                 {
                                     dish && dish.map((d, k) => (
-                                        <Col lg={6} xl={3} key={k} sm={6} xs={6} className="homey1">
-                                            <Card product={d} />
-                                        </Col>
+                                        <div>
+                                            <p>{d.data.name} <b>{d._id}</b> <b>Rs {d.data.price}</b> {d.data.stock ? <button>Change to Out of stock</button> : <button>Change to In stock</button>}</p>  <br />
+                                        </div>
                                     ))
                                 }
-                            </Row>
-                        </Container>
-                        :
-                        <div>
-                            <h4>{resu.length} result found</h4>
-                            <Container fluid>
-                                <Row>
+                            </Container>
+                            :
+                            <div>
+                                <h4>{resu.length} result found</h4>
+                                <Container fluid>
                                     {
                                         resu && resu.map((d, k) => (
-                                            <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
-                                                <Card product={d} />
-                                            </Col>
+                                            <div>{d.name}</div>
                                         ))
                                     }
-                                </Row>
-                            </Container>
+                                </Container>
+                            </div>
+                        }
+                        <div>
                         </div>
-                    }
-                    <div>
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
 
-
-export default Getcategory;
+export default EditInventary;
