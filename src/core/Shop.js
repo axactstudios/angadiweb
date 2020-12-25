@@ -27,7 +27,7 @@ const Shop = (props) => {
     useEffect(() => {
         setCat([])
         setSpecial([])
-        db.collection('Dishes').where("special", "==", true).get()
+        db.collection('Dishes').where("special", "==", true).limit(5).get()
             .then(res => {
                 res.forEach((doc) => {
                     setSpecial(dish => [...dish, { data: doc.data(), _id: doc.id }])

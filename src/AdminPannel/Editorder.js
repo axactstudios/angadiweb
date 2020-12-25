@@ -99,8 +99,8 @@ const Editorder = ({ match }) => {
                         <input value={values.Status} />
                         <select onChange={(e) => { setStatus(e.target.value) }}>
                             <option>Please Select</option>
-                            <option value={'Processing'}>Processing</option>
-                            <option value={'On Way'}>On The Way</option>
+                            <option value={'Awaiting Confirmation'}>Processing</option>
+                            <option value={'In Route'}>On The Way</option>
                             <option value={'Order Delivered'}>Order Delivered</option>
                             <option value={'Cancelled'}>Cancelled</option>
                         </select>

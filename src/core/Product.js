@@ -21,6 +21,7 @@ const Product = (props) => {
     const [resh, setResh] = useState([])
     const [priccce, setpriccce] = useState(0)
     const [fakeprice, setfakeprice] = useState(0)
+    const [revi, setRevi] = useState([])
     const [pirro, setpiroo] = useState({
         category: '',
         iPrice: '',
@@ -47,7 +48,13 @@ const Product = (props) => {
                     setSpecial(dish => [...dish, { data: doc.data(), _id: doc.id }])
                 })
             })
-
+        setRevi([])
+        db.collection('Reviews').where('productId', '==', _id).limit(3).get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setRevi(rev => [...rev, { data: doc.data(), _id: doc.id }])
+                })
+            })
     }, [_id])
 
     useEffect(async () => {
@@ -139,9 +146,9 @@ const Product = (props) => {
                                                 <span>{pro.productId}</span>
                                                 {
                                                     pro.stock ?
-                                                        <p style={{fontSize:'17px'}}><i class="fa fa-check-circle" aria-hidden="true"></i> In Stock </p>
+                                                        <p style={{ fontSize: '17px' }}><i class="fa fa-check-circle" aria-hidden="true"></i> In Stock </p>
                                                         :
-                                                        <p style={{color:'red', fontSize:'17px'}}><i class="fa fa-times-circle" aria-hidden="true"></i> Out Of Stock</p>
+                                                        <p style={{ color: 'red', fontSize: '17px' }}><i class="fa fa-times-circle" aria-hidden="true"></i> Out Of Stock</p>
                                                 }
                                             </div>
                                             <div className="proccard6">
@@ -193,6 +200,29 @@ const Product = (props) => {
                                     ))
                                 }
                             </Row>
+                            <div className='rate-reiview'>
+                                <div className='rate-reivieww'>
+                                    <div><h4>Ratings & Reviews <span>{pro && pro.rating} <i class="fa fa-star" aria-hidden="true"></i></span></h4></div>
+                                    <div style={{ color: 'gray' }}> {revi.length} rating & reviews</div>
+                                </div>
+                                {
+
+                                    revi.map((o, p) => (
+                                        <div className='rate-reiview1'>
+                                            <div className='rate-reiview2'>
+                                                <span>{o.data.rating}<i class="fa fa-star" aria-hidden="true"></i></span>
+                                                {o.data.details}
+                                            </div>
+                                            <div className='rate-reiview3'>
+                                                <div style={{ color: 'gray', marginTop: '4px' }}><img src={`${o.data.userImage}`} alt='no image' /> {o.data.userName}</div>
+                                                <div>
+                                                    <p style={{ color: 'blue', marginTop:'5.2px' }}><i class="fa fa-check-circle" aria-hidden="true"></i> Certifield Buyer</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </Container>
                         <div className='cnpp ffdfd5'>
                             <h5>Special Products</h5>
@@ -212,7 +242,6 @@ const Product = (props) => {
                                 ))
                             }
                         </div>
-
                     </div>
                 </div>
             </div>
