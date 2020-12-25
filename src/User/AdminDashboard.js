@@ -3,6 +3,22 @@ import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth';
 import * as firebase from 'firebase'
 import '../Styles/adminstyle.css'
+import '../Styles/adminPanel.css'
+import Card from 'react-bootstrap/Card'
+
+const InfoCard = (props) => {
+  return (
+    <div style={{margin: "1em", width: "200px"}}>
+      <Card>
+        <Card.Header>{props.head}</Card.Header>
+        <Card.Body>
+          <Card.Title style={{fontWeight: "bolder", fontSize: "2em"}}>{props.info}</Card.Title>
+          <Card.Text>{props.desc}</Card.Text>
+        </Card.Body>
+      </Card>
+    </div>
+  )
+}
 
 const AdminDashboard = () => {
 
@@ -28,8 +44,8 @@ const AdminDashboard = () => {
                     x += parseFloat(doc.data().GrandTotal)
                     y += 1
                 })
-                setavgbasketval(x / y)
-                setTotalrevanue(x)
+                setavgbasketval((x / y).toFixed(2))
+                setTotalrevanue((x).toFixed(2))
                 setOrder(y)
             })
 
@@ -41,7 +57,7 @@ const AdminDashboard = () => {
                     x += parseFloat(doc.data().rating)
                     y += 1
                 })
-                setAvgrating(x / y)
+                setAvgrating((x / y).toFixed(2))
             })
     })
 
@@ -87,11 +103,14 @@ const AdminDashboard = () => {
             </div>
 
             <div className='content1'>
-                Hello Admin
-                <h2> Total Revanue - Rs {totalrevanue}</h2>
-                <h2> Average Rating - {avgrat}</h2>
-                <h2> Average Basket - {avgbasket}</h2>
-                <h2> Total orders - {totalorder}</h2>
+                <h4 style={{fontWeight: "bold", margin: "1em 0"}}>Hello Admin</h4>
+
+                <div className="dashboard-cards">
+                  <InfoCard head="Total Revenue" info={totalrevanue} desc="Rupees" />
+                  <InfoCard head="Average Rating" info={avgrat} desc="Out of 5" />
+                  <InfoCard head="Average Basket" info={avgbasket} desc="per order" />
+                  <InfoCard head="Total Orders" info={totalorder} desc="Orders" />
+                </div>
             </div>
         </div>
     );

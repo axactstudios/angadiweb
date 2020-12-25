@@ -5,6 +5,19 @@ import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { Form } from 'react-bootstrap'
 import { Col, Container, Row, Carousel } from 'react-bootstrap'
+import OrderTable from './OrderTable';
+import Switch from '@material-ui/core/Switch'
+
+const columns = [
+  { id: 'name', label: 'Name' },
+  { id: 'url', label: "", format: (value) => <img src={value} width="50px" heigh="50px" />},
+  { id: 'category', label: 'Category' },
+  { id: 'iPrice', label: 'Price' },
+  { id: 'special', label: 'Special', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+  { id: 'stock', label: 'Available', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+  { id: 'top', label: 'Top', format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+  { id: 'rating', label: 'Rating' },
+];
 
 const Getcategory = () => {
     const [dish, setDish] = useState([])
@@ -93,15 +106,15 @@ const Getcategory = () => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -111,14 +124,14 @@ const Getcategory = () => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
@@ -137,42 +150,18 @@ const Getcategory = () => {
                         <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
                     </Form.Group>
                     <div className="adpor3">
-                        <button onClick={getspecific}>Search</button>
+                        <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
                     </div>
                 </div>
-                <div>
-                    {resu.length == 0 ?
-                        <Container fluid>
-                            <h2 style={{ textAlign: 'center' }}>Total {dish.length} Products</h2>
-                            <Row>
-                                {
-                                    dish && dish.map((d, k) => (
-                                        <Col lg={6} xl={3} key={k} sm={6} xs={6} className="homey1">
-                                            <Card product={d} />
-                                        </Col>
-                                    ))
-                                }
-                            </Row>
-                        </Container>
-                        :
-                        <div>
-                            <h4>{resu.length} result found</h4>
-                            <Container fluid>
-                                <Row>
-                                    {
-                                        resu && resu.map((d, k) => (
-                                            <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
-                                                <Card product={d} />
-                                            </Col>
-                                        ))
-                                    }
-                                </Row>
-                            </Container>
-                        </div>
-                    }
-                    <div>
-                    </div>
-                </div>
+                
+                {
+                  resu.length == 0 ?
+
+                  <OrderTable details={dish} columns={columns} /> :
+
+                  <OrderTable details={resu} columns={columns} />
+                }
+
             </div>
         </div>
     );
