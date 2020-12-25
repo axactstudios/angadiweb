@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth';
+import * as firebase from 'firebase'
 import '../Styles/adminstyle.css'
 
 const AdminDashboard = () => {
+
+    const [totalrevanue, setTotalrevanue] = useState()
+    const db = firebase.firestore()
+    const [avgrat, setAvgrating] = useState()
+    const [avgbasket, setavgbasketval] = useState()
+    const [totalorder, setOrder] = useState()
 
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -12,6 +19,30 @@ const AdminDashboard = () => {
         hamburgerr.addEventListener("click", () => {
             navlinksss.classList.toggle("active");
         })
+
+        db.collection('Orders').get()
+            .then(res => {
+                let x = 0
+                let y = 0
+                res.forEach((doc) => {
+                    x += parseFloat(doc.data().GrandTotal)
+                    y += 1
+                })
+                setavgbasketval(x / y)
+                setTotalrevanue(x)
+                setOrder(y)
+            })
+
+        db.collection('Reviews').get()
+            .then(res => {
+                let x = 0
+                let y = 0
+                res.forEach((doc) => {
+                    x += parseFloat(doc.data().rating)
+                    y += 1
+                })
+                setAvgrating(x / y)
+            })
     })
 
     return (
@@ -52,6 +83,10 @@ const AdminDashboard = () => {
 
             <div className='content1'>
                 Hello Admin
+                <h2> Total Revanue - Rs {totalrevanue}</h2>
+                <h2> Average Rating - {avgrat}</h2>
+                <h2> Average Basket - {avgbasket}</h2>
+                <h2> Total orders - {totalorder}</h2>
             </div>
         </div>
     );

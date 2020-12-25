@@ -29,7 +29,7 @@ const Getorder = () => {
 
     const checkDeliverd = () => {
         setDish([])
-        db.collection('Orders').where("Status", "==", "Order Placed").get()
+        db.collection('Orders').where("Status", "==", "Order Delivered").get()
             .then(res => {
                 res.forEach((doc) => {
                     setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
@@ -40,7 +40,7 @@ const Getorder = () => {
 
     const CheckDeliveryType = () => {
         setDish([])
-        db.collection('Orders').where("Type", "==", "Delivery").get()
+        db.collection('Orders').where("Status", "==", "In Route").get()
             .then(res => {
                 res.forEach((doc) => {
                     setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
@@ -98,8 +98,8 @@ const Getorder = () => {
             </div>
 
             <div className='content1'>
-                <button onClick={checkDeliverd}>Order Placed</button>
-                <button onClick={CheckDeliveryType}>Order Type</button>
+                <button onClick={checkDeliverd}>Order Delivered</button>
+                <button onClick={CheckDeliveryType}>In Route</button>
                 <button onClick={ActiveOrder}>Awaiting Confirmation</button>
                 <h3>All Order Ordered by New Arrivals</h3>
                 <div className='ordme'>
