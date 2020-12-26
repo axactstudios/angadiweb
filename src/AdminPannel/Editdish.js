@@ -23,7 +23,8 @@ const Editdish = ({ match }) => {
         description: '',
         rating: '0',
         category: '',
-        sCat: ''
+        sCat: '',
+        stock: false
     })
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -39,7 +40,7 @@ const Editdish = ({ match }) => {
     const _id = match.params.dishname
 
     const { name, image, image1, image2, top, photo, iPrice, price
-        , special, sCat, description, category, photo2, photo1 } = values
+        , special, sCat, description, category, photo2, photo1, stock } = values
 
     useEffect(() => {
         store.collection('Dishes').doc(_id).get()
@@ -47,7 +48,7 @@ const Editdish = ({ match }) => {
                 setValues({
                     ...values, name: res.data().name, price: res.data().price, iPrice: res.data().iPrice, sCat: res.data().sCat,
                     description: res.data().description, photo: res.data().url, category: res.data().category,
-                    special: res.data().special, top: res.data().top, photo1: res.data().url2, photo2: res.data().url3
+                    special: res.data().special, top: res.data().top, photo1: res.data().url2, photo2: res.data().url3, stock: res.data().stock
                 })
             })
 
@@ -110,7 +111,8 @@ const Editdish = ({ match }) => {
                             description: description,
                             price: price,
                             category: category,
-                            sCat: sCat
+                            sCat: sCat,
+                            stock: stock
                         }).then(() => {
                             console.log('fuck offf')
                             toast.success('Dish edit successfully !!!')
@@ -143,7 +145,8 @@ const Editdish = ({ match }) => {
                                 description: description,
                                 price: price,
                                 category: category,
-                                sCat: sCat
+                                sCat: sCat,
+                                stock: stock
                             }).then(() => {
                                 console.log('fuck offf')
                                 toast.success('Dish edit successfully !!!')
@@ -176,7 +179,8 @@ const Editdish = ({ match }) => {
                                     description: description,
                                     price: price,
                                     category: category,
-                                    sCat: sCat
+                                    sCat: sCat,
+                                    stock: stock
                                 }).then(() => {
                                     console.log('fuck offf')
                                     toast.success('Dish edit successfully !!!')
@@ -195,7 +199,8 @@ const Editdish = ({ match }) => {
                         description: description,
                         price: price,
                         category: category,
-                        sCat: sCat
+                        sCat: sCat,
+                        stock: stock
                     }).then(() => {
                         console.log('fuck offf')
                         toast.success('Dish Update successfully')
@@ -222,15 +227,15 @@ const Editdish = ({ match }) => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                  <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                  <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                  <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                  <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                  <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                  <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                  <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                  <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                  <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -240,14 +245,14 @@ const Editdish = ({ match }) => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
@@ -290,6 +295,13 @@ const Editdish = ({ match }) => {
                             <option value={false}>No</option>
                             <option value={true}>Yes</option>
                         </select><br />
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Availability </Form.Label><br />
+                        {JSON.stringify(stock)} &nbsp;
+                        <select onChange={handleChange('stock')} >
+                            <option>Please Select</option>
+                            <option value={false}>No</option>
+                            <option value={true}>Yes</option>
+                        </select><br />
 
                         <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Edit Description</Form.Label>
                         <Form.Control type="text" placeholder="Description" onChange={handleChange('description')} value={description} />
@@ -314,7 +326,7 @@ const Editdish = ({ match }) => {
                 </Form>
                 <div className="edit-button-group">
                   <button onClick={handleSubmit}>Edit</button>
-                  <button style={{border: "1px solid tomato", color: "tomato"}} onClick={delCat}>Delete</button>
+                  <button id="edit-delete-button" onClick={delCat}>Delete</button>
                 </div>
             </div>
         </div>

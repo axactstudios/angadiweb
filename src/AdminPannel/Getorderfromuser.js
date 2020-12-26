@@ -3,6 +3,7 @@ import * as firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import Card from '../Csshelper/Ordercard'
+import '../Styles/adminPanel.css'
 
 const Getorderfromuser = ({ match }) => {
 
@@ -54,15 +55,15 @@ const Getorderfromuser = ({ match }) => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                  <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                  <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                  <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                  <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                  <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                  <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                  <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                  <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                  <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -72,26 +73,26 @@ const Getorderfromuser = ({ match }) => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
 
-                <div className='userdash'>
-                    <div className='userdash1'>
-                        <img src={user.pUrl} alt="user profile pic" />
+                <div className='userdash-orders'>
+                    <div className='userdash1-orders'>
+                        <img src={user.pUrl} alt="user profile pic" height="150px" width="150px" />
                     </div>
-                    <div className='userdash2'>
-                        <h5>{user.Name}</h5>
-                        <h4>{user.mail}</h4>
-                        <button onClick={getPro}> Get Orders</button>
+                    <div className='userdash2-orders'>
+                        <h4>{user.Name}</h4>
+                        <h6 style={{marginBottom: "1em"}}>{user.mail}</h6>
+                        <button className="admin-order-utility-button" onClick={getPro}>Get Orders</button>
                     </div>
                 </div>
                 <div>
@@ -101,7 +102,7 @@ const Getorderfromuser = ({ match }) => {
                             <div>{
                                 meko
                                     ?
-                                    <h2 style={{ textAlign: 'center' }}>No Order!!!</h2>
+                                    <h5 style={{ textAlign: 'center' }}>No Order!!!</h5>
                                     :
                                     <h5 style={{ textAlign: 'center' }}>Plese Check the order</h5>
                             }

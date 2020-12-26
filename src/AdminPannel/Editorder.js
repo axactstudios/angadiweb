@@ -111,9 +111,9 @@ const Editorder = ({ match }) => {
                       </div>
                         <table style={{width: "100%"}} className="edit-order-table">
                           <tr>
-                            <th><i class="fa fa-tag" /> Order Id</th>
-                            <th><i class="fa fa-spinner" /> Status</th>
-                            <th><i class="fa fa-clock-o" /> Delivery Time</th>
+                            <th><i class="fa fa-tag" /> &nbsp; Order Id</th>
+                            <th><i class="fa fa-spinner" /> &nbsp; Status</th>
+                            <th><i class="fa fa-clock-o" /> &nbsp; Delivery Time</th>
                           </tr>
                           <tr>
                             <td>{_id}</td>
@@ -121,9 +121,9 @@ const Editorder = ({ match }) => {
                             <td>{values.DeliveryTime}</td>
                           </tr>
                           <tr>
-                            <th><i class="fa fa-map-marker" /> Deliver to</th>
-                            <th><i class="fa fa-taxi" /> Type</th>
-                            <th><i class="fa fa-file-o" /> Grand Total</th>
+                            <th><i class="fa fa-map-marker" /> &nbsp; Deliver to</th>
+                            <th><i class="fa fa-taxi" /> &nbsp; Type</th>
+                            <th><i class="fa fa-file-o" /> &nbsp; Grand Total</th>
                           </tr>
                           <tr>
                             <td>{values.Address}</td>

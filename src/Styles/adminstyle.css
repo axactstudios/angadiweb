@@ -181,4 +181,9 @@
     .active{
       display: block;
     }
+    
+    .admin-panel-header {
+      position: relative;
+      top: 50px;
+    }
   }
