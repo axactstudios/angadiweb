@@ -3,6 +3,16 @@ import * as firebase from 'firebase'
 import Card from '../Csshelper/Card'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
+import OrderTable from './OrderTable';
+import Switch from '@material-ui/core/Switch';
+
+const columns = [
+  { id: 'imageURL', label: "Category", align: "center" },
+  { id: 'catName', label: 'Name', align: "center" },
+  { id: 'sCat', label: 'Sub-Category', align: "center" },
+  { id: 'liveImageURL', label: "Products", align: "center", format: (value) => <img src={value} height="70px" width="70px" /> },
+  { id: 'top', label: 'Top', align: "center", format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+];
 
 const Getcategory = () => {
     const [cat, setCat] = useState([])
@@ -41,15 +51,15 @@ const Getcategory = () => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                    <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                    <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                    <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                    <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                    <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                    <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                    <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                    <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                  <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                  <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                  <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                  <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                  <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                  <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                  <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                  <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                  <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -59,27 +69,19 @@ const Getcategory = () => {
                     <h4>{isAuth().Name}</h4>
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                <Link className="admin1" to='/get/orders'><i class="fa fa-desktop"></i>orders</Link>
-                <Link className="admin1" to='/get/dishes'><i class="fa fa-desktop"></i>dishes</Link>
-                <Link className="admin1" to='/get/category'><i class="fa fa-desktop"></i>category</Link>
-                <Link className="admin1" to='/get/offers'><i class="fa fa-desktop"></i>Offers</Link>
-                <Link className="admin1" to='/get/users'><i class="fa fa-desktop"></i>Users</Link>
-                <Link className="admin1" to='/create/category'><i class="fa fa-desktop"></i>add category</Link>
-                <Link className="admin1" to='/add/dish'><i class="fa fa-desktop"></i>add dish</Link>
-                <Link className="admin1" to='/add/offer'><i class="fa fa-desktop"></i>add offer</Link>
+                <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
             </div>
 
             <div className='content1'>
-            <h2 style={{textAlign:'center'}}>All Categories</h2>
-                <div className='cateegee'>
-                    {
-                        cat.map((d, k) => (
-                            <div key={k} >
-                                <Card product={d} />
-                            </div>
-                        ))
-                    }
-                </div>
+                <h2 style={{textAlign:'center', margin: "0.5em 0", fontWeight: "bold"}}>All Categories</h2>
+                <OrderTable details={cat} columns={columns} />
             </div>
         </div>
     );

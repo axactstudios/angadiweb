@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import '../Styles/adminPanel.css';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -57,20 +58,21 @@ const OrderTable = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {orders.map((order, index) => {
+            {orders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((order, index) => {
               return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                   {columns.map((column) => {
                     let value;
                     if (column.id == "_id") {
-                      value = <a href={`/edit/order/${order._id}`}>{order._id}</a>
+                      value = <Link to={`/edit/order/${order._id}`}>{order._id}</Link>
                     } else if (column.id == "name") {
-                      value = <a href={`/edit/dish/${order._id}`} style={{textDecoration: "none"}}><img src={order.data["url"]} width="50px" height="50px" /> &nbsp; {order.data["name"]}</a>
+                      value = <Link to={`/edit/dish/${order._id}`} style={{textDecoration: "none"}}><img src={order.data["url"]} width="50px" height="50px" /> &nbsp; {order.data["name"]}</Link>
                     } else if (column.id == "action") {
-                      value = <div className="edit-button-group">
-                                <a href={`/edit/dish/${order._id}`}><button>Edit</button></a>
-                                <button style={{border: "1px solid tomato", color: "tomato"}}>Delete</button>
-                              </div>
+                      value = <div className="edit-button-group"><Link to={`/edit/dish/${order._id}`}><button>Edit</button></Link></div>
+                    } else if (column.id == "imageURL") {
+                      value = <Link to={`/edit/category/${order._id}`}><img src={order.data["imageURL"]} height="70px" width="70px" /></Link>
+                    } else if (column.id == "id") {
+                      value = <Link to={`/orders/from/user/${order.data["id"]}`}>{order.data["id"]}</Link>
                     } else {
                       value = order.data[column.id];
                     }
@@ -87,7 +89,7 @@ const OrderTable = (props) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 20]}
+        rowsPerPageOptions={[5, 10, 20]}
         component="div"
         count={orders.length}
         rowsPerPage={rowsPerPage}

@@ -7,10 +7,10 @@ import OrderTable from './OrderTable';
 import Switch from '@material-ui/core/Switch'
 
 const columns = [
-  { id: 'name', label: <Form.Control placeholder="Search for Item" />, maxWidth: "40%" },
+  { id: 'name', label: "Item", maxWidth: "40%" },
   { id: 'category', label: 'Category', maxWidth: "20%" },
-  { id: 'iPrice', label: 'Price', maxWidth: "10%" },
-  { id: 'stock', label: 'Available', maxWidth: "10%", format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+  { id: 'iPrice', label: 'Price', align: "center", maxWidth: "10%" },
+  { id: 'stock', label: 'Available', align: "center", maxWidth: "10%", format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
   { id: 'action', label: 'Actions', align: "center"}
 ];
 

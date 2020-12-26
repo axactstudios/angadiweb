@@ -65,6 +65,26 @@
   width: 80px;
 }
 
+.edit-button-group {
+  margin: 1em;
+}
+
+.edit-button-group button:hover {
+  background-color: grey;
+  border: 1px solid grey;
+  color: white;
+}
+
+#edit-delete-button {
+  border: 1px solid tomato;
+  color: tomato;
+}
+
+#edit-delete-button:hover {
+  color: white;
+  background-color: tomato;
+}
+
 .edit-dish-form {
   display: flex;
   flex-wrap: wrap;
@@ -79,4 +99,20 @@
   height: 100px;
   width: 100px;
   margin: 2em auto;
+}
+
+.userdash-orders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em auto;
+}
+
+.userdash2-orders h6, .userdash2-orders h4 {
+  font-weight: bold;
+  margin: 10px;
+}
+
+.userdash2-orders {
+  margin-left: 4em;
 }
