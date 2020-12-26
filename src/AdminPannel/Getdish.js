@@ -94,7 +94,7 @@ const Getcategory = () => {
     }
 
     const columns = [
-        { id: 'name', label: <Form.Control placeholder="Search for Item" />, maxWidth: "40%" },
+        { id: 'name', label: "Item", maxWidth: "40%" },
         { id: 'category', label: 'Category', maxWidth: "20%" },
         { id: 'iPrice', label: 'Price', maxWidth: "10%" },
         //give argument on both changestocktrue and changestockflase function

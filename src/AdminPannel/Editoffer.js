@@ -143,28 +143,22 @@ const Editoffer = ({ match }) => {
                     <Form.Group>
                         <Form.Label>Add Title </Form.Label><br />
                         <Form.Control type="text" placeholder="Title" onChange={handleChange('title')} value={title} />
+                   
+                        <Form.Label>Add subtitle </Form.Label><br />
+                        <Form.Control type="text" placeholder="SubTitle" onChange={handleChange('subtitle')} value={subtitle} />
+                    
+                        <Form.Label>Add Percent off </Form.Label><br />
+                        <Form.Control type="text" placeholder="Percent Off" onChange={handleChange('percent')} value={percent} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label >Choose Images</Form.Label>
                         <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
-                    </Form.Group>
-                    <div>
                         <img src={photo} style={{ width: '110px' }} />
-                    </div>
-                    <Form.Group >
-                        <Form.Label>Add subtitle </Form.Label><br />
-                        <Form.Control type="text" placeholder="SubTitle" onChange={handleChange('subtitle')} value={subtitle} />
                     </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Add Percent off </Form.Label><br />
-                        <Form.Control type="text" placeholder="Percent Off" onChange={handleChange('percent')} value={percent} />
-                    </Form.Group>
-                    <div>
-                        <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handlesubmit}>
-                            Edit Offer
-                    </Button>
-                    </div>
                 </Form>
+                <div className="edit-button-group">
+                  <button onClick={handlesubmit}>Edit</button>
+                </div>
             </div>
         </div>
     );
