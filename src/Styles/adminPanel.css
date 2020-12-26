@@ -54,3 +54,29 @@
   flex-wrap: wrap;
   margin: 2em 0;
 }
+
+.edit-button-group button {
+  background-color: inherit;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  border: 1px solid grey;
+  color: grey;
+  border-radius: 2px;
+  width: 80px;
+}
+
+.edit-dish-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.edit-dish-form-input {
+  width: 40%;
+  margin: 1em;
+}
+
+.edit-dish-form-input img {
+  height: 100px;
+  width: 100px;
+  margin: 2em auto;
+}
