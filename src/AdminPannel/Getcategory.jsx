@@ -7,11 +7,10 @@ import OrderTable from './OrderTable';
 import Switch from '@material-ui/core/Switch';
 
 const columns = [
-  { id: 'imageURL', label: "Category", align: "center" },
-  { id: 'catName', label: 'Name', align: "center" },
-  { id: 'sCat', label: 'Sub-Category', align: "center" },
-  { id: 'liveImageURL', label: "Products", align: "center", format: (value) => <img src={value} height="70px" width="70px" /> },
-  { id: 'top', label: 'Top', align: "center", format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+  { id: 'imageURL', label: "Category", align: "center", format: (value) => <img src={value} height="70px" width="70px" /> },
+  { id: 'catName', label: 'Name' },
+  { id: 'sCat', label: 'Sub-Category' },
+  { id: 'editcat', label: 'Edit Category', align: "center", maxWidth: "20%" }
 ];
 
 const Getcategory = () => {

@@ -69,10 +69,10 @@ const OrderTable = (props) => {
                       value = <Link to={`/edit/dish/${order._id}`} style={{textDecoration: "none"}}><img src={order.data["url"]} width="50px" height="50px" /> &nbsp; {order.data["name"]}</Link>
                     } else if (column.id == "action") {
                       value = <div className="edit-button-group"><Link to={`/edit/dish/${order._id}`}><button>Edit</button></Link></div>
-                    } else if (column.id == "imageURL") {
-                      value = <Link to={`/edit/category/${order._id}`}><img src={order.data["imageURL"]} height="70px" width="70px" /></Link>
                     } else if (column.id == "id") {
                       value = <Link to={`/orders/from/user/${order.data["id"]}`}>{order.data["id"]}</Link>
+                    } else if (column.id == "editcat") {
+                      value = <div className="edit-button-group"><Link to={`/edit/category/${order._id}`}><button>Edit</button></Link></div>
                     } else {
                       value = order.data[column.id];
                     }
