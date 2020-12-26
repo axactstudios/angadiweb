@@ -19,6 +19,24 @@
   font-size: 1.25em;
 }
 
+@media screen and (max-width: 450px){
+  .admin-panel-header h2{
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .admin-panel-header h5{
+    font-size: 1em;
+  }
+  
+  .admin-panel-header button {
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    font-size: 1em;
+  } 
+}
+
 .sidebar{
     z-index: 1;
     top: -69.4px;
