@@ -5,14 +5,7 @@ import { isAuth } from '../helpers/auth'
 import { Form } from 'react-bootstrap'
 import OrderTable from './OrderTable';
 import Switch from '@material-ui/core/Switch'
-
-const columns = [
-  { id: 'name', label: <Form.Control placeholder="Search for Item" />, maxWidth: "40%" },
-  { id: 'category', label: 'Category', maxWidth: "20%" },
-  { id: 'iPrice', label: 'Price', maxWidth: "10%" },
-  { id: 'stock', label: 'Available', maxWidth: "10%", format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
-  { id: 'action', label: 'Actions', align: "center"}
-];
+import { toast, ToastContainer } from 'react-toastify'
 
 const Getcategory = () => {
     const [dish, setDish] = useState([])
@@ -80,8 +73,38 @@ const Getcategory = () => {
         setValues({ ...values, [name]: e.target.value })
     };
 
+    const changestocktrue = (a) => (e) => {
+        db.collection('Dishes').doc(a).update({
+            stock: true
+        }).then((res) => {
+            toast.success('Dish Update successfully')
+        }).catch((err) => {
+            toast.error('Something went wrong !!!')
+        })
+    }
+
+    const changestockfalse = (a) => (e) => {
+        db.collection('Dishes').doc(a).update({
+            stock: false
+        }).then((res) => {
+            toast.success('Dish Update successfully')
+        }).catch((err) => {
+            toast.error('Something went wrong !!!')
+        })
+    }
+
+    const columns = [
+        { id: 'name', label: <Form.Control placeholder="Search for Item" />, maxWidth: "40%" },
+        { id: 'category', label: 'Category', maxWidth: "20%" },
+        { id: 'iPrice', label: 'Price', maxWidth: "10%" },
+        //give argument on both changestocktrue and changestockflase function
+        { id: 'stock', label: 'Available', maxWidth: "10%", format: (value) => value ? <Switch onClick={changestockfalse('1aajyRTHpP39hjlA5hyY')} checked color="primary" /> : <Switch onClick={changestocktrue('1aajyRTHpP39hjlA5hyY')} color="primary" /> },
+        { id: 'action', label: 'Actions', align: "center" }
+    ];
+
     return (
         <div>
+            <ToastContainer />
             <div className="admin-panel-header">
                 <h5>Angadi.ae</h5>
                 <h2>Admin Panel</h2>
