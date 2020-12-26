@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
+import '../Styles/adminPanel.css'
 
 const Editdish = ({ match }) => {
 
@@ -250,38 +251,23 @@ const Editdish = ({ match }) => {
             </div>
 
             <div className='content1'>
-                <h2>Edit Dishes</h2>
-                <Form>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={name} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="sCat Name" onChange={handleChange('sCat')} value={sCat} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label >Choose Images</Form.Label>
-                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image')} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label >Choose Images</Form.Label>
-                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image1')} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label >Choose Images</Form.Label>
-                        <Form.Control type="file" name='image' accept='image/*' onChange={handleChange('image2')} />
-                    </Form.Group>
-                    <div>
-                        <img src={photo} style={{ height: '110px', width: '110px' }} />
-                    </div>
-                    <div>
-                        <img src={photo1} style={{ height: '110px', width: '110px' }} />
-                    </div>
-                    <div>
-                        <img src={photo2} style={{ height: '110px', width: '110px' }} />
-                    </div>
-                    <Form.Group >
-                        <Form.Label>Choose category</Form.Label><br />
-                        {category}
+                <h2 style={{fontWeight: "bold", margin: "0.5em 0"}}>Edit Dishes</h2>
+                <Form className="edit-dish-form">
+                    <Form.Group className="edit-dish-form-input">
+                        <Form.Label style={{fontWeight: "bold", margin: "0 0 0.5em 0"}}>Item</Form.Label>
+                        <Form.Control type="text" placeholder="Item" onChange={handleChange('name')} value={name} />
+                        
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Category</Form.Label>
+                        <Form.Control type="text" placeholder="Category" onChange={handleChange('sCat')} value={sCat} />
+                        
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Default Price</Form.Label>
+                        <Form.Control type="text" placeholder="iPrice" onChange={handleChange('iPrice')} value={iPrice} />
+                        
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Selling Price</Form.Label>
+                        <Form.Control type="text" placeholder="Price" onChange={handleChange('price')} value={price} />
+
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Choose category</Form.Label><br />
+                        {category} &nbsp;
                         <select onChange={handleChange('category')} >
                             <option>Please Select</option>
                             {cat && cat.map((c, i) =>
@@ -289,42 +275,47 @@ const Editdish = ({ match }) => {
                                     {c.catName}
                                 </option>)
                             )}
-                        </select>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Choose Top </Form.Label><br />
-                        {JSON.stringify(top)}
+                        </select>< br />
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Choose Top </Form.Label><br />
+                        {JSON.stringify(top)} &nbsp;
                         <select onChange={handleChange('top')} >
                             <option>Please Select</option>
                             <option value={false}>No</option>
                             <option value={true}>Yes</option>
-                        </select>
-                    </Form.Group>
-                    <Form.Group >
-                        <Form.Label>Choose special </Form.Label><br />
-                        {JSON.stringify(special)}
+                        </select>< br />
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Choose special </Form.Label><br />
+                        {JSON.stringify(special)} &nbsp;
                         <select onChange={handleChange('special')} >
                             <option>Please Select</option>
                             <option value={false}>No</option>
                             <option value={true}>Yes</option>
-                        </select>
-                    </Form.Group>
-                    <Form.Group>
+                        </select><br />
+
+                        <Form.Label style={{fontWeight: "bold", margin: "1em 0 0.5em 0"}}>Edit Description</Form.Label>
                         <Form.Control type="text" placeholder="Description" onChange={handleChange('description')} value={description} />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="Price" onChange={handleChange('price')} value={price} />
+                    <Form.Group className="edit-dish-form-input">
+                        <Form.File id="formcheck-api-custom" custom>
+                          <Form.File.Input onChange={handleChange('image')} accept='image/*' isValid />
+                          <Form.File.Label data-browse="Choose Image">Image #1</Form.File.Label>
+                        </Form.File>
+                        <img src={photo}/>
+                        <Form.File id="formcheck-api-custom" custom>
+                          <Form.File.Input onChange={handleChange('image1')} accept='image/*' isValid />
+                          <Form.File.Label data-browse="Choose Image">Image #2</Form.File.Label>
+                        </Form.File>
+                        <img src={photo1}/>
+                        <Form.File id="formcheck-api-custom" custom>
+                          <Form.File.Input onChange={handleChange('image2')} accept='image/*' isValid />
+                          <Form.File.Label data-browse="Choose Image">Image #3</Form.File.Label>
+                        </Form.File>
+                        <img src={photo2}/>
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="iPrice" onChange={handleChange('iPrice')} value={iPrice} />
-                    </Form.Group>
-                    <div>
-                        <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
-                            Edit Dish
-                        </Button>
-                    </div>
                 </Form>
-                <button onClick={delCat} >Delete</button>
+                <div className="edit-button-group">
+                  <button onClick={handleSubmit}>Edit</button>
+                  <button style={{border: "1px solid tomato", color: "tomato"}} onClick={delCat}>Delete</button>
+                </div>
             </div>
         </div>
     );

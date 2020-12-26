@@ -8,10 +8,10 @@ import Card from 'react-bootstrap/Card'
 
 const InfoCard = (props) => {
   return (
-    <div style={{margin: "1em", width: "200px"}}>
+    <div style={{margin: "1em", width: "250px"}}>
       <Card>
         <Card.Header>{props.head}</Card.Header>
-        <Card.Body>
+        <Card.Body style={{textAlign: "center"}}>
           <Card.Title style={{fontWeight: "bolder", fontSize: "2em"}}>{props.info}</Card.Title>
           <Card.Text>{props.desc}</Card.Text>
         </Card.Body>

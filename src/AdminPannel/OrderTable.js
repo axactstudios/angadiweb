@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import '../Styles/adminPanel.css';
 
 const useStyles = makeStyles({
   root: {
@@ -48,7 +49,7 @@ const OrderTable = (props) => {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
+                  style={{ width: column.maxWidth }}
                 >
                   {column.label}
                 </TableCell>
@@ -63,6 +64,13 @@ const OrderTable = (props) => {
                     let value;
                     if (column.id == "_id") {
                       value = <a href={`/edit/order/${order._id}`}>{order._id}</a>
+                    } else if (column.id == "name") {
+                      value = <a href={`/edit/dish/${order._id}`} style={{textDecoration: "none"}}><img src={order.data["url"]} width="50px" height="50px" /> &nbsp; {order.data["name"]}</a>
+                    } else if (column.id == "action") {
+                      value = <div className="edit-button-group">
+                                <a href={`/edit/dish/${order._id}`}><button>Edit</button></a>
+                                <button style={{border: "1px solid tomato", color: "tomato"}}>Delete</button>
+                              </div>
                     } else {
                       value = order.data[column.id];
                     }
