@@ -4,6 +4,17 @@ import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import Card from '../Csshelper/Ordercard'
 import '../Styles/adminPanel.css'
+import OrderTable from './OrderTable';
+
+const columns = [
+    { id: '_id', label: 'ID' },
+    { id: 'Status', label: 'Status' },
+    { id: 'UserID', label: 'userID' },
+    { id: 'Type', label: 'Type' },
+    { id: 'Address', label: 'Address' },
+    { id: 'GrandTotal', label: 'Total' },
+    { id: 'TimeStamp', label: 'Timestamp', format: (value) => { return new Date(value["seconds"] * 1000).toString() } },
+];
 
 const Getorderfromuser = ({ match }) => {
 
@@ -44,10 +55,10 @@ const Getorderfromuser = ({ match }) => {
 
     return (
         <div>
-          <div className="admin-panel-header">
-              <h5>Angadi.ae</h5>
-              <h2>Admin Panel</h2>
-              <button><i class="fa fa-power-off"/>  Logout</button>
+            <div className="admin-panel-header">
+                <h5>Angadi.ae</h5>
+                <h2>Admin Panel</h2>
+                <button><i class="fa fa-power-off" />  Logout</button>
             </div>
             <div class="mobile_nav">
                 <div class="nav_bar">
@@ -55,15 +66,15 @@ const Getorderfromuser = ({ match }) => {
                     <i class="fa fa-bars nav_btn"></i>
                 </div>
                 <div class="mobile_nav_items">
-                  <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
-                  <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
-                  <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
-                  <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
-                  <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
-                  <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
-                  <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
-                  <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
-                  <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
+                    <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
+                    <Link className="admin1" to='/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
+                    <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
+                    <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
+                    <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
+                    <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
                 </div>
             </div>
 
@@ -91,7 +102,7 @@ const Getorderfromuser = ({ match }) => {
                     </div>
                     <div className='userdash2-orders'>
                         <h4>{user.Name}</h4>
-                        <h6 style={{marginBottom: "1em"}}>{user.mail}</h6>
+                        <h6 style={{ marginBottom: "1em" }}>{user.mail}</h6>
                         <button className="admin-order-utility-button" onClick={getPro}>Get Orders</button>
                     </div>
                 </div>
@@ -99,21 +110,18 @@ const Getorderfromuser = ({ match }) => {
                     {
                         dish.length === 0
                             ?
-                            <div>{
-                                meko
-                                    ?
-                                    <h5 style={{ textAlign: 'center' }}>No Order!!!</h5>
-                                    :
-                                    <h5 style={{ textAlign: 'center' }}>Plese Check the order</h5>
-                            }
-
+                            <div>
+                                {
+                                    meko
+                                        ?
+                                        <h5 style={{ textAlign: 'center' }}>No Order!!!</h5>
+                                        :
+                                        <h5 style={{ textAlign: 'center' }}>Plese Check the order</h5>
+                                }
                             </div>
                             :
-                            dish && dish.map((d, i) => (
-                                <div key={i}>
-                                    <Card product={d} />
-                                </div>
-                            ))
+                            dish &&
+                            <OrderTable details={dish} columns={columns} />
                     }
                 </div>
             </div>

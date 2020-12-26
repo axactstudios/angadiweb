@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: 500,
+    maxHeight: 580,
   },
   tablehead: {
     fontWeight: "bolder"
