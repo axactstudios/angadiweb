@@ -5,6 +5,7 @@ import { isAuth } from '../helpers/auth'
 import { Form } from 'react-bootstrap'
 import { Col, Container, Row } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
+import Switch from '@material-ui/core/Switch'
 
 const EditInventary = () => {
 
@@ -183,7 +184,7 @@ const EditInventary = () => {
                                                         Rs {d.data.price}
                                                     </Col>
                                                     <Col>
-                                                        {d.data.stock ? <button onClick={changestockfalse(d._id)}>Change to Out of stock</button> : <button onClick={changestocktrue(d._id)}>Change to In stock</button>}
+                                                        {d.data.stock ? <Switch color="primary" checked="true" onClick={changestockfalse(d._id)} /> : <Switch color="primary" onClick={changestocktrue(d._id)} />}
                                                     </Col>
                                                 </Row>
                                             </Container>

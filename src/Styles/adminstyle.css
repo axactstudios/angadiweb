@@ -113,6 +113,13 @@
   .mobile_nav{
     display: none;
   }
+
+  .adpor {
+    display: flex;
+    justify-content: centre;
+    margin: 0 auto;
+    max-width: 100%;
+  }
   
   @media screen and (max-width: 860px){
     .logout_btn{

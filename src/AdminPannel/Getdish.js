@@ -75,11 +75,10 @@ const Getcategory = () => {
 
 
     const columns = [
-        { id: 'name', label: <Form.Control placeholder="Search for Item" />, maxWidth: "40%" },
+        { id: 'name', label: "Item", maxWidth: "40%" },
         { id: 'category', label: 'Category', maxWidth: "20%" },
         { id: 'iPrice', label: 'Price', maxWidth: "10%" },
-        //give argument on both changestocktrue and changestockflase function
-        { id: 'stock', label: 'Available', maxWidth: "10%", format: (value) => value ? <Switch checked color="primary" /> : <Switch color="primary" /> },
+        { id: 'stock', label: 'Available', maxWidth: "10%", format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
         { id: 'action', label: 'Actions', align: "center" }
     ];
 
@@ -143,7 +142,7 @@ const Getcategory = () => {
                     <div className="adpor3">
                         <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
                     </div>
-                    <Link to='/edit/inventary'>Go to Inventary</Link>
+                    <Link to='/edit/inventary'><button className="admin-order-utility-button">Inventory</button></Link>
                 </div>
 
                 {
