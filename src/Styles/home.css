@@ -148,7 +148,7 @@
     width: 100%;
 }
 .ohdoljag11 input{
-    width: 75.4%;
+    width: 78.4%;
     height: 40px;
     border-radius: 4px 0 0 4px ;
     border: 2px solid #e0e0e0;
@@ -157,9 +157,9 @@
 .ohdoljag11 button{
     height: 40px;
     border-radius: 0px 4px 4px 0px ;
-    border: 2px solid #6b5236;
+    border: 2px solid #e0e0e0;
     outline: none;
-    background-color: #6b5236;
+    background-color: rgb(255,176,0);
     color: white;
     position: relative;
 }

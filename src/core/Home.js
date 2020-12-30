@@ -3,6 +3,7 @@ import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row, Carousel, Form } from 'react-bootstrap'
 import '../Styles/home.css'
+import {Link} from 'react-router-dom'
 
 const Home = () => {
     const [cat, setCat] = useState([])
@@ -89,12 +90,12 @@ const Home = () => {
     return (
         <div className="ckk hwami">
             <div className='ohdoljag'>
-                {           /*     <div className='ohdoljag1'>
+                <div className='ohdoljag1'>
                     <div className="ohdoljag11">
                         <input type='text' placeholder='Find Products' />
                         <Link to={{ pathname: `/shop/${values.category}`, state: { search: `${values.name}` } }}><button><i class="fa fa-search" aria-hidden="true"></i> Search</button></Link>
                     </div>
-    </div>*/}
+                </div>
                 <div className='ohdoljag2'>
                     <div className='ohdoljag21'>
                         <i class="fa fa-map-marker" aria-hidden="true"></i> Deliver to, Delhi
