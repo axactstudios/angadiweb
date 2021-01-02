@@ -19,6 +19,9 @@ import Getuser from './AdminPannel/Getuser';
 import Getorderfromuser from './AdminPannel/Getorderfromuser'
 import Adminpannel from './User/AdminDashboard';
 import EditInventary from './AdminPannel/EditInventary'
+import Addemirates from './AdminPannel/Addemirates'
+import AddemirateArea from './AdminPannel/AddArea'
+import Areaemirate from './AdminPannel/Getemirates'
 
 import Home from './core/Home'
 import ErrorPage from './core/Error'
@@ -70,6 +73,9 @@ const App = () => {
             <AdminRoute path='/orders/from/user/:userId' exact component={Getorderfromuser} />
             <AdminRoute path='/admin/dashboard' exact component={Adminpannel} />
             <AdminRoute path='/edit/inventary' exact component={EditInventary} />
+            <AdminRoute path='/add/emirates' exact component={Addemirates} />
+            <AdminRoute path='/add/area' exact component={AddemirateArea} />
+            <AdminRoute path='/get/area' exact component={Areaemirate} />
 
             <PrivateRoute exact path='/user/dashboard' component={Userdashboard()} />
             <PrivateRoute exact path='/user/dashboard/mycart' component={Userdashboard(Cart, "My Cart")} />

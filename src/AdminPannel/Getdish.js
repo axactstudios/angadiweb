@@ -102,12 +102,14 @@ const Getcategory = () => {
                     <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
                     <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
                     <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/get/area'><i class="fa fa-user"></i>Emirates</Link>
                     <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
                     <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
                     <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
+                    <Link className="admin1" to='/add/emirates'><i class="fa fa-plus-square"></i>add Emirates</Link>
+                    <Link className="admin1" to='/add/area'><i class="fa fa-plus-square"></i>add Emiratesarea</Link>
                 </div>
             </div>
-
             <div class="sidebar">
                 <div class="profile_info">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="profile_image" alt="" />
@@ -119,9 +121,12 @@ const Getcategory = () => {
                 <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
                 <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
                 <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                <Link className="admin1" to='/get/area'><i class="fa fa-user"></i>Emirates</Link>
                 <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
                 <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
                 <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
+                <Link className="admin1" to='/add/emirates'><i class="fa fa-plus-square"></i>add Emirates</Link>
+                <Link className="admin1" to='/add/area'><i class="fa fa-plus-square"></i>add Emiratesarea</Link>
             </div>
 
             <div className='content1'>

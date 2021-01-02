@@ -7,17 +7,17 @@ import '../Styles/adminPanel.css'
 import Card from 'react-bootstrap/Card'
 
 const InfoCard = (props) => {
-  return (
-    <div style={{margin: "1em", width: "250px"}}>
-      <Card>
-        <Card.Header>{props.head}</Card.Header>
-        <Card.Body style={{textAlign: "center"}}>
-          <Card.Title style={{fontWeight: "bolder", fontSize: "2em"}}>{props.info}</Card.Title>
-          <Card.Text>{props.desc}</Card.Text>
-        </Card.Body>
-      </Card>
-    </div>
-  )
+    return (
+        <div style={{ margin: "1em", width: "250px" }}>
+            <Card>
+                <Card.Header>{props.head}</Card.Header>
+                <Card.Body style={{ textAlign: "center" }}>
+                    <Card.Title style={{ fontWeight: "bolder", fontSize: "2em" }}>{props.info}</Card.Title>
+                    <Card.Text>{props.desc}</Card.Text>
+                </Card.Body>
+            </Card>
+        </div>
+    )
 }
 
 const AdminDashboard = () => {
@@ -64,9 +64,9 @@ const AdminDashboard = () => {
     return (
         <div className='hwami'>
             <div className="admin-panel-header">
-              <h5>Angadi.ae</h5>
-              <h2>Admin Panel</h2>
-              <button><i class="fa fa-power-off"/>  Logout</button>
+                <h5>Angadi.ae</h5>
+                <h2>Admin Panel</h2>
+                <button><i class="fa fa-power-off" />  Logout</button>
             </div>
             <div class="mobile_nav">
                 <div class="nav_bar">
@@ -80,12 +80,14 @@ const AdminDashboard = () => {
                     <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
                     <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
                     <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                    <Link className="admin1" to='/get/area'><i class="fa fa-user"></i>Emirates</Link>
                     <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
                     <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
                     <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
+                    <Link className="admin1" to='/add/emirates'><i class="fa fa-plus-square"></i>add Emirates</Link>
+                    <Link className="admin1" to='/add/area'><i class="fa fa-plus-square"></i>add Emiratesarea</Link>
                 </div>
             </div>
-
             <div class="sidebar">
                 <div class="profile_info">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="profile_image" alt="" />
@@ -97,19 +99,22 @@ const AdminDashboard = () => {
                 <Link className="admin1" to='/get/category'><i class="fa fa-coffee"></i>category</Link>
                 <Link className="admin1" to='/get/offers'><i class="fa fa-tag"></i>Offers</Link>
                 <Link className="admin1" to='/get/users'><i class="fa fa-user"></i>Users</Link>
+                <Link className="admin1" to='/get/area'><i class="fa fa-user"></i>Emirates</Link>
                 <Link className="admin1" to='/create/category'><i class="fa fa-plus-square"></i>add category</Link>
                 <Link className="admin1" to='/add/dish'><i class="fa fa-plus-square"></i>add dish</Link>
                 <Link className="admin1" to='/add/offer'><i class="fa fa-plus-square"></i>add offer</Link>
+                <Link className="admin1" to='/add/emirates'><i class="fa fa-plus-square"></i>add Emirates</Link>
+                <Link className="admin1" to='/add/area'><i class="fa fa-plus-square"></i>add Emiratesarea</Link>
             </div>
 
             <div className='content1'>
-                <h4 style={{fontWeight: "bold", margin: "1em 0"}}>Hello Admin</h4>
+                <h4 style={{ fontWeight: "bold", margin: "1em 0" }}>Hello Admin</h4>
 
                 <div className="dashboard-cards">
-                  <InfoCard head="Total Revenue" info={totalrevanue} desc="Rupees" />
-                  <InfoCard head="Average Rating" info={avgrat} desc="Out of 5" />
-                  <InfoCard head="Average Basket" info={avgbasket} desc="per order" />
-                  <InfoCard head="Total Orders" info={totalorder} desc="Orders" />
+                    <InfoCard head="Total Revenue" info={totalrevanue} desc="Rupees" />
+                    <InfoCard head="Average Rating" info={avgrat} desc="Out of 5" />
+                    <InfoCard head="Average Basket" info={avgbasket} desc="per order" />
+                    <InfoCard head="Total Orders" info={totalorder} desc="Orders" />
                 </div>
             </div>
         </div>

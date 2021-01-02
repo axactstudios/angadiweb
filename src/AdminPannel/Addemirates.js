@@ -1,73 +1,46 @@
-import React, { useEffect, useState } from 'react';
-import * as firebase from 'firebase'
+import React, { useState } from 'react';
+import firebase from 'firebase'
+import { Button, Form } from 'react-bootstrap'
+import { toast, ToastContainer } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
-import OrderTable from './OrderTable';
-import { Form } from 'react-bootstrap'
-import { toast, ToastContainer } from 'react-toastify';
 
-const columns = [
-    { id: 'pUrl', label: "User Profile", format: (value) => <img src={value} height="70px" width="70px" /> },
-    { id: 'Name', label: 'Name', maxWidth: "30%" },
-    { id: 'id', label: 'User ID' },
-    { id: 'mail', label: 'Email' },
-    { id: 'role', label: 'Role' }
-];
 
-const Getuser = () => {
+const Addemirates = () => {
 
     const [values, setValues] = useState({
         name: '',
-        category: ''
+        minOrderPrice: '',
+        deliveryCharge: ''
     })
-    const [dish, setDish] = useState([])
+
+    const { name, minOrderPrice, deliveryCharge } = values
+
     const db = firebase.firestore()
 
-    useEffect(async () => {
-        setDish([])
-        await db.collection('Users').get()
-            .then(res => {
-                res.forEach((doc) => {
-                    setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
-                })
-            })
-    }, [])
-
-    useEffect(() => {
-        const hamburgerr = document.querySelector('.nav_btn');
-        const navlinksss = document.querySelector('.mobile_nav_items')
-
-        hamburgerr.addEventListener("click", () => {
-            navlinksss.classList.toggle("active");
-        })
-    })
-
-    const handleChange = name => (e) => {
+    const handlechange = name => e => {
         setValues({ ...values, [name]: e.target.value })
-    };
+    }
 
-    const getspecific = () => {
-        if (values.name == '') {
-            toast.error('Enter name')
+    const handleSubmit = () => {
+        if (deliveryCharge && minOrderPrice && minOrderPrice) {
+            db.collection('Emirates').add({
+                name: name,
+                minOrderPrice: minOrderPrice,
+                deliveryCharge: deliveryCharge
+            }).then(() => {
+                toast.success('Emirates Added !!!')
+                setValues({ ...values, name: '', minOrderPrice: ' ', deliveryCharge: '' })
+            }).catch((err) => {
+                toast.error('Something went wrong !!!')
+            })
         } else {
-            setDish([])
-            db.collection('Users').where("mail", "==", `${values.name}`).get()
-                .then(res => {
-                    res.forEach((doc) => {
-                        setDish([{ data: doc.data(), _id: doc.id }])
-                    })
-                })
+            toast.error('Please Fill all fields')
         }
     }
 
     return (
         <div>
-            <ToastContainer />
-            <div className="admin-panel-header">
-                <h5>Angadi.ae</h5>
-                <h2>Admin Panel</h2>
-                <button><i class="fa fa-power-off" />  Logout</button>
-            </div>
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
@@ -107,20 +80,24 @@ const Getuser = () => {
                 <Link className="admin1" to='/add/area'><i class="fa fa-plus-square"></i>add Emiratesarea</Link>
             </div>
 
-            <div className='content1'>
-            <h2 style={{ margin: "0.4em 0", fontWeight: "bold" }}>All Users</h2>
-                <div className="adpor">
-                    <Form.Group className="adpor1">
-                        <Form.Control type="text" placeholder="Enter User Email" onChange={handleChange('name')} value={values.name} />
-                    </Form.Group>
-                    <div className="adpor3">
-                        <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
-                    </div>
-                </div>
-                <OrderTable details={dish} columns={columns} />
+            <div  className='content1'>
+                <ToastContainer />
+                <Form.Group>
+                    <Form.Label>Emirates Name</Form.Label><br />
+                    <Form.Control type='text' placeholder="Enter Emirate Name" value={name} onChange={handlechange('name')} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Minimum Order Price</Form.Label><br />
+                    <Form.Control type='text' placeholder="Enter Minimum Order Price" value={minOrderPrice} onChange={handlechange('minOrderPrice')} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Delivery Charge</Form.Label><br />
+                    <Form.Control type='text' placeholder="Enter Delivery Charges" value={deliveryCharge} onChange={handlechange('deliveryCharge')} />
+                </Form.Group>
+                <Button onClick={handleSubmit}>Add Brands</Button>
             </div>
         </div>
     );
 };
 
-export default Getuser;
+export default Addemirates;
