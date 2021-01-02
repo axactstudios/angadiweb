@@ -4,6 +4,7 @@ import firebase from 'firebase'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify';
+import '../Styles/emirates.css'
 
 const Getemirates = () => {
 
@@ -294,24 +295,26 @@ const Getemirates = () => {
                     <Row>
                         {
                             emirates && emirates.map((m, l) =>
-                                <Col key={l}>
-                                    {m.data.name}
-                                    <button onClick={deleteEmirates(m._id)}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                    <button onClick={shownow(m)}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                <Col key={l} lg={6} sm={12} xl={4} style={{ marginBottom: '30px' }}>
+                                    <div className='emirates1'>
+                                        <h6>Emirates: {m.data.name}</h6>
+                                        <button onClick={shownow(m)} className='edit-emirates'><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                        <button onClick={deleteEmirates(m._id)} className='delete-emirates'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    </div>
                                     <Container fluid>
                                         <Row>
-                                            <Col>
-                                                Zone1
-                                        <div>
+                                            <Col lg={6} className='emirates2'>
+                                                <h6>Zone1</h6>
+                                                <div>
                                                     {
                                                         area && area.map((n, k) =>
                                                             <div>
                                                                 {n.data.Emirate == m.data.name && n.data.zone === 'Zone1'
                                                                     ?
-                                                                    <div>
+                                                                    <div className='emirates3'>
                                                                         <h6>{n.data.name}</h6>
-                                                                        <button onClick={deleteEmiratesArea(n._id)}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                                        <button onClick={shownow1(n)}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <button onClick={shownow1(n)} className='edit-emirates'><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <button onClick={deleteEmiratesArea(n._id)} className='delete-emirates'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                                                     </div>
                                                                     :
                                                                     null
@@ -321,18 +324,18 @@ const Getemirates = () => {
                                                     }
                                                 </div>
                                             </Col>
-                                            <Col>
-                                                Zone2
-                                           <div>
+                                            <Col lg={6} className='emirates2'>
+                                                <h6>Zone2</h6>
+                                                <div>
                                                     {
                                                         area && area.map((n, k) =>
                                                             <div>
                                                                 {n.data.Emirate == m.data.name && n.data.zone === 'Zone2'
                                                                     ?
-                                                                    <div>
+                                                                    <div className='emirates3'>
                                                                         <h6>{n.data.name}</h6>
-                                                                        <button onClick={deleteEmiratesArea(n._id)}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                                        <button onClick={shownow1(n)}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <button onClick={shownow1(n)} className='edit-emirates'><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                        <button onClick={deleteEmiratesArea(n._id)} className='delete-emirates'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                                                     </div>
                                                                     :
                                                                     null
