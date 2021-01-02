@@ -145,7 +145,7 @@
 .adpor{
     display: flex;
     flex-direction: row;
-    max-width: 490px;
+    max-width: fit-content;
     margin: auto;
 }
 .adpor1 input{

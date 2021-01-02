@@ -5,20 +5,21 @@ import { toast, ToastContainer } from 'react-toastify'
 import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 
-const Addoffer = () => {
+const AddofferCateg = () => {
 
     const [values, setValues] = useState({
         title: '',
         image: null,
         photo: '',
         subtitle: '',
-        percent: ''
+        percent: '',
+        category: ''
     })
-
+    const [categ, setCateg] = useState([])
     const storage = firebase.storage()
     const store = firebase.firestore()
 
-    const { title, image, subtitle, photo, percent } = values
+    const { title, image, subtitle, photo, percent, category } = values
 
     const handleChange = name => (e) => {
         switch (name) {
@@ -49,7 +50,8 @@ const Addoffer = () => {
                         ImageURL: url,
                         Title: title,
                         Subtitle: subtitle,
-                        discountPercentage: percent
+                        discountPercentage: percent,
+                        categorySpecific: category
                     }).then(() => {
                         toast.success('Offer added successfully!!!')
                     }).catch((err) => {
@@ -61,24 +63,34 @@ const Addoffer = () => {
     }
 
     useEffect(() => {
+        setCateg([])
+        store.collection('Categories').get()
+            .then((res) => {
+                res.forEach((non) => {
+                    setCateg((dd) => [...dd, { data: non.data(), _id: non.id }])
+                })
+            })
+    }, [])
+
+    useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
         const navlinksss = document.querySelector('.mobile_nav_items')
 
         hamburgerr.addEventListener("click", () => {
             navlinksss.classList.toggle("active");
         })
-    })
+
+    }, [])
+
 
     return (
         <div>
             <ToastContainer />
-
             <div className="admin-panel-header">
                 <h5>Angadi.ae</h5>
                 <h2>Admin Panel</h2>
                 <button><i class="fa fa-power-off" /> Logout</button>
             </div>
-
             <div class="mobile_nav">
                 <div class="nav_bar">
                     <img src={`https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg`} class="mobile_profile_image" alt="" />
@@ -125,11 +137,23 @@ const Addoffer = () => {
                     <Link to='/add/offer/forfirstuser' style={{ textDecoration: 'none' }}><li style={{ margin: '0 10px' }}>For First User</li></Link>
                     <Link to='/add/offer/forcategory' style={{ textDecoration: 'none' }}><li>For category</li></Link>
                 </ul>
-                <h2>Add Custom Offer</h2>
+
+                <h2>Add Offer For Specific Category</h2>
                 <Form>
                     <Form.Group>
                         <Form.Label>Add Title </Form.Label><br />
                         <Form.Control type="text" placeholder="Title" onChange={handleChange('title')} value={title} />
+                    </Form.Group>
+                    <Form.Group >
+                        <Form.Label>Choose category</Form.Label><br />
+                        <select onChange={handleChange('category')} >
+                            <option>Please Select</option>
+                            {categ && categ.map((c, i) =>
+                            (<option key={i} value={c.data.catName}>
+                                {c.data.catName}
+                            </option>)
+                            )}
+                        </select>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label >Choose Images</Form.Label>
@@ -149,7 +173,7 @@ const Addoffer = () => {
                     <div>
                         <Button className="btn btn-danger" style={{ 'border-radius': '13px' }} variant="danger" onClick={handleSubmit}>
                             Create Offer
-                    </Button>
+                </Button>
                     </div>
                 </Form>
             </div>
@@ -157,4 +181,4 @@ const Addoffer = () => {
     );
 };
 
-export default Addoffer;
+export default AddofferCateg;

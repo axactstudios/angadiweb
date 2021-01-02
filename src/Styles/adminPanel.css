@@ -122,3 +122,22 @@
   background-color: white;
   border-bottom: 1px solid rgb(206, 202, 202);
 }
+
+
+
+.add-offer-spec{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.add-offer-spec li{
+  color: white;
+  line-height: 33px;
+  border: 1px solid white;
+  padding:  0 10px;
+  background-color:#ffb000;
+}
+.add-offer-spec li:hover{
+  background-color:#653602;
+}

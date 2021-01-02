@@ -158,9 +158,9 @@ const EditInventary = () => {
                             <select onChange={handleChange('category')} >
                                 <option>Choose Category</option>1
                           {cat.map((c, i) =>
-                                    (<option key={i} value={c.data.catName}>
-                                        {c.data.catName}
-                                    </option>)
+                                (<option key={i} value={c.data.catName}>
+                                    {c.data.catName}
+                                </option>)
                                 )}
                             </select>
                         </Form.Group>
@@ -176,6 +176,22 @@ const EditInventary = () => {
                             resu.length == 0 ?
                                 <Container fluid>
                                     <h2 style={{ textAlign: 'center' }}>Total {dish.length} Products</h2>
+                                    <Container fluid className='edit-inventary'>
+                                        <Row>
+                                            <Col>
+                                                Product Name
+                                    </Col>
+                                            <Col>
+                                                <b>Product Id</b>
+                                            </Col>
+                                            <Col>
+                                                Price
+                                    </Col>
+                                            <Col>
+                                                Active
+                                    </Col>
+                                        </Row>
+                                    </Container>
                                     {
                                         dish && dish.map((d, k) => (
                                             <Container fluid className='edit-inventary'>

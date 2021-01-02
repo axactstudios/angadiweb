@@ -176,7 +176,7 @@ const Getorder = () => {
                   </div>
                   <div style={{display:"inline-flex"}}>
                     <Form.Group>
-                        <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
+                        <Form.Control type="text" placeholder="Enter Order Id" onChange={handleChange('name')} value={values.name} />
                     </Form.Group>
                     <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
                   </div>

@@ -207,7 +207,7 @@ const Product = (props) => {
                                 </div>
                                 {
 
-                                    revi.map((o, p) => (
+                                    revi && revi.map((o, p) => (
                                         <div className='rate-reiview1'>
                                             <div className='rate-reiview2'>
                                                 <span>{o.data.rating}<i class="fa fa-star" aria-hidden="true"></i></span>
@@ -221,6 +221,9 @@ const Product = (props) => {
                                             </div>
                                         </div>
                                     ))
+                                }
+                                {
+                                    revi.length === 0 ? <p>No Reviews Now !!!</p> : null
                                 }
                             </div>
                         </Container>

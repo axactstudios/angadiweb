@@ -13,7 +13,7 @@ import Editcat from './AdminPannel/Editcat';
 import Getorder from './AdminPannel/Getorder';
 import Editorder from './AdminPannel/Editorder'
 import Getoffer from './AdminPannel/Getoffer';
-import Addoffer from './AdminPannel/Addoffer';
+import Addoffer from './AdminPannel/Offersection';
 import Editoffer from './AdminPannel/Editoffer'
 import Getuser from './AdminPannel/Getuser';
 import Getorderfromuser from './AdminPannel/Getorderfromuser'
@@ -66,7 +66,7 @@ const App = () => {
             <AdminRoute path='/edit/category/:catname' exact component={Editcat} />
             <AdminRoute path='/get/orders' exact component={Getorder} />
             <AdminRoute path='/edit/order/:orderId' exact component={Editorder} />
-            <AdminRoute path='/add/offer' exact component={Addoffer} />
+            <AdminRoute path='/add/offer' component={Addoffer} />
             <AdminRoute path='/get/offers' exact component={Getoffer} />
             <AdminRoute path='/edit/offer/:offerId' exact component={Editoffer} />
             <AdminRoute path='/get/users' exact component={Getuser} />

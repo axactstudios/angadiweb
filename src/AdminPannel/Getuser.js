@@ -5,6 +5,7 @@ import { isAuth } from '../helpers/auth'
 import OrderTable from './OrderTable';
 import { Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
+import '../Styles/adminPanel.css';
 
 const columns = [
     { id: 'pUrl', label: "User Profile", format: (value) => <img src={value} height="70px" width="70px" /> },
@@ -18,7 +19,8 @@ const Getuser = () => {
 
     const [values, setValues] = useState({
         name: '',
-        category: ''
+        category: '',
+        emaiil: ''
     })
     const [dish, setDish] = useState([])
     const db = firebase.firestore()
@@ -47,16 +49,40 @@ const Getuser = () => {
     };
 
     const getspecific = () => {
-        if (values.name == '') {
-            toast.error('Enter name')
+        if (values.name == '' && values.emaiil == '') {
+            toast.error('Enter Name or Email')
         } else {
-            setDish([])
-            db.collection('Users').where("mail", "==", `${values.name}`).get()
-                .then(res => {
-                    res.forEach((doc) => {
-                        setDish([{ data: doc.data(), _id: doc.id }])
+            if (values.name && values.emaiil == '') {
+                setDish([])
+                db.collection('Users').where("mail", "==", `${values.name}`).get()
+                    .then(res => {
+                        res.forEach((doc) => {
+                            setDish([{ data: doc.data(), _id: doc.id }])
+                        })
                     })
-                })
+            }
+            else if (values.emaiil && values.name == '') {
+                setDish([])
+                db.collection('Users').where("Name", "==", `${values.emaiil}`).get()
+                    .then(res => {
+                        res.forEach((doc) => {
+                            setDish([{ data: doc.data(), _id: doc.id }])
+                        })
+                    })
+            } else if (values.emaiil && values.name) {
+                setDish([])
+                db.collection('Users')
+                    .where("Name", "==", `${values.emaiil}`)
+                    .where("mail", "==", `${values.name}`)
+                    .get()
+                    .then(res => {
+                        res.forEach((doc) => {
+                            setDish([{ data: doc.data(), _id: doc.id }])
+                        })
+                    })
+            } else {
+                console.log('Nice !!!')
+            }
         }
     }
 
@@ -108,10 +134,13 @@ const Getuser = () => {
             </div>
 
             <div className='content1'>
-            <h2 style={{ margin: "0.4em 0", fontWeight: "bold" }}>All Users</h2>
+                <h2 style={{ margin: "0.4em 0", fontWeight: "bold" }}>All Users</h2>
                 <div className="adpor">
                     <Form.Group className="adpor1">
                         <Form.Control type="text" placeholder="Enter User Email" onChange={handleChange('name')} value={values.name} />
+                    </Form.Group>
+                    <Form.Group className="adpor1">
+                        <Form.Control type="text" placeholder="Enter User Name" onChange={handleChange('emaiil')} value={values.emaiil} />
                     </Form.Group>
                     <div className="adpor3">
                         <button className="admin-order-utility-button" onClick={getspecific}>Search</button>

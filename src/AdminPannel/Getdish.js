@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { isAuth } from '../helpers/auth'
 import { Form } from 'react-bootstrap'
 import OrderTable from './OrderTable';
-import Switch from '@material-ui/core/Switch'
 import { toast, ToastContainer } from 'react-toastify'
+import '../Csshelper/card.css'
 
 const Getcategory = () => {
     const [dish, setDish] = useState([])
@@ -78,7 +78,7 @@ const Getcategory = () => {
         { id: 'name', label: "Item", maxWidth: "40%" },
         { id: 'category', label: 'Category', maxWidth: "20%" },
         { id: 'iPrice', label: 'Price', maxWidth: "10%" },
-        { id: 'stock', label: 'Available', maxWidth: "10%", format: (value) => value ? <Switch checked color="primary" /> : <Switch disabled /> },
+        { id: 'stock', label: 'Available', maxWidth: "10%", format: (value) => value ? <b style={{ color: 'green' }}>Available</b> : <b style={{ color: 'red' }}>Unavailabe</b> },
         { id: 'action', label: 'Actions', align: "center" }
     ];
 
@@ -135,13 +135,13 @@ const Getcategory = () => {
                         <select onChange={handleChange('category')} >
                             <option>Choose Category</option>1
                             {cat.map((c, i) =>
-                                (<option key={i} value={c.data.catName}>
-                                    {c.data.catName}
-                                </option>)
+                            (<option key={i} value={c.data.catName}>
+                                {c.data.catName}
+                            </option>)
                             )}
                         </select>
                     </Form.Group>
-                    <Form.Group className="adpor1">
+                    <Form.Group className="adpor1" style={{ width: '400px' }}>
                         <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={values.name} />
                     </Form.Group>
                     <div className="adpor3">
