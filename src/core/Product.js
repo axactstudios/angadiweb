@@ -172,26 +172,31 @@ const Product = (props) => {
                                         </div>
                                     </Col>
                                     <Col md={2} xl={2}>
-                                        <div className='tic-ttok'>
-                                            <h5>Frequently Bought Together</h5>
-                                            {
-                                                frequent &&
-                                                <div className='tic-ttok1'>
-                                                    <img src={`${frequent.url}`} alt="img-url" />
-                                                    <h6>Rs {frequent.price}</h6>
-                                                    <p>{frequent.name}</p>
+                                        {
+                                            frequent &&
+                                            <div className='tic-ttok'>
+                                                <h5>Frequently Bought Together</h5>
+                                                <div className='tic-ttok4'>
+                                                    {
+                                                        frequent &&
+                                                        <div className='tic-ttok1'>
+                                                            <img src={`${frequent.url}`} alt="img-url" />
+                                                            <h6>Rs {frequent.price}</h6>
+                                                            <p>{frequent.name}</p>
+                                                        </div>
+                                                    }
+                                                    <div className='tic-ttok2'><h3>+</h3></div>
+                                                    <div className='tic-ttok1'>
+                                                        <img src={`${pro.url}`} alt="img-url" />
+                                                        <h6>Rs {pro.price}</h6>
+                                                        <p>{pro.name}</p>
+                                                    </div>
                                                 </div>
-                                            }
-                                            <div className='tic-ttok2'><h3>+</h3></div>
-                                            <div className='tic-ttok1'>
-                                                <img src={`${pro.url}`} alt="img-url" />
-                                                <h6>Rs {pro.price}</h6>
-                                                <p>{pro.name}</p>
+                                                <div className="proccard7 tic-ttok3">
+                                                    <button>Add To Cart</button>
+                                                </div>
                                             </div>
-                                            <div>
-                                            <button>Add To Cart</button>
-                                            </div>
-                                        </div>
+                                        }
                                     </Col>
                                 </Row>
                             </Container>

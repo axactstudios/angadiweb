@@ -220,7 +220,6 @@
 
 .tic-ttok{
     margin-top: 35px;
-    background-color: aliceblue;
 }
 .tic-ttok h5{
     color: #6b3600;
@@ -247,7 +246,37 @@
     text-align: center;
     margin: -9px 0;
 }
-
+.tic-ttok3{
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+    margin-top: -8px;
+}
+/* .tic-ttok4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+@media screen and (max-width: 767.5px){
+    .tic-ttok4{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }   
+    .tic-ttok{
+        margin-top: 0px;
+        margin-bottom: 30px;
+    }
+    .tic-ttok2{
+        text-align: center;
+        /* margin: 0px 10px; */
+        margin-top: -55px;
+        min-width: 0px;
+    }
+    .tic-ttok1{
+        min-width: 140px;
+    }
+}
 /**
 * Related Products
 **/
