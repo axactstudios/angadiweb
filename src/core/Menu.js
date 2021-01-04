@@ -54,6 +54,7 @@ const Menu = ({ history }) => {
         navlinks.classList.toggle("open");
     }
     const handleChange = name => (e) => {
+        console.log(e.target.value)
         switch (name) {
             case 'image':
                 const phooto = e.target.files[0];
@@ -64,6 +65,13 @@ const Menu = ({ history }) => {
                 break;
         }
     };
+      const {name,category} = values
+    const onInputChange=(event,value)=>{
+        setValues({...values, name: value })
+        
+        }
+        
+        
 
     return (
         <div>
@@ -88,9 +96,10 @@ const Menu = ({ history }) => {
                         id="combo-box-demo"
                         options={Dishes}
                         getOptionLabel={(option) => option.data.name}
-                        onChange={handleChange('name')} 
-                        value={values.name}
-                        renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+                        onInputChange={onInputChange} //** on every input change hitting my api**
+                        style={{ width: 290 ,'margin':'5px','margin-top':'36px'}}
+                        renderInput={(params) => 
+                         <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} />}
                       />
                         </Form.Group>
                         <div className="men2123">
