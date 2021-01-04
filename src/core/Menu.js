@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
@@ -12,16 +14,18 @@ const isActive = (history, path) => {
     else {
         return { color: "#3A3A3A" };
     }
-}
+}                                        // Dishes  name  
 
 const Menu = ({ history }) => {
 
     const [cat, setCat] = useState([])
+    const [Dishes, setDishes] = useState([])
     const db = firebase.firestore()
     const [values, setValues] = useState({
         name: '',
         category: ''
     })
+    
     useEffect(() => {
         setCat([])
         db.collection('Categories').get()
@@ -30,20 +34,27 @@ const Menu = ({ history }) => {
                     setCat(cat => [...cat, { data: doc.data(), _id: doc.id }])
                 })
             })
-
+        setDishes([])
+        db.collection('Dishes').get()    
+            .then(res => {
+                res.forEach((doc) => {
+                    setDishes(Dishes => [...Dishes, {data: doc.data(), _id: doc.id }])
+                })
+            }) 
         const hamburger = document.querySelector('.hamburger');
         const navlinks = document.querySelector('.navlink')
 
         hamburger.addEventListener("click", () => {
             navlinks.classList.toggle("open");
         })
-    }, [])
+    },[])
 
     const changeScreen = () => {
         const navlinks = document.querySelector('.navlink')
         navlinks.classList.toggle("open");
     }
     const handleChange = name => (e) => {
+        console.log(e.target.value)
         switch (name) {
             case 'image':
                 const phooto = e.target.files[0];
@@ -54,6 +65,13 @@ const Menu = ({ history }) => {
                 break;
         }
     };
+      const {name,category} = values
+    const onInputChange=(event,value)=>{
+        setValues({...values, name: value })
+        
+        }
+        
+        
 
     return (
         <div>
@@ -74,7 +92,15 @@ const Menu = ({ history }) => {
                             </select>
                         </Form.Group>
                         <Form.Group className="men2122">
-                            <Form.Control type="text" placeholder="I'm Searching For" onChange={handleChange('name')} value={values.name} />
+                        <Autocomplete
+                        id="combo-box-demo"
+                        options={Dishes}
+                        getOptionLabel={(option) => option.data.name}
+                        onInputChange={onInputChange} //** on every input change hitting my api**
+                        style={{ width: 290 ,'margin':'5px','margin-top':'36px'}}
+                        renderInput={(params) => 
+                         <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} />}
+                      />
                         </Form.Group>
                         <div className="men2123">
                             <Link style={isActive(history, `/shop/${values.category}`)} to={{ pathname: `/shop/${values.category}`, state: { search: `${values.name}` } }}><button><i class="fa fa-search" aria-hidden="true"></i> Search</button></Link>
