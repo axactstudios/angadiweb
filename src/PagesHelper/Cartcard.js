@@ -3,6 +3,7 @@ import '../Styles/cartcard.css'
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { updateItem, removeItem } from '../helpers/CartHelper'
+import { toast } from 'react-toastify';
 
 const Cartcard = ({ product,
     showViewProductButthon = true,
@@ -81,7 +82,8 @@ const Cartcard = ({ product,
             showRemoveProductButton && (
                 <button className="bttncart1" onClick={() => {
                     removeItem(product._id)
-                    setShop(true)
+                    toast.success('Item Removed !!!')
+                    window.location.reload(false)
                 }}>
                     Remove
                 </button>

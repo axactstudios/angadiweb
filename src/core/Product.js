@@ -36,6 +36,7 @@ const Product = (props) => {
         description: '',
         quantity: ''
     })
+    const [frequent, setfrequent] = useState('')
 
     useEffect(() => {
         setSpecial([])
@@ -75,6 +76,10 @@ const Product = (props) => {
                             setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
                         })
                     })
+                db.collection("Dishes").doc(`${res.data().boughtTogether}`).get()
+                    .then(res => {
+                        setfrequent(res.data())
+                    })
             })
     }, [_id])
 
@@ -107,6 +112,7 @@ const Product = (props) => {
 
     const rrate = pro && pro.rating && Math.round(pro.rating)
 
+    const freqbodis = pro && pro.boughtTogether
 
     return (
         <div className='hwami'>
@@ -118,10 +124,10 @@ const Product = (props) => {
                         <div className="proccard1">
                             <Container fluid>
                                 <Row>
-                                    <Col md={6} xl={6}>
+                                    <Col md={5} xl={5}>
                                         <ShowImage item={pro} url="product" />
                                     </Col>
-                                    <Col md={6} xl={6}>
+                                    <Col md={5} xl={5}>
                                         <div className="proccard2">
                                             <h5>{pro.name}</h5>
                                             <h6>{pro.category}</h6>
@@ -133,6 +139,7 @@ const Product = (props) => {
                                                     starSpacing="5px"
                                                     starRatedColor="rgb(255,176,0)"
                                                 /></h4>
+                                            <div style={{ color: 'gray', marginBottom: '-10px' }}><a href="#noob-rating" style={{ color: 'inherit' }}>{revi.length} rating & reviews</a></div>
                                             <div className="proccard4">
                                                 <span>Adjust Quantity</span>
                                                 <select onChange={handleChanged()} className="proccard5">
@@ -154,13 +161,35 @@ const Product = (props) => {
                                             <div className="proccard6">
                                                 <span>No of Items</span>
                                                 <div className="proccard611">
-                                                    <button className='inc' onClick={handleChangepostive()}>+</button>
-                                                    <h1>{count}</h1>
                                                     <button className='dec' onClick={handleChangeneagative()}>-</button>
+                                                    <h1>{count}</h1>
+                                                    <button className='inc' onClick={handleChangepostive()}>+</button>
                                                 </div>
                                             </div>
                                             <div className="proccard7">
                                                 <button onClick={addToCart}>Add To Cart</button>
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col md={2} xl={2}>
+                                        <div className='tic-ttok'>
+                                            <h5>Frequently Bought Together</h5>
+                                            {
+                                                frequent &&
+                                                <div className='tic-ttok1'>
+                                                    <img src={`${frequent.url}`} alt="img-url" />
+                                                    <h6>Rs {frequent.price}</h6>
+                                                    <p>{frequent.name}</p>
+                                                </div>
+                                            }
+                                            <div className='tic-ttok2'><h3>+</h3></div>
+                                            <div className='tic-ttok1'>
+                                                <img src={`${pro.url}`} alt="img-url" />
+                                                <h6>Rs {pro.price}</h6>
+                                                <p>{pro.name}</p>
+                                            </div>
+                                            <div>
+                                            <button>Add To Cart</button>
                                             </div>
                                         </div>
                                     </Col>
@@ -200,7 +229,7 @@ const Product = (props) => {
                                     ))
                                 }
                             </Row>
-                            <div className='rate-reiview'>
+                            <div className='rate-reiview' id="noob-rating">
                                 <div className='rate-reivieww'>
                                     <div><h4>Ratings & Reviews <span>{pro && pro.rating} <i class="fa fa-star" aria-hidden="true"></i></span></h4></div>
                                     <div style={{ color: 'gray' }}> {revi.length} rating & reviews</div>
@@ -216,7 +245,7 @@ const Product = (props) => {
                                             <div className='rate-reiview3'>
                                                 <div style={{ color: 'gray', marginTop: '4px' }}><img src={`${o.data.userImage}`} alt='no image' /> {o.data.userName}</div>
                                                 <div>
-                                                    <p style={{ color: 'blue', marginTop:'5.2px' }}><i class="fa fa-check-circle" aria-hidden="true"></i> Certifield Buyer</p>
+                                                    <p style={{ color: 'blue', marginTop: '5.2px' }}><i class="fa fa-check-circle" aria-hidden="true"></i> Certifield Buyer</p>
                                                 </div>
                                             </div>
                                         </div>

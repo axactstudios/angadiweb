@@ -1,10 +1,10 @@
 .proccard{
-    width: 85%;
+    width: 90%;
     margin: auto;
 }
 .proccard2{     
     overflow: hidden;
-    padding-top: 50px;
+    padding-top: 32px;
 }
 @media screen and (max-width: 768px){
     .proccard2{     
@@ -35,14 +35,14 @@
     margin: 10px 0;
 }
 .proccard2 p{    
-    color: green;
-    font-size: 20px;
-    border-bottom: 1px solid #6b3600;
+    color: #6b3600;
+    font-size: 18px;
 }
 .proccard2 p span{    
-    color: red;
+    color: #6b3600;
     text-decoration: line-through;
     font-size: 18px;
+    font-weight: bold;
 }
 .proccard3{    
     font-size: 15px !important;
@@ -51,8 +51,8 @@
 .proccard2 h4{    
     color:rgb(255, 176, 0);
     font-size: 16px;
-    border-bottom: 1px solid #6b3600;
-    padding-bottom: 13px;
+    padding-bottom: 0px;
+    margin-top: -10px;
 }
 .proccard4{
     width: 150px;
@@ -70,6 +70,8 @@
 }
 .proccard6{
     width: fit-content;
+    margin-top: -6px;
+    margin-bottom: -6px;
 }
 .proccard6 span{
     font-size: 15px;
@@ -113,7 +115,6 @@
     width: 100%;
     padding: 10px 0;
     margin: 15px 0;
-    border-top: 1px solid #6b3600;
 }
 .proccard7 button{
     width: 120px;
@@ -217,9 +218,35 @@
     }
 }
 
-
-
-
+.tic-ttok{
+    margin-top: 35px;
+    background-color: aliceblue;
+}
+.tic-ttok h5{
+    color: #6b3600;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.tic-ttok1{
+    text-align: center;
+    margin-top: 15px;
+}
+.tic-ttok1 img{
+    width: 70px;
+    height: auto;
+}
+.tic-ttok1 h6{
+    color: #6b3600;
+    padding-top: 12px;
+}
+.tic-ttok1 p{
+    margin-top: -5px;
+}
+.tic-ttok2{
+    text-align: center;
+    margin: -9px 0;
+}
 
 /**
 * Related Products

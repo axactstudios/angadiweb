@@ -3,7 +3,8 @@ import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
 import { Col, Container, Row, Carousel, Form } from 'react-bootstrap'
 import '../Styles/home.css'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
     const [cat, setCat] = useState([])
@@ -75,20 +76,28 @@ const Home = () => {
         }
     }, [cs])
 
-    const handleChange = name => (e) => {
-        switch (name) {
-            case 'image':
-                const phooto = e.target.files[0];
-                setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
-                break;
-            default:
-                setValues({ ...values, [name]: e.target.value })
-                break;
+    // const handleChange = name => (e) => {
+    //     switch (name) {
+    //         case 'image':
+    //             const phooto = e.target.files[0];
+    //             setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
+    //             break;
+    //         default:
+    //             setValues({ ...values, [name]: e.target.value })
+    //             break;
+    //     }
+    // };
+
+    const toaast = (k) => {
+        if (k) {
+            toast.success('Item Added !!!')
+            console.log('fuckkk')
         }
-    };
+    }
 
     return (
         <div className="ckk hwami">
+            <ToastContainer />
             <div className='ohdoljag'>
                 <div className='ohdoljag1'>
                     <div className="ohdoljag11">
@@ -111,14 +120,14 @@ const Home = () => {
                 <Carousel interval={2500}>
                     {
                         imgurll && imgurll.map((d, k) =>
-                            (
-                                <Carousel.Item interval={2500}>
-                                    <img src={d.data.url}
-                                        className="d-block w-100"
-                                        alt={k} />
-                                </Carousel.Item>
+                        (
+                            <Carousel.Item interval={2500}>
+                                <img src={d.data.url}
+                                    className="d-block w-100"
+                                    alt={k} />
+                            </Carousel.Item>
 
-                            ))
+                        ))
                     }
                 </Carousel>
             </div>
@@ -147,7 +156,7 @@ const Home = () => {
                         {
                             catres && catres.map((d, k) => (
                                 <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
-                                    <Card product={d} />
+                                    <Card product={d} toaaat={toaast} />
                                 </Col>
                             ))
                         }
@@ -172,7 +181,7 @@ const Home = () => {
                         {
                             resu && resu.map((d, k) => (
                                 <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
-                                    <Card product={d} />
+                                    <Card product={d} toaaat={toaast} />
                                 </Col>
                             ))
                         }
@@ -197,13 +206,14 @@ const Home = () => {
                         {
                             specia && specia.map((d, k) => (
                                 <Col lg={4} xl={3} key={k} sm={6} xs={6} className="homey1">
-                                    <Card product={d} />
+                                    <Card product={d} toaaat={toaast} />
                                 </Col>
                             ))
                         }
                     </Row>
                 </Container>
             </div>
+
         </div>
     );
 };

@@ -135,9 +135,9 @@ const AddDish = () => {
         <div>
             <ToastContainer />
             <div className="admin-panel-header">
-              <h5>Angadi.ae</h5>
-              <h2>Admin Panel</h2>
-              <button><i class="fa fa-power-off"/>  Logout</button>
+                <h5>Angadi.ae</h5>
+                <h2>Admin Panel</h2>
+                <button><i class="fa fa-power-off" />  Logout</button>
             </div>
             <div class="mobile_nav">
                 <div class="nav_bar">
@@ -226,9 +226,9 @@ const AddDish = () => {
                                     <select onChange={handleChange('category')} >
                                         <option>Please Select</option>
                                         {cat && cat.map((c, i) =>
-                                            (<option key={i} value={c.catName}>
-                                                {c.catName}
-                                            </option>)
+                                        (<option key={i} value={c.catName}>
+                                            {c.catName}
+                                        </option>)
                                         )}
                                     </select>
                                 </Form.Group>

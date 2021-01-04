@@ -6,7 +6,7 @@ import { Modal, OverlayTrigger, Tooltip, Button, Container, Row, Col, Carousel }
 import StarRatings from 'react-star-ratings';
 import { toast, ToastContainer } from 'react-toastify';
 
-const Card = ({ product }) => {
+const Card = ({ product, toaaat }) => {
     const [count, setCount] = useState(0);
     const [quan, setquan] = useState(500);
     const [priccce, setpriccce] = useState(0)
@@ -57,6 +57,7 @@ const Card = ({ product }) => {
                 updateItem(product._id, count)
                 toast.success('Item added sucessfully !!!')
             }
+            toaaat(true)
         })
         // window.location.reload(false)
     }
