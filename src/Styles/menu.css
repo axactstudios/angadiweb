@@ -185,7 +185,6 @@
     }
     .men3{
         height: 0px !important;
-        display: none;
     }
     .nav{
         height: 0vh;
@@ -407,7 +406,7 @@
         padding-right: 15px;
     }
 }
-@media screen and (max-width: 860px){
+@media screen and (max-width: 430px){
     .header-extraa{
         position: relative;
         left: -25px;

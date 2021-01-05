@@ -29,6 +29,15 @@ const Menu = ({ history }) => {
     })
 
     useEffect(() => {
+        const hamburger = document.querySelector('.hamburger');
+        const navlinks = document.querySelector('.navlink')
+
+        hamburger.addEventListener("click", () => {
+            navlinks.classList.toggle("open");
+        })
+    }, [])
+
+    useEffect(() => {
         setCat([])
         db.collection('Categories').get()
             .then(res => {
@@ -43,12 +52,6 @@ const Menu = ({ history }) => {
                     setDishes(Dishes => [...Dishes, { data: doc.data(), _id: doc.id }])
                 })
             })
-        const hamburger = document.querySelector('.hamburger');
-        const navlinks = document.querySelector('.navlink')
-
-        hamburger.addEventListener("click", () => {
-            navlinks.classList.toggle("open");
-        })
     }, [])
 
     const changeScreen = () => {

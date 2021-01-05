@@ -194,3 +194,10 @@
         width: 95%;
     }   
 }
+
+@media screen and ( max-width: 450px){
+    .ohdoljag11 button{
+        font-size: 13px;
+        width: 78px;
+    }
+}
