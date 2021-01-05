@@ -5,6 +5,7 @@ import { Col, Container, Row, Carousel, Form } from 'react-bootstrap'
 import '../Styles/home.css'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import Geocode from 'react-geocode'
 
 const Home = () => {
     const [cat, setCat] = useState([])
@@ -76,22 +77,38 @@ const Home = () => {
         }
     }, [cs])
 
-    // const handleChange = name => (e) => {
-    //     switch (name) {
-    //         case 'image':
-    //             const phooto = e.target.files[0];
-    //             setValues({ ...values, photo: URL.createObjectURL(e.target.files[0]), image: phooto })
-    //             break;
-    //         default:
-    //             setValues({ ...values, [name]: e.target.value })
-    //             break;
-    //     }
-    // };
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.permissions.query({ name: 'geolocation' })
+                .then((res) => {
+                    if (res.state === 'granted') {
+                        console.log(res.state)
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            console.log("Latitude is :", position.coords.latitude);
+                            console.log("Longitude is :", position.coords.longitude);
+                            Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+                            Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+                                async ress => {
+                                    const address = await ress.results[0].formatted_address;
+                                    const address1 = await ress.results[0].address_components[3].long_name;
+                                    console.log(address1)
+                                    console.log(ress)
+                                }
+                            )
+                        })
+                    } else if (res.state === 'prompt') {
+                        console.log(res.state)
+                    } else if (res.state === 'denied') {
+                        console.log(res.state)
+                    }
+                })
+        }
+    }, [])
 
     const toaast = (k) => {
         if (k) {
             toast.success('Item Added !!!')
-            console.log('fuckkk')
         }
     }
 

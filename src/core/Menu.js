@@ -25,7 +25,7 @@ const Menu = ({ history }) => {
         name: '',
         category: ''
     })
-    
+
     useEffect(() => {
         setCat([])
         db.collection('Categories').get()
@@ -35,19 +35,19 @@ const Menu = ({ history }) => {
                 })
             })
         setDishes([])
-        db.collection('Dishes').get()    
+        db.collection('Dishes').get()
             .then(res => {
                 res.forEach((doc) => {
-                    setDishes(Dishes => [...Dishes, {data: doc.data(), _id: doc.id }])
+                    setDishes(Dishes => [...Dishes, { data: doc.data(), _id: doc.id }])
                 })
-            }) 
+            })
         const hamburger = document.querySelector('.hamburger');
         const navlinks = document.querySelector('.navlink')
 
         hamburger.addEventListener("click", () => {
             navlinks.classList.toggle("open");
         })
-    },[])
+    }, [])
 
     const changeScreen = () => {
         const navlinks = document.querySelector('.navlink')
@@ -65,13 +65,13 @@ const Menu = ({ history }) => {
                 break;
         }
     };
-      const {name,category} = values
-    const onInputChange=(event,value)=>{
-        setValues({...values, name: value })
-        
-        }
-        
-        
+    // const { name, category } = values
+    const onInputChange = (event, value) => {
+        setValues({ ...values, name: value })
+
+    }
+
+
 
     return (
         <div>
@@ -85,27 +85,68 @@ const Menu = ({ history }) => {
                             <select onChange={handleChange('category')}>
                                 <option value=''>Select Category</option>
                                 {cat.map((c, i) =>
-                                    (<option key={i} value={c.data.catName}>
-                                        {c.data.catName}
-                                    </option>)
+                                (<option key={i} value={c.data.catName}>
+                                    {c.data.catName}
+                                </option>)
                                 )}
                             </select>
                         </Form.Group>
                         <Form.Group className="men2122">
-                        <Autocomplete
-                        id="combo-box-demo"
-                        options={Dishes}
-                        getOptionLabel={(option) => option.data.name}
-                        onInputChange={onInputChange} //** on every input change hitting my api**
-                        style={{ width: 290 ,'margin':'5px','margin-top':'36px'}}
-                        renderInput={(params) => 
-                         <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} />}
-                      />
+                            <Autocomplete
+                                id="combo-box-demo"
+                                options={Dishes}
+                                getOptionLabel={(option) => option.data.name}
+                                onInputChange={onInputChange} //** on every input change hitting my api**
+                                style={{ width: 230, 'margin-top': '11px', height: '85px', scrollbarWidth: 'none', borderRadius:'6px' }}
+                                renderInput={(params) =>
+                                    <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} className='malay-searchbar' />}
+                            />
                         </Form.Group>
                         <div className="men2123">
                             <Link style={isActive(history, `/shop/${values.category}`)} to={{ pathname: `/shop/${values.category}`, state: { search: `${values.name}` } }}><button><i class="fa fa-search" aria-hidden="true"></i> Search</button></Link>
                         </div>
                     </div>
+
+                    <div className='header-extra'>
+                        <div className='header-extra1'>
+                            <div className='header-extra11'>
+                                <div className='header-extra12'>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Deliver to, Delhi
+                                </div>
+                            </div>
+                            <div className='header-extra13'>
+                                <div className='header-extra14'>
+                                    Next Delivery: <i class="fa fa-motorcycle" aria-hidden="true"></i> 26/10 at <i class="fa fa-clock-o" aria-hidden="true"></i> 9:00 AM
+                                </div>
+                            </div>
+                        </div>
+                        <div className='header-extra2'>
+                            {
+                                !isAuth() &&
+                                <p>
+                                    {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><i class="fa fa-user-circle-o" aria-hidden="true"></i> Login In /</Link>}
+                                    {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/register')} to='/register' className='bhaagi2'>Register</Link>}
+                                </p>
+                            }
+                            {
+                                isAuth() &&
+                                <div class="header-extra221">
+                                    <button className="header-extra222"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {isAuth().Name} <span><i class="fa fa-caret-down" aria-hidden="true"></i></span></button>
+                                    <div className="header-extra223">
+                                        <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}>Dashboard</Link>
+                                        <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/myorders')} to='/user/dashboard/myorders'>My Orders</Link>
+                                        <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/updateprofile')} to='/user/dashboard/updateprofile'>Update Profile</Link>
+                                        <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/resetpassword')} to='/user/dashboard/resetpassword'>Reset Password</Link>
+                                        <Link onClick={changeScreen} style={isActive(history, '/wishlist')} to='/wishlist'>Wishlist</Link>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div className='header-extra3'>
+                            <p><Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Shoping Cart</Link></p>
+                        </div>
+                    </div>
+
                     <div className="men23">
                         <div className="men2321">
                             <i class="fa fa-phone" aria-hidden="true"></i>
@@ -126,17 +167,7 @@ const Menu = ({ history }) => {
 
                         <h4 className='titeel1'>Menu</h4>
 
-                        {!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><li>Sign In</li></Link>}
-                        {
-                            isAuth() &&
-                            <div class="dropdown">
-                                <button className="dropbtn">{isAuth().Name} <span><i class="fa fa-caret-down" aria-hidden="true"></i></span></button>
-                                <div className="dropdown-content">
-                                    <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}>Dashboard</Link>
-                                    <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/myorders')} to='/user/dashboard/myorders'>My Orders</Link>
-                                </div>
-                            </div>
-                        }
+                        <Link onClick={changeScreen} style={isActive(history, '/')} to='/' className='bhaagi2'><li>Home</li></Link>
                         <Link onClick={changeScreen} style={isActive(history, '/shop')} to='/shop' className='bhaagi2'><li>Do It Yourself</li></Link>
 
                         {
@@ -216,8 +247,6 @@ const Menu = ({ history }) => {
                                 }
                             </Fragment>
                         }
-
-                        <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><li><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li></Link>
 
                         <Container fluid className='titeel'>
                             <Row>

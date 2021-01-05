@@ -58,10 +58,10 @@
         justify-content: flex-start;
         overflow-x: scroll;
         overflow: scroll;
-    }
-    /* .cskk4::-webkit-scrollbar{
+    }::-webkit-scrollbar{
         width: 0px !important;
-      } */
+      }
+    /* .cskk4 */
 }
 .cskk5{
     width: 120px;
