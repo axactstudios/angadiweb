@@ -6,6 +6,7 @@ import '../Styles/home.css'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import Geocode from 'react-geocode'
+import Cartcomp from '../PagesHelper/Cartt'
 
 const Home = () => {
     const [cat, setCat] = useState([])
@@ -231,6 +232,7 @@ const Home = () => {
                 </Container>
             </div>
 
+            <Cartcomp />
         </div>
     );
 };

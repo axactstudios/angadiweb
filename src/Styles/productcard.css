@@ -412,4 +412,8 @@
         display: unset;
         flex-direction: column !important;
     }   
+    .rate-reiview{
+        padding: 0px;
+        margin-left: -10px;
+    }
 }

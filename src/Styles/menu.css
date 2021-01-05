@@ -162,6 +162,41 @@
     visibility: hidden;
     width: 0;
 }
+.titek{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.titeel1 img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-top: 8px;
+}
+.titek h5{
+    line-height: 60px;
+    color: white;
+}
+.titek span:nth-child(1){
+    color: white;
+    padding-right: 15px;
+    font-size: 24px;
+}
+.titek span:nth-child(2){
+    color: white;
+    padding-left: 15px;
+    margin-bottom: 5px;
+    font-size: 23px;
+}
+.titek h6{
+    margin-top: 12px;
+    margin-bottom: 0 !important;
+    color: white;
+}
+.titek p{
+    font-size: 13px;
+    color: yellow;
+}
 @media screen and (max-width: 1000px){
     .dropbtn {
         font-size: 16px;
@@ -193,14 +228,18 @@
     .men3 li{
         color: black;
         padding-left: 5px !important;
-        border-bottom: 1px solid rgb(168, 168, 168);
+        border-bottom: 1px solid rgb(207, 206, 206);
+        font-weight: 560 !important;
+        font-size: 18px !important;
     }
     .dropbtn{
         color: black !important;
         padding: 5px !important;
-        border-bottom: 1px solid rgb(168, 168, 168);
+        border-bottom: 1px solid rgb(207, 206, 206);
         width: 110% !important;
         text-align: left !important;
+        font-weight: 560 !important;
+        font-size: 18px !important;
     }
     .navlink{
         position: fixed;
@@ -214,7 +253,7 @@
         clip-path: circle(0px at 100% 0%);
         -webkit-clip-path: circle(0px at 100% 0%);
         z-index: 99;
-        padding-top: 95px;
+        padding-top: 120px;
         overflow: hidden;
         border-right: 1.5px solid rgb(222, 223, 223);
     }
@@ -257,7 +296,7 @@
         z-index: 100;
         text-align: center;
         left: 0px;
-        border-top: 1px solid rgb(168, 168, 168);
+        border-top: 1px solid rgb(207, 206, 206);
         padding-top: 10px;
         padding-bottom: 8px;
     }
@@ -271,14 +310,13 @@
         visibility: visible;
         position: absolute;
         top: 50.5px;
-        font-size: 23px;
-        border-bottom: 1px solid rgb(61, 61, 61);
+        /* font-size: 23px; */
         left: 0;
         background-color: rgb(255, 176, 0);
         width: 100%;
-        text-align: center;
-        line-height: 40px;
-        color: white;
+        /* line-height: 50px;
+        color: white; */
+        height: 60px;
     }
 }
 .logll{

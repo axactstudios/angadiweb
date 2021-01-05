@@ -7,6 +7,7 @@ import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 import { Container, Form, Col, Row } from 'react-bootstrap';
 import Geocode from 'react-geocode'
+import { HiShoppingCart, HiUserCircle, HiOutlineArrowRight } from 'react-icons/hi'
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -179,9 +180,9 @@ const Menu = ({ history }) => {
                     </div>
 
                     <div className='header-extraa'>
-                        <div>{!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><i class="fa fa-user-circle-o" aria-hidden="true"></i></Link>}</div>
-                        <div>{isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/user/dashboard' className='bhaagi2'><i class="fa fa-user-circle-o" aria-hidden="true"></i></Link>}</div>
-                        <div><Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><i class="fa fa-shopping-cart" aria-hidden="true"></i></Link></div>
+                        <div>{!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><HiUserCircle style={{ fontSize: '26px', paddingBottom: '1.6px' }} /></Link>}</div>
+                        <div>{isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/user/dashboard' className='bhaagi2'><HiUserCircle style={{ fontSize: '26px', paddingBottom: '1.6px' }} /></Link>}</div>
+                        <div><Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><HiShoppingCart style={{ fontSize: '23px', paddingBottom: '1.6px' }} /></Link></div>
                     </div>
 
                 </div>
@@ -196,7 +197,23 @@ const Menu = ({ history }) => {
                 <div className="men3">
                     <ul className="navlink">
 
-                        <h4 className='titeel1'>Menu</h4>
+                        <div className='titeel1'>
+                            <div className='titek'>
+                                {!isAuth() &&
+                                    <Link to='/login'><h5><span><HiUserCircle /></span>Sign In/Sign Up<span><HiOutlineArrowRight /></span></h5></Link>}
+                            </div>
+                            <div>
+                                {isAuth() &&
+                                    <div className='titek'>
+                                        <div><img src={`${isAuth().pUrl}`} alt='profile pic' /></div>
+                                        <div>
+                                            <h6>{isAuth().Name}</h6>
+                                            <p>{isAuth().mail}</p>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
 
                         <Link onClick={changeScreen} style={isActive(history, '/')} to='/' className='bhaagi2'><li>Home</li></Link>
                         <Link onClick={changeScreen} style={isActive(history, '/shop')} to='/shop' className='bhaagi2'><li>Do It Yourself</li></Link>

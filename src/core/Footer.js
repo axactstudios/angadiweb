@@ -5,9 +5,9 @@ import IOS from '../Assests/IOS.svg'
 import PLAY from '../Assests/play.svg'
 import $ from 'jquery'
 import { Link, withRouter } from 'react-router-dom'
-import { itemTotal } from '../helpers/CartHelper'
+import { IoNotificationsSharp } from 'react-icons/io5'
 
-const Footer = ({history}) => {
+const Footer = ({ history }) => {
 
     const upwardmove = () => {
         $(document).ready(function () {
@@ -23,16 +23,16 @@ const Footer = ({history}) => {
             return { color: "white" };
         }
     }
-    
+
 
     return (
         <>
             <div className="home15">
                 <div className='bheegi'>
                     <div className='logo'>
-                      <img src={'https://www.angadi.ae/wp-content/uploads/2020/06/Angadi-3.jpg'} alt="angadi logo" />
+                        <img src={'https://www.angadi.ae/wp-content/uploads/2020/06/Angadi-3.jpg'} alt="angadi logo" />
                     </div>
-                        
+
                     <div className="footer-list">
                         <h3>Information</h3>
                         <a href="jdfakkl">About us</a>
@@ -41,7 +41,7 @@ const Footer = ({history}) => {
                         <a href="jdfakkl">Privacy policy</a>
                         <a href="jdfakkl">Terms & conditions</a>
                     </div>
-                
+
                     <div className="footer-list">
                         <h3>Quick Links</h3>
                         <a href="jdfakkl">My account</a>
@@ -50,19 +50,19 @@ const Footer = ({history}) => {
                         <a href="jdfakkl">checkout</a>
                         <a href="jdfakkl">cart</a>
                     </div>
-                
+
                     <div className="footer-list">
                         <h3>Contact Info</h3>
                         <p>Phone number</p>
                         <p>email</p>
                         <p>address</p>
                         <div className="social-media-icons">
-                          <i class="fa fa-facebook" aria-hidden="true"></i>
-                          <i class="fa fa-twitter" aria-hidden="true"></i>
-                          <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
                         </div>
                     </div>
-                    
+
                     <div className="download">
                         <a href="#" className="btn m-0">
                             <img src={IOS} style={{ widht: '100%' }} />
@@ -85,10 +85,10 @@ const Footer = ({history}) => {
                                 </div>
                             </Link>
                             </Col>
-                            <Col><Link to='/cart' className='bhaagi2' style={isActive(history, `/cart`)}>
+                            <Col><Link to='/user/dashboard' className='bhaagi2' style={isActive(history, `/user/dashboard`)}>
                                 <div className='bhaagi1'>
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"> <sup>{itemTotal()}</sup></i>
-                                    <p>Cart</p>
+                                    <IoNotificationsSharp style={{ fontSize: '23px' }} />
+                                    <p>Notification</p>
                                 </div>
                             </Link>
                             </Col>
