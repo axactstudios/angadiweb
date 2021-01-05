@@ -218,9 +218,34 @@
     }
 }
 
-.tic-ttok{
-    margin-top: 35px;
+
+
+
+.tic-ttokkk{
+    margin-top: 32px;
 }
+.tic-ttokkk h5{
+    color: #6b3600;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.tic-ttok{
+    margin-top: -45px;
+    margin-bottom: 30px;
+}
+.for-body-purpose{
+    border: 1px solid #acabab;
+    width: fit-content;
+    margin: auto;
+}
+@media screen and (max-width :1370px){
+    .tic-ttok{
+        margin-top: 0px;
+        margin-bottom: 30px;
+    }
+}
+
 .tic-ttok h5{
     color: #6b3600;
     font-size: 18px;
@@ -250,23 +275,19 @@
     width: fit-content;
     margin: auto;
     text-align: center;
-    margin-top: -8px;
 }
-/* .tic-ttok4{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-@media screen and (max-width: 767.5px){
     .tic-ttok4{
         display: flex;
         justify-content: center;
         align-items: center;
+        border-bottom: 1px solid #acabab;
+        width: fit-content;
+        margin: auto;
     }   
-    .tic-ttok{
+    /* .tic-ttok{
         margin-top: 0px;
         margin-bottom: 30px;
-    }
+    } */
     .tic-ttok2{
         text-align: center;
         /* margin: 0px 10px; */
@@ -276,7 +297,14 @@
     .tic-ttok1{
         min-width: 140px;
     }
+
+@media screen and (max-width :766px){
+    .tic-ttokkk{
+        display: none;
+    }   
 }
+
+
 /**
 * Related Products
 **/

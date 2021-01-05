@@ -91,7 +91,7 @@ const Product = (props) => {
         const w = count - 1
         setCount(w < 1 ? 1 : w)
     }
-
+    const freqdiscc = pro && frequent && Math.round(parseInt(frequent.price) + parseInt(pro.price)) - Math.round(parseInt(frequent.price) + parseInt(pro.price)) * 10 / 100
     const addToCart = async (e) => {
         await addItem(pirro, () => {
             if (count > 0) {
@@ -111,8 +111,6 @@ const Product = (props) => {
     };
 
     const rrate = pro && pro.rating && Math.round(pro.rating)
-
-    const freqbodis = pro && pro.boughtTogether
 
     return (
         <div className='hwami'>
@@ -174,27 +172,16 @@ const Product = (props) => {
                                     <Col md={2} xl={2}>
                                         {
                                             frequent &&
-                                            <div className='tic-ttok'>
+                                            <div className='tic-ttokkk'>
                                                 <h5>Frequently Bought Together</h5>
-                                                <div className='tic-ttok4'>
-                                                    {
-                                                        frequent &&
-                                                        <div className='tic-ttok1'>
-                                                            <img src={`${frequent.url}`} alt="img-url" />
-                                                            <h6>Rs {frequent.price}</h6>
-                                                            <p>{frequent.name}</p>
-                                                        </div>
-                                                    }
-                                                    <div className='tic-ttok2'><h3>+</h3></div>
+                                                {
+                                                    frequent &&
                                                     <div className='tic-ttok1'>
-                                                        <img src={`${pro.url}`} alt="img-url" />
-                                                        <h6>Rs {pro.price}</h6>
-                                                        <p>{pro.name}</p>
+                                                        <Link to={`/dish/${pro.boughtTogether}`}><img src={`${frequent.url}`} alt="img-url" /></Link>
+                                                        <h6>Rs {frequent.price}</h6>
+                                                        <p>{frequent.name}</p>
                                                     </div>
-                                                </div>
-                                                <div className="proccard7 tic-ttok3">
-                                                    <button>Add To Cart</button>
-                                                </div>
+                                                }
                                             </div>
                                         }
                                     </Col>
@@ -204,6 +191,36 @@ const Product = (props) => {
                         :
                         null
                 }
+
+                {
+                    frequent &&
+                    <div className='tic-ttok'>
+                        <h5>Frequently Bought Together</h5>
+                        <div className='for-body-purpose'>
+                            <div className='tic-ttok4'>
+                                {
+                                    frequent &&
+                                    <div className='tic-ttok1'>
+                                        <Link to={`/dish/${pro.boughtTogether}`}><img src={`${frequent.url}`} alt="img-url" /></Link>
+                                        <h6>Rs {frequent.price}</h6>
+                                        <p>{frequent.name}</p>
+                                    </div>
+                                }
+                                <div className='tic-ttok2'><h3>+</h3></div>
+                                <div className='tic-ttok1'>
+                                    <img src={`${pro.url}`} alt="img-url" />
+                                    <h6>Rs {pro.price}</h6>
+                                    <p>{pro.name}</p>
+                                </div>
+                            </div>
+                            <div className="proccard7 tic-ttok3">
+                                {/*<button>Add To Cart</button>*/}
+                                <p>Buy All two <span style={{ color: '#6b3600' }}>Rs {freqdiscc}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+
                 <div className="proccard8">
                     <div className="ffdfd">
                         <Container fluid>

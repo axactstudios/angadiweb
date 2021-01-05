@@ -15,6 +15,7 @@ const Home = () => {
     const [cs, setCs] = useState('')
     const [imgurll, setImgurl] = useState([])
     const [specia, setSpecial] = useState([])
+    const [loca, setloca] = useState('')
     const [values, setValues] = useState({
         name: '',
         category: ''
@@ -83,17 +84,16 @@ const Home = () => {
             navigator.permissions.query({ name: 'geolocation' })
                 .then((res) => {
                     if (res.state === 'granted') {
-                        console.log(res.state)
+                        // console.log(res.state)
                         navigator.geolocation.getCurrentPosition(function (position) {
-                            console.log("Latitude is :", position.coords.latitude);
-                            console.log("Longitude is :", position.coords.longitude);
+                            // console.log("Latitude is :", position.coords.latitude);
+                            // console.log("Longitude is :", position.coords.longitude);
                             Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
                             Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
                                 async ress => {
-                                    const address = await ress.results[0].formatted_address;
+                                    // const address = await ress.results[0].formatted_address;
                                     const address1 = await ress.results[0].address_components[3].long_name;
-                                    console.log(address1)
-                                    console.log(ress)
+                                    setloca(address1)
                                 }
                             )
                         })
@@ -124,7 +124,7 @@ const Home = () => {
                 </div>
                 <div className='ohdoljag2'>
                     <div className='ohdoljag21'>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Deliver to, Delhi
+                        <i class="fa fa-map-marker" aria-hidden="true"></i> Deliver to, <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
                     </div>
                 </div>
                 <div className='ohdoljag3'>

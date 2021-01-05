@@ -6,6 +6,7 @@ import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 import { Container, Form, Col, Row } from 'react-bootstrap';
+import Geocode from 'react-geocode'
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -21,6 +22,7 @@ const Menu = ({ history }) => {
     const [cat, setCat] = useState([])
     const [Dishes, setDishes] = useState([])
     const db = firebase.firestore()
+    const [loca, setloca] = useState('')
     const [values, setValues] = useState({
         name: '',
         category: ''
@@ -71,6 +73,32 @@ const Menu = ({ history }) => {
 
     }
 
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.permissions.query({ name: 'geolocation' })
+                .then((res) => {
+                    if (res.state === 'granted') {
+                        // console.log(res.state)
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            // console.log("Latitude is :", position.coords.latitude);
+                            // console.log("Longitude is :", position.coords.longitude);
+                            Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+                            Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+                                async ress => {
+                                    // const address = await ress.results[0].formatted_address;
+                                    const address1 = await ress.results[0].address_components[3].long_name;
+                                    setloca(address1)
+                                }
+                            )
+                        })
+                    } else if (res.state === 'prompt') {
+                        console.log(res.state)
+                    } else if (res.state === 'denied') {
+                        console.log(res.state)
+                    }
+                })
+        }
+    }, [])
 
 
     return (
@@ -97,7 +125,7 @@ const Menu = ({ history }) => {
                                 options={Dishes}
                                 getOptionLabel={(option) => option.data.name}
                                 onInputChange={onInputChange} //** on every input change hitting my api**
-                                style={{ width: 230, 'margin-top': '11px', height: '85px', scrollbarWidth: 'none', borderRadius:'6px' }}
+                                style={{ width: 230, 'margin-top': '11px', height: '85px', scrollbarWidth: 'none', borderRadius: '6px' }}
                                 renderInput={(params) =>
                                     <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} className='malay-searchbar' />}
                             />
@@ -111,7 +139,7 @@ const Menu = ({ history }) => {
                         <div className='header-extra1'>
                             <div className='header-extra11'>
                                 <div className='header-extra12'>
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Deliver to, Delhi
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i> Deliver to, <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
                                 </div>
                             </div>
                             <div className='header-extra13'>
@@ -147,12 +175,12 @@ const Menu = ({ history }) => {
                         </div>
                     </div>
 
-                    <div className="men23">
-                        <div className="men2321">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                        </div>
+                    <div className='header-extraa'>
+                        <div>{!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><i class="fa fa-user-circle-o" aria-hidden="true"></i></Link>}</div>
+                        <div>{isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/user/dashboard' className='bhaagi2'><i class="fa fa-user-circle-o" aria-hidden="true"></i></Link>}</div>
+                        <div><Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><i class="fa fa-shopping-cart" aria-hidden="true"></i></Link></div>
                     </div>
+
                 </div>
             </div>
 
