@@ -255,7 +255,11 @@
         width: 100%;
     }
 }
-
+@media screen and (max-width: 400px){
+    .bhaagi1 p{
+        font-size: 12px;
+    }
+}
 /**
 * Navbar
 **/

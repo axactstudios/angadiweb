@@ -6,6 +6,7 @@ import PLAY from '../Assests/play.svg'
 import $ from 'jquery'
 import { Link, withRouter } from 'react-router-dom'
 import { IoNotificationsSharp } from 'react-icons/io5'
+import { HiOutlineMenuAlt1 } from 'react-icons/hi'
 
 const Footer = ({ history }) => {
 
@@ -99,10 +100,17 @@ const Footer = ({ history }) => {
                                 </div>
                             </Link>
                             </Col>
+                            <Col><Link to='/shop' className='bhaagi2' style={isActive(history, `/shop`)}>
+                                <div className='bhaagi1'>
+                                    <HiOutlineMenuAlt1 style={{fontSize:'24px', fontWeight:'bolder'}}/>
+                                    <p>Category</p>
+                                </div>
+                            </Link>
+                            </Col>
                             <Col><Link to='/user/dashboard' className='bhaagi2' style={isActive(history, `/user/dashboard`)}>
                                 <div className='bhaagi1'>
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    <p>Dashboard</p>
+                                    <p>User</p>
                                 </div>
                             </Link>
                             </Col>

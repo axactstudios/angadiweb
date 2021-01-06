@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { HiShoppingCart } from 'react-icons/hi'
 import '../Styles/cartttt.css'
-import { Modal, Button } from 'react-bootstrap'
-import { getCart, itemTotal } from '../helpers/CartHelper'
+import { Modal } from 'react-bootstrap'
+import { getCart } from '../helpers/CartHelper'
 import Card from './Homecart'
 import { Link } from 'react-router-dom'
 
@@ -21,7 +21,7 @@ function MyVerticallyCenteredModal(props) {
 
     useEffect(() => {
         setItems(getCart());
-    }, [])
+    }, [props.ttost])
 
     const noItemsMessage = () => {
         return (
@@ -65,6 +65,9 @@ function MyVerticallyCenteredModal(props) {
 
 const Cartt = () => {
     const [modalShow, setModalShow] = React.useState(false);
+    var min = 1;
+    var max = 100;
+    var rand = min + (Math.random() * (max - min));
 
     return (
         <div className='cart-home-comp-head'>
@@ -81,6 +84,7 @@ const Cartt = () => {
             <MyVerticallyCenteredModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                ttost={rand}
             />
         </div>
     );

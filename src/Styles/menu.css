@@ -402,6 +402,9 @@
 .header-extraa{
     display: none;
 }
+.header-extraa a{
+    color: #653602;
+}
 @media screen and (max-width: 1110px){
     .header-extra2{
         margin: auto 2px;       
@@ -434,27 +437,29 @@
         display: none;
     }
     .header-extraa{
-        width: 80px;
+        width: 120px;
         display: flex;
         line-height: 56px;
         margin-left: auto;
     }
-    .header-extraa i{
+    .header-extraa a{
         font-size: 21px;
         padding-right: 15px;
+        color: #653602;
     }
 }
 @media screen and (max-width: 430px){
     .header-extraa{
         position: relative;
-        left: -25px;
+        left: -40px;
         width: 80px;
         display: flex;
         line-height: 56px;
         margin-left: auto;
     }
-    .header-extraa i{
+    .header-extraa a{
+        color: #653602;
         font-size: 21px;
-        padding-right: 12px;
+        padding-right: 4px;
     }
 }

@@ -7,7 +7,8 @@ import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 import { Container, Form, Col, Row } from 'react-bootstrap';
 import Geocode from 'react-geocode'
-import { HiShoppingCart, HiUserCircle, HiOutlineArrowRight } from 'react-icons/hi'
+import { HiShoppingCart, HiUserCircle, HiOutlineArrowRight, HiPhone, HiOutlineMailOpen } from 'react-icons/hi'
+import { IoLogoWhatsapp } from 'react-icons/io5'
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -180,9 +181,9 @@ const Menu = ({ history }) => {
                     </div>
 
                     <div className='header-extraa'>
-                        <div>{!isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/login' className='bhaagi2'><HiUserCircle style={{ fontSize: '26px', paddingBottom: '1.6px' }} /></Link>}</div>
-                        <div>{isAuth() && <Link onClick={changeScreen} style={isActive(history, '/login')} to='/user/dashboard' className='bhaagi2'><HiUserCircle style={{ fontSize: '26px', paddingBottom: '1.6px' }} /></Link>}</div>
-                        <div><Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><HiShoppingCart style={{ fontSize: '23px', paddingBottom: '1.6px' }} /></Link></div>
+                        <div>{<a href="#"><HiPhone style={{ fontSize: '23px' }} /></a>}</div>
+                        <div>{<a href='#'><HiOutlineMailOpen style={{ fontSize: '26px', paddingBottom: '1.6px' }} /></a>}</div>
+                        <div><a href="#"><IoLogoWhatsapp style={{ fontSize: '25px', paddingBottom: '1.6px' }} /></a></div>
                     </div>
 
                 </div>

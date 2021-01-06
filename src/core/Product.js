@@ -112,6 +112,12 @@ const Product = (props) => {
 
     const rrate = pro && pro.rating && Math.round(pro.rating)
 
+    const toaast = (k) => {
+        if (k) {
+            toast.success('Item Added !!!')
+        }
+    }
+
     return (
         <div className='hwami'>
             <ToastContainer />
@@ -242,7 +248,7 @@ const Product = (props) => {
                                             {
                                                 d.data.name !== pro.name ?
                                                     <Col lg={4} xl={4} key={k} sm={6} xs={6} className='ffdfd3'>
-                                                        <Card product={d} />
+                                                        <Card product={d} toaaat={toaast} />
                                                     </Col>
                                                     :
                                                     null

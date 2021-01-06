@@ -5,6 +5,7 @@ import Card from '../PagesHelper/Card'
 import '../Styles/shop.css'
 import $ from 'jquery'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Shop = (props) => {
     const [special, setSpecial] = useState([])
@@ -264,8 +265,15 @@ const Shop = (props) => {
         setShoww(false)
     }
 
+    const toaast = (k) => {
+        if (k) {
+            toast.success('Item Added !!!')
+        }
+    }
+
     return (
         <div className='hwami'>
+            <ToastContainer />
             <div className="homey2 cde">
                 <Container fluid>
                     <div className="shopi">
@@ -289,9 +297,9 @@ const Shop = (props) => {
                                         <select onChange={handleChange('category')} >
                                             <option>Please Select</option>
                                             {cat.map((c, i) =>
-                                                (<option key={i} value={c.data.catName}>
-                                                    {c.data.catName}
-                                                </option>)
+                                            (<option key={i} value={c.data.catName}>
+                                                {c.data.catName}
+                                            </option>)
                                             )}
                                         </select>
                                     </Form.Group>
@@ -348,7 +356,7 @@ const Shop = (props) => {
                                                 {
                                                     dish && dish.map((d, k) => (
                                                         <Col lg={6} xl={4} key={k} sm={6} xs={6} className="homey1 shopii3">
-                                                            <Card product={d} />
+                                                            <Card product={d} toaaat={toaast} />
                                                         </Col>
                                                     ))
                                                 }
@@ -363,7 +371,7 @@ const Shop = (props) => {
                                                 {
                                                     resu && resu.map((d, k) => (
                                                         <Col lg={6} xl={4} key={k} sm={6} xs={6} className="homey1 shopii3">
-                                                            <Card product={d} />
+                                                            <Card product={d} toaaat={toaast} />
                                                         </Col>
                                                     ))
                                                 }
@@ -388,9 +396,9 @@ const Shop = (props) => {
                             <select onChange={handleChange('category')} >
                                 <option>Please Select</option>
                                 {cat.map((c, i) =>
-                                    (<option key={i} value={c.data.catName}>
-                                        {c.data.catName}
-                                    </option>)
+                                (<option key={i} value={c.data.catName}>
+                                    {c.data.catName}
+                                </option>)
                                 )}
                             </select>
                         </Form.Group>

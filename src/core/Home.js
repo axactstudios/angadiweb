@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
-import { Col, Container, Row, Carousel, Form } from 'react-bootstrap'
+import { Col, Container, Row, Carousel } from 'react-bootstrap'
 import '../Styles/home.css'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
@@ -109,7 +109,8 @@ const Home = () => {
 
     const toaast = (k) => {
         if (k) {
-            toast.success('Item Added !!!')
+            toast.warning('Item Added !!!')
+            // window.location.reload(false)
         }
     }
 
