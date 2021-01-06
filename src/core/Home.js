@@ -80,32 +80,32 @@ const Home = () => {
     }, [cs])
 
 
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.permissions.query({ name: 'geolocation' })
-                .then((res) => {
-                    if (res.state === 'granted') {
-                        // console.log(res.state)
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            // console.log("Latitude is :", position.coords.latitude);
-                            // console.log("Longitude is :", position.coords.longitude);
-                            Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
-                            Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
-                                async ress => {
-                                    // const address = await ress.results[0].formatted_address;
-                                    const address1 = await ress.results[0].address_components[3].long_name;
-                                    setloca(address1)
-                                }
-                            )
-                        })
-                    } else if (res.state === 'prompt') {
-                        console.log(res.state)
-                    } else if (res.state === 'denied') {
-                        console.log(res.state)
-                    }
-                })
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (navigator.geolocation) {
+    //         navigator.permissions.query({ name: 'geolocation' })
+    //             .then((res) => {
+    //                 if (res.state === 'granted') {
+    //                     // console.log(res.state)
+    //                     navigator.geolocation.getCurrentPosition(function (position) {
+    //                         // console.log("Latitude is :", position.coords.latitude);
+    //                         // console.log("Longitude is :", position.coords.longitude);
+    //                         Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+    //                         Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+    //                             async ress => {
+    //                                 // const address = await ress.results[0].formatted_address;
+    //                                 const address1 = await ress.results[0].address_components[3].long_name;
+    //                                 setloca(address1)
+    //                             }
+    //                         )
+    //                     })
+    //                 } else if (res.state === 'prompt') {
+    //                     console.log(res.state)
+    //                 } else if (res.state === 'denied') {
+    //                     console.log(res.state)
+    //                 }
+    //             })
+    //     }
+    // }, [])
 
     const toaast = (k) => {
         if (k) {
