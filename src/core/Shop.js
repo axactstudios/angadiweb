@@ -6,9 +6,13 @@ import '../Styles/shop.css'
 import $ from 'jquery'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
 
 const Shop = (props) => {
     const [special, setSpecial] = useState([])
+    const [Dishes, setDishes] = useState([])
     const [dish, setDish] = useState([])
     const [resu, setResh] = useState([])
     const [cat, setCat] = useState([])
@@ -24,6 +28,16 @@ const Shop = (props) => {
     const cd = props.match.params.categoryName
     const md = cd && `${cs}/${cd}`
     const mss = props.location.state && props.location.state.search
+
+    useEffect(() => {
+        setDishes([])
+        db.collection('Dishes').get()
+            .then(res => {
+                res.forEach((doc) => {
+                    setDishes(Dishes => [...Dishes, { data: doc.data(), _id: doc.id }])
+                })
+            })
+    }, [])
 
     useEffect(() => {
         setCat([])
@@ -98,6 +112,9 @@ const Shop = (props) => {
         });
     }, [cs])
 
+    const onInputChange = (event, value) => {
+        setValues({ ...values, name: value })
+    }
 
     const handleChange = name => (e) => {
         setResh([])
@@ -279,12 +296,20 @@ const Shop = (props) => {
                     <div className="shopi">
                         <Row>
                             <Col lg={10} sm={10} xs={9}>
-                                <Form.Group >
-                                    <Form.Control type="text" placeholder="Enter Dish Name" onChange={handechange('name')} value={values.name} />
+                                <Form.Group className='tra-ra'>
+                                    <Autocomplete
+                                        id="combo-box-demo"
+                                        options={Dishes}
+                                        getOptionLabel={(option) => option.data.name}
+                                        onInputChange={onInputChange} //** on every input change hitting my api**
+                                        style={{ width: '100%' }}
+                                        renderInput={(params) =>
+                                            <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} />}
+                                    />
                                 </Form.Group>
                             </Col>
                             <Col lg={2} sm={2} xs={3}>
-                                <button onClick={getsearch}>Search</button>
+                                <button onClick={getsearch} className='tera-yarr-hoo'>Search</button>
                             </Col>
                         </Row>
                     </div>

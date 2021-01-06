@@ -7,7 +7,7 @@ import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 import { Container, Form, Col, Row } from 'react-bootstrap';
 import Geocode from 'react-geocode'
-import { HiShoppingCart, HiUserCircle, HiOutlineArrowRight, HiPhone, HiOutlineMailOpen } from 'react-icons/hi'
+import {  HiUserCircle, HiOutlineArrowRight, HiPhone, HiOutlineMailOpen } from 'react-icons/hi'
 import { IoLogoWhatsapp } from 'react-icons/io5'
 
 const isActive = (history, path) => {
