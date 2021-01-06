@@ -20,7 +20,7 @@ const Cart = () => {
 
     useEffect(() => {
         setItems(getCart());
-    }, [])
+    }, [d])
 
     const noItemsMessage = () => {
         return (

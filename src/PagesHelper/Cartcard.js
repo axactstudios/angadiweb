@@ -83,7 +83,7 @@ const Cartcard = ({ product,
                 <button className="bttncart1" onClick={() => {
                     removeItem(product._id)
                     toast.success('Item Removed !!!')
-                    window.location.reload(false)
+                    setdm()
                 }}>
                     Remove
                 </button>
