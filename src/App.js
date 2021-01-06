@@ -33,6 +33,7 @@ import Menu from './core/Menu'
 import Footer from './core/Footer'
 import Shop from './core/Shop'
 import Contact from './core/Contact'
+import Notification from './core/Notification'
 
 import Myads from './User/Myadds'
 import Userdashboard from './User/UserDashboard';
@@ -57,6 +58,7 @@ const App = () => {
             <Route path='/dish/:dishId' exact component={Product} />
             <Route path='/contact/us' exact component={Contact} />
             <Route path='/users/password/forget' exact component={ForgetPassword} />
+            <Route path='/notif' exact component={Notification} />
 
             <AdminRoute path='/get/category' exact component={GetCat} />
             <AdminRoute path='/create/category' exact component={Addcat} />

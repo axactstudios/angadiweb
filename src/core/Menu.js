@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
-import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../Styles/menu.css'
 import { isAuth } from '../helpers/auth'
@@ -9,6 +8,22 @@ import { Container, Form, Col, Row } from 'react-bootstrap';
 import Geocode from 'react-geocode'
 import {  HiUserCircle, HiOutlineArrowRight, HiPhone, HiOutlineMailOpen } from 'react-icons/hi'
 import { IoLogoWhatsapp } from 'react-icons/io5'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: "220",
+    color: 'rgb(255, 176, 0)',
+    borderBottom : "none"
+  },
+}));
 
 const isActive = (history, path) => {
     if (history.location.pathname === path) {
@@ -20,6 +35,7 @@ const isActive = (history, path) => {
 }                                        // Dishes  name  
 
 const Menu = ({ history }) => {
+    const classes = useStyles();
 
     const [cat, setCat] = useState([])
     const [Dishes, setDishes] = useState([])
@@ -107,7 +123,7 @@ const Menu = ({ history }) => {
 
 
     return (
-        <div>
+        <div className="menu-bar">
             <div className="men24">
                 <div className="men2">
                     <div className="men22">
@@ -149,7 +165,16 @@ const Menu = ({ history }) => {
                             </div>
                             <div className='header-extra13'>
                                 <div className='header-extra14'>
-                                    Next Delivery: <i class="fa fa-motorcycle" aria-hidden="true"></i> 26/10 at <i class="fa fa-clock-o" aria-hidden="true"></i> 9:00 AM
+                                    <TextField
+                                      id="datetime-local"
+                                      label="Next delivery"
+                                      type="datetime-local"
+                                      defaultValue="2021-01-24T10:30"
+                                      className={classes.textField}
+                                      InputLabelProps={{
+                                        shrink: true,
+                                      }}
+                                    />
                                 </div>
                             </div>
                         </div>

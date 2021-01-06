@@ -60,6 +60,11 @@
     width: 90px;
 }
 
+.MuiInput-underline::after,
+.MuiInput-underline::before{
+  border-bottom: none !important;
+}
+
 @media screen and (max-width: 860px){
     .men21{
         display: none;
