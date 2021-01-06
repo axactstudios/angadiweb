@@ -7,8 +7,25 @@ import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import Geocode from 'react-geocode'
 import Cartcomp from '../PagesHelper/Cartt'
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(0.2),
+    marginRight: theme.spacing(4),
+    color: 'rgb(255, 176, 0)',
+    borderBottom : "none"
+  },
+}));
 
 const Home = () => {
+  const classes = useStyles();
+
     const [cat, setCat] = useState([])
     const db = firebase.firestore()
     const [resu, setResh] = useState([])
@@ -131,7 +148,16 @@ const Home = () => {
                 </div>
                 <div className='ohdoljag3'>
                     <div className='ohdoljag31'>
-                        Next Delivery: <i class="fa fa-motorcycle" aria-hidden="true"></i> 26/10 at <i class="fa fa-clock-o" aria-hidden="true"></i> 9:00 AM
+                    <TextField
+                      id="datetime-local"
+                      label="Next delivery"
+                      type="datetime-local"
+                      defaultValue="2021-01-24T10:30"
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
                     </div>
                 </div>
             </div>

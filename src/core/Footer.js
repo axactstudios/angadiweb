@@ -86,7 +86,7 @@ const Footer = ({ history }) => {
                                 </div>
                             </Link>
                             </Col>
-                            <Col><Link to='/user/dashboard' className='bhaagi2' style={isActive(history, `/user/dashboard`)}>
+                            <Col><Link to='/notif' className='bhaagi2' style={isActive(history, `/notif`)}>
                                 <div className='bhaagi1'>
                                     <IoNotificationsSharp style={{ fontSize: '23px' }} />
                                     <p>Notification</p>
@@ -100,7 +100,7 @@ const Footer = ({ history }) => {
                                 </div>
                             </Link>
                             </Col>
-                            <Col><Link to='/shop' className='bhaagi2' style={isActive(history, `/shop`)}>
+                            <Col id="cate"><Link to='/shop' className='bhaagi2' style={isActive(history, `/shop`)}>
                                 <div className='bhaagi1'>
                                     <HiOutlineMenuAlt1 style={{fontSize:'24px', fontWeight:'bolder'}}/>
                                     <p>Category</p>
