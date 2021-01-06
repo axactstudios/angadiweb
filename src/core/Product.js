@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import * as firebase from 'firebase'
-import { Row, Col, Container } from 'react-bootstrap'
+import { Row, Col, Container, Form } from 'react-bootstrap'
 import '../Styles/productcard.css'
 import { addItem, updateItem } from '../helpers/CartHelper'
 import { Link } from 'react-router-dom'
@@ -9,6 +9,7 @@ import Card from '../PagesHelper/Card'
 import StarRatings from 'react-star-ratings';
 import $ from 'jquery'
 import { toast, ToastContainer } from 'react-toastify';
+import { isAuth } from '../helpers/auth'
 
 const Product = (props) => {
 
@@ -37,6 +38,8 @@ const Product = (props) => {
         quantity: ''
     })
     const [frequent, setfrequent] = useState('')
+    const [satrat, setsatrat] = useState(0)
+    const [ratdetails, setratdetails] = useState('')
 
     useEffect(() => {
         setSpecial([])
@@ -116,6 +119,33 @@ const Product = (props) => {
         if (k) {
             toast.success('Item Added !!!')
         }
+    }
+
+    const submitratingandrev = async () => {
+
+        await db.collection('Reviews').where('productId', '==', _id)
+            .where('userId', '==', `${isAuth().id}`).get()
+            .then((re) => {
+                if (re && re[0]) {
+                    toast.error('Review already exists !!')
+                }
+                else {
+                    db.collection('Reviews').add({
+                        details: ratdetails,
+                        userName: isAuth().Name,
+                        userImage: isAuth().pUrl,
+                        userId: isAuth().id,
+                        rating: satrat,
+                        productId: _id,
+                        dishName: pro.name
+                    }).then(() => {
+                        toast.success('Review and Rating Added !!!')
+                    }).catch((err) => {
+                        toast.error('Something went wrong !!!')
+                    })
+                }
+            })
+
     }
 
     return (
@@ -273,7 +303,7 @@ const Product = (props) => {
                                             <div className='rate-reiview3'>
                                                 <div style={{ color: 'gray', marginTop: '4px' }}><img src={`${o.data.userImage}`} alt='no image' /> {o.data.userName}</div>
                                                 <div>
-                                                    <p style={{ color: 'blue', marginTop: '5.2px' }}><i class="fa fa-check-circle" aria-hidden="true"></i> Certifield Buyer</p>
+                                                    <p style={{ color: '#6b3600', marginTop: '5.2px' }}><i class="fa fa-check-circle" aria-hidden="true"></i> Certifield Buyer</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -282,6 +312,19 @@ const Product = (props) => {
                                 {
                                     revi.length === 0 ? <p>No Reviews Now !!!</p> : null
                                 }
+                                <div className='add-rat'>
+                                    <h6>Add Review and Rating</h6>
+                                    <h5><StarRatings rating={satrat}
+                                        starRatedColor='yellow'
+                                        numberOfStars={5}
+                                        changeRating={(newRating) => { setsatrat(newRating) }}
+                                        name='rating'
+                                        starDimension="18px"
+                                        starSpacing="2px" /></h5>
+                                        <Form.Control as="textarea" rows={3} placeholder='Add Review' value={ratdetails} onChange={(e) => setratdetails(e.target.value)}/>
+                                    {!isAuth() && <Link to='/login'><button onClick={() => { toast.error('Login First') }}>Submit</button></Link>}
+                                    {isAuth() && <button onClick={submitratingandrev}>Submit</button>}
+                                </div>
                             </div>
                         </Container>
                         <div className='cnpp ffdfd5'>

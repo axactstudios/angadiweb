@@ -463,3 +463,9 @@
         padding-right: 4px;
     }
 }
+@media screen and (max-width: 380px){
+    .header-extraa{
+        position: relative;
+        left: -60px;
+    }
+}

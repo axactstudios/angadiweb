@@ -417,3 +417,24 @@
         margin-left: -12.1px;
     }
 }
+
+.add-rat{
+    margin-bottom: 20px;
+}
+.add-rat h6{
+    font-size: 17px;
+    margin-bottom: -5px;
+    padding-bottom: 5px;
+}
+.add-rat h5{
+    font-size: 21px;
+}
+.add-rat button{
+    border: none;
+    color: white;
+    background-color: #ffb000;
+    line-height: 34px;
+    border-radius: 5px;
+    width: 80px;
+    margin-top: 10px;
+}
