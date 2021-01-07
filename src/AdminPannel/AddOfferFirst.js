@@ -3,7 +3,6 @@ import * as firebase from 'firebase'
 import { Form, Button } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
 import { Link } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
 
 const AddOfferFirst = () => {
 

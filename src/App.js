@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from './helpers/PrivateRoute';
 import AdminRoute from './helpers/AdminRoute';
@@ -22,6 +22,7 @@ import EditInventary from './AdminPannel/EditInventary'
 import Addemirates from './AdminPannel/Addemirates'
 import AddemirateArea from './AdminPannel/AddArea'
 import Areaemirate from './AdminPannel/Getemirates'
+import Orderhistory from './AdminPannel/Orderhistory'
 
 import Home from './core/Home'
 import ErrorPage from './core/Error'
@@ -40,16 +41,17 @@ import Userdashboard from './User/UserDashboard';
 import ForgetPassword from './User/ForgetPassword';
 import Resetpass from './User/ResetPassword'
 import UpdateProfile from './User/Profile'
+import Category from './core/Category';
 
 const App = () => {
   let location = window.location;
-  location = location.pathname.substring(0,6);
+  location = location.pathname.substring(0, 6);
 
   return (
     <div>
       <div>
         <BrowserRouter>
-          { location == '/admin' ? null : <Menu /> }
+          {location == '/admin' ? null : <Menu />}
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/register' exact component={Register} />
@@ -62,16 +64,18 @@ const App = () => {
             <Route path='/contact/us' exact component={Contact} />
             <Route path='/users/password/forget' exact component={ForgetPassword} />
             <Route path='/notif' exact component={Notification} />
+            <Route path='/category' exact component={Category} />
 
             <AdminRoute path='/admin/get/category' exact component={Adminpannel(GetCat)} />
             <AdminRoute path='/admin/create/category' exact component={Adminpannel(Addcat)} />
             <AdminRoute path='/admin/get/dishes' exact component={Adminpannel(GetDish)} />
             <AdminRoute path='/admin/add/dish' exact component={Adminpannel(Adddish)} />
             <AdminRoute path='/admin/edit/dish/:dishname' exact component={Adminpannel(Editdish)} />
-            <AdminRoute path='/admin/edit/category/:catname' exact component={Adminpannel(Editcat)} /> 
+            <AdminRoute path='/admin/edit/category/:catname' exact component={Adminpannel(Editcat)} />
             <AdminRoute path='/admin/edit/offer/:offerId' exact component={Adminpannel(Editoffer)} />
             <AdminRoute path='/admin/edit/order/:orderId' exact component={Adminpannel(Editorder)} />
             <AdminRoute path='/admin/get/orders' exact component={Adminpannel(Getorder)} />
+            <AdminRoute path='/admin/get/orders/history' exact component={Adminpannel(Orderhistory)} />
             <AdminRoute path='/admin/add/offer' component={Adminpannel(Addoffer)} />
             <AdminRoute path='/admin/get/offers' exact component={Adminpannel(Getoffer)} />
             <AdminRoute path='/admin/get/users' exact component={Adminpannel(Getuser)} />
@@ -89,7 +93,7 @@ const App = () => {
             <PrivateRoute exact path='/user/dashboard/resetpassword' component={Userdashboard(Resetpass, "Reset Password")} />
             <Route component={ErrorPage} />
           </Switch>
-          { location == '/admin' ? null : <Footer /> }
+          {location == '/admin' ? null : <Footer />}
         </BrowserRouter>
       </div>
     </div>

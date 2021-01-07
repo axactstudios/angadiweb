@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import Card from '../Csshelper/Ordercard'
-import { Link } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
 import OrderTable from './OrderTable';
 import { Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
@@ -35,29 +32,8 @@ const Getorder = () => {
     }
 
     useEffect(async () => {
-        setDish([])
-        db.collection('Orders').orderBy("TimeStamp", "desc").get()
-            .then(res => {
-                let y = 0
-                res.forEach((doc) => {
-                    y += 1
-                    setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
-                })
-                db.collection('Orders')
-                    .onSnapshot(res => {
-                        let x = 0
-                        res.forEach((doc) => {
-                            x += 1
-                        })
-                        if (x > y) {
-                            toast.success('new order!!!')
-                        } if (x == y) {
-                            // toast.success('')
-                        }
-                    })
-            })
+        await newOrderr()
     }, [])
-
 
     useEffect(() => {
         const hamburgerr = document.querySelector('.nav_btn');
@@ -68,9 +44,9 @@ const Getorder = () => {
         })
     })
 
-    const CheckDeliveryType = () => {
+    const checkDeliverd = () => {
         setDish([])
-        db.collection('Orders').where("Status", "==", "In Route").get()
+        db.collection('Orders').where("Status", "==", "Order Delivered").get()
             .then(res => {
                 res.forEach((doc) => {
                     setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
@@ -79,9 +55,9 @@ const Getorder = () => {
             })
     }
 
-    const ActiveOrder = () => {
+    const CheckDeliveryType = () => {
         setDish([])
-        db.collection('Orders').where("Status", "==", "Awaiting Confirmation").get()
+        db.collection('Orders').where("Status", "==", "Cancelled").get()
             .then(res => {
                 res.forEach((doc) => {
                     setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
@@ -119,9 +95,9 @@ const Getorder = () => {
 
                 <div className="admin-order-utility">
                     <div>
-                        <button className="admin-order-utility-button" onClick={newOrderr}>New Order</button>
-                        <button className="admin-order-utility-button" onClick={CheckDeliveryType}>In Route</button>
-                        <button className="admin-order-utility-button" onClick={ActiveOrder}>Awaiting Confirmation</button>
+                        <button className="admin-order-utility-button" onClick={newOrderr}>All Orders</button>
+                        <button className="admin-order-utility-button" onClick={checkDeliverd}>Order Delivered</button>
+                        <button className="admin-order-utility-button" onClick={CheckDeliveryType}>Canceled Order</button>
                     </div>
                     <div style={{ display: "inline-flex" }}>
                         <Form.Group>
