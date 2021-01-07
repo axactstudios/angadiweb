@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as firebase from 'firebase'
 import { Form, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
 import { toast, ToastContainer } from 'react-toastify'
 
 const Addcat = () => {

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
+import {  useRouteMatch } from 'react-router-dom'
 import * as firebase from 'firebase'
-import { Form, Button } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
 
 const Editoffer = () => {

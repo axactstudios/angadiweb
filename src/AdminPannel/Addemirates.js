@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import firebase from 'firebase'
 import { Button, Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
-import { Link } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
 
 
 const Addemirates = () => {

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../Csshelper/Offercard'
-import { Link } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
 import '../Csshelper/card.css'
 
 const Getoffer = () => {

@@ -387,18 +387,19 @@ const Getemirates = () => {
                                             {
                                                 zonne.map((g, h) =>
                                                     <Col lg={6} className='emirates2'>
-                                                        {
+                                                        {g && g.data &&
                                                             g.data.Emirate == m.data.name ?
-                                                                <div>
-                                                                    <div className='emirates1'>
-                                                                        <h6>{g.data.name}</h6>
-                                                                        <button onClick={shownow2(g)} className='edit-emirates'><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                                                        <button onClick={deleZOne(g._id)} className='delete-emirates'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                                                                    </div>
-                                                                    {
-                                                                        area && area.map((n, k) =>
-                                                                            <div>
-                                                                                {n.data.Emirate == m.data.name && n.data.zone === g.data.name
+                                                            <div>
+                                                                <div className='emirates1'>
+                                                                    <h6>{g.data.name}</h6>
+                                                                    <button onClick={shownow2(g)} className='edit-emirates'><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                                                                    <button onClick={deleZOne(g._id)} className='delete-emirates'><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                                                </div>
+                                                                {
+                                                                    area && area.map((n, k) =>
+                                                                        <div>
+                                                                            {
+                                                                                n && n.data && n.data.Emirate == m.data.name && n.data.zone === g.data.name
                                                                                     ?
                                                                                     <div className='emirates3'>
                                                                                         <h6>{n.data.name}</h6>
@@ -407,13 +408,13 @@ const Getemirates = () => {
                                                                                     </div>
                                                                                     :
                                                                                     null
-                                                                                }
-                                                                            </div>
-                                                                        )
-                                                                    }
-                                                                </div>
-                                                                :
-                                                                null
+                                                                            }
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                            </div>
+                                                            :
+                                                            null
                                                         }
                                                     </Col>
                                                 )

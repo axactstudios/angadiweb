@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import { Link } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
 import OrderTable from './OrderTable';
 import { Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
