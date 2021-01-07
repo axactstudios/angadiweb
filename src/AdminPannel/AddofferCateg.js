@@ -90,11 +90,10 @@ const AddofferCateg = () => {
             <div className='content1'>
 
                 <ul className='add-offer-spec'>
-                    <Link to='/add/offer/' style={{ textDecoration: 'none' }}><li>For All User</li></Link>
-                    <Link to='/add/offer/forfirstuser' style={{ textDecoration: 'none' }}><li style={{ margin: '0 10px' }}>For First User</li></Link>
-                    <Link to='/add/offer/forcategory' style={{ textDecoration: 'none' }}><li>For category</li></Link>
+                    <Link to='/admin/add/offer/' style={{ textDecoration: 'none' }}><li>For All User</li></Link>
+                    <Link to='/admin/add/offer/forfirstuser' style={{ textDecoration: 'none' }}><li style={{ margin: '0 10px' }}>For First User</li></Link>
+                    <Link to='/admin/add/offer/forcategory' style={{ textDecoration: 'none' }}><li>For category</li></Link>
                 </ul>
-
                 <h2>Add Offer For Specific Category</h2>
                 <Form>
                     <Form.Group>

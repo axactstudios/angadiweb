@@ -23,6 +23,7 @@ import Addemirates from './AdminPannel/Addemirates'
 import AddemirateArea from './AdminPannel/AddArea'
 import Areaemirate from './AdminPannel/Getemirates'
 import Orderhistory from './AdminPannel/Orderhistory'
+import Addzone from './AdminPannel/Addzone'
 
 import Home from './core/Home'
 import ErrorPage from './core/Error'
@@ -85,6 +86,7 @@ const App = () => {
             <AdminRoute path='/admin/add/emirates' exact component={Adminpannel(Addemirates)} />
             <AdminRoute path='/admin/add/area' exact component={Adminpannel(AddemirateArea)} />
             <AdminRoute path='/admin/get/area' exact component={Adminpannel(Areaemirate)} />
+            <AdminRoute path='/admin/add/zone' exact component={Adminpannel(Addzone)} />
 
             <PrivateRoute exact path='/user/dashboard' component={Userdashboard()} />
             <PrivateRoute exact path='/user/dashboard/mycart' component={Userdashboard(Cart, "My Cart")} />

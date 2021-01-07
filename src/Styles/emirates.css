@@ -12,18 +12,26 @@
     font-size: 18px;
 }
 .delete-emirates{
-    margin-left: 2px;
+    margin-left: 3px;
     border: none;    
-    background-color: red;
+    background-color:red;
     color: white;
     font-weight: bold;
+    border-radius: 50%;
+    height: 23px;
+    width: 23px;
+    font-size: 14px;
 }
 .edit-emirates{
     margin-left: 8px;
     border: none;    
-    background-color: red;
+    background-color: rgb(255, 176, 0);
     color: white;
     font-weight: bold;
+    border-radius: 50%;
+    height: 23px;
+    width: 23px;
+    font-size: 14px;
 }
 
 .emirates2{

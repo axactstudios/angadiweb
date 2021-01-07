@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify'
 
 
-const AddArea = () => {
+const Addzone = () => {
 
     const [ress, setress] = useState([])
     const [values, setValues] = useState({
@@ -12,10 +12,9 @@ const AddArea = () => {
         minOrderPrice: '',
         deliveryCharge: '',
         Emirate: '',
-        zone: ''
     })
 
-    const { name, minOrderPrice, deliveryCharge, zone, Emirate } = values
+    const { name, minOrderPrice, deliveryCharge, Emirate } = values
 
     const db = firebase.firestore()
 
@@ -34,19 +33,30 @@ const AddArea = () => {
     }, [])
 
     const handleSubmit = () => {
-        if (deliveryCharge && minOrderPrice && minOrderPrice && zone && Emirate) {
-            db.collection('EmiratesArea').add({
-                name: name,
-                minOrderPrice: minOrderPrice,
-                deliveryCharge: deliveryCharge,
-                zone: zone,
-                Emirate: Emirate
-            }).then(() => {
-                toast.success('Emirates Added !!!')
-                setValues({ ...values, name: '', minOrderPrice: ' ', deliveryCharge: '', zone: '', Emirate: '' })
-            }).catch((err) => {
-                toast.error('Something went wrong !!!')
-            })
+        if (deliveryCharge && minOrderPrice && name && Emirate) {
+            db.collection('Zones').where('name', '==', `${name}`)
+                .where('Emirate', '==', `${Emirate}`).get()
+                .then((dd) => {
+                    let i = 0
+                    dd.forEach((ds) => {
+                        i += 1
+                    })
+                    if (i == 0) {
+                        db.collection('Zones').add({
+                            name: name,
+                            minOrderPrice: minOrderPrice,
+                            deliveryCharge: deliveryCharge,
+                            Emirate: Emirate
+                        }).then(() => {
+                            toast.success('Zone Added !!!')
+                            setValues({ ...values, name: '', minOrderPrice: ' ', deliveryCharge: '', zone: '', Emirate: '' })
+                        }).catch((err) => {
+                            toast.error('Something went wrong !!!')
+                        })
+                    } else {
+                        toast.error('Zone already added')
+                    }
+                })
         } else {
             toast.error('Please Fill all fields')
         }
@@ -69,8 +79,8 @@ const AddArea = () => {
                     </select>
                 </Form.Group>
                 <Form.Group>
-                    <Form.Label>Area Name</Form.Label><br />
-                    <Form.Control type='text' placeholder="Enter Area Name" value={name} onChange={handlechange('name')} />
+                    <Form.Label>Zone Name</Form.Label><br />
+                    <Form.Control type='text' placeholder="Enter Zone Name" value={name} onChange={handlechange('name')} />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Minimum Order Price</Form.Label><br />
@@ -80,24 +90,10 @@ const AddArea = () => {
                     <Form.Label>Delivery Charge</Form.Label><br />
                     <Form.Control type='text' placeholder="Enter Delivery Charges" value={deliveryCharge} onChange={handlechange('deliveryCharge')} />
                 </Form.Group>
-                <Form.Group >
-                    <Form.Label>Zone</Form.Label><br />
-                    <select onChange={handlechange('zone')} >
-                        <option>Please Select</option>
-                        <option value='Zone1'>Zone1</option>
-                        <option value='Zone2'>Zone2</option>
-                        <option value='Zone3'>Zone3</option>
-                        <option value='Zone4'>Zone4</option>
-                        <option value='Zone5'>Zone5</option>
-                        <option value='Zone6'>Zone6</option>
-                        <option value='Zone7'>Zone7</option>
-                        <option value='Zone8'>Zone8</option>
-                    </select>
-                </Form.Group>
-                <Button onClick={handleSubmit}>Add Brands</Button>
+                <Button onClick={handleSubmit}>Add Zone</Button>
             </div>
         </div>
     );
 };
 
-export default AddArea;
+export default Addzone;
