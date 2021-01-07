@@ -468,9 +468,11 @@
         padding-right: 4px;
     }
 }
-@media screen and (max-width: 380px){
+@media screen and (max-width: 390px){
     .header-extraa{
         position: relative;
-        left: -60px;
+        left: -65px;
     }
 }
+
+/* 9639184441 */
