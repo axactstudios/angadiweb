@@ -205,6 +205,8 @@
     border-top: 2px solid rgb(255, 176, 0);
     background-color: #653602;
     height: 42px;
+    position: absolute;
+    margin-bottom: 0;
 }
 .home21 p{
     padding-top: 10px;

@@ -7,7 +7,7 @@ const Dishcard = ({ product }) => {
     return (
         <div className="csk">
             <div className="csk1">
-                <Link to={`/edit/dish/${product._id}`}>
+                <Link to={`/admin/edit/dish/${product._id}`}>
                     <img src={product.data.url} alt={product.data.name} />
                 </Link>
             </div>
