@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import { Link, useRouteMatch } from 'react-router-dom'
-import { isAuth } from '../helpers/auth'
+import { useRouteMatch } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import '../Styles/adminPanel.css';
 import { Form } from 'react-bootstrap'
