@@ -9,14 +9,31 @@
   justify-content: space-between;
   padding: 1.5em 2em 1em;
   align-items: center;
-  font-weight: 900;
+}
+
+.admin-panel-header h2 {
+  font-size: 2.5em;
+  font-weight: bolder;
+}
+
+.admin-panel-header h5 {
+  font-size: 1.5em;
+  font-weight: bolder;
 }
 
 .admin-panel-header button {
-  background-color: inherit;
+  padding: 0.25em 1em;
+  background-color: tomato;
   color: inherit;
   border: none;
-  font-size: 1.25em;
+  border-radius: 4px;
+  font-size: 20px;
+  color: white;
+  text-transform: capitalize !important;
+}
+
+.admin-panel-header button:hover {
+  background-color: tomato !important;
 }
 
 @media screen and (max-width: 450px){
@@ -209,6 +226,19 @@
     
     .admin-panel-header {
       position: relative;
-      top: 50px;
+      top: 52px;
+    }
+
+    .admin-panel-header h2 {
+      font-size: 1.75em;
+    }
+    
+    .admin-panel-header h5 {
+      font-size: 0.75em;
+    }
+    
+    .admin-panel-header button {
+      padding: 0.2em 0.5em;
+      font-size: 16px;
     }
   }

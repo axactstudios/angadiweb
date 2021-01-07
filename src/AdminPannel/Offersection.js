@@ -9,9 +9,9 @@ const Offersection = () => {
     return (
         <div>
             <Switch>
-                <Route path='/add/offer/' exact component={Addoffer} />
-                <Route path='/add/offer/forfirstuser' exact component={Addofferforfirst} />
-                <Route path='/add/offer/forcategory' exact component={Addofferforcateg} />
+                <Route path='/admin/add/offer/' exact component={Addoffer} />
+                <Route path='/admin/add/offer/forfirstuser' exact component={Addofferforfirst} />
+                <Route path='/admin/add/offer/forcategory' exact component={Addofferforcateg} />
             </Switch>
         </div>
     );

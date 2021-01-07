@@ -6,7 +6,7 @@ const Offercard = ({ product }) => {
     return (
         <div>
             <div className="ofeecard">
-                <Link to={`/edit/offer/${product._id}`}>
+                <Link to={`/admin/edit/offer/${product._id}`}>
                     <img src={product.data.ImageURL} alt={product.data.Title} />
                 </Link>
                 <div className='ofeecard1'>
