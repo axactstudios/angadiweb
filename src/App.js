@@ -40,6 +40,7 @@ import Userdashboard from './User/UserDashboard';
 import ForgetPassword from './User/ForgetPassword';
 import Resetpass from './User/ResetPassword'
 import UpdateProfile from './User/Profile'
+import Category from './core/Category';
 
 const App = () => {
   let location = window.location;
@@ -62,6 +63,7 @@ const App = () => {
             <Route path='/contact/us' exact component={Contact} />
             <Route path='/users/password/forget' exact component={ForgetPassword} />
             <Route path='/notif' exact component={Notification} />
+            <Route path='/category' exact component={Category} />
 
             <AdminRoute path='/admin/get/category' exact component={Adminpannel(GetCat)} />
             <AdminRoute path='/admin/create/category' exact component={Adminpannel(Addcat)} />

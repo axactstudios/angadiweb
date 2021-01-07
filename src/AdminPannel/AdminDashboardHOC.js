@@ -93,6 +93,7 @@ const AdminDashboard = (WrappedComponent) => {
                 <div class="mobile_nav_items">
                     <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
                     <Link className="admin1" to='/admin/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                    <Link className="admin1" to='/admin/get/orders/history'><i class="fa fa-refresh"></i>order history</Link>
                     <Link className="admin1" to='/admin/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
                     <Link className="admin1" to='/admin/get/category'><i class="fa fa-coffee"></i>category</Link>
                     <Link className="admin1" to='/admin/get/offers'><i class="fa fa-tag"></i>Offers</Link>
@@ -112,6 +113,7 @@ const AdminDashboard = (WrappedComponent) => {
                 </div>
                 <Link className="admin1" to='/admin/dashboard'><i class="fa fa-desktop"></i>Dashboard</Link>
                 <Link className="admin1" to='/admin/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
+                <Link className="admin1" to='/admin/get/orders/history'><i class="fa fa-refresh"></i>order history</Link>
                 <Link className="admin1" to='/admin/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
                 <Link className="admin1" to='/admin/get/category'><i class="fa fa-coffee"></i>category</Link>
                 <Link className="admin1" to='/admin/get/offers'><i class="fa fa-tag"></i>Offers</Link>
@@ -128,7 +130,7 @@ const AdminDashboard = (WrappedComponent) => {
               { WrappedComponent ? <WrappedComponent /> : <MainDash /> }
             </div>
 
-            <div className="home21" style={{marginTop: "0"}}>
+            <div className="home21" style={{marginTop: "0", position: "absolute", marginBottom: "0"}}>
                 <p>Copyright &copy; 2020 Angadi. All Rights Reserved</p>
             </div>
         </div>
