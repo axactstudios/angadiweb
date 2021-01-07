@@ -64,15 +64,15 @@ const OrderTable = (props) => {
                   {columns.map((column) => {
                     let value;
                     if (column.id == "_id") {
-                      value = <Link to={`/edit/order/${order._id}`}>{order._id}</Link>
+                      value = <Link to={`/admin/edit/order/${order._id}`}>{order._id}</Link>
                     } else if (column.id == "name") {
-                      value = <Link to={`/edit/dish/${order._id}`} style={{textDecoration: "none"}}><img src={order.data["url"]} width="50px" height="50px" /> &nbsp; {order.data["name"]}</Link>
+                      value = <Link to={`/admin/edit/dish/${order._id}`} style={{textDecoration: "none"}}><img src={order.data["url"]} width="50px" height="50px" /> &nbsp; {order.data["name"]}</Link>
                     } else if (column.id == "action") {
-                      value = <div className="edit-button-group"><Link to={`/edit/dish/${order._id}`}><button>Edit</button></Link></div>
+                      value = <div className="edit-button-group"><Link to={`/admin/edit/dish/${order._id}`}><button>Edit</button></Link></div>
                     } else if (column.id == "id") {
-                      value = <Link to={`/orders/from/user/${order.data["id"]}`}>{order.data["id"]}</Link>
+                      value = <Link to={`/admin/orders/from/user/${order.data["id"]}`}>{order.data["id"]}</Link>
                     } else if (column.id == "editcat") {
-                      value = <div className="edit-button-group"><Link to={`/edit/category/${order._id}`}><button>Edit</button></Link></div>
+                      value = <div className="edit-button-group"><Link to={`/admin/edit/category/${order._id}`}><button>Edit</button></Link></div>
                     } else {
                       value = order.data[column.id];
                     }

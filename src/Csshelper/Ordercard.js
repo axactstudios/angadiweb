@@ -26,7 +26,7 @@ const Ordercard = ({ product }) => {
                         <p>{d}</p>
                     ))}</div>
                 </div>
-                <Link className='ordme3' to={`/edit/order/${product._id}`}> View Order </Link>
+                <Link className='ordme3' to={`/admin/edit/order/${product._id}`}> View Order </Link>
         </div>
     );
 };
