@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 import '../Styles/Checkout.css';
 import { Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
-
+import Geocode from 'react-geocode'
 
 const Checkout = ({ dm }) => {
 
@@ -89,6 +89,36 @@ const Checkout = ({ dm }) => {
   useEffect(() => {
     checkCoup()
   }, [coupon])
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.permissions.query({ name: 'geolocation' })
+        .then((res) => {
+          // if (res.state === 'granted') {
+          // console.log(res.state)
+          navigator.geolocation.getCurrentPosition(function (position) {
+            // console.log("Latitude is :", position.coords.latitude);
+            // console.log("Longitude is :", position.coords.longitude);
+            Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+            Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+              async ress => {
+                const address = await ress.results[0].formatted_address;
+//                const address1 = await ress.results[0].address_components[3].long_name;
+                setData({...data, address : address })
+              }
+            )
+          })
+          // } else if (res.state === 'prompt') {
+          //     console.log(res.state)
+          // } else if (res.state === 'denied') {
+          //     console.log(res.state)
+          // }
+        })
+    } else {
+      toast.error('Geolocation is not supported')
+    }
+  }, [])
+
 
   const showCheckout = () => {
     return isAuth() ? (
@@ -177,10 +207,9 @@ const Checkout = ({ dm }) => {
         setpussh(true)
       }).catch((err) => {
         toast.error('Something went wrong')
-        console.log(err)
       })
     } else {
-      toast.error('Please Enter Phone and Address !!!')
+      toast.error('Please select Emirate and Emirate Area !!!')
     }
   }
 
