@@ -69,9 +69,9 @@ const Cartcard = ({ product,
             <div className="carttAd1">
                 <span>No of Items</span>
                 <div className="proccard611">
-                    <button className='inc' onClick={handleChangepostive(product._id)}>+</button>
-                    <h1>{count}</h1>
                     <button className='dec' onClick={handleChangeneagative(product._id)}>-</button>
+                    <h1>{count}</h1>
+                    <button className='inc' onClick={handleChangepostive(product._id)}>+</button>
                 </div>
             </div>
         </div>
