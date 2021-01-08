@@ -170,9 +170,9 @@ const Card = ({ product, toaaat }) => {
                 <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
                 <div className="inputdiv">
                     <div className="proccard611">
-                        <button className='inc' onClick={handleChangepostive()}>+</button>
-                        <h1>{count}</h1>
                         <button className='dec' onClick={handleChangeneagative()}>-</button>
+                        <h1>{count}</h1>
+                        <button className='inc' onClick={handleChangepostive()}>+</button>
                     </div>
                 </div>
                 <div className="cardbuttondiv">

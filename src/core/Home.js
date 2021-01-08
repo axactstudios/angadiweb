@@ -33,7 +33,7 @@ const Home = () => {
     const [cs, setCs] = useState('')
     const [imgurll, setImgurl] = useState([])
     const [specia, setSpecial] = useState([])
-    const [loca, setloca] = useState('')
+    const [loca, setloca] = useState('Dubai')
     const [values, setValues] = useState({
         name: '',
         category: ''

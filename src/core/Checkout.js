@@ -30,6 +30,7 @@ const Checkout = ({ dm }) => {
   const [minOrder, setminOrder] = useState('')
   const [selectarea, setselectarea] = useState('')
   const [selectemirate, setselectemirate] = useState('')
+  const [userAddress, serUserAddress] = useState([])
 
   const dis = []
   const qty = []
@@ -91,6 +92,17 @@ const Checkout = ({ dm }) => {
   }, [coupon])
 
   useEffect(() => {
+    serUserAddress([])
+    db.collection('Users').doc(`${isAuth().id}`).collection('Address').get()
+      .then(res => {
+        // res.forEach(doc => {
+        //   console.log(doc.id, ' => ', doc.data())
+        // })
+        console.log(res)
+      })
+  }, [])
+
+  useEffect(() => {
     if (navigator.geolocation) {
       navigator.permissions.query({ name: 'geolocation' })
         .then((res) => {
@@ -103,8 +115,8 @@ const Checkout = ({ dm }) => {
             Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
               async ress => {
                 const address = await ress.results[0].formatted_address;
-//                const address1 = await ress.results[0].address_components[3].long_name;
-                setData({...data, address : address })
+                //                const address1 = await ress.results[0].address_components[3].long_name;
+                setData({ ...data, address: address })
               }
             )
           })
@@ -306,34 +318,6 @@ const Checkout = ({ dm }) => {
       </div>)
   }
 
-  const orderrrr = () => {
-    // https://paytab.herokuapp.com/pay
-    axios
-      .post("http://localhost:5000/pay", {
-        Items: dis,
-        Qty: qty,
-        Price: pri,
-        TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
-        GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
-        Status: 'Order Placed',
-        Type: 'Delivery',
-        DeliveryDate: '45',
-        DeliveryTime: '55',
-        UserID: isAuth().id,
-        Notes: data.customMessage,
-        Address: data.address,
-        orderid: 'AIIFJKKR',
-      })
-      .then(res => {
-        console.log(res.data)
-        window.open(res.data.payment_url)
-      }
-        // if(res.data.payment_url){
-        // open(res.data.payment_url)
-        // }
-      )
-      .catch(err => console.error(err));
-  }
 
   const dkd = (ll) => (e) => {
     e.preventDefault()
@@ -410,11 +394,41 @@ const Checkout = ({ dm }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      <button onClick={orderrrr}>dd</button>
+      {JSON.stringify(userAddress)}
     </div>
   );
 }
 
 export default Checkout;
 
-// 73 + 3.5 +48.5
+// // 73 + 3.5 +48.5
+// <button onClick={orderrrr}>dd</button>
+
+// const orderrrr = () => {
+//   // https://paytab.herokuapp.com/pay
+//   axios
+//     .post("http://localhost:5000/pay", {
+//       Items: dis,
+//       Qty: qty,
+//       Price: pri,
+//       TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+//       GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
+//       Status: 'Order Placed',
+//       Type: 'Delivery',
+//       DeliveryDate: '45',
+//       DeliveryTime: '55',
+//       UserID: isAuth().id,
+//       Notes: data.customMessage,
+//       Address: data.address,
+//       orderid: 'AIIFJKKR',
+//     })
+//     .then(res => {
+//       console.log(res.data)
+//       window.open(res.data.payment_url)
+//     }
+//       // if(res.data.payment_url){
+//       // open(res.data.payment_url)
+//       // }
+//     )
+//     .catch(err => console.error(err));
+// }
