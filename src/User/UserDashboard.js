@@ -40,6 +40,7 @@ const UserDashboard = (WrappedComponent, heading) => {
             <Link to='/user/dashboard' className='dashboard-nav-link'> Dashboard </Link>
             <Link to='/user/dashboard/updateprofile' className='dashboard-nav-link'> Update Profile </Link>
             <Link to='/user/dashboard/myorders' className='dashboard-nav-link'> My Orders </Link>
+            <Link to='/wishlist' className='dashboard-nav-link'> My Wishlist </Link>
             <Link to='/cart' className='dashboard-nav-link'> My Cart </Link>
             <Link to='/user/dashboard/resetpassword' className='dashboard-nav-link'> Reset Password </Link>
             <Link to='/'> <Logout /> </Link>

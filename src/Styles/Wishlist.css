@@ -1,0 +1,134 @@
+.card-container {
+  padding: 1% 5%;
+}
+
+#wish-head {
+  text-align: center;
+
+  padding: 1em 2em 0;
+}
+
+.wishlist-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
+  padding: 1em;
+  align-items: center;
+  }
+  
+  .wishlist-card-info,
+  #wishlist {
+  display: flex;
+  }
+  
+#remove-wish {
+  background-color: inherit;
+  border: 2px solid grey;
+  color: grey;
+  font-size: 0.9em;
+  height: 50px;
+  width: 150px;
+  border-radius: 50px;
+  margin: 0.5em 0;
+}
+
+#add-to-cart {
+  background-color: inherit;
+  background-color: rgb(255, 176, 0);
+  border: none;
+  color: white;
+  font-size: 0.9em;
+  height: 50px;
+  width: 150px;
+  border-radius: 50px;
+  margin: 0.5em 0;
+}
+  
+  .wishlist-info h6 {
+  font-size: 1.25em;
+  font-weight: bold;
+  }
+  
+  .wishlist-info {
+  padding: 1em 2em;
+  }
+  
+  abbr {
+  text-decoration: none;
+  }
+  
+#wishlist {
+  width: 50px;
+  height: 50px;
+  background-color: tomato;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  align-items: center;
+  font-weight: bold;
+  padding: 25px 10px 10px;
+  box-shadow: 2px 2px 10px 1px tomato;
+}
+  
+.wishlist-desc {
+  font-size: 14px;
+  color: grey;
+}
+  
+.wishlist-img {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+  
+.img-carousel {
+  width: 15vw;
+  height: auto;
+  margin: 0 auto;
+}
+
+#cat-name {
+  color: white;
+    background: linear-gradient(
+        45deg,
+        rgb(255, 176, 0) 0%,
+        rgba(227, 214, 36, 0.8) 100%
+    );
+    width: fit-content;
+    padding: 3px 6px;
+    border-radius: 5px;
+    margin: 10px 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+  
+@media only screen and (max-width: 650px) {
+
+  #remove-wish {
+    width: 130px;
+    height: 40px;
+  }
+  
+  .wishlist-desc {
+    display: none;
+  }
+  
+  .wishlist-card-info {
+    flex-wrap: wrap;
+  }
+}
+  
+@media only screen and (max-width: 900px) {
+  .wishlist-card {
+    flex-wrap: wrap;
+  }
+  
+  .wishlist-buttons {
+    margin: 0 auto;
+  }
+  #wish-head {
+    margin-top: 50px;
+  }
+}
