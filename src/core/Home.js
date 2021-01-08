@@ -11,20 +11,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(0.2),
-    marginRight: theme.spacing(4),
-    color: 'rgb(255, 176, 0)',
-    borderBottom : "none"
-  },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing(0.2),
+        marginRight: theme.spacing(4),
+        color: 'rgb(255, 176, 0)',
+        borderBottom: "none"
+    },
 }));
 
 const Home = () => {
-  const classes = useStyles();
+    const classes = useStyles();
 
     const [cat, setCat] = useState([])
     const db = firebase.firestore()
@@ -97,34 +97,35 @@ const Home = () => {
     }, [cs])
 
 
-    // useEffect(() => {
-    //     if (navigator.geolocation) {
-    //         navigator.permissions.query({ name: 'geolocation' })
-    //             .then((res) => {
-    //                 if (res.state === 'granted') {
-    //                     // console.log(res.state)
-    //                     navigator.geolocation.getCurrentPosition(function (position) {
-    //                         // console.log("Latitude is :", position.coords.latitude);
-    //                         // console.log("Longitude is :", position.coords.longitude);
-    //                         Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
-    //                         Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
-    //                             async ress => {
-    //                                 // const address = await ress.results[0].formatted_address;
-    //                                 const address1 = await ress.results[0].address_components[3].long_name;
-    //                                 setloca(address1)
-    //                             }
-    //                         )
-    //                     })
-    //                 } else if (res.state === 'prompt') {
-    //                     console.log(res.state)
-    //                 } else if (res.state === 'denied') {
-    //                     console.log(res.state)
-    //                 }
-    //             })
-    //     }else{
-      //  toast.error('Geolocation is not supported')
-    //}
-    // }, [])
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.permissions.query({ name: 'geolocation' })
+                .then((res) => {
+                    // if (res.state === 'granted') {
+                    // console.log(res.state)
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        // console.log("Latitude is :", position.coords.latitude);
+                        // console.log("Longitude is :", position.coords.longitude);
+                        Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+                        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
+                            async ress => {
+                                // const address = await ress.results[0].formatted_address;
+                                const address1 = await ress.results[0].address_components[3].long_name;
+                                setloca(address1)
+                            }
+                        )
+                    })
+                    // } else if (res.state === 'prompt') {
+                    //     console.log(res.state)
+                    // } else if (res.state === 'denied') {
+                    //     console.log(res.state)
+                    // }
+                })
+        } else {
+            toast.error('Geolocation is not supported')
+        }
+    }, [])
+
 
     const toaast = (k) => {
         if (k) {
@@ -150,16 +151,16 @@ const Home = () => {
                 </div>
                 <div className='ohdoljag3'>
                     <div className='ohdoljag31'>
-                    <TextField
-                      id="datetime-local"
-                      label="Next delivery"
-                      type="datetime-local"
-                      defaultValue="2021-01-24T10:30"
-                      className={classes.textField}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
+                        <TextField
+                            id="datetime-local"
+                            label="Next delivery"
+                            type="datetime-local"
+                            defaultValue="2021-01-24T10:30"
+                            className={classes.textField}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
                     </div>
                 </div>
             </div>
