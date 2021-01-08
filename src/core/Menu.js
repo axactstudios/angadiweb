@@ -6,23 +6,24 @@ import { isAuth } from '../helpers/auth'
 import * as firebase from 'firebase'
 import { Container, Form, Col, Row } from 'react-bootstrap';
 import Geocode from 'react-geocode'
-import {  HiUserCircle, HiOutlineArrowRight, HiPhone, HiOutlineMailOpen } from 'react-icons/hi'
+import { HiUserCircle, HiOutlineArrowRight, HiPhone, HiOutlineMailOpen } from 'react-icons/hi'
 import { IoLogoWhatsapp } from 'react-icons/io5'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "220",
-    color: 'rgb(255, 176, 0)',
-    borderBottom : "none"
-  },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: "220",
+        color: 'rgb(255, 176, 0)',
+        borderBottom: "none"
+    },
 }));
 
 const isActive = (history, path) => {
@@ -152,7 +153,24 @@ const Menu = ({ history }) => {
                             />
                         </Form.Group>
                         <div className="men2123">
-                            <Link style={isActive(history, `/shop/${values.category}`)} to={{ pathname: `/shop/${values.category}`, state: { search: `${values.name}` } }}><button><i class="fa fa-search" aria-hidden="true"></i> Search</button></Link>
+                            {
+                                values.name && !values.category &&
+                                <Link style={isActive(history, `/dish/search/${values.name}`)} to={{ pathname: `/dish/search/${values.name}`, state: { search: `${values.name}` } }}><button><i class="fa fa-search" aria-hidden="true"></i> Search</button></Link>
+                            }
+                            {
+                                values.category && !values.name &&
+                                <Link style={isActive(history, `/shop/${values.category}`)} to={{ pathname: `/shop/${values.category}`, state: { search: `${values.name}` } }}><button><i class="fa fa-search" aria-hidden="true"></i> Search</button></Link>
+                            }
+                            {
+                                values.category && values.name ?
+                                    <Link style={isActive(history, `/shop/${values.category}`)} to={{ pathname: `/shop/${values.category}`, state: { search: `${values.name}` } }}><button><i class="fa fa-search" aria-hidden="true"></i> Search</button></Link>
+                                    :
+                                    null
+                            }
+                            {
+                                !values.category && !values.name &&
+                                <button onClick={() => { toast.error('Please Select Category or Name') }}><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                            }
                         </div>
                     </div>
 
@@ -166,14 +184,14 @@ const Menu = ({ history }) => {
                             <div className='header-extra13'>
                                 <div className='header-extra14'>
                                     <TextField
-                                      id="datetime-local"
-                                      label="Next delivery"
-                                      type="datetime-local"
-                                      defaultValue="2021-01-24T10:30"
-                                      className={classes.textField}
-                                      InputLabelProps={{
-                                        shrink: true,
-                                      }}
+                                        id="datetime-local"
+                                        label="Next delivery"
+                                        type="datetime-local"
+                                        defaultValue="2021-01-24T10:30"
+                                        className={classes.textField}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
                                     />
                                 </div>
                             </div>

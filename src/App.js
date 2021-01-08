@@ -43,6 +43,7 @@ import ForgetPassword from './User/ForgetPassword';
 import Resetpass from './User/ResetPassword'
 import UpdateProfile from './User/Profile'
 import Category from './core/Category';
+import Wishlist from './core/Wishlist'
 
 const App = () => {
   let location = window.location;
@@ -66,6 +67,7 @@ const App = () => {
             <Route path='/users/password/forget' exact component={ForgetPassword} />
             <Route path='/notif' exact component={Notification} />
             <Route path='/category' exact component={Category} />
+            <Route path='/wishlist' exact component={Wishlist} />
 
             <AdminRoute path='/admin/get/category' exact component={Adminpannel(GetCat)} />
             <AdminRoute path='/admin/create/category' exact component={Adminpannel(Addcat)} />

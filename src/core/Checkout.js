@@ -98,10 +98,12 @@ const Checkout = ({ dm }) => {
         GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
         Status: 'Order Placed',
         Type: 'Delivery',
+        DeliveryDate: '45',
+        DeliveryTime: '55',
         UserID: isAuth().id,
         Notes: data.customMessage,
         Address: data.address,
-        Phone: data.phone
+        orderid: 'AIIFJKKR',
       }).then(() => {
         toast.success('Order done added successfully!!!')
         emptyCart(() => {

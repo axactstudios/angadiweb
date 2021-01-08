@@ -304,7 +304,7 @@ const Shop = (props) => {
                                         onInputChange={onInputChange} //** on every input change hitting my api**
                                         style={{ width: '100%' }}
                                         renderInput={(params) =>
-                                            <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} />}
+                                            <TextField {...params} type="text" placeholder="I'm Searching For" value={values.name} style={{border:'1px solid #c2c2c2', height:'40px', borderRadius:'5px 0 0 5px'}}/>}
                                     />
                                 </Form.Group>
                             </Col>

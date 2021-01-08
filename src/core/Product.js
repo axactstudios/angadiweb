@@ -10,6 +10,7 @@ import StarRatings from 'react-star-ratings';
 import $ from 'jquery'
 import { toast, ToastContainer } from 'react-toastify';
 import { isAuth } from '../helpers/auth'
+import { addItems } from '../helpers/wishlisthelper'
 
 const Product = (props) => {
 
@@ -24,6 +25,34 @@ const Product = (props) => {
     const [fakeprice, setfakeprice] = useState(0)
     const [revi, setRevi] = useState([])
     const [pirro, setpiroo] = useState({
+        category: '',
+        iPrice: '',
+        price: '',
+        name: '',
+        rating: '',
+        sCat: '',
+        url: '',
+        url2: '',
+        url3: '',
+        _id: '',
+        description: '',
+        quantity: ''
+    })
+    const [pirro1, setpiroo1] = useState({
+        category: '',
+        iPrice: '',
+        price: '',
+        name: '',
+        rating: '',
+        sCat: '',
+        url: '',
+        url2: '',
+        url3: '',
+        _id: '',
+        description: '',
+        quantity: ''
+    })
+    const [pirro2, setpiroo2] = useState({
         category: '',
         iPrice: '',
         price: '',
@@ -73,15 +102,31 @@ const Product = (props) => {
                     rating: res.data().rating, sCat: res.data().sCat, url: res.data().url, url2: res.data().url2, url3: res.data().url3,
                     _id: _id, description: res.data().description, quantity: quan,
                 })
+                if (res.data() && res.data().boughtTogetherDiscount) {
+                    setpiroo2({
+                        ...pirro2, category: res.data().category, iPrice: res.data().iPrice, price: res.data().price - Math.round(parseInt(res.data().price)) * res.data().boughtTogetherDiscount / 100, name: res.data().name,
+                        rating: res.data().rating, sCat: res.data().sCat, url: res.data().url, url2: res.data().url2, url3: res.data().url3,
+                        _id: _id, description: res.data().description, quantity: quan,
+                    })
+                }
                 db.collection("Dishes").where("category", "==", `${res.data().category}`).get()
                     .then(res => {
                         res.forEach((doc) => {
                             setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
                         })
                     })
+
+
                 db.collection("Dishes").doc(`${res.data().boughtTogether}`).get()
-                    .then(res => {
-                        setfrequent(res.data())
+                    .then(ress => {
+                        setfrequent(ress.data())
+                        if (ress.data()) {
+                            setpiroo1({
+                                ...pirro1, category: ress.data().category, iPrice: ress.data().iPrice, price: ress.data().price - Math.round(parseInt(ress.data().price)) * res.data().boughtTogetherDiscount / 100, name: ress.data().name,
+                                rating: ress.data().rating, sCat: ress.data().sCat, url: ress.data().url, url2: ress.data().url2, url3: ress.data().url3,
+                                _id: `${res.data().boughtTogether}`, description: ress.data().description, quantity: quan,
+                            })
+                        }
                     })
             })
     }, [_id])
@@ -95,6 +140,13 @@ const Product = (props) => {
         setCount(w < 1 ? 1 : w)
     }
     const freqdiscc = pro && frequent && Math.round(parseInt(frequent.price) + parseInt(pro.price)) - Math.round(parseInt(frequent.price) + parseInt(pro.price)) * 10 / 100
+    
+    const addToWishlist = () => {
+        addItems(pirro, () => {
+            toast.success('Item Added')
+        })
+    }
+    
     const addToCart = async (e) => {
         await addItem(pirro, () => {
             if (count > 0) {
@@ -102,6 +154,18 @@ const Product = (props) => {
             }
             toast.success('Item added sucessfully !!!')
             // window.location.reload(false)
+        })
+    }
+
+    const addtocart3 = () => {
+        addItem(pirro2, () => {
+            toast.success('Item added')
+        })
+    }
+
+    const addtocart2 = () => {
+        addItem(pirro1, () => {
+            addtocart3()
         })
     }
 
@@ -121,15 +185,16 @@ const Product = (props) => {
         }
     }
 
-    const submitratingandrev = async () => {
+    const submitratingandrev = () => {
 
-        await db.collection('Reviews').where('productId', '==', _id)
+        db.collection('Reviews').where('productId', '==', _id)
             .where('userId', '==', `${isAuth().id}`).get()
             .then((re) => {
-                if (re && re[0]) {
-                    toast.error('Review already exists !!')
-                }
-                else {
+                let o = 0
+                re.forEach((assd) => {
+                    o += 1
+                })
+                if (o == 0) {
                     db.collection('Reviews').add({
                         details: ratdetails,
                         userName: isAuth().Name,
@@ -143,6 +208,9 @@ const Product = (props) => {
                     }).catch((err) => {
                         toast.error('Something went wrong !!!')
                     })
+                }
+                else {
+                    toast.error('Review already exists !!')
                 }
             })
 
@@ -250,8 +318,8 @@ const Product = (props) => {
                                 </div>
                             </div>
                             <div className="proccard7 tic-ttok3">
-                                {/*<button>Add To Cart</button>*/}
                                 <p>Buy All two <span style={{ color: '#6b3600' }}>Rs {freqdiscc}</span></p>
+                                <button onClick={addtocart2}>Add To Cart</button>
                             </div>
                         </div>
                     </div>
@@ -321,7 +389,7 @@ const Product = (props) => {
                                         name='rating'
                                         starDimension="18px"
                                         starSpacing="2px" /></h5>
-                                        <Form.Control as="textarea" rows={3} placeholder='Add Review' value={ratdetails} onChange={(e) => setratdetails(e.target.value)}/>
+                                    <Form.Control as="textarea" rows={3} placeholder='Add Review' value={ratdetails} onChange={(e) => setratdetails(e.target.value)} />
                                     {!isAuth() && <Link to='/login'><button onClick={() => { toast.error('Login First') }}>Submit</button></Link>}
                                     {isAuth() && <button onClick={submitratingandrev}>Submit</button>}
                                 </div>
