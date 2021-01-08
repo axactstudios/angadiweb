@@ -5,15 +5,15 @@ import { toast, ToastContainer } from 'react-toastify'
 import { emptyCart, getCart } from '../helpers/CartHelper';
 import * as firebase from 'firebase';
 import '../Styles/Checkout.css';
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
+
 
 const Checkout = ({ dm }) => {
 
   const [data, setData] = useState({
     address: '',
-    customMessage: '',
-    phone: ''
+    customMessage: ''
   })
 
   const [products, setProducts] = useState([])
@@ -24,6 +24,12 @@ const Checkout = ({ dm }) => {
   const [puush, setpussh] = useState(false)
   const [modalShow, setModalShow] = React.useState(false);
   const [coup, setcoup] = useState([])
+  const [area, setarea] = useState([])
+  const [emirate, setEmirate] = useState([])
+  const [deliverycharge, setdeliverycharge] = useState('')
+  const [minOrder, setminOrder] = useState('')
+  const [selectarea, setselectarea] = useState('')
+  const [selectemirate, setselectemirate] = useState('')
 
   const dis = []
   const qty = []
@@ -59,6 +65,20 @@ const Checkout = ({ dm }) => {
           setcoup(dish => [...dish, { data: doc.data(), _id: doc.id }])
         })
       })
+    setarea([])
+    db.collection('EmiratesArea').get()
+      .then(res => {
+        res.forEach((doc) => {
+          setarea(dish => [...dish, { data: doc.data(), _id: doc.id }])
+        })
+      })
+    setEmirate([])
+    db.collection('Emirates').get()
+      .then(res => {
+        res.forEach((doc) => {
+          setEmirate(dish => [...dish, { data: doc.data(), _id: doc.id }])
+        })
+      })
   }, [])
 
   useEffect(() => {
@@ -83,13 +103,58 @@ const Checkout = ({ dm }) => {
       )
   }
 
+  const handleChangeee = name => e => {
+    if (name === 'selectemirate') {
+      if (selectarea) {
+        if (selectarea === 'other') {
+          db.collection('Emirates').doc(`${e.target.value}`).get()
+            .then((res) => {
+              if (res.data()) {
+                setselectemirate(res.data().name)
+                setdeliverycharge(res.data().deliveryCharge)
+                setminOrder(res.data().minOrderPrice)
+              }
+            })
+        } else {
+          db.collection('Emirates').doc(`${e.target.value}`).get()
+            .then((res) => {
+              if (res.data()) {
+                setselectemirate(res.data().name)
+              }
+            })
+        }
+      } else {
+        db.collection('Emirates').doc(`${e.target.value}`).get()
+          .then((res) => {
+            if (res.data()) {
+              setselectemirate(res.data().name)
+              setdeliverycharge(res.data().deliveryCharge)
+              setminOrder(res.data().minOrderPrice)
+            }
+          })
+      }
+    } else if (name === 'selectarea') {
+      db.collection('EmiratesArea').doc(`${e.target.value}`).get()
+        .then((res) => {
+          if (res.data()) {
+            setselectarea(res.data().name)
+            setdeliverycharge(res.data().deliveryCharge)
+            setminOrder(res.data().minOrderPrice)
+          } else {
+            setselectarea('other')
+          }
+        })
+    }
+    console.log(deliverycharge, minOrder, selectarea)
+  }
+
   const handleChangee = name => e => {
     setData({ ...data, [name]: e.target.value })
   }
 
   const placedorder = () => {
 
-    if (data.address && data.phone) {
+    if (data.address && selectemirate && selectarea) {
       db.collection('Orders').add({
         Items: dis,
         Qty: qty,
@@ -142,10 +207,18 @@ const Checkout = ({ dm }) => {
                 <th>Tax @ 5% - </th>
                 <td><i class="fa fa-inr" /> {getTotal() * 0.05}</td>
               </tr>
+              <tr>
+                <th>Charges - </th>
+                <td><i class="fa fa-inr" /> {deliverycharge && deliverycharge}</td>
+              </tr>
               <hr />
               <tr>
                 <th>Grand Total - </th>
-                <th> <i class="fa fa-inr" />{getTotal() * (1.05 - (priiice / 100))}</th>
+                {deliverycharge ?
+                  <th> <i class="fa fa-inr" />{parseInt(getTotal() * (1.05 - (priiice / 100))) + parseInt(deliverycharge)}</th>
+                  :
+                  <th> <i class="fa fa-inr" />{parseInt(getTotal() * (1.05 - (priiice / 100)))}</th>
+                }
               </tr>
             </table>
 
@@ -159,10 +232,37 @@ const Checkout = ({ dm }) => {
                 <p>{coupon && <p style={{ color: 'red' }}>NOT Applied!!!</p>}</p>
             }</p>
 
+            <div>
+              <Form.Group >
+                <Form.Label>Emirate Area</Form.Label><br />
+                <select onChange={handleChangeee('selectarea')} >
+                  <option>Please Select</option>
+                  {
+                    area && area.map((m, l) =>
+                      <option value={`${m._id}`}>{m.data.name}</option>
+                    )
+                  }
+                  <option value='other'>Others</option>
+                </select>
+              </Form.Group>
+            </div>
+
+            <div>
+              <Form.Group >
+                <Form.Label>Emirate</Form.Label><br />
+                <select onChange={handleChangeee('selectemirate')} >
+                  <option>Please Select</option>
+                  {
+                    emirate && emirate.map((m, l) =>
+                      <option value={`${m._id}`}>{m.data.name}</option>
+                    )
+                  }
+                </select>
+              </Form.Group>
+            </div>
 
             <div className="checkout-card">
               <input className="checkout-input" type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
-              <input className="checkout-input" type="text" placeholder="Contact Number" value={data.phone} onChange={handleChangee('phone')} />
             </div>
             <button className='checkout-butt' onClick={placedorder}>Pay Now</button>
 
@@ -266,6 +366,13 @@ const Checkout = ({ dm }) => {
           null
       }
       <div>
+        {minOrder &&
+          parseInt(getTotal()) > parseInt(minOrder) ?
+          <h6>Congrates You eligble for placing order</h6> :
+          <p>Minimum Purchase {minOrder && minOrder} for {selectarea && selectarea} area to placing order</p>
+        }
+      </div>
+      <div>
         {
           showCheckout()
         }
@@ -280,3 +387,5 @@ const Checkout = ({ dm }) => {
 }
 
 export default Checkout;
+
+// 73 + 3.5 +48.5

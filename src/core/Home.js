@@ -121,7 +121,9 @@ const Home = () => {
     //                     console.log(res.state)
     //                 }
     //             })
-    //     }
+    //     }else{
+      //  toast.error('Geolocation is not supported')
+    //}
     // }, [])
 
     const toaast = (k) => {
