@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Modal, OverlayTrigger, Tooltip, Button, Container, Row, Col, Carousel } from 'react-bootstrap'
 import StarRatings from 'react-star-ratings';
 import { toast, ToastContainer } from 'react-toastify';
+import { addItems } from '../helpers/wishlisthelper'
 
 const Card = ({ product, toaaat }) => {
     const [count, setCount] = useState(0);
@@ -61,6 +62,12 @@ const Card = ({ product, toaaat }) => {
         })
         // window.location.reload(false)
     }
+
+    const addToWishlist = () => {
+      addItems(pirro, () => {
+          toast.success('Item Added')
+      })
+  }
 
     const handleChanged = () => (e) => {
         setquan(e.target.value)
@@ -125,7 +132,10 @@ const Card = ({ product, toaaat }) => {
                                         /></p>
                                     <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
                                     <p>{product.data.description.substring(0, 250)}</p>
-                                    <button onClick={addToCart}>Add To Cart</button>
+                                    <div className="cardbuttondiv">
+                                        <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Cart</button> 
+                                        <button className='cardbutton' onClick={addToWishlist}><i class="fa fa-heart" /> Wishlist</button>
+                                    </div>
                                 </div>
                             </Col>
                         </Row>
@@ -176,7 +186,8 @@ const Card = ({ product, toaaat }) => {
                     </div>
                 </div>
                 <div className="cardbuttondiv">
-                    <button className='cardbutton' onClick={addToCart}>Add</button>
+                    <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Cart</button> 
+                    <button className='cardbutton' onClick={addToWishlist}><i class="fa fa-heart" /> Wishlist</button>
                 </div>
             </div>
         </div>

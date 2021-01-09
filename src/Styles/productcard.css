@@ -117,7 +117,9 @@
     margin: 15px 0;
 }
 .proccard7 button{
-    width: 120px;
+    width: max-content;
+    padding: 5px 15px;
+    margin: 0 10px 10px 0;
     height: 35px;
     outline: none;
     border: none;

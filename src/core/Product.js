@@ -270,6 +270,7 @@ const Product = (props) => {
                                             </div>
                                             <div className="proccard7">
                                                 <button onClick={addToCart}>Add To Cart</button>
+                                                <button onClick={addToWishlist}>Add To Wishlist</button>
                                             </div>
                                         </div>
                                     </Col>

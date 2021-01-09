@@ -8,8 +8,25 @@ import '../Styles/Checkout.css';
 import { Modal, Button, Form } from 'react-bootstrap'
 import axios from 'axios'
 import Geocode from 'react-geocode'
+import TextField from '@material-ui/core/TextField'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: "220",
+        color: 'rgb(255, 176, 0)',
+        borderBottom: "none"
+    },
+}));
 
 const Checkout = ({ dm }) => {
+  const classes = useStyles();
 
   const [data, setData] = useState({
     address: '',
@@ -31,6 +48,12 @@ const Checkout = ({ dm }) => {
   const [selectarea, setselectarea] = useState('')
   const [selectemirate, setselectemirate] = useState('')
   const [userAddress, serUserAddress] = useState([])
+
+  const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000*4) + (1800000)).toISOString().substring(0,16));
+
+  if (typeof window !== 'undefined' ) {
+    localStorage.setItem('schedule date', dDate);
+  }
 
   const dis = []
   const qty = []
@@ -183,6 +206,13 @@ const Checkout = ({ dm }) => {
     setData({ ...data, [name]: e.target.value })
   }
 
+  const handleDate = (e) => {
+    setDate(e.target.value)
+    if (typeof window !== 'undefined' ) {
+      localStorage.setItem('schedule date', dDate);
+    }
+  }
+
   const placedorder = () => {
 
     if (data.address && selectemirate && selectarea) {
@@ -262,7 +292,7 @@ const Checkout = ({ dm }) => {
                 <p>{coupon && <p style={{ color: 'red' }}>NOT Applied!!!</p>}</p>
             }</p>
 
-            <div>
+            <div style={{display: "flex", justifyContent: "space-evenly"}}>
               <Form.Group >
                 <Form.Label>Emirate Area</Form.Label><br />
                 <select onChange={handleChangeee('selectarea')} >
@@ -275,9 +305,6 @@ const Checkout = ({ dm }) => {
                   <option value='other'>Others</option>
                 </select>
               </Form.Group>
-            </div>
-
-            <div>
               <Form.Group >
                 <Form.Label>Emirate</Form.Label><br />
                 <select onChange={handleChangeee('selectemirate')} >
@@ -294,7 +321,32 @@ const Checkout = ({ dm }) => {
             <div className="checkout-card">
               <input className="checkout-input" type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
             </div>
-            <button className='checkout-butt' onClick={placedorder}>Pay Now</button>
+
+            <div style={{margin: "1em 0 1.5em"}}>
+              <TextField
+                  id="datetime-local"
+                  label="Schedule Delivery"
+                  type="datetime-local"
+                  defaultValue={dDate}
+                  className={classes.textField}
+                  InputLabelProps={{
+                      shrink: true,
+                  }}
+                  onChange={(e) => handleDate(e)}
+              />
+            </div>
+
+            <div >
+              { minOrder &&
+                parseInt(getTotal()) > parseInt(minOrder) ?
+                <div style={{display: "flex"}}>
+                  <button className='checkout-butt' onClick={placedorder}>Cash on Delivery</button>
+                  <button className='checkout-butt' onClick={placedorder}>Internet Banking</button>
+                </div>
+                 :
+                <p style={{color: "tomato"}}>Order not eligible for {selectarea && selectarea}</p>
+              }
+            </div>
 
             <div>
               <h5>Special Notes</h5>
@@ -368,11 +420,17 @@ const Checkout = ({ dm }) => {
           null
       }
       <div>
-        {minOrder &&
-          parseInt(getTotal()) > parseInt(minOrder) ?
-          <h6>Congrates You eligble for placing order</h6> :
-          <p>Minimum Purchase {minOrder && minOrder} for {selectarea && selectarea} area to placing order</p>
+        {
+          products ?
+          <div>
+          {minOrder && parseInt(getTotal()) > parseInt(minOrder) ?
+            <h6 style={{color: "#78a962"}}>Congrats ! Order is Eligible</h6> :
+            <p style={{color: "tomato"}}>Minimum Purchase {minOrder && minOrder} required for {selectarea && selectarea} area</p>
+          }
+          </div> 
+           : null
         }
+        
       </div>
       <div>
         {
