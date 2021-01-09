@@ -31,29 +31,30 @@
         margin-top: 5px;
     }
 }
-.ofeecard{
-    max-width: 250px;
+.ofeecard {
+    width: 45%;
     background-color: white;
     margin: 20px 15px;
-    border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    padding: 10px;
 }
 .ofeecard img{
-    width: 100%;
+    width: 100px;
 }
-.ofeecard1{
-    width: 90%;
-    margin: auto;
+.ofeecard1 {
+  width: 50%;
+  margin: 0 1em;
 }
+
 .ofeecard1 h5{
-    font-size: 15px;   
-}
-.ofeecard1 h6{
-    font-size: 15px;  
+    font-size: 16px;  
     padding-top: 10px; 
+    font-weight: bolder;
 }
 .ofeecard1 p{
-    font-size: 15px;   
+    font-size: 14px;  
+    color: grey; 
 }
 @media screen and (max-width: 450px){
     .ofeecard{
