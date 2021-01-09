@@ -32,32 +32,37 @@ const AddOfferFirst = () => {
     };
 
     const handleSubmit = async () => {
-        const uploadTask = storage.ref(`Offer/${image.name}`).put(image);
-        await uploadTask.on('state_changed', (snapshot) => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            console.log(progress)
-        },
-            (error) => {
-                toast.error('Something went wrong in uploading image !!')
-                console.log(error)
+
+        if (image && subtitle && photo && percent) {
+            const uploadTask = storage.ref(`Offer/${image.name}`).put(image);
+            await uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
             },
-            () => {
-                storage.ref('Offer').child(image.name).getDownloadURL().then(async url => {
-                    console.log(url)
-                    await store.collection('Offers').add({
-                        ImageURL: url,
-                        Title: title,
-                        Subtitle: subtitle,
-                        discountPercentage: percent,
-                        forFirstUser: true
-                    }).then(() => {
-                        toast.success('Offer added successfully!!!')
-                    }).catch((err) => {
-                        toast.error('Something went wrong')
-                        console.log(err)
+                (error) => {
+                    toast.error('Something went wrong in uploading image !!')
+                    console.log(error)
+                },
+                () => {
+                    storage.ref('Offer').child(image.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        await store.collection('Offers').add({
+                            ImageURL: url,
+                            Title: title,
+                            Subtitle: subtitle,
+                            discountPercentage: percent,
+                            forFirstUser: true
+                        }).then(() => {
+                            toast.success('Offer added successfully!!!')
+                        }).catch((err) => {
+                            toast.error('Something went wrong')
+                            console.log(err)
+                        })
                     })
                 })
-            })
+        } else {
+            toast.error('All fields required !!!')
+        }
     }
 
     useEffect(() => {
@@ -77,11 +82,11 @@ const AddOfferFirst = () => {
 
                 <div className='content1'>
 
-                <ul className='add-offer-spec'>
-                    <Link to='/admin/add/offer/' style={{ textDecoration: 'none' }}><li>For All User</li></Link>
-                    <Link to='/admin/add/offer/forfirstuser' style={{ textDecoration: 'none' }}><li style={{ margin: '0 10px' }}>For First User</li></Link>
-                    <Link to='/admin/add/offer/forcategory' style={{ textDecoration: 'none' }}><li>For category</li></Link>
-                </ul>
+                    <ul className='add-offer-spec'>
+                        <Link to='/admin/add/offer/' style={{ textDecoration: 'none' }}><li>For All User</li></Link>
+                        <Link to='/admin/add/offer/forfirstuser' style={{ textDecoration: 'none' }}><li style={{ margin: '0 10px' }}>For First User</li></Link>
+                        <Link to='/admin/add/offer/forcategory' style={{ textDecoration: 'none' }}><li>For category</li></Link>
+                    </ul>
 
                     <h2>Add Offer For First User</h2>
                     <Form>

@@ -31,29 +31,42 @@ const Addcat = () => {
     };
 
     const handleSubmit = async () => {
-        const uploadTask = storage.ref(`category/${image.name}`).put(image);
-        await uploadTask.on('state_changed', (snapshot) => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            console.log(progress)
-        },
-            (error) => {
-                toast.error('Something went wrong in uploading image !!')
+        let x = false
+        if (top === 'true') {
+            x = true
+        } else if (top === 'false') {
+            x = false
+        } else {
+            x = false
+        }
+
+        if (image && name && sCat) {
+            const uploadTask = storage.ref(`category/${image.name}`).put(image);
+            await uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
             },
-            () => {
-                storage.ref('category').child(image.name).getDownloadURL().then(async url => {
-                    console.log(url)
-                    await store.collection('Categories').add({
-                        imageURL: url,
-                        catName: name,
-                        top: top,
-                        sCat: sCat
-                    }).then(() => {
-                        toast.success('Category Added !!!')
-                    }).catch((err) => {
-                        toast.error('Something went wrong !!!')
+                (error) => {
+                    toast.error('Something went wrong in uploading image !!')
+                },
+                () => {
+                    storage.ref('category').child(image.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        await store.collection('Categories').add({
+                            imageURL: url,
+                            catName: name,
+                            top: x,
+                            sCat: sCat
+                        }).then(() => {
+                            toast.success('Category Added !!!')
+                        }).catch((err) => {
+                            toast.error('Something went wrong !!!')
+                        })
                     })
                 })
-            })
+        } else {
+            toast.error('All Fields Required !!!')
+        }
     }
 
     useEffect(() => {

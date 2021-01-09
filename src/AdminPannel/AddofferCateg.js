@@ -33,32 +33,37 @@ const AddofferCateg = () => {
     };
 
     const handleSubmit = async () => {
-        const uploadTask = storage.ref(`Offer/${image.name}`).put(image);
-        await uploadTask.on('state_changed', (snapshot) => {
-            const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            console.log(progress)
-        },
-            (error) => {
-                toast.error('Something went wrong in uploading image !!')
-                console.log(error)
+
+        if (title && image && category && percent) {
+            const uploadTask = storage.ref(`Offer/${image.name}`).put(image);
+            await uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
             },
-            () => {
-                storage.ref('Offer').child(image.name).getDownloadURL().then(async url => {
-                    console.log(url)
-                    await store.collection('Offers').add({
-                        ImageURL: url,
-                        Title: title,
-                        Subtitle: subtitle,
-                        discountPercentage: percent,
-                        categorySpecific: category
-                    }).then(() => {
-                        toast.success('Offer added successfully!!!')
-                    }).catch((err) => {
-                        toast.error('Something went wrong')
-                        console.log(err)
+                (error) => {
+                    toast.error('Something went wrong in uploading image !!')
+                    console.log(error)
+                },
+                () => {
+                    storage.ref('Offer').child(image.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        await store.collection('Offers').add({
+                            ImageURL: url,
+                            Title: title,
+                            Subtitle: subtitle,
+                            discountPercentage: percent,
+                            categorySpecific: category
+                        }).then(() => {
+                            toast.success('Offer added successfully!!!')
+                        }).catch((err) => {
+                            toast.error('Something went wrong')
+                            console.log(err)
+                        })
                     })
                 })
-            })
+        } else {
+            toast.error('All field required !!!')
+        }
     }
 
     useEffect(() => {
