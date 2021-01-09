@@ -7,7 +7,8 @@ import '../Styles/adminPanel.css';
 
 const columns = [
     { id: 'pUrl', label: "User Profile", format: (value) => <img src={value} height="70px" width="70px" /> },
-    { id: 'Name', label: 'Name', maxWidth: "30%" },
+    { id: 'Name', label: 'Name', maxWidth: "20%" },
+    { id: 'phone', label: 'Phone',maxWidth: "12%" },
     { id: 'id', label: 'User ID' },
     { id: 'mail', label: 'Email' },
     { id: 'role', label: 'Role' }
@@ -18,7 +19,8 @@ const Getuser = () => {
     const [values, setValues] = useState({
         name: '',
         category: '',
-        emaiil: ''
+        emaiil: '',
+        phone: ''
     })
     const [dish, setDish] = useState([])
     const db = firebase.firestore()
@@ -96,6 +98,9 @@ const Getuser = () => {
                     </Form.Group>
                     <Form.Group className="adpor1">
                         <Form.Control type="text" placeholder="Enter User Name" onChange={handleChange('emaiil')} value={values.emaiil} />
+                    </Form.Group>
+                    <Form.Group className="adpor1">
+                        <Form.Control type="number" placeholder="Enter User Phone" onChange={handleChange('phone')} value={values.phone} />
                     </Form.Group>
                     <div className="adpor3">
                         <button className="admin-order-utility-button" onClick={getspecific}>Search</button>

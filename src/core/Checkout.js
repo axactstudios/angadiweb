@@ -92,17 +92,6 @@ const Checkout = ({ dm }) => {
   }, [coupon])
 
   useEffect(() => {
-    serUserAddress([])
-    db.collection('Users').doc(`${isAuth().id}`).collection('Address').get()
-      .then(res => {
-        // res.forEach(doc => {
-        //   console.log(doc.id, ' => ', doc.data())
-        // })
-        console.log(res)
-      })
-  }, [])
-
-  useEffect(() => {
     if (navigator.geolocation) {
       navigator.permissions.query({ name: 'geolocation' })
         .then((res) => {
