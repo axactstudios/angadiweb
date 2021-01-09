@@ -11,18 +11,19 @@ import Geocode from 'react-geocode'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
 
+
 const useStyles = makeStyles((theme) => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: "220",
-        color: 'rgb(255, 176, 0)',
-        borderBottom: "none"
-    },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: "220",
+    color: 'rgb(255, 176, 0)',
+    borderBottom: "none"
+  },
 }));
 
 const Checkout = ({ dm }) => {
@@ -47,17 +48,16 @@ const Checkout = ({ dm }) => {
   const [minOrder, setminOrder] = useState('')
   const [selectarea, setselectarea] = useState('')
   const [selectemirate, setselectemirate] = useState('')
-  const [userAddress, serUserAddress] = useState([])
+  // const [userAddress, serUserAddress] = useState([])
 
-  const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000*4) + (1800000)).toISOString().substring(0,16));
-
-  if (typeof window !== 'undefined' ) {
-    localStorage.setItem('schedule date', dDate);
-  }
+  const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16));
 
   const dis = []
   const qty = []
   const pri = []
+
+  // console.log(new Date(dDate))
+  // console.log(dDate)
 
   // snapshot.updateTime,
 
@@ -199,46 +199,47 @@ const Checkout = ({ dm }) => {
           }
         })
     }
-    console.log(deliverycharge, minOrder, selectarea)
   }
 
   const handleChangee = name => e => {
     setData({ ...data, [name]: e.target.value })
   }
 
-  const handleDate = (e) => {
-    setDate(e.target.value)
-    if (typeof window !== 'undefined' ) {
-      localStorage.setItem('schedule date', dDate);
-    }
-  }
-
   const placedorder = () => {
+    var y = 'ANG' + JSON.stringify(Math.floor(Math.random() * 90000) + 10000)
 
     if (data.address && selectemirate && selectarea) {
-      db.collection('Orders').add({
-        Items: dis,
-        Qty: qty,
-        Price: pri,
-        TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
-        GrandTotal: getTotal() - (getTotal() * (priiice / 100)),
-        Status: 'Order Placed',
-        Type: 'Delivery',
-        DeliveryDate: '45',
-        DeliveryTime: '55',
-        UserID: isAuth().id,
-        Notes: data.customMessage,
-        Address: data.address,
-        orderid: 'AIIFJKKR',
-      }).then(() => {
-        toast.success('Order done added successfully!!!')
-        emptyCart(() => {
-          <Redirect to='/myorder' />
+
+      db.collection('Orders').doc(y).get()
+        .then((res) => {
+          if (res.data()) {
+            toast.error('Something Went Wrong !!!')
+          } else {
+            db.collection('Orders').doc(y).set({
+              Items: dis,
+              Qty: qty,
+              Price: pri,
+              TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+              GrandTotal: parseInt(getTotal() * (1.05 - (priiice / 100))) + parseInt(deliverycharge),
+              Status: 'Order Placed',
+              Type: 'Delivery',
+              DeliveryDate: firebase.firestore.Timestamp.fromDate(new Date(dDate)),
+              DeliveryTime: firebase.firestore.Timestamp.fromDate(new Date(dDate)),
+              UserID: isAuth().id,
+              Notes: data.customMessage,
+              Address: data.address,
+              orderid: y,
+            }).then(() => {
+              toast.success('Order done added successfully!!!')
+              emptyCart(() => {
+                <Redirect to='/myorder' />
+              })
+              setpussh(true)
+            }).catch((err) => {
+              toast.error('Something went wrong')
+            })
+          }
         })
-        setpussh(true)
-      }).catch((err) => {
-        toast.error('Something went wrong')
-      })
     } else {
       toast.error('Please select Emirate and Emirate Area !!!')
     }
@@ -292,7 +293,7 @@ const Checkout = ({ dm }) => {
                 <p>{coupon && <p style={{ color: 'red' }}>NOT Applied!!!</p>}</p>
             }</p>
 
-            <div style={{display: "flex", justifyContent: "space-evenly"}}>
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
               <Form.Group >
                 <Form.Label>Emirate Area</Form.Label><br />
                 <select onChange={handleChangeee('selectarea')} >
@@ -322,29 +323,29 @@ const Checkout = ({ dm }) => {
               <input className="checkout-input" type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
             </div>
 
-            <div style={{margin: "1em 0 1.5em"}}>
+            <div style={{ margin: "1em 0 1.5em" }}>
               <TextField
-                  id="datetime-local"
-                  label="Schedule Delivery"
-                  type="datetime-local"
-                  defaultValue={dDate}
-                  className={classes.textField}
-                  InputLabelProps={{
-                      shrink: true,
-                  }}
-                  onChange={(e) => handleDate(e)}
+                id="datetime-local"
+                label="Schedule Delivery"
+                type="datetime-local"
+                defaultValue={dDate}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(e) => setDate(e.target.value)}
               />
             </div>
 
             <div >
-              { minOrder &&
+              {minOrder &&
                 parseInt(getTotal()) > parseInt(minOrder) ?
-                <div style={{display: "flex"}}>
+                <div style={{ display: "flex" }}>
                   <button className='checkout-butt' onClick={placedorder}>Cash on Delivery</button>
                   <button className='checkout-butt' onClick={placedorder}>Internet Banking</button>
                 </div>
-                 :
-                <p style={{color: "tomato"}}>Order not eligible for {selectarea && selectarea}</p>
+                :
+                null
               }
             </div>
 
@@ -422,15 +423,15 @@ const Checkout = ({ dm }) => {
       <div>
         {
           products ?
-          <div>
-          {minOrder && parseInt(getTotal()) > parseInt(minOrder) ?
-            <h6 style={{color: "#78a962"}}>Congrats ! Order is Eligible</h6> :
-            <p style={{color: "tomato"}}>Minimum Purchase {minOrder && minOrder} required for {selectarea && selectarea} area</p>
-          }
-          </div> 
-           : null
+            <div>
+              {minOrder && parseInt(getTotal()) > parseInt(minOrder) ?
+                <h6 style={{ color: "#78a962" }}>Congrats ! Order is Eligible</h6> :
+                <p style={{ color: "tomato" }}>Minimum Purchase {minOrder && minOrder} required for {selectarea && selectarea} area</p>
+              }
+            </div>
+            : null
         }
-        
+
       </div>
       <div>
         {
@@ -441,12 +442,13 @@ const Checkout = ({ dm }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      {JSON.stringify(userAddress)}
     </div>
   );
 }
 
 export default Checkout;
+
+// {JSON.stringify(userAddress)}
 
 // // 73 + 3.5 +48.5
 // <button onClick={orderrrr}>dd</button>
