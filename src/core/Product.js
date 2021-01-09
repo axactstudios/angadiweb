@@ -11,6 +11,31 @@ import $ from 'jquery'
 import { toast, ToastContainer } from 'react-toastify';
 import { isAuth } from '../helpers/auth'
 import { addItems } from '../helpers/wishlisthelper'
+import { FacebookShareButton, FacebookIcon, 
+  WhatsappShareButton, WhatsappIcon,
+  TwitterIcon, TwitterShareButton } from 'react-share';
+
+export const ShareCampaign = () => {
+  return (
+    <div  className="icon-bar icon-bar-small">
+      <FacebookShareButton 
+        url={"http://www.danceoutofpoverty.org"}
+        quote={"Be the part of this beautiful campaign"}
+        hashtag="#danceoutofpoverty" 
+      ><FacebookIcon size={45} /></FacebookShareButton><br />
+      <WhatsappShareButton
+        url={"http://www.danceoutofpoverty.org"}
+        title={"Be the part of this beautiful campaign"}
+        separator=":: "
+      ><WhatsappIcon size={45} /></WhatsappShareButton><br />
+      <TwitterShareButton
+        url={"http://www.danceoutofpoverty.org"}
+        title={"Be the part of this beautiful campaign"}
+        hashtag="#danceoutofpoverty"
+      ><TwitterIcon size={45} /></TwitterShareButton><br />
+    </div>
+  )
+}
 
 const Product = (props) => {
 
@@ -241,6 +266,24 @@ const Product = (props) => {
                                                     starSpacing="5px"
                                                     starRatedColor="rgb(255,176,0)"
                                                 /></h4>
+                                                <div style={{float: "right"}}>
+                                                  <FacebookShareButton 
+                                                    url={window.location.href}
+                                                    quote={"Enjoy the delicacies of Angadi"}
+                                                    hashtag="#angadi" 
+                                                  ><FacebookIcon size={45} /></FacebookShareButton><br />
+                                                  <WhatsappShareButton
+                                                    url={window.location.href}
+                                                    title={"Enjoy the delicacies of Angadi"}
+                                                    separator=" :: "
+                                                  ><WhatsappIcon size={45} /></WhatsappShareButton><br />
+                                                  <TwitterShareButton
+                                                    url={window.location.href}
+                                                    title={"Enjoy the delicacies of Angadi"}
+                                                    hashtag="#angadi"
+                                                  ><TwitterIcon size={45} /></TwitterShareButton><br />
+                                                </div>
+                                            
                                             <div style={{ color: 'gray', marginBottom: '-10px' }}><a href="#noob-rating" style={{ color: 'inherit' }}>{revi.length} rating & reviews</a></div>
                                             <div className="proccard4">
                                                 <span>Adjust Quantity</span>

@@ -10,6 +10,7 @@ import { Modal, Form } from 'react-bootstrap'
 import Geocode from 'react-geocode'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -305,49 +306,49 @@ const Checkout = ({ dm }) => {
                 <p>{coupon && <p style={{ color: 'red' }}>NOT Applied!!!</p>}</p>
             }</p>
 
-            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+            <div>
               <Form.Group >
-                <Form.Label>Emirate Area</Form.Label><br />
-                <select onChange={handleChangeee('selectarea')} >
-                  <option>Please Select</option>
+                <Form.Control as="select" onChange={handleChangeee('selectarea')} placeholder="Select Emirate area" style={{margin: "1em auto"}}>
+                  <option>Select Emirate Area</option>
                   {
                     area && area.map((m, l) =>
                       <option value={`${m._id}`}>{m.data.name}</option>
                     )
                   }
                   <option value='other'>Others</option>
-                </select>
-              </Form.Group>
-              <Form.Group >
-                <Form.Label>Emirate</Form.Label><br />
-                <select onChange={handleChangeee('selectemirate')} >
-                  <option>Please Select</option>
+                </Form.Control>
+                <Form.Control as="select" onChange={handleChangeee('selectemirate')} placeholder="Select Emirate area">
+                  <option>Select Emirate</option>
                   {
                     emirate && emirate.map((m, l) =>
                       <option value={`${m._id}`}>{m.data.name}</option>
                     )
                   }
-                </select>
+                </Form.Control>
               </Form.Group>
             </div>
 
             <div className="checkout-card">
               <input className="checkout-input" type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
             </div>
-            <p onClick={cureeentLocation}>Current Location</p>
-            <Form.Group >
-              <Form.Label>Saved Address</Form.Label><br />
-              <select onChange={handleChangee('address')} >
-                <option>Please Select</option>
-                {
-                  userAddress && userAddress.map((m, l) =>
-                    <option value={`${m.address}` + `${m.hno}` + `${m.landmark}`}>{m.hno} {m.address} {m.landmark}</option>
-                  )
-                }
-              </select>
-            </Form.Group>
-            <p>Add Address</p>
+            <button className="checkout-butt" onClick={cureeentLocation}>Get Current Location</button>
 
+            <Form style={{margin: "1em 0"}}>
+              <Form.Label>Saved Addresses</Form.Label>
+              <InputGroup>
+                <Form.Control as="select" onChange={handleChangee('address')}>
+                  {
+                    userAddress && userAddress.map((m, l) =>
+                      <option value={`${m.address}` + `${m.hno}` + `${m.landmark}`}>{m.hno} {m.address} {m.landmark}</option>
+                    )
+                  }
+                </Form.Control>
+                <InputGroup.Append>
+                <Link to="/user/dashboard/address"><InputGroup.Text>Add New</InputGroup.Text></Link>
+                </InputGroup.Append>
+              </InputGroup>
+            </Form>
+            
 
             <div style={{ margin: "1em 0 1.5em" }}>
               <TextField

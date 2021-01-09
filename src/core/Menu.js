@@ -215,6 +215,7 @@ const Menu = ({ history }) => {
                                         <Link onClick={changeScreen} style={isActive(history, `/user/dashboard`)} to={`/user/dashboard`}>Dashboard</Link>
                                         <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/myorders')} to='/user/dashboard/myorders'>My Orders</Link>
                                         <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/updateprofile')} to='/user/dashboard/updateprofile'>Update Profile</Link>
+                                        <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/address')} to='/user/dashboard/address'>Address</Link>
                                         <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/resetpassword')} to='/user/dashboard/resetpassword'>Reset Password</Link>
                                         <Link onClick={changeScreen} style={isActive(history, '/wishlist')} to='/wishlist'>Wishlist</Link>
                                     </div>
