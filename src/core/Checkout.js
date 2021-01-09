@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { emptyCart, getCart } from '../helpers/CartHelper';
 import * as firebase from 'firebase';
 import '../Styles/Checkout.css';
-import { Modal, Button, Form } from 'react-bootstrap'
+import { Modal, Form } from 'react-bootstrap'
 import axios from 'axios'
 import Geocode from 'react-geocode'
 import TextField from '@material-ui/core/TextField'
@@ -55,11 +55,6 @@ const Checkout = ({ dm }) => {
   const dis = []
   const qty = []
   const pri = []
-
-  // console.log(new Date(dDate))
-  // console.log(dDate)
-
-  // snapshot.updateTime,
 
   const getTotal = () => {
     return products.reduce((currentValue, nextValue) => {
@@ -244,8 +239,6 @@ const Checkout = ({ dm }) => {
       toast.error('Please select Emirate and Emirate Area !!!')
     }
   }
-
-  console.log(coup) ;
 
   const showDropIn = () => {
     return (
