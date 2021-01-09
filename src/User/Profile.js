@@ -1,6 +1,5 @@
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { isAuth } from '../helpers/auth';
-import { Form, Button } from 'react-bootstrap'
 import * as firebase from 'firebase'
 import { toast, ToastContainer } from 'react-toastify'
 import '../Styles/updateform.css'

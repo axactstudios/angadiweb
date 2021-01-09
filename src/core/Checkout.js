@@ -6,7 +6,7 @@ import { emptyCart, getCart } from '../helpers/CartHelper';
 import * as firebase from 'firebase';
 import '../Styles/Checkout.css';
 import { Modal, Form } from 'react-bootstrap'
-import axios from 'axios'
+// import axios from 'axios'
 import Geocode from 'react-geocode'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core/styles'
@@ -48,7 +48,7 @@ const Checkout = ({ dm }) => {
   const [minOrder, setminOrder] = useState('')
   const [selectarea, setselectarea] = useState('')
   const [selectemirate, setselectemirate] = useState('')
-  // const [userAddress, serUserAddress] = useState([])
+  const [userAddress, serUserAddress] = useState([])
 
   const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16));
 
@@ -98,6 +98,15 @@ const Checkout = ({ dm }) => {
           setEmirate(dish => [...dish, { data: doc.data(), _id: doc.id }])
         })
       })
+    serUserAddress([])
+    db.collection('Users').doc(`${isAuth().id}`).collection('Address').get()
+      .then(res => {
+        const values = res.docs.map((a) => {
+          console.log(a.data())
+          return a.data()
+        });
+        serUserAddress(values)
+      })
   }, [])
 
   useEffect(() => {
@@ -109,7 +118,8 @@ const Checkout = ({ dm }) => {
     checkCoup()
   }, [coupon])
 
-  useEffect(() => {
+
+  const cureeentLocation = () => {
     if (navigator.geolocation) {
       navigator.permissions.query({ name: 'geolocation' })
         .then((res) => {
@@ -136,6 +146,12 @@ const Checkout = ({ dm }) => {
     } else {
       toast.error('Geolocation is not supported')
     }
+  }
+
+
+
+  useEffect(() => {
+    cureeentLocation()
   }, [])
 
 
@@ -202,6 +218,7 @@ const Checkout = ({ dm }) => {
 
   const placedorder = () => {
     var y = 'ANG' + JSON.stringify(Math.floor(Math.random() * 90000) + 10000)
+    var x = "Emirate: " + selectemirate + ', Area :' + selectarea + data.address
 
     if (data.address && selectemirate && selectarea) {
 
@@ -222,7 +239,7 @@ const Checkout = ({ dm }) => {
               DeliveryTime: firebase.firestore.Timestamp.fromDate(new Date(dDate)),
               UserID: isAuth().id,
               Notes: data.customMessage,
-              Address: data.address,
+              Address: x,
               orderid: y,
             }).then(() => {
               toast.success('Order done added successfully!!!')
@@ -317,6 +334,20 @@ const Checkout = ({ dm }) => {
             <div className="checkout-card">
               <input className="checkout-input" type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
             </div>
+            <p onClick={cureeentLocation}>Current Location</p>
+            <Form.Group >
+              <Form.Label>Saved Address</Form.Label><br />
+              <select onChange={handleChangee('address')} >
+                <option>Please Select</option>
+                {
+                  userAddress && userAddress.map((m, l) =>
+                    <option value={`${m.address}` + `${m.hno}` + `${m.landmark}`}>{m.hno} {m.address} {m.landmark}</option>
+                  )
+                }
+              </select>
+            </Form.Group>
+            <p>Add Address</p>
+
 
             <div style={{ margin: "1em 0 1.5em" }}>
               <TextField
@@ -379,21 +410,21 @@ const Checkout = ({ dm }) => {
           <div className='cateegee'>
             {
               coup && coup.map((d, i) => (
-                
-                  <div className="ofeecard" onClick={dkd(`${d.data.Title}`)} key={i}>
-                    <img src={d.data.ImageURL} alt={d.data.Title} />
-                    <div className='ofeecard1'>
-                      <h5 style={{display: "flex"}}>{d.data.Title} &nbsp;&nbsp;
+
+                <div className="ofeecard" onClick={dkd(`${d.data.Title}`)} key={i}>
+                  <img src={d.data.ImageURL} alt={d.data.Title} />
+                  <div className='ofeecard1'>
+                    <h5 style={{ display: "flex" }}>{d.data.Title} &nbsp;&nbsp;
                       {
-                        d.data.forFirstUser && d.data.forFirstUser === true ? <p style={{color: "tomato", float: "right"}}>First User Only</p> : null
+                        d.data.forFirstUser && d.data.forFirstUser === true ? <p style={{ color: "tomato", float: "right" }}>First User Only</p> : null
                       }
-                      </h5>
-                      <p>{d.data.Subtitle}</p>
-                    </div>
-                    <div id="wishlist">
-                      <p>{d.data.discountPercentage}% OFF</p>
-                    </div>
+                    </h5>
+                    <p>{d.data.Subtitle}</p>
                   </div>
+                  <div id="wishlist">
+                    <p>{d.data.discountPercentage}% OFF</p>
+                  </div>
+                </div>
               ))
             }
           </div>
@@ -440,13 +471,14 @@ const Checkout = ({ dm }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
+      {JSON.stringify(userAddress)}
+
     </div>
   );
 }
 
 export default Checkout;
 
-// {JSON.stringify(userAddress)}
 
 // // 73 + 3.5 +48.5
 // <button onClick={orderrrr}>dd</button>
