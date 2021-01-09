@@ -36,20 +36,20 @@ const Footer = ({ history }) => {
 
                     <div className="footer-list">
                         <h3>Information</h3>
-                        <a href="jdfakkl">About us</a>
-                        <a href="jdfakkl">Contact us</a>
-                        <a href="jdfakkl">Refund & Delivery policy</a>
-                        <a href="jdfakkl">Privacy policy</a>
-                        <a href="jdfakkl">Terms & conditions</a>
+                        <Link to="jdfakkl">About us</Link>
+                        <Link to="jdfakkl">Contact us</Link>
+                        <Link to="jdfakkl">Refund & Delivery policy</Link>
+                        <Link to="jdfakkl">Privacy policy</Link>
+                        <Link to="jdfakkl">Terms & conditions</Link>
                     </div>
 
                     <div className="footer-list">
                         <h3>Quick Links</h3>
-                        <a href="jdfakkl">My account</a>
-                        <a href="jdfakkl">order tracking</a>
-                        <a href="jdfakkl">wishlist</a>
-                        <a href="jdfakkl">checkout</a>
-                        <a href="jdfakkl">cart</a>
+                        <Link to="/user/dashboard">My account</Link>
+                        <Link to="/user/dashboard/myorders">order tracking</Link>
+                        <Link to="/wishlist">wishlist</Link>
+                        <Link to="/cart">checkout</Link>
+                        <Link to="/cart">cart</Link>
                     </div>
 
                     <div className="footer-list">
@@ -65,12 +65,12 @@ const Footer = ({ history }) => {
                     </div>
 
                     <div className="download">
-                        <a href="#" className="btn m-0">
+                        <Link to="#" className="btn m-0">
                             <img src={IOS} style={{ widht: '100%' }} />
-                        </a>
-                        <a href="#" className="btn m-0">
+                        </Link>
+                        <Link to="#" className="btn m-0">
                             <img src={PLAY} style={{ widht: '100%' }} />
-                        </a>
+                        </Link>
                     </div>
                     <div className="home21">
                         <p>Copyright &copy; 2020 Angadi. All Rights Reserved</p>
@@ -154,24 +154,24 @@ export default withRouter(Footer);
                                             </Col>
 
                                             <Col sm={4} xs={4} className="">
-                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg"><i className="fa fa-facebook"></i></a>
+                                                <Link to="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg"><i className="fa fa-facebook"></i></Link>
 
                                             </Col>
                                             <Col sm={4} xs={4} className="">
-                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-twitter"></i></a>
+                                                <Link to="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-twitter"></i></Link>
                                             </Col>
                                             <Col sm={4} xs={4} className="">
-                                                <a href="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-linkedin"></i></a>
+                                                <Link to="#" style={{ color: 'rgb(68, 67, 67)' }} className="btn btn-lg "><i className="fa fa-linkedin"></i></Link>
                                             </Col>
                                             <Col sm={12} xs={5} className="text-center m-1">
-                                                <a href="#" className="btn m-0">
+                                                <Link to="#" className="btn m-0">
                                                     <img src={IOS} style={{ widht: '100%' }} />
-                                                </a>
+                                                </Link>
                                             </Col>
                                             <Col sm={12} xs={5} className="text-center m-1">
-                                                <a href="#" className="btn m-0">
+                                                <Link to="#" className="btn m-0">
                                                     <img src={PLAY} style={{ widht: '100%' }} />
-                                                </a>
+                                                </Link>
                                             </Col>
                                         </Row>
                                     </div>

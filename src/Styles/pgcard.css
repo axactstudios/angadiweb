@@ -149,8 +149,10 @@
     border: none;
     border-radius: 5px;
     height: 35px;
-    width: 145px;
-    letter-spacing: 1.5px;
+    width: max-content;
+    margin: 5px;
+    padding: 5px 20px;
+    letter-spacing: 1px;
 }
 /* .csk2:hover{
     bottom: 120px;

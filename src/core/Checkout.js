@@ -47,11 +47,13 @@ const Checkout = ({ dm }) => {
   const [minOrder, setminOrder] = useState('')
   const [selectarea, setselectarea] = useState('')
   const [selectemirate, setselectemirate] = useState('')
-  const [dDate, setDate] = useState({
-    date: new Date().toISOString().substring(0,16)
-  });
-  console.log(dDate);
   const [userAddress, serUserAddress] = useState([])
+
+  const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000*4) + (1800000)).toISOString().substring(0,16));
+
+  if (typeof window !== 'undefined' ) {
+    localStorage.setItem('schedule date', dDate);
+  }
 
   const dis = []
   const qty = []
@@ -215,6 +217,13 @@ const Checkout = ({ dm }) => {
     setData({ ...data, [name]: e.target.value })
   }
 
+  const handleDate = (e) => {
+    setDate(e.target.value)
+    if (typeof window !== 'undefined' ) {
+      localStorage.setItem('schedule date', dDate);
+    }
+  }
+
   const placedorder = () => {
 
     if (data.address && selectemirate && selectarea) {
@@ -329,11 +338,12 @@ const Checkout = ({ dm }) => {
                   id="datetime-local"
                   label="Schedule Delivery"
                   type="datetime-local"
-                  defaultValue="2021-01-24T10:30"
+                  defaultValue={dDate}
                   className={classes.textField}
                   InputLabelProps={{
                       shrink: true,
                   }}
+                  onChange={(e) => handleDate(e)}
               />
             </div>
 
@@ -421,11 +431,17 @@ const Checkout = ({ dm }) => {
           null
       }
       <div>
-        {minOrder &&
-          parseInt(getTotal()) > parseInt(minOrder) ?
-          <h6 style={{color: "#78a962"}}>Congrates You eligble for placing order</h6> :
-          <p style={{color: "tomato"}}>Minimum Purchase {minOrder && minOrder} for {selectarea && selectarea} area to placing order</p>
+        {
+          products ?
+          <div>
+          {minOrder && parseInt(getTotal()) > parseInt(minOrder) ?
+            <h6 style={{color: "#78a962"}}>Congrats ! Order is Eligible</h6> :
+            <p style={{color: "tomato"}}>Minimum Purchase {minOrder && minOrder} required for {selectarea && selectarea} area</p>
+          }
+          </div> 
+           : null
         }
+        
       </div>
       <div>
         {
