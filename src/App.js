@@ -44,6 +44,7 @@ import Resetpass from './User/ResetPassword'
 import UpdateProfile from './User/Profile'
 import Category from './core/Category';
 import Wishlist from './core/Wishlist'
+import Address from './core/Address';
 
 const App = () => {
   let location = window.location;
@@ -95,6 +96,7 @@ const App = () => {
             <PrivateRoute exact path='/user/dashboard/myorders' component={Myads} />
             <PrivateRoute exact path='/user/dashboard/updateprofile' component={Userdashboard(UpdateProfile, "Update Profile")} />
             <PrivateRoute exact path='/user/dashboard/resetpassword' component={Userdashboard(Resetpass, "Reset Password")} />
+            <PrivateRoute exact path='/user/dashboard/address' component={Userdashboard(Address, "Change or Set Address")} />
             <Route component={ErrorPage} />
           </Switch>
           {location == '/admin' ? null : <Footer />}

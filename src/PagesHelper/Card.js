@@ -133,7 +133,7 @@ const Card = ({ product, toaaat }) => {
                                     <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
                                     <p>{product.data.description.substring(0, 250)}</p>
                                     <div className="cardbuttondiv">
-                                        <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Cart</button> 
+                                        <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Add To Cart</button> 
                                         <button className='cardbutton' onClick={addToWishlist}><i class="fa fa-heart" /> Wishlist</button>
                                     </div>
                                 </div>
@@ -186,8 +186,7 @@ const Card = ({ product, toaaat }) => {
                     </div>
                 </div>
                 <div className="cardbuttondiv">
-                    <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Cart</button> 
-                    <button className='cardbutton' onClick={addToWishlist}><i class="fa fa-heart" /> Wishlist</button>
+                    <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" />&nbsp;Add To Cart</button> 
                 </div>
             </div>
         </div>

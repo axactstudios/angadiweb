@@ -34,16 +34,18 @@
 .ofeecard {
     width: 45%;
     background-color: white;
-    margin: 20px 15px;
+    margin: 10px;
     overflow: hidden;
     display: flex;
     padding: 10px;
+    border-right: 4px solid rgb(255, 176, 0);
+    box-shadow: 0 0 15px rgb(230, 230, 230);
 }
 .ofeecard img{
     width: 100px;
 }
 .ofeecard1 {
-  width: 50%;
+  width: 60%;
   margin: 0 1em;
 }
 
@@ -56,14 +58,12 @@
     font-size: 14px;  
     color: grey; 
 }
-@media screen and (max-width: 450px){
-    .ofeecard{
-        max-width: 150px;
-        background-color: white;
-        margin: 20px 5px;
-        border-radius: 8px;
-        overflow: hidden;
-    }
+
+@media only screen and (max-width: 1000px) {
+  .ofeecard {
+    width: 100%;
+    padding: 10px;
+  }
 }
 
 .fegg{
