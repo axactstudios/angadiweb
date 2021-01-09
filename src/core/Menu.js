@@ -222,8 +222,7 @@ const Menu = ({ history }) => {
                             }
                         </div>
                         <div className='header-extra3'>
-                            <Link onClick={changeScreen} style={isActive(history, '/wishlist')} to='/wishlist' style={{color: "tomato"}} className='bhaagi2'><i class="fa fa-heart" aria-hidden="true"></i> Wishlist</Link> &nbsp;&nbsp;
-                            <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</Link>
+                            <Link onClick={changeScreen} style={isActive(history, '/cart')} to='/cart' className='bhaagi2'><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; My Cart</Link>
                         </div>
                     </div>
 

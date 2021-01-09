@@ -245,6 +245,8 @@ const Checkout = ({ dm }) => {
     }
   }
 
+  console.log(coup) ;
+
   const showDropIn = () => {
     return (
       <div>
@@ -371,35 +373,38 @@ const Checkout = ({ dm }) => {
     return (
       <Modal
         {...props}
-        size="lg"
+        size="xl"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Promo Codes
+            Available Promo Codes
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h2 style={{ textAlign: 'center' }}>All Offers</h2>
           <div className='cateegee'>
             {
               coup && coup.map((d, i) => (
-                <div key={i}>
-                  <div className="ofeecard" onClick={dkd(`${d.data.Title}`)}>
+                
+                  <div className="ofeecard" onClick={dkd(`${d.data.Title}`)} key={i}>
                     <img src={d.data.ImageURL} alt={d.data.Title} />
                     <div className='ofeecard1'>
-                      <h6>{d.data.Title}</h6>
+                      <h5 style={{display: "flex"}}>{d.data.Title} &nbsp;&nbsp;
+                      {
+                        d.data.forFirstUser && d.data.forFirstUser === true ? <p style={{color: "tomato", float: "right"}}>First User Only</p> : null
+                      }
+                      </h5>
+                      <p>{d.data.Subtitle}</p>
+                    </div>
+                    <div id="wishlist">
+                      <p>{d.data.discountPercentage}% OFF</p>
                     </div>
                   </div>
-                </div>
               ))
             }
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
       </Modal>
     );
   }
