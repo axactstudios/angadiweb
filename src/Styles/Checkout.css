@@ -30,7 +30,7 @@
 }
 
 .MuiInputBase-input {
-  margin: 1em 2em 0 1em;
+  margin: 0em 2em 0 0em !important;
 }
 
 @media screen and (max-width: 800px){

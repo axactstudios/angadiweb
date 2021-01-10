@@ -11,7 +11,6 @@
         padding-left: 20px;
         padding-top: 0px;
         position: relative;
-        top: -20px;
     }
 }
 
@@ -130,7 +129,7 @@
 }
 .cardPic{
     display: flex;
-    margin: 4rem auto;
+    margin: 4rem auto 1rem;
     width: 95%;
     margin-left: auto !important;
 }
@@ -233,7 +232,6 @@
     margin-bottom: 5px;
 }
 .tic-ttok{
-    margin-top: -45px;
     margin-bottom: 30px;
 }
 .for-body-purpose{

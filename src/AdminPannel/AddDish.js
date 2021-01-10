@@ -219,30 +219,34 @@ const AddDish = () => {
         setQuaan4({ ...quaan4, [name]: e.target.value })
     }
 
-    const handlesubmitt1 = () => {
+    const handlesubmitt1 = (id) => {
         if (quaan1.productId && quaan1.iPrice && quaan1.price && quaan1.quantity) {
             quanArr.push(quaan1)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 1')
         }
     }
-    const handlesubmitt2 = () => {
+    const handlesubmitt2 = (id) => {
         if (quaan2.productId && quaan2.iPrice && quaan2.price && quaan2.quantity) {
             quanArr.push(quaan2)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 2')
         }
     }
-    const handlesubmitt3 = () => {
+    const handlesubmitt3 = (id) => {
         if (quaan3.productId && quaan3.iPrice && quaan3.price && quaan3.quantity) {
             quanArr.push(quaan3)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 3')
         }
     }
-    const handlesubmitt4 = () => {
+    const handlesubmitt4 = (id) => {
         if (quaan4.productId && quaan4.iPrice && quaan4.price && quaan4.quantity) {
             quanArr.push(quaan4)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 4')
         }
@@ -264,9 +268,11 @@ const AddDish = () => {
                 <h2>Add Dishes</h2>
 
                 <Form.Group>
+                <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Dish Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={name} />
                 </Form.Group>
                 <Form.Group>
+                <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Sub-category</Form.Label>
                     <Form.Control type="text" placeholder="Enter sCat Name" onChange={handleChange('sCat')} value={sCat} />
                 </Form.Group>
                 <Container fluid>
@@ -305,44 +311,44 @@ const AddDish = () => {
                         <Col>
                             <Form.Group >
                                 <Form.Label>Choose category</Form.Label><br />
-                                <select onChange={handleChange('category')} >
-                                    <option>Please Select</option>
+                                <Form.Control as="select" onChange={handleChange('category')}>
+                                  <option>Please Select</option>
                                     {cat && cat.map((c, i) =>
                                     (<option key={i} value={c.catName}>
                                         {c.catName}
                                     </option>)
                                     )}
-                                </select>
+                                </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group >
                                 <Form.Label>Choose Top</Form.Label><br />
-                                <select onChange={handleChange('top')} >
+                                <Form.Control as="select" onChange={handleChange('top')}>
                                     <option>Please Select</option>
                                     <option value={false}>No</option>
                                     <option value={true}>Yes</option>
-                                </select>
+                                </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group >
                                 <Form.Label>Choose special</Form.Label><br />
-                                <select onChange={handleChange('special')} >
+                                <Form.Control as="select" onChange={handleChange('special')}>
                                     <option>Please Select</option>
                                     <option value={false}>No</option>
                                     <option value={true}>Yes</option>
-                                </select>
+                                </Form.Control>
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group >
                                 <Form.Label>Choose Active</Form.Label><br />
-                                <select onChange={handleChange('stock')} >
+                                <Form.Control as="select" onChange={handleChange('stock')}>
                                     <option>Please Select</option>
                                     <option value={false}>No</option>
                                     <option value={true}>Yes</option>
-                                </select>
+                                </Form.Control>
                             </Form.Group>
                         </Col>
                     </Row>
@@ -351,54 +357,58 @@ const AddDish = () => {
                     <Row>
                         <Col>
                             <Form.Group>
+                                <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Selling price</Form.Label>
                                 <Form.Control type="text" placeholder="Price" onChange={handleChange('price')} value={price} />
                             </Form.Group>
                         </Col>
                         <Col>
                             <Form.Group>
+                                <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter MRP</Form.Label>
                                 <Form.Control type="text" placeholder="iPrice" onChange={handleChange('iPrice')} value={iPrice} />
                             </Form.Group>
-                        </Col>
-                        <Col>
                         </Col>
                     </Row>
                 </Container>
 
                 <Form.Group>
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter ProductID</Form.Label>
                     <Form.Control type="text" placeholder="Product Id" onChange={handleChange('productId')} value={productId} />
                 </Form.Group>
                 <Form.Group>
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Description</Form.Label>
                     <Form.Control type="text" placeholder="Description" onChange={handleChange('description')} value={description} />
                 </Form.Group>
 
-                <div style={{ 'border': '1px solid black' }}>
+                <div>
                     <Form.Group>
-                        <Form.Control type="text" placeholder="Enter boughtTogetherDiscount" onChange={handleChange('boughtTogetherDiscount')} value={boughtTogetherDiscount} />
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Discount</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Bought Together Discount" onChange={handleChange('boughtTogetherDiscount')} value={boughtTogetherDiscount} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control type="text" placeholder="Enter boughtTogetherQuantity" onChange={handleChange('boughtTogetherQuantity')} value={boughtTogetherQuantity} />
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Quantity</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Bought Together Quantityy" onChange={handleChange('boughtTogetherQuantity')} value={boughtTogetherQuantity} />
                     </Form.Group>
                     <Form.Group >
-                        <Form.Label>Choose Bought Together Product</Form.Label><br />
-                        <select onChange={handleChange('boughtTogether')} >
-                            <option>Please Select</option>
-                            {dishh && dishh.map((c, i) =>
+                      <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Choose Bought Tohether Product</Form.Label>
+                      <Form.Control as="select" onChange={handleChange('boughtTogether')}>
+                        {dishh && dishh.map((c, i) =>
                             (<option key={i} value={c._id}>
                                 {c.data.name}
                             </option>)
-                            )}
-                        </select>
+                        )}
+                      </Form.Control>
                     </Form.Group>
                 </div>
 
                 <br />
 
-                <div style={{ 'border': '1px solid black' }}>
+                <div>
                     <Container fluid>
+                      <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Quantities</Form.Label>
                         <Row>
                             <Col>
                                 <Form.Group>
-                                    <Form.Control type="text" placeholder="Enter Quantity" onChange={handleChangee1('quantity')} value={quaan1.quantity} />
+                                    <Form.Control type="text" placeholder="Enter Quantity 1" onChange={handleChangee1('quantity')} value={quaan1.quantity} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -417,13 +427,13 @@ const AddDish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt1}>Add 1st Quantity</button>
+                                <Button id="button-1" onClick={() => handlesubmitt1("button-1")}>Add 1st Quantity</Button>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Form.Group>
-                                    <Form.Control type="text" placeholder="Enter Quantity" onChange={handleChangee2('quantity')} value={quaan2.quantity} />
+                                    <Form.Control type="text" placeholder="Enter Quantity 2" onChange={handleChangee2('quantity')} value={quaan2.quantity} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -442,13 +452,13 @@ const AddDish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt2}>Add 2nd Quantity</button>
+                                <Button id="button-2" onClick={() => handlesubmitt2("button-2")}>Add 2nd Quantity</Button>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Form.Group>
-                                    <Form.Control type="text" placeholder="Enter Quantity" onChange={handleChangee3('quantity')} value={quaan3.quantity} />
+                                    <Form.Control type="text" placeholder="Enter Quantity 3" onChange={handleChangee3('quantity')} value={quaan3.quantity} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -467,13 +477,13 @@ const AddDish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt3}>Add 3rd Quantity</button>
+                                <Button id="button-3" onClick={() => handlesubmitt3("button-3")}>Add 3rd Quantity</Button>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
                                 <Form.Group>
-                                    <Form.Control type="text" placeholder="Enter Quantity" onChange={handleChangee4('quantity')} value={quaan4.quantity} />
+                                    <Form.Control type="text" placeholder="Enter Quantity 4" onChange={handleChangee4('quantity')} value={quaan4.quantity} />
                                 </Form.Group>
                             </Col>
                             <Col>
@@ -492,7 +502,7 @@ const AddDish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt4}>Add 4th Quantity</button>
+                                <Button id="button-4" onClick={() => handlesubmitt4("button-4")}>Add 4th Quantity</Button>
                             </Col>
                         </Row>
                     </Container>

@@ -186,7 +186,7 @@ const Card = ({ product, toaaat }) => {
                     </div>
                 </div>
                 <div className="cardbuttondiv">
-                    <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" />&nbsp;Add To Cart</button> 
+                    <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" />&nbsp;Add</button> 
                 </div>
             </div>
         </div>
