@@ -50,7 +50,8 @@ const Checkout = ({ dm }) => {
   const [selectarea, setselectarea] = useState('')
   const [selectemirate, setselectemirate] = useState('')
   const [userAddress, serUserAddress] = useState([])
-
+  const [orderCOunt, setOrdercount] = useState('')
+  const [nextordercount, setnextordercount] = useState('')
   const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16));
 
   const dis = []
@@ -103,10 +104,34 @@ const Checkout = ({ dm }) => {
     db.collection('Users').doc(`${isAuth().id}`).collection('Address').get()
       .then(res => {
         const values = res.docs.map((a) => {
-          console.log(a.data())
           return a.data()
         });
         serUserAddress(values)
+      })
+    db.collection('Ordercount').doc('ordercount').get()
+      .then((res) => {
+        if (res.data()) {
+          setnextordercount(res.data().Numberoforders + 1)
+          var opo = String(res.data().Numberoforders + 1)
+          if (opo.length === 1) {
+            setOrdercount("0000" + opo)
+          }
+          if (opo.length === 2) {
+            setOrdercount("000" + opo)
+          }
+          if (opo.length === 3) {
+            setOrdercount("00" + opo)
+          }
+          if (opo.length === 4) {
+            setOrdercount("0" + opo)
+          }
+          if (opo.length === 5) {
+            setOrdercount("" + opo)
+          }
+          if (opo.length === 6) {
+            setOrdercount("0" + opo)
+          }
+        }
       })
   }, [])
 
@@ -218,7 +243,7 @@ const Checkout = ({ dm }) => {
   }
 
   const placedorder = () => {
-    var y = 'ANG' + JSON.stringify(Math.floor(Math.random() * 90000) + 10000)
+    var y = 'ANG' + orderCOunt
     var x = "Emirate: " + selectemirate + ', Area :' + selectarea + data.address
 
     if (data.address && selectemirate && selectarea) {
@@ -246,6 +271,9 @@ const Checkout = ({ dm }) => {
               toast.success('Order done added successfully!!!')
               emptyCart(() => {
                 <Redirect to='/myorder' />
+              })
+              db.collection('Ordercount').doc('ordercount').update({
+                Numberoforders: nextordercount
               })
               setpussh(true)
             }).catch((err) => {
@@ -308,7 +336,7 @@ const Checkout = ({ dm }) => {
 
             <div>
               <Form.Group >
-                <Form.Control as="select" onChange={handleChangeee('selectarea')} placeholder="Select Emirate area" style={{margin: "1em auto"}}>
+                <Form.Control as="select" onChange={handleChangeee('selectarea')} placeholder="Select Emirate area" style={{ margin: "1em auto" }}>
                   <option>Select Emirate Area</option>
                   {
                     area && area.map((m, l) =>
@@ -333,7 +361,7 @@ const Checkout = ({ dm }) => {
             </div>
             <button className="checkout-butt" onClick={cureeentLocation}>Get Current Location</button>
 
-            <Form style={{margin: "1em 0"}}>
+            <Form style={{ margin: "1em 0" }}>
               <Form.Label>Saved Addresses</Form.Label>
               <InputGroup>
                 <Form.Control as="select" onChange={handleChangee('address')}>
@@ -344,11 +372,11 @@ const Checkout = ({ dm }) => {
                   }
                 </Form.Control>
                 <InputGroup.Append>
-                <Link to="/user/dashboard/address"><InputGroup.Text>Add New</InputGroup.Text></Link>
+                  <Link to="/user/dashboard/address"><InputGroup.Text>Add New</InputGroup.Text></Link>
                 </InputGroup.Append>
               </InputGroup>
             </Form>
-            
+
 
             <div style={{ margin: "1em 0 1.5em" }}>
               <TextField
