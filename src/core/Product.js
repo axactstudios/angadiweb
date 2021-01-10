@@ -11,30 +11,32 @@ import $ from 'jquery'
 import { toast, ToastContainer } from 'react-toastify';
 import { isAuth } from '../helpers/auth'
 import { addItems } from '../helpers/wishlisthelper'
-import { FacebookShareButton, FacebookIcon, 
-  WhatsappShareButton, WhatsappIcon,
-  TwitterIcon, TwitterShareButton } from 'react-share';
+import {
+    FacebookShareButton, FacebookIcon,
+    WhatsappShareButton, WhatsappIcon,
+    TwitterIcon, TwitterShareButton
+} from 'react-share';
 
 export const ShareCampaign = () => {
-  return (
-    <div  className="icon-bar icon-bar-small">
-      <FacebookShareButton 
-        url={"http://www.danceoutofpoverty.org"}
-        quote={"Be the part of this beautiful campaign"}
-        hashtag="#danceoutofpoverty" 
-      ><FacebookIcon size={45} /></FacebookShareButton><br />
-      <WhatsappShareButton
-        url={"http://www.danceoutofpoverty.org"}
-        title={"Be the part of this beautiful campaign"}
-        separator=":: "
-      ><WhatsappIcon size={45} /></WhatsappShareButton><br />
-      <TwitterShareButton
-        url={"http://www.danceoutofpoverty.org"}
-        title={"Be the part of this beautiful campaign"}
-        hashtag="#danceoutofpoverty"
-      ><TwitterIcon size={45} /></TwitterShareButton><br />
-    </div>
-  )
+    return (
+        <div className="icon-bar icon-bar-small">
+            <FacebookShareButton
+                url={"http://www.danceoutofpoverty.org"}
+                quote={"Be the part of this beautiful campaign"}
+                hashtag="#danceoutofpoverty"
+            ><FacebookIcon size={45} /></FacebookShareButton><br />
+            <WhatsappShareButton
+                url={"http://www.danceoutofpoverty.org"}
+                title={"Be the part of this beautiful campaign"}
+                separator=":: "
+            ><WhatsappIcon size={45} /></WhatsappShareButton><br />
+            <TwitterShareButton
+                url={"http://www.danceoutofpoverty.org"}
+                title={"Be the part of this beautiful campaign"}
+                hashtag="#danceoutofpoverty"
+            ><TwitterIcon size={45} /></TwitterShareButton><br />
+        </div>
+    )
 }
 
 const Product = (props) => {
@@ -115,45 +117,50 @@ const Product = (props) => {
             })
     }, [_id])
 
-    useEffect(async () => {
-        await db.collection('Dishes').doc(_id).get()
-            .then(res => {
-                setPro(res.data())
-                setResh([])
-                setpriccce(res.data().price)
-                setfakeprice(res.data().iPrice)
-                setpiroo({
-                    ...pirro, category: res.data().category, iPrice: res.data().iPrice, price: res.data().price, name: res.data().name,
-                    rating: res.data().rating, sCat: res.data().sCat, url: res.data().url, url2: res.data().url2, url3: res.data().url3,
-                    _id: _id, description: res.data().description, quantity: quan,
-                })
-                if (res.data() && res.data().boughtTogetherDiscount) {
-                    setpiroo2({
-                        ...pirro2, category: res.data().category, iPrice: res.data().iPrice, price: res.data().price - Math.round(parseInt(res.data().price)) * res.data().boughtTogetherDiscount / 100, name: res.data().name,
+    useEffect(() => {
+        if (_id) {
+            db.collection('Dishes').doc(_id).get()
+                .then(res => {
+                    setPro(res.data())
+                    setResh([])
+                    setpriccce(res.data().price)
+                    setfakeprice(res.data().iPrice)
+                    setpiroo({
+                        ...pirro, category: res.data().category, iPrice: res.data().iPrice, price: res.data().price, name: res.data().name,
                         rating: res.data().rating, sCat: res.data().sCat, url: res.data().url, url2: res.data().url2, url3: res.data().url3,
                         _id: _id, description: res.data().description, quantity: quan,
                     })
-                }
-                db.collection("Dishes").where("category", "==", `${res.data().category}`).get()
-                    .then(res => {
-                        res.forEach((doc) => {
-                            setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
+                    if (res.data() && res.data().boughtTogetherDiscount) {
+                        setpiroo2({
+                            ...pirro2, category: res.data().category, iPrice: res.data().iPrice, price: res.data().price - Math.round(parseInt(res.data().price)) * res.data().boughtTogetherDiscount / 100, name: res.data().name,
+                            rating: res.data().rating, sCat: res.data().sCat, url: res.data().url, url2: res.data().url2, url3: res.data().url3,
+                            _id: _id, description: res.data().description, quantity: quan,
                         })
-                    })
-
-
-                db.collection("Dishes").doc(`${res.data().boughtTogether}`).get()
-                    .then(ress => {
-                        setfrequent(ress.data())
-                        if (ress.data()) {
-                            setpiroo1({
-                                ...pirro1, category: ress.data().category, iPrice: ress.data().iPrice, price: ress.data().price - Math.round(parseInt(ress.data().price)) * res.data().boughtTogetherDiscount / 100, name: ress.data().name,
-                                rating: ress.data().rating, sCat: ress.data().sCat, url: ress.data().url, url2: ress.data().url2, url3: ress.data().url3,
-                                _id: `${res.data().boughtTogether}`, description: ress.data().description, quantity: quan,
+                    }
+                    db.collection("Dishes").where("category", "==", `${res.data().category}`).get()
+                        .then(res => {
+                            res.forEach((doc) => {
+                                setResh(resu => [...resu, { data: doc.data(), _id: doc.id }])
                             })
-                        }
-                    })
-            })
+                        })
+
+                    if (res.data().boughtTogether) {
+                        db.collection("Dishes").doc(`${res.data().boughtTogether}`).get()
+                            .then(ress => {
+                                setfrequent(ress.data())
+                                if (ress.data()) {
+                                    setpiroo1({
+                                        ...pirro1, category: ress.data().category, iPrice: ress.data().iPrice, price: ress.data().price - Math.round(parseInt(ress.data().price)) * res.data().boughtTogetherDiscount / 100, name: ress.data().name,
+                                        rating: ress.data().rating, sCat: ress.data().sCat, url: ress.data().url, url2: ress.data().url2, url3: ress.data().url3,
+                                        _id: `${res.data().boughtTogether}`, description: ress.data().description, quantity: quan,
+                                    })
+                                }
+                            })
+                    }
+                })
+        } else {
+            toast.error('Something went wrong')
+        }
     }, [_id])
 
     const handleChangepostive = () => e => {
@@ -165,13 +172,13 @@ const Product = (props) => {
         setCount(w < 1 ? 1 : w)
     }
     const freqdiscc = pro && frequent && Math.round(parseInt(frequent.price) + parseInt(pro.price)) - Math.round(parseInt(frequent.price) + parseInt(pro.price)) * 10 / 100
-    
+
     const addToWishlist = () => {
         addItems(pirro, () => {
             toast.success('Item Added')
         })
     }
-    
+
     const addToCart = async (e) => {
         await addItem(pirro, () => {
             if (count > 0) {
@@ -266,24 +273,24 @@ const Product = (props) => {
                                                     starSpacing="5px"
                                                     starRatedColor="rgb(255,176,0)"
                                                 /></h4>
-                                                <div style={{float: "right"}}>
-                                                  <FacebookShareButton 
+                                            <div style={{ float: "right" }}>
+                                                <FacebookShareButton
                                                     url={window.location.href}
                                                     quote={"Enjoy the delicacies of Angadi"}
-                                                    hashtag="#angadi" 
-                                                  ><FacebookIcon size={45} /></FacebookShareButton><br />
-                                                  <WhatsappShareButton
+                                                    hashtag="#angadi"
+                                                ><FacebookIcon size={45} /></FacebookShareButton><br />
+                                                <WhatsappShareButton
                                                     url={window.location.href}
                                                     title={"Enjoy the delicacies of Angadi"}
                                                     separator=" :: "
-                                                  ><WhatsappIcon size={45} /></WhatsappShareButton><br />
-                                                  <TwitterShareButton
+                                                ><WhatsappIcon size={45} /></WhatsappShareButton><br />
+                                                <TwitterShareButton
                                                     url={window.location.href}
                                                     title={"Enjoy the delicacies of Angadi"}
                                                     hashtag="#angadi"
-                                                  ><TwitterIcon size={45} /></TwitterShareButton><br />
-                                                </div>
-                                            
+                                                ><TwitterIcon size={45} /></TwitterShareButton><br />
+                                            </div>
+
                                             <div style={{ color: 'gray', marginBottom: '-10px' }}><a href="#noob-rating" style={{ color: 'inherit' }}>{revi.length} rating & reviews</a></div>
                                             <div className="proccard4">
                                                 <span>Adjust Quantity</span>

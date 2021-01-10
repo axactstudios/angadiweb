@@ -98,10 +98,37 @@ const AddDish = () => {
                 setValues({ ...values, [name]: e.target.value })
                 break;
         }
-        console.log(values)
     };
 
     const handleSubmit = async () => {
+        var arr1 = []
+        var arr2 = []
+        var bn = false
+        var bm = false
+        var bv = false
+        if(name){
+            for(let i =0 ; i< name.length +1 ; i ++){
+                arr1.push(name.slice(0, i))
+            }
+        }if(category){
+            for(let y = 0 ; y < category.length + 1 ; y ++){
+                arr2.push(category.slice(0,y))
+            }
+        }if(stock === 'false' ){
+            bn = false
+        }if(top === 'false'){
+            bm = false
+        }if(special === 'false'){
+            bv = false
+        }if(stock === 'true' ){
+            bn = true
+        }if(top === 'true'){
+            bm = true
+        }if(special === 'true'){
+            bv = true
+        }
+
+
         if (image && image1 && image2 && name && price && iPrice && productId && category && sCat && description) {
             const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).put(image);
             const uploadTask1 = storage.ref(`Dishes/${name}`).child(image1.name).put(image1);
@@ -141,8 +168,8 @@ const AddDish = () => {
                                                     url2: url2,
                                                     url3: url3,
                                                     name: name,
-                                                    top: top,
-                                                    special: special,
+                                                    top: bm,
+                                                    special: bv,
                                                     rating: rating,
                                                     iPrice: price,
                                                     description: description,
@@ -153,8 +180,10 @@ const AddDish = () => {
                                                     boughtTogetherDiscount: boughtTogetherDiscount,
                                                     boughtTogetherQuantity: boughtTogetherQuantity,
                                                     productId: productId,
-                                                    stock: stock,
-                                                    Quantity: quanArr
+                                                    stock: bn,
+                                                    Quantity: quanArr,
+                                                    categorySearch : arr2,
+                                                    nameSearch : arr1
                                                 }).then(() => {
                                                     toast.success('Dish Added !!!')
                                                     console.log('done')
@@ -176,7 +205,6 @@ const AddDish = () => {
     const handleChangee1 = name => (e) => {
         e.preventDefault()
         setQuaan1({ ...quaan1, [name]: e.target.value })
-        console.log(quaan1)
     }
     const handleChangee2 = name => (e) => {
         e.preventDefault()
