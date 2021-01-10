@@ -35,9 +35,9 @@ const Getoffer = () => {
                 <div className='cateegee'>
                     {
                         dish && dish.map((d, i) => (
-                            <div key={i}>
-                                <Card product={d} />
-                            </div>
+                            
+                               <Card product={d} key={i} />
+                            
                         ))
                     }
                 </div>

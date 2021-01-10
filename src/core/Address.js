@@ -3,6 +3,13 @@ import { isAuth } from '../helpers/auth'
 import firebase from 'firebase'
 import { toast, ToastContainer } from 'react-toastify'
 import '../Styles/Address.css'
+import OrderTable from '../AdminPannel/OrderTable'
+
+const columns = [
+  { id: 'hno', label: 'House no.' },
+  { id: 'address', label: 'Address' },
+  { id: 'landmark', label: 'Landmark' },
+];
 
 const SavedAddress = (props) => {
   const { address, landmark, hno } = props.address;
@@ -78,13 +85,13 @@ const Address = () => {
   return (
     <div className="update-form">
       <ToastContainer />
-      <div className="saved-addresses">
+      {/* <div className="saved-addresses">
       {
         userAddress && userAddress.map(item => {
           return <SavedAddress address={item} />
         })
       }
-      </div>
+      </div> */}
       <div className="update-form-main">
         <div className="update-form-fields">
           <form>
@@ -112,6 +119,7 @@ const Address = () => {
           </form>
         </div>
       </div>
+      {/* <OrderTable details={userAddress} columns={columns} /> */}
     </div>
   )
 }

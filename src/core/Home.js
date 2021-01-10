@@ -9,6 +9,10 @@ import Geocode from 'react-geocode'
 import Cartcomp from '../PagesHelper/Cartt'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import MapPicker from 'react-google-map-picker'
+
+const DefaultLocation = { lat: 10, lng: 106};
+const DefaultZoom = 10;
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -38,6 +42,48 @@ const Home = () => {
         name: '',
         category: ''
     })
+
+    const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
+    const [location, setLocation] = useState(defaultLocation);
+    const [zoom, setZoom] = useState(DefaultZoom);
+    const [sex, setSex] = useState(false)
+
+    function handleChangeLocation (lat, lng){
+      setLocation({lat:lat, lng:lng});
+      Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+      Geocode.fromLatLng(lat.toString(), lng.toString()).then(
+          async ress => {
+              const address1 = await ress.results[0].formatted_address;
+              console.log(address1)
+              setloca(address1)
+          }
+      )
+    }
+    
+    function handleChangeZoom (newZoom){
+      setZoom(newZoom);
+    }
+
+    function handleResetLocation(){
+      setDefaultLocation({ ... DefaultLocation});
+      setZoom(DefaultZoom);
+    }
+
+    const LocationSelect = () => {
+
+      console.log(location)
+
+      return (
+        <div style={{position: "absolute", zIndex: "1000"}}>
+          <MapPicker defaultLocation={defaultLocation}
+            zoom={zoom}
+            style={{height:'300px', width: '300px'}}
+            onChangeLocation={handleChangeLocation} 
+            onChangeZoom={handleChangeZoom}
+            apiKey='AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8'/>
+        </div>
+      );
+    }
 
     useEffect(() => {
         setImgurl([])
@@ -146,8 +192,9 @@ const Home = () => {
                 </div>
                 <div className='ohdoljag2'>
                     <div className='ohdoljag21'>
-                        <i class="fa fa-map-marker" aria-hidden="true"></i> Deliver to, <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
+                        <i class="fa fa-map-marker" aria-hidden="true" onClick={() => setSex(!sex)}></i> Deliver to, <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
                     </div>
+                    { sex ? <LocationSelect /> : null}
                 </div>
                 <div className='ohdoljag3'>
                     <div className='ohdoljag31'>
