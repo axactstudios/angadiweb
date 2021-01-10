@@ -98,7 +98,7 @@ const Editorder = () => {
                             <tr>
                                 <td>{_id}</td>
                                 <td>{values.Status}</td>
-                                <td>{values.DeliveryTime}</td>
+                                <td>{JSON.stringify(values && values.DeliveryTime)}</td>
                             </tr>
                             <tr>
                                 <th><i class="fa fa-map-marker" /> &nbsp; Deliver to</th>
@@ -140,4 +140,4 @@ const Editorder = () => {
 export default Editorder;
 
 // <div>{values.TimeStamp.seconds && <p>Timestamp -{new Date(values.TimeStamp.seconds * 1000).toLocaleDateString("en-US")}</p>}</div>
-
+// <td>{values && values.DeliveryTime}</td>

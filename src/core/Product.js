@@ -156,6 +156,22 @@ const Product = (props) => {
                                     })
                                 }
                             })
+                    } else {
+                        setfrequent('')
+                        setpiroo1({
+                            category: '',
+                            iPrice: '',
+                            price: '',
+                            name: '',
+                            rating: '',
+                            sCat: '',
+                            url: '',
+                            url2: '',
+                            url3: '',
+                            _id: '',
+                            description: '',
+                            quantity: ''
+                        })
                     }
                 })
         } else {
