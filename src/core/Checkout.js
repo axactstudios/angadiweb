@@ -472,8 +472,6 @@ const Checkout = ({ dm }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-      {JSON.stringify(userAddress)}
-
     </div>
   );
 }
