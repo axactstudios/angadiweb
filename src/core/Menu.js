@@ -105,7 +105,7 @@ const Menu = ({ history }) => {
 
     const LocationSelect = () => {
 
-      console.log(location)
+    //   console.log(location)
 
       return (
         <div style={{position: "absolute", zIndex: "1000"}}>

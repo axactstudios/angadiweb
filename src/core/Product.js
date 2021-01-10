@@ -189,6 +189,7 @@ const Product = (props) => {
     }
     const freqdiscc = pro && frequent && Math.round(parseInt(frequent.price) + parseInt(pro.price)) - Math.round(parseInt(frequent.price) + parseInt(pro.price)) * 10 / 100
 
+
     const addToWishlist = () => {
         addItems(pirro, () => {
             toast.success('Item Added')
@@ -219,10 +220,15 @@ const Product = (props) => {
 
     const handleChanged = () => (e) => {
         setquan(e.target.value)
-        const k = e.target.value / quan
-        setpriccce(k * priccce)
-        setfakeprice(k * fakeprice)
-        setpiroo({ ...pirro, price: k * priccce, quantity: e.target.value, iPrice: k * pro.iPrice })
+        if (pro.Quantity) {
+            pro.Quantity.map((i, o) => {
+                if (i.quantity === e.target.value) {
+                    setpriccce(i.price)
+                    setfakeprice(i.iPrice)
+                    setpiroo({ ...pirro, price: i.price, quantity: e.target.value, iPrice: i.iPrice })
+                }
+            })
+        }
     };
 
     const rrate = pro && pro.rating && Math.round(pro.rating)
@@ -311,10 +317,12 @@ const Product = (props) => {
                                             <div className="proccard4">
                                                 <span>Adjust Quantity</span>
                                                 <select onChange={handleChanged()} className="proccard5">
-                                                    <option value='500'>500 ML</option>
-                                                    <option value='1000'>1000 ML</option>
-                                                    <option value='1500'>1500 ML</option>
-                                                    <option value='2000'>2000 ML</option>
+                                                    {
+                                                        pro && pro.Quantity &&
+                                                        pro.Quantity.map((r, t) =>
+                                                            <option value={`${r.quantity}`} key={t}>{r.quantity} ML</option>
+                                                        )
+                                                    }
                                                 </select>
                                             </div>
                                             <div>

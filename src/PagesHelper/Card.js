@@ -64,17 +64,22 @@ const Card = ({ product, toaaat }) => {
     }
 
     const addToWishlist = () => {
-      addItems(pirro, () => {
-          toast.success('Item Added')
-      })
-  }
+        addItems(pirro, () => {
+            toast.success('Item Added')
+        })
+    }
 
     const handleChanged = () => (e) => {
         setquan(e.target.value)
-        const k = e.target.value / quan
-        setpriccce(k * priccce)
-        setfakeprice(k * fakeprice)
-        setpiroo({ ...pirro, price: k * priccce, quantity: e.target.value, iPrice: k * fakeprice })
+        if (product.data.Quantity) {
+            product.data.Quantity.map((i, o) => {
+                if (i.quantity === e.target.value) {
+                    setpriccce(i.price)
+                    setfakeprice(i.iPrice)
+                    setpiroo({ ...pirro, price: i.price, quantity: e.target.value, iPrice: i.iPrice })
+                }
+            })
+        }
     };
 
     const rrate = product.data.rating && product.data.rating && Math.round(product.data.rating)
@@ -133,7 +138,7 @@ const Card = ({ product, toaaat }) => {
                                     <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
                                     <p>{product.data.description.substring(0, 250)}</p>
                                     <div className="cardbuttondiv">
-                                        <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Add To Cart</button> 
+                                        <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Add To Cart</button>
                                         <button className='cardbutton' onClick={addToWishlist}><i class="fa fa-heart" /> Wishlist</button>
                                     </div>
                                 </div>
@@ -171,10 +176,12 @@ const Card = ({ product, toaaat }) => {
                 <p>{product.data.category}</p>
                 <div className='selectcard2'>
                     <select onChange={handleChanged()} className="slectcard">
-                        <option value='500'>500 ML</option>
-                        <option value='1000'>1000 ML</option>
-                        <option value='1500'>1500 ML</option>
-                        <option value='2000'>2000 ML</option>
+                        {
+                            product && product.data && product.data.Quantity &&
+                            product.data.Quantity.map((r, t) =>
+                                <option value={`${r.quantity}`} key={t}>{r.quantity} ML</option>
+                            )
+                        }
                     </select>
                 </div>
                 <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
@@ -186,7 +193,7 @@ const Card = ({ product, toaaat }) => {
                     </div>
                 </div>
                 <div className="cardbuttondiv">
-                    <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" />&nbsp;Add</button> 
+                    <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" />&nbsp;Add</button>
                 </div>
             </div>
         </div>
