@@ -2,6 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { isAuth } from '../helpers/auth'
 import firebase from 'firebase'
 import { toast, ToastContainer } from 'react-toastify'
+import '../Styles/Address.css'
+
+const SavedAddress = (props) => {
+  const { address, landmark, hno } = props.address;
+
+  return (
+    <div className="address-card">
+      <i class="fa fa-times" style={{color: "tomato", float: "right"}} />
+      { address ? <p style={{fontWeight: "bold", minWidth: "150px"}}>{address} </p> : null }
+      { hno ? <p>House {hno} </p> : null }
+      { landmark ? <p>Landmark {landmark} </p> : null }
+    </div>
+  )
+}
 
 const Address = () => {
   const [userAddress, serUserAddress] = useState([])
@@ -64,10 +78,16 @@ const Address = () => {
   return (
     <div className="update-form">
       <ToastContainer />
+      <div className="saved-addresses">
+      {
+        userAddress && userAddress.map(item => {
+          return <SavedAddress address={item} />
+        })
+      }
+      </div>
       <div className="update-form-main">
         <div className="update-form-fields">
           <form>
-            {JSON.stringify(userAddress)}
             <input type="text"
               className="update-form-input"
               placeholder="Enter New Address"

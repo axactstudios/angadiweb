@@ -1,0 +1,22 @@
+.saved-addresses {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.address-card {
+  box-shadow: 0px 0px 20px #efefef;
+  padding: 10px 15px 10px 25px;
+  line-height: 1;
+  width: max-content;
+  margin: 10px;
+  border-radius: 8px;
+  border: 1px solid white;
+}
+
+.address-card:hover {
+  border: 1px solid rgb(255, 176, 0);
+}
+
+.address-card p {
+  margin: 10px 0;
+}

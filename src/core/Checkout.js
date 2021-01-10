@@ -359,12 +359,12 @@ const Checkout = ({ dm }) => {
             <div className="checkout-card">
               <input className="checkout-input" type="text" placeholder="Address" value={data.address} onChange={handleChangee('address')} />
             </div>
-            <button className="checkout-butt" onClick={cureeentLocation}>Get Current Location</button>
+            <p className='sharabbi' onClick={cureeentLocation}>Get Current Location</p>
 
-            <Form style={{ margin: "1em 0" }}>
-              <Form.Label>Saved Addresses</Form.Label>
+            <Form style={{margin: "1em 0"}}>
               <InputGroup>
                 <Form.Control as="select" onChange={handleChangee('address')}>
+                  <option>Saved Addresses</option>
                   {
                     userAddress && userAddress.map((m, l) =>
                       <option value={`${m.address}` + `${m.hno}` + `${m.landmark}`}>{m.hno} {m.address} {m.landmark}</option>

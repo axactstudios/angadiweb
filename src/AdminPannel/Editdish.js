@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import { Form, Container, Row, Col } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import { useRouteMatch } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import '../Styles/adminPanel.css'
@@ -356,30 +356,34 @@ const Editdish = () => {
         setQuaan4({ ...quaan4, [name]: e.target.value })
     }
 
-    const handlesubmitt1 = () => {
+    const handlesubmitt1 = (id) => {
         if (quaan1.productId && quaan1.iPrice && quaan1.price && quaan1.quantity) {
             quanArr.push(quaan1)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 1')
         }
     }
-    const handlesubmitt2 = () => {
+    const handlesubmitt2 = (id) => {
         if (quaan2.productId && quaan2.iPrice && quaan2.price && quaan2.quantity) {
             quanArr.push(quaan2)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 2')
         }
     }
-    const handlesubmitt3 = () => {
+    const handlesubmitt3 = (id) => {
         if (quaan3.productId && quaan3.iPrice && quaan3.price && quaan3.quantity) {
             quanArr.push(quaan3)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 3')
         }
     }
-    const handlesubmitt4 = () => {
+    const handlesubmitt4 = (id) => {
         if (quaan4.productId && quaan4.iPrice && quaan4.price && quaan4.quantity) {
             quanArr.push(quaan4)
+            document.getElementById(id).setAttribute("disabled", true);
         } else {
             toast.error('Please fill all field in quantity 4')
         }
@@ -461,33 +465,36 @@ const Editdish = () => {
                 </Form>
 
                 <Form.Group>
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter ProductID</Form.Label>
                     <Form.Control type="text" placeholder="Product Id" onChange={handleChange('productId')} value={productId} />
                 </Form.Group>
 
-                <div style={{ 'border': '1px solid black' }}>
+                <div>
                     <Form.Group>
-                        <Form.Control type="text" placeholder="Enter boughtTogetherDiscount" onChange={handleChange('boughtTogetherDiscount')} value={boughtTogetherDiscount} />
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Discount</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Bought Together Discount" onChange={handleChange('boughtTogetherDiscount')} value={boughtTogetherDiscount} />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Control type="text" placeholder="Enter boughtTogetherQuantity" onChange={handleChange('boughtTogetherQuantity')} value={boughtTogetherQuantity} />
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Quantity</Form.Label>
+                        <Form.Control type="text" placeholder="Enter Bought Together Quantityy" onChange={handleChange('boughtTogetherQuantity')} value={boughtTogetherQuantity} />
                     </Form.Group>
                     <Form.Group >
-                        <Form.Label>Choose Bought Together Product {boughtTogether && boughtTogether}</Form.Label><br />
-                        <select onChange={handleChange('boughtTogether')} >
-                            <option>Please Select</option>
-                            {dishh && dishh.map((c, i) =>
+                      <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Choose Bought Tohether Product</Form.Label>
+                      <Form.Control as="select" onChange={handleChange('boughtTogether')}>
+                        {dishh && dishh.map((c, i) =>
                             (<option key={i} value={c._id}>
                                 {c.data.name}
                             </option>)
-                            )}
-                        </select>
+                        )}
+                      </Form.Control>
                     </Form.Group>
                 </div>
 
 
 
-                <div style={{ 'border': '1px solid black' }}>
+                <div>
                     <Container fluid>
+                      <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Quantities</Form.Label>
                         <Row>
                             <Col>
                                 <Form.Group>
@@ -510,7 +517,7 @@ const Editdish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt1}>Add 1st Quantity</button>
+                              <Button id="button-a" onClick={() => handlesubmitt1("button-a")}>Add 1st Quantity</Button>
                             </Col>
                         </Row>
                         <Row>
@@ -535,7 +542,7 @@ const Editdish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt2}>Add 2nd Quantity</button>
+                              <Button id="button-b" onClick={() => handlesubmitt2("button-b")}>Add 2nd Quantity</Button>
                             </Col>
                         </Row>
                         <Row>
@@ -560,7 +567,7 @@ const Editdish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt3}>Add 3rd Quantity</button>
+                              <Button id="button-c" onClick={() => handlesubmitt3("button-c")}>Add 3rd Quantity</Button>
                             </Col>
                         </Row>
                         <Row>
@@ -585,7 +592,7 @@ const Editdish = () => {
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <button onClick={handlesubmitt4}>Add 4th Quantity</button>
+                              <Button id="button-d" onClick={() => handlesubmitt4("button-d")}>Add 4th Quantity</Button>
                             </Col>
                         </Row>
                     </Container>
