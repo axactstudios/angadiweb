@@ -98,7 +98,7 @@ const Editorder = () => {
                             <tr>
                                 <td>{_id}</td>
                                 <td>{values.Status}</td>
-
+                                <td>{JSON.stringify(values && values.DeliveryTime)}</td>
                             </tr>
                             <tr>
                                 <th><i class="fa fa-map-marker" /> &nbsp; Deliver to</th>
