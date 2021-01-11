@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MapPicker from 'react-google-map-picker'
 
-const DefaultLocation = { lat: 10, lng: 106};
+const DefaultLocation = { lat: 25.20, lng: 55.27};
 const DefaultZoom = 10;
 
 const useStyles = makeStyles((theme) => ({
@@ -197,8 +197,8 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='ohdoljag2'>
-                    <div className='ohdoljag21'>
-                        <i class="fa fa-map-marker" aria-hidden="true" style={{cursor: "pointer"}} onClick={() => setLocinput(!locinput)}></i> Deliver to, <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
+                    <div className='ohdoljag21' style={{cursor: "pointer"}} onClick={() => setLocinput(!locinput)}>
+                        <i class="fa fa-map-marker" aria-hidden="true" ></i> Deliver to : {loca}
                     </div>
                     { locinput ? <LocationSelect /> : null}
                 </div>

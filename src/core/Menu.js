@@ -226,8 +226,8 @@ const Menu = ({ history }) => {
                     <div className='header-extra'>
                         <div className='header-extra1'>
                             <div className='header-extra11'>
-                                <div className='header-extra12'>
-                                    <i class="fa fa-map-marker" style={{cursor: "pointer"}} aria-hidden="true" onClick={() => setLocinput(!locinput)}></i> Deliver to :  <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
+                                <div className='header-extra12' style={{cursor: "pointer"}} onClick={() => setLocinput(!locinput)}>
+                                    <i class="fa fa-map-marker" aria-hidden="true" ></i> Deliver to :  {loca}
                                 </div>
                                 { locinput ? <LocationSelect /> : null}
                             </div>

@@ -6,7 +6,7 @@
     display: flex;
     width: fit-content;
     margin: auto;
-    height: 100px;
+    height: max-content;
     overflow: hidden;
     z-index: 100;
 }
@@ -342,12 +342,13 @@
     flex-direction: row;
     justify-content: space-between;
     height: fit-content;
-    margin: auto;
+    margin: 5px;
     padding: 0 20px;
 }
 .header-extra1{
     text-align: center;
     margin-top: 5px;
+    max-width: 320px;
 }
 .header-extra11{
     background-color: #ffb000;
