@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
-import { Col, Container, Row, Carousel } from 'react-bootstrap'
+import { Col, Container, Row, Carousel, Button } from 'react-bootstrap'
 import '../Styles/home.css'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
@@ -46,11 +46,11 @@ const Home = () => {
     const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
     const [location, setLocation] = useState(defaultLocation);
     const [zoom, setZoom] = useState(DefaultZoom);
-    const [sex, setSex] = useState(false)
+    const [locinput, setLocinput] = useState(false)
 
-    function handleChangeLocation (lat, lng){
-      setLocation({lat:lat, lng:lng});
-      Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+    Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+
+    const GetGeocode = (lat, lng) => {
       Geocode.fromLatLng(lat.toString(), lng.toString()).then(
           async ress => {
               const address1 = await ress.results[0].formatted_address;
@@ -58,6 +58,11 @@ const Home = () => {
               setloca(address1)
           }
       )
+    }
+
+    function handleChangeLocation (lat, lng){
+      GetGeocode(lat, lng)
+      setLocation({lat:lat, lng:lng});
     }
     
     function handleChangeZoom (newZoom){
@@ -74,13 +79,14 @@ const Home = () => {
       console.log(location)
 
       return (
-        <div style={{position: "absolute", zIndex: "1000"}}>
+        <div style={{position: "absolute", zIndex: "1000", padding: "10px", backgroundColor: "white"}}>
           <MapPicker defaultLocation={defaultLocation}
             zoom={zoom}
             style={{height:'300px', width: '300px'}}
             onChangeLocation={handleChangeLocation} 
             onChangeZoom={handleChangeZoom}
             apiKey='AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8'/>
+            <Button onClick={() => setLocinput(!locinput)}><i class="fa fa-times" /></Button>
         </div>
       );
     }
@@ -192,9 +198,9 @@ const Home = () => {
                 </div>
                 <div className='ohdoljag2'>
                     <div className='ohdoljag21'>
-                        <i class="fa fa-map-marker" aria-hidden="true" onClick={() => setSex(!sex)}></i> Deliver to, <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
+                        <i class="fa fa-map-marker" aria-hidden="true" style={{cursor: "pointer"}} onClick={() => setLocinput(!locinput)}></i> Deliver to, <Link to='/user/dashboard' style={{ color: 'inherit' }}>{loca}</Link>
                     </div>
-                    { sex ? <LocationSelect /> : null}
+                    { locinput ? <LocationSelect /> : null}
                 </div>
                 <div className='ohdoljag3'>
                     <div className='ohdoljag31'>
