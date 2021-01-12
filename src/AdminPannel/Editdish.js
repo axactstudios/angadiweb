@@ -186,7 +186,7 @@ const Editdish = () => {
 
 
         if (image !== null) {
-            const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).put(image);
+            const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).set(image);
             uploadTask.on('state_changed', (snapshot) => {
                 const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 console.log(progress)
@@ -200,6 +200,8 @@ const Editdish = () => {
                         console.log(url)
                         await store.collection('Dishes').doc(_id).update({
                             url: url,
+                            url2:photo1,
+                            url3:photo2,
                             name: name,
                             top: bm,
                             special: bv,
@@ -239,8 +241,10 @@ const Editdish = () => {
                     () => {
                         storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url => {
                             console.log(url)
-                            await store.collection('Dishes').doc(_id).update({
+                            await store.collection('Dishes').doc(_id).set({
                                 url2: url,
+                                url:photo,
+                                url3:photo2,
                                 name: name,
                                 top: bm,
                                 special: bv,
@@ -280,8 +284,10 @@ const Editdish = () => {
                         () => {
                             storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url => {
                                 console.log(url)
-                                await store.collection('Dishes').doc(_id).update({
+                                await store.collection('Dishes').doc(_id).set({
                                     url3: url,
+                                    url2:photo1,
+                                    url:photo,
                                     name: name,
                                     top: bm,
                                     special: bv,
@@ -308,7 +314,10 @@ const Editdish = () => {
                             })
                         })
                 } else {
-                    store.collection('Dishes').doc(_id).update({
+                    store.collection('Dishes').doc(_id).set({
+                        url2:photo1,
+                        url3:photo2,
+                        url:photo,
                         name: name,
                         top: bm,
                         special: bv,
