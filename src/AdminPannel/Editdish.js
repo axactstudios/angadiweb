@@ -198,7 +198,7 @@ const Editdish = () => {
                 () => {
                     storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url => {
                         console.log(url)
-                        await store.collection('Dishes').doc(_id).set({
+                        await store.collection('Dishes').doc(_id).update({
                             url: url,
                             name: name,
                             top: bm,
@@ -239,7 +239,7 @@ const Editdish = () => {
                     () => {
                         storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url => {
                             console.log(url)
-                            await store.collection('Dishes').doc(_id).set({
+                            await store.collection('Dishes').doc(_id).update({
                                 url2: url,
                                 name: name,
                                 top: bm,
@@ -280,7 +280,7 @@ const Editdish = () => {
                         () => {
                             storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url => {
                                 console.log(url)
-                                await store.collection('Dishes').doc(_id).set({
+                                await store.collection('Dishes').doc(_id).update({
                                     url3: url,
                                     name: name,
                                     top: bm,
@@ -308,7 +308,7 @@ const Editdish = () => {
                             })
                         })
                 } else {
-                    store.collection('Dishes').doc(_id).set({
+                    store.collection('Dishes').doc(_id).update({
                         name: name,
                         top: bm,
                         special: bv,
