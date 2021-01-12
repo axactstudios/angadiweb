@@ -198,7 +198,7 @@ const Editdish = () => {
                 () => {
                     storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url => {
                         console.log(url)
-                        await store.collection('Dishes').doc(_id).update({
+                        await store.collection('Dishes').doc(_id).set({
                             url: url,
                             name: name,
                             top: bm,
@@ -239,7 +239,7 @@ const Editdish = () => {
                     () => {
                         storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url => {
                             console.log(url)
-                            await store.collection('Dishes').doc(_id).update({
+                            await store.collection('Dishes').doc(_id).set({
                                 url2: url,
                                 name: name,
                                 top: bm,
@@ -280,7 +280,7 @@ const Editdish = () => {
                         () => {
                             storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url => {
                                 console.log(url)
-                                await store.collection('Dishes').doc(_id).update({
+                                await store.collection('Dishes').doc(_id).set({
                                     url3: url,
                                     name: name,
                                     top: bm,
@@ -308,7 +308,7 @@ const Editdish = () => {
                             })
                         })
                 } else {
-                    store.collection('Dishes').doc(_id).update({
+                    store.collection('Dishes').doc(_id).set({
                         name: name,
                         top: bm,
                         special: bv,
@@ -481,6 +481,7 @@ const Editdish = () => {
                     <Form.Group >
                       <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Choose Bought Tohether Product</Form.Label>
                       <Form.Control as="select" onChange={handleChange('boughtTogether')}>
+                      <option>Please Select</option>
                         {dishh && dishh.map((c, i) =>
                             (<option key={i} value={c._id}>
                                 {c.data.name}
