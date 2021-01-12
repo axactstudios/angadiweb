@@ -186,7 +186,7 @@ const Editdish = () => {
 
 
         if (image !== null) {
-            const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).set(image);
+            const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).put(image);
             uploadTask.on('state_changed', (snapshot) => {
                 const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
                 console.log(progress)
@@ -241,7 +241,7 @@ const Editdish = () => {
                     () => {
                         storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url => {
                             console.log(url)
-                            await store.collection('Dishes').doc(_id).set({
+                            await store.collection('Dishes').doc(_id).update({
                                 url2: url,
                                 url:photo,
                                 url3:photo2,
@@ -284,7 +284,7 @@ const Editdish = () => {
                         () => {
                             storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url => {
                                 console.log(url)
-                                await store.collection('Dishes').doc(_id).set({
+                                await store.collection('Dishes').doc(_id).update({
                                     url3: url,
                                     url2:photo1,
                                     url:photo,
@@ -314,7 +314,7 @@ const Editdish = () => {
                             })
                         })
                 } else {
-                    store.collection('Dishes').doc(_id).set({
+                    store.collection('Dishes').doc(_id).update({
                         url2:photo1,
                         url3:photo2,
                         url:photo,
