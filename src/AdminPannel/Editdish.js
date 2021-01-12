@@ -221,6 +221,7 @@ const Editdish = () => {
                         }).then(() => {
                             console.log('fuck offf')
                             toast.success('Dish edit successfully !!!')
+                            window.location.reload(false)
                         }).catch((err) => {
                             console.log(err)
                             toast.error('Something went wrong !!!')
@@ -264,6 +265,7 @@ const Editdish = () => {
                             }).then(() => {
                                 console.log('fuck offf')
                                 toast.success('Dish edit successfully !!!')
+                                window.location.reload(false)
                             }).catch((err) => {
                                 console.log(err)
                                 toast.error('Something went wrong !!!')
@@ -307,6 +309,7 @@ const Editdish = () => {
                                 }).then(() => {
                                     console.log('fuck offf')
                                     toast.success('Dish edit successfully !!!')
+                                    window.location.reload(false)
                                 }).catch((err) => {
                                     console.log(err)
                                     toast.error('Something went wrong !!!')
@@ -337,6 +340,7 @@ const Editdish = () => {
                     }).then(() => {
                         console.log('fuck offf')
                         toast.success('Dish Update successfully')
+                        window.location.reload(false)
                     }).catch((err) => {
                         console.log(err)
                         toast.error('Something went wrong !!!')
