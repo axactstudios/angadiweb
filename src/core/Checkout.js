@@ -285,7 +285,7 @@ const Checkout = ({ dm }) => {
       toast.error('Please select Emirate and Emirate Area !!!')
     }
   }
-
+  
   const showDropIn = () => {
     return (
       <div>
@@ -381,14 +381,17 @@ const Checkout = ({ dm }) => {
             <div style={{ margin: "1em 0 1.5em" }}>
               <TextField
                 id="datetime-local"
-                label="Schedule Delivery"
                 type="datetime-local"
                 defaultValue={dDate}
                 className={classes.textField}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                error
                 onChange={(e) => setDate(e.target.value)}
+                label={
+                  dDate < (new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16)) ? "Choose Valid Date" : "Schedule Delivery"
+                }
               />
             </div>
 
