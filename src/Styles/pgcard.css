@@ -167,14 +167,15 @@
     }   
     .csk{
         min-width: 150px;
-        height: 430px;
+        height: auto !important;
     }
     .csk1{
         max-width: 285px;
-        height: 200px;
+        height: 145px !important;
     }
     .csk1 img{
-        height: 85%;
+        width: 100% !important;
+        min-height: 120px !important;
     }
     .csk1:hover img{
         transform: scale(1.1);

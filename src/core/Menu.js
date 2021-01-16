@@ -138,7 +138,6 @@ const Menu = ({ history }) => {
     // const { name, category } = values
     const onInputChange = (event, value) => {
         setValues({ ...values, name: value })
-
     }
 
     // useEffect(() => {
