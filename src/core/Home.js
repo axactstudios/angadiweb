@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MapPicker from 'react-google-map-picker'
 
-const DefaultLocation = { lat: 25.20, lng: 55.27};
+const DefaultLocation = { lat: 25.20, lng: 55.27 };
 const DefaultZoom = 10;
 
 const useStyles = makeStyles((theme) => ({
@@ -51,44 +51,44 @@ const Home = () => {
     Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
 
     const GetGeocode = (lat, lng) => {
-      Geocode.fromLatLng(lat.toString(), lng.toString()).then(
-          async ress => {
-              const address1 = await ress.results[0].formatted_address;
-              console.log(address1)
-              setloca(address1)
-          }
-      )
+        Geocode.fromLatLng(lat.toString(), lng.toString()).then(
+            async ress => {
+                const address1 = await ress.results[0].formatted_address;
+                console.log(address1)
+                setloca(address1)
+            }
+        )
     }
 
-    function handleChangeLocation (lat, lng){
-      GetGeocode(lat, lng)
-      setLocation({lat:lat, lng:lng});
-    }
-    
-    function handleChangeZoom (newZoom){
-      setZoom(newZoom);
+    function handleChangeLocation(lat, lng) {
+        GetGeocode(lat, lng)
+        setLocation({ lat: lat, lng: lng });
     }
 
-    function handleResetLocation(){
-      setDefaultLocation({ ... DefaultLocation});
-      setZoom(DefaultZoom);
+    function handleChangeZoom(newZoom) {
+        setZoom(newZoom);
+    }
+
+    function handleResetLocation() {
+        setDefaultLocation({ ...DefaultLocation });
+        setZoom(DefaultZoom);
     }
 
     const LocationSelect = () => {
 
-      console.log(location)
+        console.log(location)
 
-      return (
-        <div style={{position: "absolute", zIndex: "1000", padding: "10px", backgroundColor: "white"}}>
-          <MapPicker defaultLocation={defaultLocation}
-            zoom={zoom}
-            style={{height:'300px', width: '300px'}}
-            onChangeLocation={handleChangeLocation} 
-            onChangeZoom={handleChangeZoom}
-            apiKey='AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8'/>
-            <Button onClick={() => setLocinput(!locinput)}><i class="fa fa-times" /></Button>
-        </div>
-      );
+        return (
+            <div style={{ position: "absolute", zIndex: "1000", padding: "10px", backgroundColor: "white" }}>
+                <MapPicker defaultLocation={defaultLocation}
+                    zoom={zoom}
+                    style={{ height: '300px', width: '300px' }}
+                    onChangeLocation={handleChangeLocation}
+                    onChangeZoom={handleChangeZoom}
+                    apiKey='AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8' />
+                <Button onClick={() => setLocinput(!locinput)}><i class="fa fa-times" /></Button>
+            </div>
+        );
     }
 
     useEffect(() => {
@@ -182,7 +182,6 @@ const Home = () => {
     const toaast = (k) => {
         if (k) {
             toast.warning('Item Added !!!')
-            // window.location.reload(false)
         }
     }
 
@@ -197,10 +196,10 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='ohdoljag2'>
-                    <div className='ohdoljag21' style={{cursor: "pointer"}} onClick={() => setLocinput(!locinput)}>
+                    <div className='ohdoljag21' style={{ cursor: "pointer" }} onClick={() => setLocinput(!locinput)}>
                         <i class="fa fa-map-marker" aria-hidden="true" ></i> Deliver to : {loca}
                     </div>
-                    { locinput ? <LocationSelect /> : null}
+                    {locinput ? <LocationSelect /> : null}
                 </div>
                 <div className='ohdoljag3'>
                     <div className='ohdoljag31'>

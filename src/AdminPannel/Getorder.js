@@ -21,24 +21,22 @@ const Getorder = () => {
     const [values, setValues] = useState({
         name: ''
     })
-    const newOrderr = () => {
-        setDish([])
-        db.collection('Orders').orderBy("TimeStamp", "desc").get()
-            .then(res => {
-                res.forEach((doc) => {
-                    setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
-                })
-            })
-    }
+    // const newOrderr = () => {
+    //     setDish([])
+    //     db.collection('Orders').orderBy("TimeStamp", "desc").get()
+    //         .then(res => {
+    //             res.forEach((doc) => {
+    //                 setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
+    //             })
+    //         })
+    // }
 
     useEffect(async () => {
-        setDish([])
-        db.collection('Orders').orderBy("TimeStamp", "desc").get()
+        await db.collection('Orders').orderBy("TimeStamp", "desc").get()
             .then(res => {
                 let y = 0
                 res.forEach((doc) => {
                     y += 1
-                    setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
                 })
                 db.collection('Orders')
                     .onSnapshot(res => {
@@ -56,18 +54,18 @@ const Getorder = () => {
     }, [])
 
 
-    useEffect(() => {
-        const hamburgerr = document.querySelector('.nav_btn');
-        const navlinksss = document.querySelector('.mobile_nav_items')
+    // useEffect(() => {
+    //     const hamburgerr = document.querySelector('.nav_btn');
+    //     const navlinksss = document.querySelector('.mobile_nav_items')
 
-        hamburgerr.addEventListener("click", () => {
-            navlinksss.classList.toggle("active");
-        })
-    })
+    //     hamburgerr.addEventListener("click", () => {
+    //         navlinksss.classList.toggle("active");
+    //     })
+    // })
 
     const CheckDeliveryType = () => {
         setDish([])
-        db.collection('Orders').where("Status", "==", "In Route").get()
+        db.collection('Orders').where("Status", "==", "Processing").get()
             .then(res => {
                 res.forEach((doc) => {
                     setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
@@ -87,6 +85,10 @@ const Getorder = () => {
             })
     }
 
+    useEffect(() => {
+        ActiveOrder()
+    },[])
+
     const handleChange = name => (e) => {
         setValues({ ...values, [name]: e.target.value })
     };
@@ -99,7 +101,7 @@ const Getorder = () => {
                     if (res.data()) {
                         setDish(dish => [...dish, { data: res.data(), _id: res.id }])
                     } else {
-                        newOrderr()
+                        // newOrderr()
                         toast.error('No Order Found !!!')
                     }
                 })
@@ -108,6 +110,7 @@ const Getorder = () => {
         }
     }
 
+    // <button className="admin-order-utility-button" onClick={newOrderr}>New Order</button>
     return (
         <div>
             <ToastContainer />
@@ -116,8 +119,7 @@ const Getorder = () => {
 
                 <div className="admin-order-utility">
                     <div>
-                        <button className="admin-order-utility-button" onClick={newOrderr}>New Order</button>
-                        <button className="admin-order-utility-button" onClick={CheckDeliveryType}>In Route</button>
+                        <button className="admin-order-utility-button" onClick={CheckDeliveryType}>Processing</button>
                         <button className="admin-order-utility-button" onClick={ActiveOrder}>Awaiting Confirmation</button>
                     </div>
                     <div style={{ display: "inline-flex" }}>

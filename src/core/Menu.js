@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../Styles/menu.css'
-import { isAuth } from '../helpers/auth'
+import { isAuth, signout } from '../helpers/auth'
 import * as firebase from 'firebase'
 import { Container, Form, Col, Row, Button } from 'react-bootstrap';
 import Geocode from 'react-geocode'
@@ -13,7 +13,7 @@ import TextField from '@material-ui/core/TextField';
 import { toast, ToastContainer } from 'react-toastify';
 import MapPicker from 'react-google-map-picker'
 
-const DefaultLocation = { lat: 25.20, lng: 55.276};
+const DefaultLocation = { lat: 25.20, lng: 55.276 };
 const DefaultZoom = 10;
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +39,7 @@ const isActive = (history, path) => {
     }
 }                                        // Dishes  name  
 
-const Menu = ({ history }) => {
+const Menu = ({ history, match }) => {
     const classes = useStyles();
 
     const [cat, setCat] = useState([])
@@ -59,23 +59,23 @@ const Menu = ({ history }) => {
     Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
 
     const GetGeocode = (lat, lng) => {
-      Geocode.fromLatLng(lat.toString(), lng.toString()).then(
-          async ress => {
-              const address1 = await ress.results[0].formatted_address;
-              console.log(address1)
-              const funct = () => setloca(address1)
-              setTimeout(funct(), 1000)
-          }
-      )
+        Geocode.fromLatLng(lat.toString(), lng.toString()).then(
+            async ress => {
+                const address1 = await ress.results[0].formatted_address;
+                console.log(address1)
+                const funct = () => setloca(address1)
+                setTimeout(funct(), 1000)
+            }
+        )
     }
 
-    function handleChangeLocation (lat, lng){
-      GetGeocode(lat, lng)
-      setLocation({lat:lat, lng:lng});
+    function handleChangeLocation(lat, lng) {
+        GetGeocode(lat, lng)
+        setLocation({ lat: lat, lng: lng });
     }
-    
-    function handleChangeZoom (newZoom){
-      setZoom(newZoom);
+
+    function handleChangeZoom(newZoom) {
+        setZoom(newZoom);
     }
 
     useEffect(() => {
@@ -86,6 +86,12 @@ const Menu = ({ history }) => {
             navlinks.classList.toggle("open");
         })
     }, [])
+
+    useEffect(() => {
+        const navlinks = document.querySelector('.navlink')
+
+        navlinks.classList.remove("open");
+    },[match.params])
 
     useEffect(() => {
         setCat([])
@@ -105,17 +111,17 @@ const Menu = ({ history }) => {
     }, [])
 
     const LocationSelect = () => {
-      console.log(MapPicker);
+        console.log(MapPicker);
         return (
-          <div style={{position: "absolute", zIndex: "1000", backgroundColor: "white", padding: "10px"}}>
-            <MapPicker defaultLocation={location}
-              zoom={zoom}
-              style={{height:'300px', width: '300px'}}
-              onChangeLocation={handleChangeLocation} 
-              onChangeZoom={handleChangeZoom}
-              apiKey='AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8'/>
-              <Button onClick={() => setLocinput(!locinput)}><i class="fa fa-times" /></Button>
-          </div>
+            <div style={{ position: "absolute", zIndex: "1000", backgroundColor: "white", padding: "10px" }}>
+                <MapPicker defaultLocation={location}
+                    zoom={zoom}
+                    style={{ height: '300px', width: '300px' }}
+                    onChangeLocation={handleChangeLocation}
+                    onChangeZoom={handleChangeZoom}
+                    apiKey='AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8' />
+                <Button onClick={() => setLocinput(!locinput)}><i class="fa fa-times" /></Button>
+            </div>
         )
     }
 
@@ -169,6 +175,12 @@ const Menu = ({ history }) => {
     //     }
     // }, [])
 
+    const handleClick = () => {
+        firebase.auth().signOut();
+        signout(() => {
+            
+        })
+    }
 
     return (
         <div className="menu-bar">
@@ -225,10 +237,10 @@ const Menu = ({ history }) => {
                     <div className='header-extra'>
                         <div className='header-extra1'>
                             <div className='header-extra11'>
-                                <div className='header-extra12' style={{cursor: "pointer"}} onClick={() => setLocinput(!locinput)}>
+                                <div className='header-extra12' style={{ cursor: "pointer" }} onClick={() => setLocinput(!locinput)}>
                                     <i class="fa fa-map-marker" aria-hidden="true" ></i> Deliver to :  {loca}
                                 </div>
-                                { locinput ? <LocationSelect /> : null}
+                                {locinput ? <LocationSelect /> : null}
                             </div>
                             <div className='header-extra13'>
                                 <div className='header-extra14'>
@@ -264,6 +276,7 @@ const Menu = ({ history }) => {
                                         <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/address')} to='/user/dashboard/address'>Address</Link>
                                         <Link onClick={changeScreen} style={isActive(history, '/user/dashboard/resetpassword')} to='/user/dashboard/resetpassword'>Reset Password</Link>
                                         <Link onClick={changeScreen} style={isActive(history, '/wishlist')} to='/wishlist'>Wishlist</Link>
+                                        <Link onClick={changeScreen} style={isActive(history, '/dafasd')} to='/' onClick={handleClick}>Logout</Link>
                                     </div>
                                 </div>
                             }

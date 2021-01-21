@@ -16,6 +16,7 @@ import {
     WhatsappShareButton, WhatsappIcon,
     TwitterIcon, TwitterShareButton
 } from 'react-share';
+import Cartcomp from '../PagesHelper/Cartt'
 
 export const ShareCampaign = () => {
     return (
@@ -491,6 +492,7 @@ const Product = (props) => {
                     </div>
                 </div>
             </div>
+            <Cartcomp />
         </div>
     );
 };

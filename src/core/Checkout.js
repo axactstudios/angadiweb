@@ -285,7 +285,7 @@ const Checkout = ({ dm }) => {
       toast.error('Please select Emirate and Emirate Area !!!')
     }
   }
-  
+
   const showDropIn = () => {
     return (
       <div>
@@ -303,7 +303,7 @@ const Checkout = ({ dm }) => {
               </tr>
               <tr>
                 <th>Discount - </th>
-                <td><i class="fa fa-inr" /> {(getTotal() * (priiice / 100))}</td>
+                <td><i class="fa fa-inr" /> {(parseInt(getTotal()) * (priiice / 100))}</td>
               </tr>
               <tr>
                 <th>Tax @ 5% - </th>
@@ -335,6 +335,14 @@ const Checkout = ({ dm }) => {
             }</p>
 
             <div>
+              <Form.Control as="select" onChange={handleChangeee('selectemirate')} placeholder="Select Emirate area">
+                <option>Select Emirate</option>
+                {
+                  emirate && emirate.map((m, l) =>
+                    <option value={`${m._id}`}>{m.data.name}</option>
+                  )
+                }
+              </Form.Control>
               <Form.Group >
                 <Form.Control as="select" onChange={handleChangeee('selectarea')} placeholder="Select Emirate area" style={{ margin: "1em auto" }}>
                   <option>Select Emirate Area</option>
@@ -345,14 +353,6 @@ const Checkout = ({ dm }) => {
                   }
                   <option value='other'>Others</option>
                 </Form.Control>
-                <Form.Control as="select" onChange={handleChangeee('selectemirate')} placeholder="Select Emirate area">
-                  <option>Select Emirate</option>
-                  {
-                    emirate && emirate.map((m, l) =>
-                      <option value={`${m._id}`}>{m.data.name}</option>
-                    )
-                  }
-                </Form.Control>
               </Form.Group>
             </div>
 
@@ -361,7 +361,7 @@ const Checkout = ({ dm }) => {
             </div>
             <p className='sharabbi' onClick={cureeentLocation}>Get Current Location</p>
 
-            <Form style={{margin: "1em 0"}}>
+            <Form style={{ margin: "1em 0" }}>
               <InputGroup>
                 <Form.Control as="select" onChange={handleChangee('address')}>
                   <option>Saved Addresses</option>
