@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import { useRouteMatch } from 'react-router-dom'
+import { useRouteMatch,Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import '../Styles/adminPanel.css';
 import { Form } from 'react-bootstrap'
@@ -111,7 +111,7 @@ const Editorder = () => {
                                 <td>{values.GrandTotal}</td>
                             </tr>
                         </table>
-                        <div style={{ fontWeight: "bolder", margin: "1em 0" }}>UserID -{values.UserID}</div>
+                        <div style={{ fontWeight: "bolder", margin: "1em 0" }}>UserID -<Link to={`/admin/orders/from/user/${values.UserID}`}>{values.UserID}</Link></div>
                         <div className="edit-order-data">
                             <div><h6>Dishes</h6> {values.Items && values.Items.map((d) => (
                                 <p>{d}</p>
