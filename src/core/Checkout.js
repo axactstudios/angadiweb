@@ -52,7 +52,9 @@ const Checkout = ({ dm }) => {
   const [userAddress, serUserAddress] = useState([])
   const [orderCOunt, setOrdercount] = useState('')
   const [nextordercount, setnextordercount] = useState('')
-  const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16));
+  const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 10));
+  const [timeRes, setTimeRes] = useState([])
+  const [selectedTime, setSelectedTime] = useState([])
 
   const dis = []
   const qty = []
@@ -144,6 +146,12 @@ const Checkout = ({ dm }) => {
     checkCoup()
   }, [coupon])
 
+  useEffect(() => {
+    db.collection('Timeslots').doc('Timeslots').get()
+    .then((res) => {
+      setTimeRes(res.data())
+    })
+  })
 
   const cureeentLocation = () => {
     if (navigator.geolocation) {
@@ -173,8 +181,6 @@ const Checkout = ({ dm }) => {
       toast.error('Geolocation is not supported')
     }
   }
-
-
 
   useEffect(() => {
     cureeentLocation()
@@ -262,7 +268,7 @@ const Checkout = ({ dm }) => {
               Status: 'Order Placed',
               Type: 'Delivery',
               DeliveryDate: firebase.firestore.Timestamp.fromDate(new Date(dDate)),
-              DeliveryTime: firebase.firestore.Timestamp.fromDate(new Date(dDate)),
+              DeliveryTime: selectedTime,
               UserID: isAuth().id,
               Notes: data.customMessage,
               Address: x,
@@ -284,6 +290,10 @@ const Checkout = ({ dm }) => {
     } else {
       toast.error('Please select Emirate and Emirate Area !!!')
     }
+  }
+
+  const handleTime = e => {
+    setSelectedTime(e.target.value)
   }
 
   const showDropIn = () => {
@@ -380,8 +390,8 @@ const Checkout = ({ dm }) => {
 
             <div style={{ margin: "1em 0 1.5em" }}>
               <TextField
-                id="datetime-local"
-                type="datetime-local"
+                id="date"
+                type="date"
                 defaultValue={dDate}
                 className={classes.textField}
                 InputLabelProps={{
@@ -393,6 +403,14 @@ const Checkout = ({ dm }) => {
                   dDate < (new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16)) ? "Choose Valid Date" : "Schedule Delivery"
                 }
               />
+              <Form.Control as="select" onChange={(e) => handleTime(e)}>
+                  <option>Select Time</option>
+                  {
+                    timeRes && timeRes.Timeslots.map((m, l) =>
+                      <option value={m}> {m} </option>
+                    )
+                  }
+                </Form.Control>
             </div>
 
             <div >
