@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
-import { useRouteMatch,Link } from 'react-router-dom'
+import { useRouteMatch, Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import '../Styles/adminPanel.css';
 import { Form } from 'react-bootstrap'
@@ -45,6 +45,15 @@ const Editorder = () => {
             console.log('done')
             toast.success('Status Changed Successfully !!!')
             getsome()
+            db.collection('Notifications').add({
+                UserID: values.UserID,
+                OrderID: _id,
+                Notification: `Order Placed. ${status}.`,
+                DeliveryDate: values.DeliveryDate,
+                DeliveryTime: values.DeliveryTime,
+                TimeStamp: values.TimeStamp,
+                GrandTotal: values.GrandTotal,
+            });
         }).catch((err) => {
             console.log(err)
             toast.error('Something Went wrong !!!')
@@ -67,7 +76,7 @@ const Editorder = () => {
             doc.save('a40.pdf')
         }
     }
-                                // <option value={'In Route'}>On The Way</option>
+    // <option value={'In Route'}>On The Way</option>
     return (
         <div>
             <ToastContainer />

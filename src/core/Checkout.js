@@ -281,6 +281,15 @@ const Checkout = ({ dm }) => {
               db.collection('Ordercount').doc('ordercount').update({
                 Numberoforders: nextordercount
               })
+              db.collection('Notifications').add({
+                UserID: isAuth().id,
+                OrderID: y,
+                Notification: 'Order Placed. Awaiting confirmation.',
+                DeliveryDate: firebase.firestore.Timestamp.fromDate(new Date(dDate)),
+                DeliveryTime: selectedTime,
+                TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+                GrandTotal: parseInt(getTotal() * (1.05 - (priiice / 100))) + parseInt(deliverycharge),
+              });
               setpussh(true)
             }).catch((err) => {
               toast.error('Something went wrong')
