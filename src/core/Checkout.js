@@ -151,7 +151,7 @@ const Checkout = ({ dm }) => {
     .then((res) => {
       setTimeRes(res.data())
     })
-  })
+  }, [])
 
   const cureeentLocation = () => {
     if (navigator.geolocation) {
@@ -293,6 +293,7 @@ const Checkout = ({ dm }) => {
   }
 
   const handleTime = e => {
+    console.log(e.target.value)
     setSelectedTime(e.target.value)
   }
 
@@ -388,7 +389,7 @@ const Checkout = ({ dm }) => {
             </Form>
 
 
-            <div style={{ margin: "1em 0 1.5em" }}>
+            <div style={{ margin: "1em 0 1.5em", display: 'flex', alignItems: 'center' }}>
               <TextField
                 id="date"
                 type="date"
@@ -406,7 +407,7 @@ const Checkout = ({ dm }) => {
               <Form.Control as="select" onChange={(e) => handleTime(e)}>
                   <option>Select Time</option>
                   {
-                    timeRes && timeRes.Timeslots.map((m, l) =>
+                    timeRes && timeRes.Timeslots && timeRes.Timeslots.map((m, l) =>
                       <option value={m}> {m} </option>
                     )
                   }

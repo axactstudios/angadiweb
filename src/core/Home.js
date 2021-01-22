@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as firebase from 'firebase'
 import Card from '../PagesHelper/Card'
-import { Col, Container, Row, Carousel, Button } from 'react-bootstrap'
+import { Col, Container, Row, Carousel, Button, Form } from 'react-bootstrap'
 import '../Styles/home.css'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
@@ -47,6 +47,9 @@ const Home = () => {
     const [location, setLocation] = useState(defaultLocation);
     const [zoom, setZoom] = useState(DefaultZoom);
     const [locinput, setLocinput] = useState(false)
+    const [timeRes, setTimeRes] = useState([])
+    const [selectedTime, setSelectedTime] = useState([])
+    const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 10));
 
     Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
 
@@ -99,6 +102,13 @@ const Home = () => {
                     setImgurl(imgurll => [...imgurll, { data: doc.data(), _id: doc.id }])
                 })
             })
+    }, [])
+
+    useEffect(() => {
+      db.collection('Timeslots').doc('Timeslots').get()
+      .then((res) => {
+        setTimeRes(res.data())
+      })
     }, [])
 
     useEffect(async () => {
@@ -202,17 +212,25 @@ const Home = () => {
                     {locinput ? <LocationSelect /> : null}
                 </div>
                 <div className='ohdoljag3'>
-                    <div className='ohdoljag31'>
+                    <div className='ohdoljag31' style={{display: 'flex', alignItems: 'center'}}>
                         <TextField
-                            id="datetime-local"
+                            id="date"
                             label="Next delivery"
-                            type="datetime-local"
-                            defaultValue="2021-01-24T10:30"
+                            type="date"
+                            defaultValue={dDate}
                             className={classes.textField}
                             InputLabelProps={{
                                 shrink: true,
                             }}
                         />
+                        <Form.Control as="select">
+                          <option>Select Time</option>
+                          {
+                            timeRes && timeRes.Timeslots && timeRes.Timeslots.map((m, l) =>
+                              <option value={m}> {m} </option>
+                            )
+                          }
+                        </Form.Control>
                     </div>
                 </div>
             </div>
