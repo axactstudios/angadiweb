@@ -148,9 +148,9 @@ const Checkout = ({ dm }) => {
 
   useEffect(() => {
     db.collection('Timeslots').doc('Timeslots').get()
-    .then((res) => {
-      setTimeRes(res.data())
-    })
+      .then((res) => {
+        setTimeRes(res.data())
+      })
   }, [])
 
   const cureeentLocation = () => {
@@ -265,7 +265,7 @@ const Checkout = ({ dm }) => {
               Price: pri,
               TimeStamp: firebase.firestore.FieldValue.serverTimestamp(),
               GrandTotal: parseInt(getTotal() * (1.05 - (priiice / 100))) + parseInt(deliverycharge),
-              Status: 'Order Placed',
+              Status: 'Awaiting Confirmation',
               Type: 'Delivery',
               DeliveryDate: firebase.firestore.Timestamp.fromDate(new Date(dDate)),
               DeliveryTime: selectedTime,
@@ -405,13 +405,13 @@ const Checkout = ({ dm }) => {
                 }
               />
               <Form.Control as="select" onChange={(e) => handleTime(e)}>
-                  <option>Select Time</option>
-                  {
-                    timeRes && timeRes.Timeslots && timeRes.Timeslots.map((m, l) =>
-                      <option value={m}> {m} </option>
-                    )
-                  }
-                </Form.Control>
+                <option>Select Time</option>
+                {
+                  timeRes && timeRes.Timeslots && timeRes.Timeslots.map((m, l) =>
+                    <option value={m}> {m} </option>
+                  )
+                }
+              </Form.Control>
             </div>
 
             <div >

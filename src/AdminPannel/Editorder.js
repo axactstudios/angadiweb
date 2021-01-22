@@ -67,7 +67,7 @@ const Editorder = () => {
             doc.save('a40.pdf')
         }
     }
-
+                                // <option value={'In Route'}>On The Way</option>
     return (
         <div>
             <ToastContainer />
@@ -80,8 +80,7 @@ const Editorder = () => {
                             <Form.Control type="text" value={values.Status} style={{ width: "400px" }} />
                             <select className="admin-order-utility-button" onChange={(e) => { setStatus(e.target.value) }}>
                                 <option>Please Select</option>
-                                <option value={'Awaiting Confirmation'}>Processing</option>
-                                <option value={'In Route'}>On The Way</option>
+                                <option value={'Processing'}>Processing</option>
                                 <option value={'Order Delivered'}>Order Delivered</option>
                                 <option value={'Cancelled'}>Cancelled</option>
                             </select>

@@ -21,15 +21,6 @@ const Getorder = () => {
     const [values, setValues] = useState({
         name: ''
     })
-    // const newOrderr = () => {
-    //     setDish([])
-    //     db.collection('Orders').orderBy("TimeStamp", "desc").get()
-    //         .then(res => {
-    //             res.forEach((doc) => {
-    //                 setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
-    //             })
-    //         })
-    // }
 
     useEffect(async () => {
         await db.collection('Orders').orderBy("TimeStamp", "desc").get()
@@ -52,16 +43,6 @@ const Getorder = () => {
                     })
             })
     }, [])
-
-
-    // useEffect(() => {
-    //     const hamburgerr = document.querySelector('.nav_btn');
-    //     const navlinksss = document.querySelector('.mobile_nav_items')
-
-    //     hamburgerr.addEventListener("click", () => {
-    //         navlinksss.classList.toggle("active");
-    //     })
-    // })
 
     const CheckDeliveryType = () => {
         setDish([])
@@ -140,3 +121,13 @@ const Getorder = () => {
 };
 
 export default Getorder;
+
+    // const newOrderr = () => {
+    //     setDish([])
+    //     db.collection('Orders').orderBy("TimeStamp", "desc").get()
+    //         .then(res => {
+    //             res.forEach((doc) => {
+    //                 setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
+    //             })
+    //         })
+    // }
