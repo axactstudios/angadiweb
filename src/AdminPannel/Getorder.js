@@ -23,7 +23,25 @@ const Getorder = () => {
     })
 
     // useEffect(async () => {
-    //     await 
+    //     await db.collection('Orders').orderBy("TimeStamp", "desc").get()
+    //         .then(res => {
+    //             let y = 0
+    //             res.forEach((doc) => {
+    //                 y += 1
+    //             })
+    //             db.collection('Orders')
+    //                 .onSnapshot(res => {
+    //                     let x = 0
+    //                     res.forEach((doc) => {
+    //                         x += 1
+    //                     })
+    //                     if (x > y) {
+    //                         toast.success('new order!!!')
+    //                     } if (x == y) {
+    //                         // toast.success('')
+    //                     }
+    //                 })
+    //         })
     // }, [])
 
     const CheckDeliveryType = () => {
