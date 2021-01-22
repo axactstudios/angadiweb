@@ -18,8 +18,19 @@ const Notification = () => {
   }, [])
 
   return (
-    <div>
-      {JSON.stringify(res)}
+    <div className='notif-div'>
+      <h3>Notifications</h3>
+      {
+        res && res.map((notif, index) => {
+          return (
+            <div className='notif-card'>
+              <h6><b>#{index+1} {notif.data.OrderID}</b></h6>
+              <p> {notif.data.Notification} <br />
+              Delivery Time is {notif.data.DeliveryTime} and total is {notif.data.GrandTotal} </p>
+            </div>
+          )
+        })
+      }
     </div>
   )
 }

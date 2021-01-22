@@ -29,9 +29,9 @@
   background-color: rgba(233, 230, 230, 0.219);
 }
 
-.MuiInputBase-input {
+/* .MuiInputBase-input {
   margin: 0em 2em 0 0em !important;
-}
+} */
 
 @media screen and (max-width: 800px){
   .checky{

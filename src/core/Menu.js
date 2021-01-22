@@ -55,6 +55,9 @@ const Menu = ({ history, match }) => {
     const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
     const [location, setLocation] = useState(defaultLocation);
     const [zoom, setZoom] = useState(DefaultZoom);
+    const [timeRes, setTimeRes] = useState([])
+    const [selectedTime, setSelectedTime] = useState([])
+    const [dDate, setDate] = useState(new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 10));
 
     Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
 
@@ -85,6 +88,13 @@ const Menu = ({ history, match }) => {
         hamburger.addEventListener("click", () => {
             navlinks.classList.toggle("open");
         })
+    }, [])
+
+    useEffect(() => {
+      db.collection('Timeslots').doc('Timeslots').get()
+      .then((res) => {
+        setTimeRes(res.data())
+      })
     }, [])
 
     useEffect(() => {
@@ -243,17 +253,25 @@ const Menu = ({ history, match }) => {
                                 {locinput ? <LocationSelect /> : null}
                             </div>
                             <div className='header-extra13'>
-                                <div className='header-extra14'>
+                                <div className='header-extra14' style={{display: 'flex', alignItems: 'center'}}>
                                     <TextField
-                                        id="datetime-local"
+                                        id="date"
                                         label="Next delivery"
-                                        type="datetime-local"
-                                        defaultValue="2021-01-24T10:30"
+                                        type="date"
+                                        defaultValue={dDate}
                                         className={classes.textField}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
                                     />
+                                    <Form.Control as="select" style={{width: 'max-content'}}>
+                                      <option>Select Time</option>
+                                      {
+                                        timeRes && timeRes.Timeslots && timeRes.Timeslots.map((m, l) =>
+                                          <option value={m}> {m} </option>
+                                        )
+                                      }
+                                     </Form.Control>
                                 </div>
                             </div>
                         </div>
