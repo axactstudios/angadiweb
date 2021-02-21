@@ -101,6 +101,15 @@
   margin: 2em auto;
 }
 
+.item-sort {
+  border: 1px solid #3b3b3b;
+  border-radius: 1px;
+  padding: 7px 14px;
+  color: #3b3b3b;
+  font-size: 14px;
+  margin: 0 5px;
+}
+
 .userdash-orders {
   display: flex;
   justify-content: center;

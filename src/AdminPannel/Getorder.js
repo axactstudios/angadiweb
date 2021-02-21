@@ -12,7 +12,7 @@ const columns = [
     { id: 'Type', label: 'Type' },
     { id: 'Address', label: 'Address' },
     { id: 'GrandTotal', label: 'Total' },
-    { id: 'TimeStamp', label: 'Timestamp', format: (value) => { return new Date(value["seconds"] * 1000).toString() } },
+    { id: 'TimeStamp', label: 'Timestamp', format: (value) => { return new Date(value["seconds"] * 1000).toLocaleString() } },
 ];
 
 const Getorder = () => {
@@ -74,6 +74,38 @@ const Getorder = () => {
         setValues({ ...values, [name]: e.target.value })
     };
 
+    const handleSort = (e) => {
+      if (e.target.value == 'phigh') {
+        let arr = dish
+        arr.sort((a, b) => {
+          return b.data.GrandTotal - a.data.GrandTotal
+        })
+        setDish([...arr])
+      } else if (e.target.value == 'plow') {
+        let arr1 = dish
+        arr1.sort((a, b) => {
+          return a.data.GrandTotal - b.data.GrandTotal
+        })
+        setDish([...arr1])
+      } else if (e.target.value == 'date') {
+        let arr1 = dish
+        arr1.sort((a, b) => {
+          return b.data.TimeStamp.seconds - a.data.TimeStamp.seconds
+        })
+        setDish([...arr1])
+      } else if (e.target.value == 'id') {
+        let arr2 = dish
+        arr2.sort((a, b) => {
+          let id1 = parseInt(a._id.substring(5, 10))
+          let id2 = parseInt(b._id.substring(5, 10))
+          return id1 - id2
+        })
+        setDish([...arr2])
+      } else {
+        setDish([...dish])
+      }
+    }
+
     const getspecific = () => {
         if (values.name) {
             setDish([])
@@ -111,7 +143,17 @@ const Getorder = () => {
                     </div>
                 </div>
 
-                <h3 style={{ fontWeight: "bolder", margin: "1em 0" }}>All Orders</h3>
+                <h3 style={{ fontWeight: "bolder", margin: "1em 0" }}>All Orders
+                  <div style={{float: "right"}}>
+                  <select className="item-sort" onChange={(e) => handleSort(e)}>
+                    <option value="yo" selected>Default</option>
+                    <option value="plow">Price Low to High</option>
+                    <option value="phigh">Price High to Low</option>
+                    <option value="date">Latest Date</option>
+                    <option value="id">Order ID</option>
+                  </select>
+                  </div>
+                </h3>
                 <div className='ordme'>
                     <OrderTable details={dish} columns={columns} />
                 </div>
