@@ -4,6 +4,7 @@ import OrderTable from './OrderTable';
 import { Form } from 'react-bootstrap'
 import { toast, ToastContainer } from 'react-toastify';
 import '../Styles/adminPanel.css';
+import Sounds from '../Assests/notif.mp3'
 
 const columns = [
     { id: '_id', label: 'ID' },
@@ -16,33 +17,51 @@ const columns = [
 ];
 
 const Getorder = () => {
+    const [alldish, Setalldish] = useState([])
     const [dish, setDish] = useState([])
     const db = firebase.firestore()
     const [values, setValues] = useState({
         name: ''
     })
 
-    // useEffect(async () => {
-    //     await db.collection('Orders').orderBy("TimeStamp", "desc").get()
-    //         .then(res => {
-    //             let y = 0
-    //             res.forEach((doc) => {
-    //                 y += 1
-    //             })
-    //             db.collection('Orders')
-    //                 .onSnapshot(res => {
-    //                     let x = 0
-    //                     res.forEach((doc) => {
-    //                         x += 1
-    //                     })
-    //                     if (x > y) {
-    //                         toast.success('new order!!!')
-    //                     } if (x == y) {
-    //                         // toast.success('')
-    //                     }
-    //                 })
-    //         })
-    // }, [])
+    useEffect(async () => {
+        Setalldish([])
+        db.collection('Orders').get()
+            .then((res) => {
+                var y = 0
+                res.forEach((doc) => {
+                    y = y + 1
+                })
+                db.collection('Orders')
+                    .onSnapshot(res => {
+                        var x = 0;
+                        res.docChanges().forEach((doc) => {
+                            x = x + 1
+                        })
+                        if (x === y && x > 0 && y > 0) {
+                            // toast.success('New Order Added !!!')
+                            // const audioEl = document.getElementsByClassName("audio-element")[0]
+                            // if (audioEl) {
+                            //     audioEl.play()
+                            // }
+                        }
+                        if (x > y && x > 0 && y > 0) {
+                            // toast.success('New Order !!!')
+                            const audioEl = document.getElementsByClassName("audio-element")[0]
+                            if (audioEl) {
+                                audioEl.play()
+                            }
+                        }
+                        if (x < y && x > 0 && y > 0) {
+                            // toast.success(' Order Deleted !!!')
+                            const audioEl = document.getElementsByClassName("audio-element")[0]
+                            if (audioEl) {
+                                audioEl.play()
+                            }
+                        }
+                    })
+            })
+    }, [])
 
     const CheckDeliveryType = () => {
         setDish([])
@@ -68,42 +87,42 @@ const Getorder = () => {
 
     useEffect(() => {
         ActiveOrder()
-    },[])
+    }, [])
 
     const handleChange = name => (e) => {
         setValues({ ...values, [name]: e.target.value })
     };
 
     const handleSort = (e) => {
-      if (e.target.value == 'phigh') {
-        let arr = dish
-        arr.sort((a, b) => {
-          return b.data.GrandTotal - a.data.GrandTotal
-        })
-        setDish([...arr])
-      } else if (e.target.value == 'plow') {
-        let arr1 = dish
-        arr1.sort((a, b) => {
-          return a.data.GrandTotal - b.data.GrandTotal
-        })
-        setDish([...arr1])
-      } else if (e.target.value == 'date') {
-        let arr1 = dish
-        arr1.sort((a, b) => {
-          return b.data.TimeStamp.seconds - a.data.TimeStamp.seconds
-        })
-        setDish([...arr1])
-      } else if (e.target.value == 'id') {
-        let arr2 = dish
-        arr2.sort((a, b) => {
-          let id1 = parseInt(a._id.substring(5, 10))
-          let id2 = parseInt(b._id.substring(5, 10))
-          return id1 - id2
-        })
-        setDish([...arr2])
-      } else {
-        setDish([...dish])
-      }
+        if (e.target.value == 'phigh') {
+            let arr = dish
+            arr.sort((a, b) => {
+                return b.data.GrandTotal - a.data.GrandTotal
+            })
+            setDish([...arr])
+        } else if (e.target.value == 'plow') {
+            let arr1 = dish
+            arr1.sort((a, b) => {
+                return a.data.GrandTotal - b.data.GrandTotal
+            })
+            setDish([...arr1])
+        } else if (e.target.value == 'date') {
+            let arr1 = dish
+            arr1.sort((a, b) => {
+                return b.data.TimeStamp.seconds - a.data.TimeStamp.seconds
+            })
+            setDish([...arr1])
+        } else if (e.target.value == 'id') {
+            let arr2 = dish
+            arr2.sort((a, b) => {
+                let id1 = parseInt(a._id.substring(5, 10))
+                let id2 = parseInt(b._id.substring(5, 10))
+                return id1 - id2
+            })
+            setDish([...arr2])
+        } else {
+            setDish([...dish])
+        }
     }
 
     const getspecific = () => {
@@ -142,17 +161,19 @@ const Getorder = () => {
                         <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
                     </div>
                 </div>
-
+                <audio className="audio-element">
+                    <source src={Sounds}></source>
+                </audio>
                 <h3 style={{ fontWeight: "bolder", margin: "1em 0" }}>All Orders
-                  <div style={{float: "right"}}>
-                  <select className="item-sort" onChange={(e) => handleSort(e)}>
-                    <option value="yo" selected>Default</option>
-                    <option value="plow">Price Low to High</option>
-                    <option value="phigh">Price High to Low</option>
-                    <option value="date">Latest Date</option>
-                    <option value="id">Order ID</option>
-                  </select>
-                  </div>
+                  <div style={{ float: "right" }}>
+                        <select className="item-sort" onChange={(e) => handleSort(e)}>
+                            <option value="yo" selected>Default</option>
+                            <option value="plow">Price Low to High</option>
+                            <option value="phigh">Price High to Low</option>
+                            <option value="date">Latest Date</option>
+                            <option value="id">Order ID</option>
+                        </select>
+                    </div>
                 </h3>
                 <div className='ordme'>
                     <OrderTable details={dish} columns={columns} />
