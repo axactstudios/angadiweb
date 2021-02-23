@@ -133,7 +133,7 @@ const Editcat = () => {
                     </Form.Group>
                 </Form>
                 <div className="edit-button-group">
-                  <button onClick={handleSubmit}>Edit</button>
+                  <button onClick={handleSubmit}>Edit Category</button>
                   <button id="edit-delete-button" onClick={delCat}>Delete</button>
                 </div>
             </div>

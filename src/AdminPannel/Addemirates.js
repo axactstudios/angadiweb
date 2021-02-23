@@ -54,7 +54,7 @@ const Addemirates = () => {
                     <Form.Label>Delivery Charge</Form.Label><br />
                     <Form.Control type='text' placeholder="Enter Delivery Charges" value={deliveryCharge} onChange={handlechange('deliveryCharge')} />
                 </Form.Group>
-                <Button onClick={handleSubmit}>Add Brands</Button>
+                <Button onClick={handleSubmit}>Add Emirates</Button>
             </div>
         </div>
     );

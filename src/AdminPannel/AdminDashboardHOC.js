@@ -95,6 +95,7 @@ const AdminDashboard = (WrappedComponent) => {
                         <Link className="admin1" to='/admin/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
                         <Link className="admin1" to='/admin/get/orders/history'><i class="fa fa-refresh"></i>order history</Link>
                         <Link className="admin1" to='/admin/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                        <Link className="admin1" to='/admin/edit/inventary'><i class="fa fa-glass"></i>Inventory</Link>
                         <Link className="admin1" to='/admin/get/category'><i class="fa fa-coffee"></i>category</Link>
                         <Link className="admin1" to='/admin/get/offers'><i class="fa fa-tag"></i>Offers</Link>
                         <Link className="admin1" to='/admin/get/users'><i class="fa fa-user"></i>Users</Link>
@@ -116,6 +117,7 @@ const AdminDashboard = (WrappedComponent) => {
                     <Link className="admin1" to='/admin/get/orders'><i class="fa fa-cutlery"></i>orders</Link>
                     <Link className="admin1" to='/admin/get/orders/history'><i class="fa fa-refresh"></i>order history</Link>
                     <Link className="admin1" to='/admin/get/dishes'><i class="fa fa-glass"></i>dishes</Link>
+                    <Link className="admin1" to='/admin/edit/inventary'><i class="fa fa-glass"></i>Inventory</Link>
                     <Link className="admin1" to='/admin/get/category'><i class="fa fa-coffee"></i>category</Link>
                     <Link className="admin1" to='/admin/get/offers'><i class="fa fa-tag"></i>Offers</Link>
                     <Link className="admin1" to='/admin/get/users'><i class="fa fa-user"></i>Users</Link>

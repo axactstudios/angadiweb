@@ -94,7 +94,7 @@ const AddArea = () => {
                         <option value='Zone8'>Zone8</option>
                     </select>
                 </Form.Group>
-                <Button onClick={handleSubmit}>Add Brands</Button>
+                <Button onClick={handleSubmit}>Add Area</Button>
             </div>
         </div>
     );

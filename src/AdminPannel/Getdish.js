@@ -103,7 +103,6 @@ const Getcategory = () => {
                     <div className="adpor3">
                         <button className="admin-order-utility-button" onClick={getspecific}>Search</button>
                     </div>
-                    <Link to='/admin/edit/inventary'><button className="admin-order-utility-button">Inventory</button></Link>
                 </div>
 
                 {
