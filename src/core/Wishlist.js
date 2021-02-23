@@ -66,9 +66,9 @@ const WishlistCard = ({ product }) => {
           <h6>{product.name} &nbsp; <span id="cat-name">{product.category}</span></h6>
           <p className="wishlist-desc"><abbr style={{textDecoration: "none"}} title={product.description}>{product.description.substring(0,150)+"..."}</abbr></p>
           <p style={{display: "flex"}}>
-            <span style={{textDecoration: "line-through", color: "grey"}}> Rs{product.iPrice} </span> 
+            <span style={{textDecoration: "line-through", color: "grey"}}> AED{product.iPrice} </span> 
             &nbsp; &nbsp; 
-            <span style={{fontWeight: "bold"}}> Rs{product.price} </span>
+            <span style={{fontWeight: "bold"}}> AED{product.price} </span>
             {
                 product.quantity <= product.count ?
                     <p style={{ color: 'tomato', fontSize: "14px" }}> &nbsp; &nbsp; <i class="fa fa-times-circle" aria-hidden="true"></i> Out Of Stock</p> :

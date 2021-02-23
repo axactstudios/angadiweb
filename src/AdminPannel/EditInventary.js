@@ -157,7 +157,7 @@ const EditInventary = () => {
                                                         <b>{d._id}</b>
                                                     </Col>
                                                     <Col>
-                                                        Rs {d.data.price}
+                                                        AED {d.data.price}
                                                     </Col>
                                                     <Col>
                                                         {d.data.stock ? <Switch color="primary" checked="true" onClick={changestockfalse(d._id)} /> : <Switch color="primary" onClick={changestocktrue(d._id)} />}
@@ -182,7 +182,7 @@ const EditInventary = () => {
                                                             <b>{d._id}</b>
                                                         </Col>
                                                         <Col>
-                                                            Rs {d.data.price}
+                                                            AED {d.data.price}
                                                         </Col>
                                                         <Col>
                                                             {d.data.stock ? <button onClick={changestockfalse(d._id)}>Change to Out of stock</button> : <button onClick={changestocktrue(d._id)}>Change to In stock</button>}

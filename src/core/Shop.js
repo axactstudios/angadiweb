@@ -332,15 +332,15 @@ const Shop = (props) => {
                                 <div className="shopi2">
                                     <p>Sort By Price</p>
                                     <input type="radio" name="Price" value="400" onChange={handleChange('price')} />
-                                    <label > Less than Rs 400</label><br />
+                                    <label > Less than AED 400</label><br />
                                     <input type="radio" name="Price" value="500" onChange={handleChange('price')} />
-                                    <label > Less than Rs 500</label><br />
+                                    <label > Less than AED 500</label><br />
                                     <input type="radio" name="Price" value="600" onChange={handleChange('price')} />
-                                    <label > Less than Rs 600</label><br />
+                                    <label > Less than AED 600</label><br />
                                     <input type="radio" name="Price" value="800" onChange={handleChange('price')} />
-                                    <label > Less than Rs 800</label><br />
+                                    <label > Less than AED 800</label><br />
                                     <input type="radio" name="Price" value="900" onChange={handleChange('price')} />
-                                    <label > Less than Rs 900</label><br />
+                                    <label > Less than AED 900</label><br />
                                 </div>
                                 <div className="shopi3">
                                     <p>Sort by Sub Category</p>
@@ -362,7 +362,7 @@ const Shop = (props) => {
                                                 </div>
                                                 <div className='cnpp3'>
                                                     <h6>{x.data.name}</h6>
-                                                    <p>Rs {x.data.price}</p>
+                                                    <p>AED {x.data.price}</p>
                                                 </div>
                                             </div>
                                         </Link>
@@ -431,15 +431,15 @@ const Shop = (props) => {
                     <div className="shopi2">
                         <p>Sort By Price</p>
                         <input type="radio" name="Price" value="400" onChange={handleChange('price')} />
-                        <label > Less than Rs 400</label><br />
+                        <label > Less than AED 400</label><br />
                         <input type="radio" name="Price" value="500" onChange={handleChange('price')} />
-                        <label > Less than Rs 500</label><br />
+                        <label > Less than AED 500</label><br />
                         <input type="radio" name="Price" value="600" onChange={handleChange('price')} />
-                        <label > Less than Rs 600</label><br />
+                        <label > Less than AED 600</label><br />
                         <input type="radio" name="Price" value="800" onChange={handleChange('price')} />
-                        <label > Less than Rs 800</label><br />
+                        <label > Less than AED 800</label><br />
                         <input type="radio" name="Price" value="900" onChange={handleChange('price')} />
-                        <label > Less than Rs 900</label><br />
+                        <label > Less than AED 900</label><br />
                     </div>
                     <div className="shopi3">
                         <p>Sort by Sub Category</p>

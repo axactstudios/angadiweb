@@ -98,7 +98,7 @@ const App = () => {
             <PrivateRoute exact path='/user/dashboard/myorders' component={Myads} />
             <PrivateRoute exact path='/user/dashboard/updateprofile' component={Userdashboard(UpdateProfile, "Update Profile")} />
             <PrivateRoute exact path='/user/dashboard/resetpassword' component={Userdashboard(Resetpass, "Reset Password")} />
-            <PrivateRoute exact path='/user/dashboard/address' component={Userdashboard(Address, "Change or Set Address")} />
+            <PrivateRoute exact path='/user/dashboard/address' component={Userdashboard(Address, "Your Addresses")} />
             <Route component={ErrorPage} />
           </Switch>
           {location == '/admin' ? null : <Footer />}

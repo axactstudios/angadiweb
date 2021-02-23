@@ -94,6 +94,15 @@ const Editoffer = () => {
         }
     }
 
+    const delOffer = () => {
+      store.collection("Offers").doc(_id).delete()
+      .then(() => {
+          toast.success('Offer Deleted !')
+      }).catch((err) => {
+          toast.error('Something went wrong !!!')
+      })
+    }
+
     return (
 
         <div>
@@ -120,6 +129,7 @@ const Editoffer = () => {
                 </Form>
                 <div className="edit-button-group">
                     <button onClick={handlesubmit}>Edit</button>
+                    <button id="edit-delete-button" onClick={delOffer}>Delete</button>
                 </div>
             </div>
         </div>

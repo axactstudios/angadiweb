@@ -16,7 +16,7 @@ const SavedAddress = (props) => {
 
   return (
     <div className="address-card">
-      <i class="fa fa-times" style={{color: "tomato", float: "right"}} />
+      {/* <i class="fa fa-times" style={{color: "tomato", float: "right"}} /> */}
       { address ? <p style={{fontWeight: "bold", minWidth: "150px"}}>{address} </p> : null }
       { hno ? <p>House {hno} </p> : null }
       { landmark ? <p>Landmark {landmark} </p> : null }
@@ -85,13 +85,13 @@ const Address = () => {
   return (
     <div className="update-form">
       <ToastContainer />
-      {/* <div className="saved-addresses">
+      <div className="saved-addresses">
       {
         userAddress && userAddress.map(item => {
           return <SavedAddress address={item} />
         })
       }
-      </div> */}
+      </div>
       <div className="update-form-main">
         <div className="update-form-fields">
           <form>

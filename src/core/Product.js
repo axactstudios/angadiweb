@@ -288,7 +288,7 @@ const Product = (props) => {
                                         <div className="proccard2">
                                             <h5>{pro.name}</h5>
                                             <h6>{pro.category}</h6>
-                                            <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
+                                            <p>AED {priccce}  <span>AED {fakeprice}</span> </p>
                                             <h4>
                                                 <StarRatings
                                                     rating={rrate}
@@ -358,7 +358,7 @@ const Product = (props) => {
                                                     frequent &&
                                                     <div className='tic-ttok1'>
                                                         <Link to={`/dish/${pro.boughtTogether}`}><img src={`${frequent.url}`} alt="img-url" /></Link>
-                                                        <h6>Rs {frequent.price}</h6>
+                                                        <h6>AED {frequent.price}</h6>
                                                         <p>{frequent.name}</p>
                                                     </div>
                                                 }
@@ -382,19 +382,19 @@ const Product = (props) => {
                                     frequent &&
                                     <div className='tic-ttok1'>
                                         <Link to={`/dish/${pro.boughtTogether}`}><img src={`${frequent.url}`} alt="img-url" /></Link>
-                                        <h6>Rs {frequent.price}</h6>
+                                        <h6>AED {frequent.price}</h6>
                                         <p>{frequent.name}</p>
                                     </div>
                                 }
                                 <div className='tic-ttok2'><h3>+</h3></div>
                                 <div className='tic-ttok1'>
                                     <img src={`${pro.url}`} alt="img-url" />
-                                    <h6>Rs {pro.price}</h6>
+                                    <h6>AED {pro.price}</h6>
                                     <p>{pro.name}</p>
                                 </div>
                             </div>
                             <div className="proccard7 tic-ttok3">
-                                <p>Buy All two <span style={{ color: '#6b3600' }}>Rs {freqdiscc}</span></p>
+                                <p>Buy All two <span style={{ color: '#6b3600' }}>AED {freqdiscc}</span></p>
                                 <button onClick={addtocart2}>Add To Cart</button>
                             </div>
                         </div>
@@ -482,7 +482,7 @@ const Product = (props) => {
                                             </div>
                                             <div className='cnpp3'>
                                                 <h6>{x.data.name}</h6>
-                                                <p>Rs {x.data.price}</p>
+                                                <p>AED {x.data.price}</p>
                                             </div>
                                         </div>
                                     </Link>

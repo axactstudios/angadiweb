@@ -213,16 +213,20 @@ const Home = () => {
                 </div>
                 <div className='ohdoljag3'>
                     <div className='ohdoljag31' style={{display: 'flex', alignItems: 'center'}}>
-                        <TextField
-                            id="date"
-                            label="Next delivery"
-                            type="date"
-                            defaultValue={dDate}
-                            className={classes.textField}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
+                    <TextField
+                      id="date"
+                      type="date"
+                      defaultValue={dDate}
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      error
+                      onChange={(e) => setDate(e.target.value)}
+                      label={
+                        dDate < (new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16)) ? "Choose Valid Date" : "Schedule Delivery"
+                      }
+                    />
                         <Form.Control as="select">
                           <option>Select Time</option>
                           {

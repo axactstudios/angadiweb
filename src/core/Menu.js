@@ -254,15 +254,20 @@ const Menu = ({ history, match }) => {
                             </div>
                             <div className='header-extra13'>
                                 <div className='header-extra14' style={{display: 'flex', alignItems: 'center'}}>
+                                    
                                     <TextField
-                                        id="date"
-                                        label="Next delivery"
-                                        type="date"
-                                        defaultValue={dDate}
-                                        className={classes.textField}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
+                                      id="date"
+                                      type="date"
+                                      defaultValue={dDate}
+                                      className={classes.textField}
+                                      InputLabelProps={{
+                                        shrink: true,
+                                      }}
+                                      error
+                                      onChange={(e) => setDate(e.target.value)}
+                                      label={
+                                        dDate < (new Date(new Date().getTime() + (3600000 * 4) + (1800000)).toISOString().substring(0, 16)) ? "Choose Valid Date" : "Schedule Delivery"
+                                      }
                                     />
                                     <Form.Control as="select" style={{width: 'max-content'}}>
                                       <option>Select Time</option>

@@ -135,7 +135,7 @@ const Card = ({ product, toaaat }) => {
                                             starSpacing="5px"
                                             starRatedColor="rgb(255,176,0)"
                                         /></p>
-                                    <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
+                                    <p>AED {priccce}  <span>AED {fakeprice}</span> </p>
                                     <p>{product.data.description.substring(0, 250)}</p>
                                     <div className="cardbuttondiv">
                                         <button className='cardbutton' onClick={addToCart}><i class="fa fa-shopping-cart" /> Add To Cart</button>
@@ -184,7 +184,7 @@ const Card = ({ product, toaaat }) => {
                         }
                     </select>
                 </div>
-                <p>Rs {priccce}  <span>Rs {fakeprice}</span> </p>
+                <p>AED {priccce}  <span>AED {fakeprice}</span> </p>
                 <div className="inputdiv">
                     <div className="proccard611">
                         <button className='dec' onClick={handleChangeneagative()}>-</button>
