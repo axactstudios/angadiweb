@@ -106,25 +106,25 @@ const AddDish = () => {
         var bn = false
         var bm = false
         var bv = false
-        if(name){
-            for(let i =0 ; i< name.length +1 ; i ++){
+        if (name) {
+            for (let i = 0; i < name.length + 1; i++) {
                 arr1.push(name.slice(0, i))
             }
-        }if(category){
-            for(let y = 0 ; y < category.length + 1 ; y ++){
-                arr2.push(category.slice(0,y))
+        } if (category) {
+            for (let y = 0; y < category.length + 1; y++) {
+                arr2.push(category.slice(0, y))
             }
-        }if(stock === 'false' ){
+        } if (stock === 'false') {
             bn = false
-        }if(top === 'false'){
+        } if (top === 'false') {
             bm = false
-        }if(special === 'false'){
+        } if (special === 'false') {
             bv = false
-        }if(stock === 'true' ){
+        } if (stock === 'true') {
             bn = true
-        }if(top === 'true'){
+        } if (top === 'true') {
             bm = true
-        }if(special === 'true'){
+        } if (special === 'true') {
             bv = true
         }
 
@@ -182,8 +182,8 @@ const AddDish = () => {
                                                     productId: productId,
                                                     stock: bn,
                                                     Quantity: quanArr,
-                                                    categorySearch : arr2,
-                                                    nameSearch : arr1
+                                                    categorySearch: arr2,
+                                                    nameSearch: arr1
                                                 }).then(() => {
                                                     toast.success('Dish Added !!!')
                                                     console.log('done')
@@ -268,12 +268,16 @@ const AddDish = () => {
                 <h2>Add Dishes</h2>
 
                 <Form.Group>
-                <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Dish Name</Form.Label>
+                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Dish Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter Dish Name" onChange={handleChange('name')} value={name} />
                 </Form.Group>
-                <Form.Group>
-                <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Sub-category</Form.Label>
-                    <Form.Control type="text" placeholder="Enter sCat Name" onChange={handleChange('sCat')} value={sCat} />
+                <Form.Group >
+                    <Form.Label>Choose Subcategory</Form.Label><br />
+                    <Form.Control as="select" onChange={handleChange('sCat')}>
+                        <option>Please Select</option>
+                        <option value='Grocery'>Grocery</option>
+                        <option value='Food'>Food</option>
+                    </Form.Control>
                 </Form.Group>
                 <Container fluid>
                     <Row>
@@ -312,7 +316,7 @@ const AddDish = () => {
                             <Form.Group >
                                 <Form.Label>Choose category</Form.Label><br />
                                 <Form.Control as="select" onChange={handleChange('category')}>
-                                  <option>Please Select</option>
+                                    <option>Please Select</option>
                                     {cat && cat.map((c, i) =>
                                     (<option key={i} value={c.catName}>
                                         {c.catName}
@@ -381,22 +385,22 @@ const AddDish = () => {
 
                 <div>
                     <Form.Group>
-                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Discount</Form.Label>
+                        <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Discount</Form.Label>
                         <Form.Control type="text" placeholder="Enter Bought Together Discount" onChange={handleChange('boughtTogetherDiscount')} value={boughtTogetherDiscount} />
                     </Form.Group>
                     <Form.Group>
-                    <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Quantity</Form.Label>
+                        <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Bought Together Quantity</Form.Label>
                         <Form.Control type="text" placeholder="Enter Bought Together Quantityy" onChange={handleChange('boughtTogetherQuantity')} value={boughtTogetherQuantity} />
                     </Form.Group>
                     <Form.Group >
-                      <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Choose Bought Tohether Product</Form.Label>
-                      <Form.Control as="select" onChange={handleChange('boughtTogether')}>
-                        {dishh && dishh.map((c, i) =>
+                        <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Choose Bought Tohether Product</Form.Label>
+                        <Form.Control as="select" onChange={handleChange('boughtTogether')}>
+                            {dishh && dishh.map((c, i) =>
                             (<option key={i} value={c._id}>
                                 {c.data.name}
                             </option>)
-                        )}
-                      </Form.Control>
+                            )}
+                        </Form.Control>
                     </Form.Group>
                 </div>
 
@@ -404,7 +408,7 @@ const AddDish = () => {
 
                 <div>
                     <Container fluid>
-                      <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Quantities</Form.Label>
+                        <Form.Label style={{ fontWeight: "bold", margin: "1em 0 0.5em 0" }}>Enter Quantities</Form.Label>
                         <Row>
                             <Col>
                                 <Form.Group>

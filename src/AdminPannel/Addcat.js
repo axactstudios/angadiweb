@@ -87,8 +87,13 @@ const Addcat = () => {
                     <Form.Group>
                         <Form.Control type="text" placeholder="Name" onChange={handleChange('name')} value={name} />
                     </Form.Group>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="SCat" onChange={handleChange('sCat')} value={sCat} />
+                    <Form.Group >
+                        <Form.Label>Choose Subcategory</Form.Label><br />
+                        <Form.Control as="select" onChange={handleChange('sCat')}>
+                            <option>Please Select</option>
+                            <option value='Grocery'>Grocery</option>
+                            <option value='Food'>Food</option>
+                        </Form.Control>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label >Choose Images</Form.Label>

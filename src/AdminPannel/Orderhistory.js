@@ -21,18 +21,9 @@ const Getorder = () => {
     const [values, setValues] = useState({
         name: ''
     })
-    const newOrderr = () => {
-        setDish([])
-        db.collection('Orders').orderBy("TimeStamp", "desc").get()
-            .then(res => {
-                res.forEach((doc) => {
-                    setDish(dish => [...dish, { data: doc.data(), _id: doc.id }])
-                })
-            })
-    }
-
+    
     useEffect(async () => {
-        await newOrderr()
+        await checkDeliverd()
     }, [])
 
     useEffect(() => {
@@ -78,7 +69,7 @@ const Getorder = () => {
                     if (res.data()) {
                         setDish(dish => [...dish, { data: res.data(), _id: res.id }])
                     } else {
-                        newOrderr()
+                        checkDeliverd()
                         toast.error('No Order Found !!!')
                     }
                 })
@@ -95,7 +86,6 @@ const Getorder = () => {
 
                 <div className="admin-order-utility">
                     <div>
-                        <button className="admin-order-utility-button" onClick={newOrderr}>All Orders</button>
                         <button className="admin-order-utility-button" onClick={checkDeliverd}>Order Delivered</button>
                         <button className="admin-order-utility-button" onClick={CheckDeliveryType}>Canceled Order</button>
                     </div>
