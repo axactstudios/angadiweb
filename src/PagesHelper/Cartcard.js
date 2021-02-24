@@ -106,7 +106,7 @@ const Cartcard = ({ product,
                         <Col xs={7} sm={8} md={9}>
                             <div className="cartt2">
                                 <h2>{product.name} </h2>
-                                <h3><i className="fa fa-inr"></i>{product.price} <span style={{ color: 'rgb(252, 32, 32)', textDecoration: 'line-through' }}><i className="fa fa-inr"></i>{product.iPrice}</span></h3>
+                                <h3>AED{product.price} <span style={{ color: 'rgb(252, 32, 32)', textDecoration: 'line-through' }}>AED{product.iPrice}</span></h3>
                                 <h6>{product.quantity} ML</h6>
                                 {showCartUpdateOption(cartUpdate)}
                                 <Link to={`/dish/${product._id}`}>

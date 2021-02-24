@@ -319,27 +319,27 @@ const Checkout = ({ dm }) => {
             <table className="bill">
               <tr>
                 <th>Sub Total - </th>
-                <td><i class="fa fa-inr" /> {getTotal()} </td>
+                <td>AED {getTotal()} </td>
               </tr>
               <tr>
                 <th>Discount - </th>
-                <td><i class="fa fa-inr" /> {(parseInt(getTotal()) * (priiice / 100))}</td>
+                <td>AED {(parseInt(getTotal()) * (priiice / 100))}</td>
               </tr>
               <tr>
                 <th>Tax @ 5% - </th>
-                <td><i class="fa fa-inr" /> {getTotal() * 0.05}</td>
+                <td>AED {getTotal() * 0.05}</td>
               </tr>
               <tr>
                 <th>Charges - </th>
-                <td><i class="fa fa-inr" /> {deliverycharge && deliverycharge}</td>
+                <td>AED {deliverycharge && deliverycharge}</td>
               </tr>
               <hr />
               <tr>
                 <th>Grand Total - </th>
                 {deliverycharge ?
-                  <th> <i class="fa fa-inr" />{parseInt(getTotal() * (1.05 - (priiice / 100))) + parseInt(deliverycharge)}</th>
+                  <th> AED  {parseInt(getTotal() * (1.05 - (priiice / 100))) + parseInt(deliverycharge)}</th>
                   :
-                  <th> <i class="fa fa-inr" />{parseInt(getTotal() * (1.05 - (priiice / 100)))}</th>
+                  <th> AED  {parseInt(getTotal() * (1.05 - (priiice / 100)))}</th>
                 }
               </tr>
             </table>
