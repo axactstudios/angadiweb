@@ -46,6 +46,10 @@ import UpdateProfile from './User/Profile'
 import Category from './core/Category';
 import Wishlist from './core/Wishlist'
 import Address from './core/Address';
+import AboutUs from './core/StaticPages/AboutUs';
+import Privacy from './core/StaticPages/Privacy';
+import Refund from './core/StaticPages/Refund';
+import Terms from './core/StaticPages/Terms';
 
 const App = () => {
   let location = window.location;
@@ -70,6 +74,10 @@ const App = () => {
             <Route path='/notif' exact component={Notification} />
             <Route path='/category' exact component={Category} />
             <Route path='/wishlist' exact component={Wishlist} />
+            <Route path='/about' exact component={AboutUs} />
+            <Route path='/privacy' exact component={Privacy} />
+            <Route path='/refund' exact component={Refund} />
+            <Route path='/terms' exact component={Terms} />
 
             <AdminRoute path='/admin/get/category' exact component={Adminpannel(GetCat)} />
             <AdminRoute path='/admin/create/category' exact component={Adminpannel(Addcat)} />

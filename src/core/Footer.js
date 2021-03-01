@@ -36,11 +36,10 @@ const Footer = ({ history }) => {
 
                     <div className="footer-list">
                         <h3>Information</h3>
-                        <Link to="jdfakkl">About us</Link>
-                        <Link to="jdfakkl">Contact us</Link>
-                        <Link to="jdfakkl">Refund & Delivery policy</Link>
-                        <Link to="jdfakkl">Privacy policy</Link>
-                        <Link to="jdfakkl">Terms & conditions</Link>
+                        <Link to="/about">About us</Link>
+                        <Link to="/refund">Refund & Delivery policy</Link>
+                        <Link to="/privacy">Privacy policy</Link>
+                        <Link to="/terms">Terms & conditions</Link>
                     </div>
 
                     <div className="footer-list">
@@ -54,13 +53,11 @@ const Footer = ({ history }) => {
 
                     <div className="footer-list">
                         <h3>Contact Info</h3>
-                        <p>Phone number</p>
-                        <p>email</p>
-                        <p>address</p>
+                        <p>+971 50 7175406</p>
+                        <p>info@misteridli.com</p>
                         <div className="social-media-icons">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <a href='https://www.facebook.com/MisterIdli/' target='_blank'><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href='https://twitter.com/https://twitter.com/MisterIdli' target='_blank'><i class="fa fa-twitter" aria-hidden="true"></i></a>
                         </div>
                     </div>
 
