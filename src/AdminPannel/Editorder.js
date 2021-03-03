@@ -3,8 +3,10 @@ import * as firebase from 'firebase'
 import { useRouteMatch, Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import '../Styles/adminPanel.css';
-import { Form } from 'react-bootstrap'
 import { jsPDF } from 'jspdf'
+import MapPicker from 'react-google-map-picker'
+import Geocode from 'react-geocode'
+import { Modal, Form } from 'react-bootstrap'
 
 const Editorder = () => {
     let match = useRouteMatch();
@@ -12,6 +14,7 @@ const Editorder = () => {
     const db = firebase.firestore()
     const _id = match.params.orderId
     const [status, setStatus] = useState('');
+    const [modalShow, setModalShow] = React.useState(false);
 
     const getsome = () => {
         db.collection('Orders').doc(_id).get()
@@ -37,6 +40,22 @@ const Editorder = () => {
             navlinksss.classList.toggle("active");
         })
     })
+
+    let { Address } = values;
+    Address = " " + Address;
+    Address = Address.toString().slice(25, Address.length)
+    const [location, setloc] = useState({ lat: 0, lng: 0 })
+
+      Geocode.setApiKey('AIzaSyAXFXYI7PBgP9KRqFHp19_eSg-vVQU-CRw')
+      if(modalShow) {
+        Geocode.fromAddress(Address).then(
+          async response => {
+            const { lat, lng } = await response.results[0].geometry.location;
+            console.log(lat, lng);
+            setloc({lat: lat, lng: lng})
+          }
+        )
+      } 
 
     const handleSubmit = () => {
         db.collection('Orders').doc(_id).update({
@@ -114,11 +133,19 @@ const Editorder = () => {
                                 <th><i class="fa fa-file-o" /> &nbsp; Grand Total</th>
                             </tr>
                             <tr>
-                                <td>{values.Address}</td>
+                                <td>{values.Address}
+                                <button className="admin-order-utility-button" onClick={() => setModalShow(!modalShow)}>Show</button>
+                                </td>
                                 <td>{values.Type}</td>
                                 <td>{values.GrandTotal}</td>
                             </tr>
                         </table>
+                        {modalShow ? <div>
+                            <MapPicker defaultLocation={location}
+                                zoom={15}
+                                style={{ height: '300px', width: '300px' }}
+                                apiKey='AIzaSyD07E1VvpsN_0FvsmKAj4nK9GnLq-9jtj8' />
+                        </div> : null}
                         <div style={{ fontWeight: "bolder", margin: "1em 0" }}>UserID -<Link to={`/admin/orders/from/user/${values.UserID}`}>{values.UserID}</Link></div>
                         <div className="edit-order-data">
                             <div><h6>Dishes</h6> {values.Items && values.Items.map((d) => (
@@ -146,6 +173,3 @@ const Editorder = () => {
 };
 
 export default Editorder;
-
-// <div>{values.TimeStamp.seconds && <p>Timestamp -{new Date(values.TimeStamp.seconds * 1000).toLocaleDateString("en-US")}</p>}</div>
-// <td>{values && values.DeliveryTime}</td>
