@@ -156,7 +156,197 @@ const Editdish = () => {
     };
 
     const handleSubmit = () => {
+var arr1 = []
+        var arr2 = []
+        var bn = stock
+        var bm = top
+        var bv = special
+        if (name) {
+            for (let i = 0; i < name.length + 1; i++) {
+                arr1.push(name.slice(0, i))
+            }
+        } if (category) {
+            for (let y = 0; y < category.length + 1; y++) {
+                arr2.push(category.slice(0, y))
+            }
+        } if (stock === 'false') {
+            bn = false
+        } if (top === 'false') {
+            bm = false
+        } if (special === 'false') {
+            bv = false
+        } if (stock === 'true') {
+            bn = true
+        } if (top === 'true') {
+            bm = true
+        } if (special === 'true') {
+            bv = true
+        }
 
+
+        if (image !== null) {
+            const uploadTask = storage.ref(`Dishes/${name}`).child(image.name).put(image);
+            uploadTask.on('state_changed', (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                console.log(progress)
+            },
+                (error) => {
+                    console.log(error)
+                    toast.error('Something went wrong in uploading image !!')
+                },
+                () => {
+                    storage.ref(`Dishes/${name}`).child(image.name).getDownloadURL().then(async url => {
+                        console.log(url)
+                        await store.collection('Dishes').doc(_id).update({
+                            url: url,
+                            url2:photo1,
+                            url3:photo2,
+                            name: name,
+                            top: bm,
+                            special: bv,
+                            iPrice: price,
+                            description: description,
+                            price: price,
+                            category: category,
+                            sCat: sCat,
+                            stock: bn,
+                            boughtTogether: boughtTogether,
+                            boughtTogetherDiscount: boughtTogetherDiscount,
+                            boughtTogetherQuantity: boughtTogetherQuantity,
+                            productId: productId,
+                            Quantity: quanArr,
+                            categorySearch: arr2,
+                            nameSearch: arr1
+                        }).then(() => {
+                            console.log('fuck offf')
+                            toast.success('Dish edit successfully !!!')
+                            window.location.reload(false)
+                        }).catch((err) => {
+                            console.log(err)
+                            toast.error('Something went wrong !!!')
+                        })
+                    })
+                })
+        } else {
+            if (image1 !== null) {
+                const uploadTask1 = storage.ref(`Dishes/${name}`).child(image1.name).put(image1);
+                uploadTask1.on('state_changed', (snapshot) => {
+                    const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                    console.log(progress)
+                },
+                    (error) => {
+                        console.log(error)
+                        toast.error('Something went wrong in uploading image !!')
+                    },
+                    () => {
+                        storage.ref(`Dishes/${name}`).child(image1.name).getDownloadURL().then(async url => {
+                            console.log(url)
+                            await store.collection('Dishes').doc(_id).update({
+                                url2: url,
+                                url:photo,
+                                url3:photo2,
+                                name: name,
+                                top: bm,
+                                special: bv,
+                                iPrice: price,
+                                description: description,
+                                price: price,
+                                category: category,
+                                sCat: sCat,
+                                stock: bn,
+                                boughtTogether: boughtTogether,
+                                boughtTogetherDiscount: boughtTogetherDiscount,
+                                boughtTogetherQuantity: boughtTogetherQuantity,
+                                productId: productId,
+                                Quantity: quanArr,
+                                categorySearch: arr2,
+                                nameSearch: arr1
+                            }).then(() => {
+                                console.log('fuck offf')
+                                toast.success('Dish edit successfully !!!')
+                                window.location.reload(false)
+                            }).catch((err) => {
+                                console.log(err)
+                                toast.error('Something went wrong !!!')
+                            })
+                        })
+                    })
+            } else {
+                if (image2 !== null) {
+                    const uploadTask2 = storage.ref(`Dishes/${name}`).child(image2.name).put(image2);
+                    uploadTask2.on('state_changed', (snapshot) => {
+                        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                        console.log(progress)
+                    },
+                        (error) => {
+                            console.log(error)
+                            toast.error('Something went wrong in uploading image !!')
+                        },
+                        () => {
+                            storage.ref(`Dishes/${name}`).child(image2.name).getDownloadURL().then(async url => {
+                                console.log(url)
+                                await store.collection('Dishes').doc(_id).update({
+                                    url3: url,
+                                    url2:photo1,
+                                    url:photo,
+                                    name: name,
+                                    top: bm,
+                                    special: bv,
+                                    iPrice: price,
+                                    description: description,
+                                    price: price,
+                                    category: category,
+                                    sCat: sCat,
+                                    stock: bn,
+                                    boughtTogether: boughtTogether,
+                                    boughtTogetherDiscount: boughtTogetherDiscount,
+                                    boughtTogetherQuantity: boughtTogetherQuantity,
+                                    productId: productId,
+                                    Quantity: quanArr,
+                                    categorySearch: arr2,
+                                    nameSearch: arr1
+                                }).then(() => {
+                                    console.log('fuck offf')
+                                    toast.success('Dish edit successfully !!!')
+                                    window.location.reload(false)
+                                }).catch((err) => {
+                                    console.log(err)
+                                    toast.error('Something went wrong !!!')
+                                })
+                            })
+                        })
+                } else {
+                    store.collection('Dishes').doc(_id).update({
+                        url2:photo1,
+                        url3:photo2,
+                        url:photo,
+                        name: name,
+                        top: bm,
+                        special: bv,
+                        iPrice: price,
+                        description: description,
+                        price: price,
+                        category: category,
+                        sCat: sCat,
+                        stock: bn,
+                        boughtTogether: boughtTogether,
+                        boughtTogetherDiscount: boughtTogetherDiscount,
+                        boughtTogetherQuantity: boughtTogetherQuantity,
+                        productId: productId,
+                        Quantity: quanArr,
+                        categorySearch: arr2,
+                        nameSearch: arr1
+                    }).then(() => {
+                        console.log('fuck offf')
+                        toast.success('Dish Update successfully')
+                        window.location.reload(false)
+                    }).catch((err) => {
+                        console.log(err)
+                        toast.error('Something went wrong !!!')
+                    })
+                }
+            }
+        }
     }
 
 
