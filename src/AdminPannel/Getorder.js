@@ -24,44 +24,6 @@ const Getorder = () => {
         name: ''
     })
 
-    useEffect(async () => {
-        Setalldish([])
-        db.collection('Orders').get()
-            .then((res) => {
-                var y = 0
-                res.forEach((doc) => {
-                    y = y + 1
-                })
-                db.collection('Orders')
-                    .onSnapshot(res => {
-                        var x = 0;
-                        res.docChanges().forEach((doc) => {
-                            x = x + 1
-                        })
-                        if (x === y && x > 0 && y > 0) {
-                            // toast.success('New Order Added !!!')
-                            // const audioEl = document.getElementsByClassName("audio-element")[0]
-                            // if (audioEl) {
-                            //     audioEl.play()
-                            // }
-                        }
-                        if (x > y && x > 0 && y > 0) {
-                            // toast.success('New Order !!!')
-                            const audioEl = document.getElementsByClassName("audio-element")[0]
-                            if (audioEl) {
-                                audioEl.play()
-                            }
-                        }
-                        if (x < y && x > 0 && y > 0) {
-                            // toast.success(' Order Deleted !!!')
-                            const audioEl = document.getElementsByClassName("audio-element")[0]
-                            if (audioEl) {
-                                audioEl.play()
-                            }
-                        }
-                    })
-            })
-    }, [])
 
     const CheckDeliveryType = () => {
         setDish([])
